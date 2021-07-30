@@ -1,24 +1,31 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
+
+import { Route } from 'react-router-dom';
+
+import Login from './components/Login/Login.js';
+import Permissions from './components/Permissions/Permissions.js';
+
+// import AuthProvider from './contexts/AuthContexts';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    // <AuthProvider>
+    <>
+    <Route path='/login' render={() => (
+        <Login />
+      )}/>
+
+      {
+        // Authenticated
+        // Route
+      }
+
+      <Route exact path='/permissions' render={() => (
+          <Permissions />
+        )}/>
+        </>
+     // </AuthProvider>
   );
 }
 
