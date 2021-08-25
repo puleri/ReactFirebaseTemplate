@@ -1,3 +1,35 @@
-h1 {
+h1, h2, h3 {
+  letter-spacing: .15rem;
   color: black;
+  font-family: 'Heebo', sans-serif;
+}
+.permissions-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+.permissions-header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid lightgray;
+}
+.perm-h1{
+  margin-left: 20px;
+}
+.perm-cog {
+  margin-left: -90px;
+  font-size: 18px;
+  color: gray;
+}
+.perm-prof-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background: #4CD196;
 }

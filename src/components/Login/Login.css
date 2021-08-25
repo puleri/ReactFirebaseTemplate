@@ -4,11 +4,14 @@
   align-items: center;
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  overflow: auto;
   position: relative;;
 }
 .circle1 {
-  margin: -670px -1390px 0 0;
+  position: absolute;
+  right: -720px;
+  top: -650px;
+  /* margin: -670px -1390px 0 0; */
   height: 1300px;
   width: 1300px;
 background: -webkit-linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,255,168,1) 100%);
@@ -19,7 +22,9 @@ background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,255,168,1) 100%);
 .circle2 {
   position: absolute;
   z-index: -1;
-  margin: -590px -1440px 0 0;
+  /* margin: -590px -1440px 0 0; */
+  right: -750px;
+  top: -610px;
   height: 1300px;
   width: 1300px;
   background: rgb(255,255,255);
@@ -50,7 +55,7 @@ background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,255,168,1) 100%);
 .login-form {
   height: 460px;
   position: absolute;
-  margin-top: -120px;
+  top: 50px;
   right: 140px;
   display: flex;
   align-items: center;
@@ -58,6 +63,12 @@ background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,255,168,1) 100%);
   justify-content: space-around;
   flex-direction: column;
 
+}
+.error-message{
+  font-size: 10px;
+  font-family: 'Heebo', sans-serif;
+  color: white;
+  margin: -40px 0;
 }
 .login-email {
   background: none;

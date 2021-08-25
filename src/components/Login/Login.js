@@ -12,12 +12,13 @@ import "./Button.css"
 // import { useAuth } from '../../contexts/AuthContexts';
 
 
-export default function Login() {
+export default function Login(props) {
     const match = useRouteMatch('/login');
 
     const [email, setEmail] = useState('');
+    const [error, setError] = useState(null)
     const [password, setPassword] = useState('');
-    const [currentUser, setCurrentUser] = useState();
+    const [currentUser, setCurrentUser] = useState(null);
     const [redirect, setRedirect] = useState(false);
 
     // const { login } = useAuth()
@@ -29,25 +30,31 @@ export default function Login() {
       return unsubscribe
     }, [])
 
-    // const value = {
-    //   currentUser
-    // }
-
     function login(email, password) {
       return auth.signInWithEmailAndPassword(email, password)
     }
 
 
     const handleSubmit = (e) => {
-      console.log(email, " ", password)
+      // console.log(email, " ", password)
+      setError(null)
       login(email, password)
+        .then((user = currentUser) => {
+          // Line for Kaiser Admins
+          if (user.user.email === "1@1.com") {
+            return props.history.push('/permissions')
+          }
+          if (user != null) {
+            return props.history.push('/template')
+          }
+          console.log(user)
+        })
         .catch((error) => {
-          alert('error')
+          setError('Username or password incorrect.')
         })
     }
 
-    // Ternary to check if url matches '/login' and returns this
-    return match && redirect === false ? (
+  return (
       <div className="login-page">
         <div className="login-welcome">
           <h1 className="login-h1">Welcome <br/> Please sign in</h1>
@@ -59,6 +66,7 @@ export default function Login() {
         </div>
         <div className="login-form">
         <img alt="Kaiser White Logo -- The word 'Kaiser' with a roof on top" className="logo" src={logo} />
+        <p className="error-message">{error}</p>
           <input onChange = {(e) => setEmail(e.target.value)} type="email" className="login-email" placeholder="Email:"/>
           <input onChange = {(e) => setPassword(e.target.value)} type="password" className="login-password" placeholder="Password:"/>
           <button className="pulse" onClick={handleSubmit}>Sign in</button>
@@ -67,5 +75,5 @@ export default function Login() {
         </div>
 
       </div>
-    ) : <h1>Permissions redirect</h1>
+    )
   }

@@ -1,7 +1,7 @@
 // import logo from './logo.svg';
 import './App.css';
 
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import Login from './components/Login/Login.js';
 import Permissions from './components/Permissions/Permissions.js';
@@ -11,20 +11,18 @@ import Permissions from './components/Permissions/Permissions.js';
 function App() {
   return (
     // <AuthProvider>
-    <>
-    <Route path='/login' render={() => (
-        <Login />
-      )}/>
+    <div className="App-wrapper">
+    <Switch>
+    <Route path='/login' component={Login}/>
 
       {
         // Authenticated
         // Route
       }
 
-      <Route exact path='/permissions' render={() => (
-          <Permissions />
-        )}/>
-        </>
+      <Route exact path='/permissions' component={Permissions}/>
+    </Switch>
+    </div>
      // </AuthProvider>
   );
 }
