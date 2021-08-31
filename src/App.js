@@ -5,15 +5,17 @@ import { Route, Switch } from 'react-router-dom';
 
 import Login from './components/Login/Login.js';
 import Permissions from './components/Permissions/Permissions.js';
-
+import React, { useState, useEffect } from 'react';
 // import AuthProvider from './contexts/AuthContexts';
+import { auth } from 'firebase';
 
-function App() {
+function App(props) {
+  const [currentUser, setCurrentUser] = useState(null);
   return (
     // <AuthProvider>
     <div className="App-wrapper">
     <Switch>
-    <Route path='/login' component={Login}/>
+    <Route path='/login' currentUser={currentUser} setCurrentUser={setCurrentUser} component={Login}/>
 
       {
         // Authenticated

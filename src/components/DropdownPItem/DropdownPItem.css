@@ -1,0 +1,25 @@
+.drop-item {
+  width: calc(var(--drop-size) * 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.icon-button {
+  --button-size: calc(var(--drop-size) * 0.5);
+  width: var(--button-size);
+  height: var(--button-size);
+  border-radius: 50%;
+  background-color: #4CD196;
+  padding: 5px;
+  margin: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  text-align: center;
+  color: white;
+  transition: filter 300ms;
+}
+.icon-button:hover {
+  filter: brightness(1.1);
+}

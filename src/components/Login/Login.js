@@ -15,6 +15,7 @@ import "./Button.css"
 export default function Login(props) {
     const match = useRouteMatch('/login');
 
+// this logic below needs to move to the app's global scope and passed as a prop
     const [email, setEmail] = useState('');
     const [error, setError] = useState(null)
     const [password, setPassword] = useState('');
@@ -53,7 +54,12 @@ export default function Login(props) {
           setError('Username or password incorrect.')
         })
     }
-
+  if (localStorage.getItem('user')) {
+    props.history.push('/permissions')
+    return (
+      <h1>You are already logged in. Redirecting to home.</h1>
+    )
+  }
   return (
       <div className="login-page">
         <div className="login-welcome">
