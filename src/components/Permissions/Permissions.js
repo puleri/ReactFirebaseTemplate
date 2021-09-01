@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import DropdownP from '../DropdownP/DropdownP.js'
+import DropdownMenu from '../DropdownMenu/DropdownMenu.js'
 import DropdownPItem from '../DropdownPItem/DropdownPItem.js';
 import { useRouteMatch } from 'react-router-dom';
 import firebase, { auth } from '../../firebase';
@@ -40,7 +40,7 @@ export default function Permissions(props) {
           <button className="Roles-button" onClick={(e) => {userDbMatch()}}><h3>Roles</h3></button>
           <div className="perm-prof-icon"><i className="perm-cog fas fa-cog"></i>
           <DropdownPItem className="perm-prof-icon" icon="MP" >
-            <p>hello world</p>
+            <DropdownMenu />
           </DropdownPItem>
           </div>
         </div>
