@@ -11,6 +11,7 @@ import "./Permissions.css";
 // const admin = require('firebase-admin');
 
 export default function Permissions(props) {
+  const [roster, setRoster] = useState([])
 
   useEffect(() => {
     console.log(localStorage.user)
@@ -27,15 +28,16 @@ export default function Permissions(props) {
           q.get().then(querySnapshot => {
             const d = querySnapshot.docs.map(d => d.data())
             console.log('users are ', d)
+            setRoster(d)
           })
-          console.log('yes')
+          console.log('roster is ', roster)
         }
       // console.log('user match in database: ', item.email)
 
       })
     })
   }
-
+  const rosterIndex = roster.map((user) => <li key={user.email}>{user.email}</li>)
 
     return (
       <>
@@ -51,6 +53,8 @@ export default function Permissions(props) {
           </div>
         </div>
       </div>
+      
+      {rosterIndex}
       </>
     )
   }
