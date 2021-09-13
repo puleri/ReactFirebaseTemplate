@@ -32,6 +32,7 @@ export default function Login(props) {
     }, [])
 
     function login(email, password) {
+      localStorage.setItem('user', email)
       return auth.signInWithEmailAndPassword(email, password)
     }
 

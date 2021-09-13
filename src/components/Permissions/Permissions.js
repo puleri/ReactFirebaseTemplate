@@ -8,6 +8,8 @@ import firebase, { auth } from '../../firebase';
 
 import "./Permissions.css";
 
+// const admin = require('firebase-admin');
+
 export default function Permissions(props) {
 
   useEffect(() => {
@@ -22,6 +24,10 @@ export default function Permissions(props) {
       qs.forEach((doc) => {
         const dbRef = doc.data().email
         if (dbRef === authRef) {
+          q.get().then(querySnapshot => {
+            const d = querySnapshot.docs.map(d => d.data())
+            console.log('users are ', d)
+          })
           console.log('yes')
         }
       // console.log('user match in database: ', item.email)

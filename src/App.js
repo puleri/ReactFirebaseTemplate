@@ -11,6 +11,12 @@ import { auth } from 'firebase';
 
 function App(props) {
   const [currentUser, setCurrentUser] = useState(null);
+
+  // clearing local storage for when working on the same dev port as other projects
+  // useEffect(() => {
+  //   localStorage.clear()
+  // }, [])
+
   return (
     // <AuthProvider>
     <div className="App-wrapper">
