@@ -12,9 +12,11 @@ import "./Permissions.css";
 
 export default function Permissions(props) {
   const [roster, setRoster] = useState([])
+  const [active, setActive] = useState('Admin')
 
   useEffect(() => {
     console.log(localStorage.user)
+    userDbMatch()
   }, [])
 
   const userDbMatch = () => {
@@ -26,9 +28,11 @@ export default function Permissions(props) {
         const dbRef = doc.data().email
         if (dbRef === authRef) {
           q.get().then(querySnapshot => {
+
             const d = querySnapshot.docs.map(d => d.data())
             console.log('users are ', d)
             setRoster(d)
+            setActive('Admin')
           })
           console.log('roster is ', roster)
         }
@@ -37,7 +41,12 @@ export default function Permissions(props) {
       })
     })
   }
+  let activeMenu = <> </>
   const rosterIndex = roster.map((user) => <li key={user.email}>{user.email}</li>)
+  if (active === 'Admin') {
+    activeMenu = rosterIndex
+  }
+
 
     return (
       <>
@@ -53,8 +62,7 @@ export default function Permissions(props) {
           </div>
         </div>
       </div>
-      
-      {rosterIndex}
+      {activeMenu}
       </>
     )
   }

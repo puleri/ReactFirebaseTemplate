@@ -22,6 +22,9 @@ export default function DropdownMenu() {
         <h4>
         hello world
         </h4>
+        <h4>
+        logout
+        </h4>
     </div>
   )
 }
