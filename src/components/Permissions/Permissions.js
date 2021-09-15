@@ -12,39 +12,65 @@ import "./Permissions.css";
 
 export default function Permissions(props) {
   const [roster, setRoster] = useState([])
-  const [active, setActive] = useState('Admin')
+  const [active, setActive] = useState('Template')
 
   useEffect(() => {
     console.log(localStorage.user)
-    userDbMatch()
+    // userDbMatch()
   }, [])
 
   const userDbMatch = () => {
     const q = firebase.firestore().collection('users')
-    const authRef = auth.currentUser.email
+    // const authRef = auth.currentUser.email
     // console.log("current user is: ", auth.currentUser.email)
     q.where('email', '==', auth.currentUser.email).onSnapshot((qs) => {
       qs.forEach((doc) => {
-        const dbRef = doc.data().email
-        if (dbRef === authRef) {
           q.get().then(querySnapshot => {
 
-            const d = querySnapshot.docs.map(d => d.data())
+            const d = querySnapshot.docs.map(d =>d.data())
             console.log('users are ', d)
             setRoster(d)
             setActive('Admin')
           })
           console.log('roster is ', roster)
-        }
       // console.log('user match in database: ', item.email)
 
       })
     })
   }
+
   let activeMenu = <> </>
-  const rosterIndex = roster.map((user) => <li key={user.email}>{user.email}</li>)
+  const rosterIndex = roster.map((user) =>
+  <tr key={user.email}>
+    <th>{user.email}</th>
+    <th>{user.first}</th>
+    <th>{user.last}</th>
+    <th>{user.status === 'active' ? 'Active' : user.status === 'pending' ? 'Pending' : 'Disabled'}</th>
+    <th>Update</th>
+  </tr>
+)
+  const rosterFull = (
+  <table className="admin-table">
+    <tr>
+      <th>Email</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+    {rosterIndex}
+  </table>
+)
+  const defaultTemplate = (
+    <>
+      Default Template
+    </>
+  )
   if (active === 'Admin') {
-    activeMenu = rosterIndex
+    activeMenu = rosterFull
+  }
+  if (active === "Template") {
+    activeMenu = defaultTemplate
   }
 
 
@@ -53,7 +79,7 @@ export default function Permissions(props) {
       <div className="permissions-container">
         <div className="permissions-header">
           <h2 className="perm-h1">Role Manager</h2>
-          <h3>Users</h3>
+          <button onClick={(e) => { setActive('Template') }}><h3>Users</h3></button>
           <button className="Roles-button" onClick={(e) => {userDbMatch()}}><h3>Roles</h3></button>
           <div className="perm-prof-icon"><i className="perm-cog fas fa-cog"></i>
           <DropdownPItem className="perm-prof-icon" icon="MP" >

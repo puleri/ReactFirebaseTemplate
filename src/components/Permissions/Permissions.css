@@ -36,3 +36,7 @@ h1, h2, h3 {
   background: none;
   cursor: pointer;
 }
+.admin-table {
+  margin: 30px;
+  outline: 1px solid black;
+}
