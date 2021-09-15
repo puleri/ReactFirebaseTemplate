@@ -69,7 +69,13 @@ export default function Permissions(props) {
   let supportTab
 
   if (active === 'Admin') {
-    activeMenu = rosterFull
+    activeMenu =
+    <div className="admin-container">
+    <h3 id="admin-header">Administrator</h3>
+    <div className="admin-tip"><p>If this message is visable to you, that means you are a Kaiser Administrator and as such have the ability to create, view, update, and delete users with access to Kaiser Tools</p></div>
+    <div className="admin-tip"><p>Each user will have the ability to use the Kaiser Tools after they update their password from the new user default password</p></div>
+    {rosterFull}
+    </div>
     adminTab = <div className="admin-tab-highlight"></div>
   }
   if (active === "Template") {

@@ -38,9 +38,24 @@ h1, h2, h3 {
   background: none;
   cursor: pointer;
 }
+.admin-container {
+  font-family: 'Heebo', sans-serif;
+  margin: 20px 50px;
+}
+#admin-header {
+  font-size: 24px;
+}
+.admin-tip {
+  border-radius: 5px;
+  background: #4CA1962F;
+  padding: 2px 40px;
+  margin: 0 0 40px;
+}
 .admin-table {
-  margin: 30px;
-  outline: 1px solid black;
+  text-align: left;
+  margin-top: 60px;
+  width: 100%;
+  border-top: 1px solid black;
 }
 
 .temp-tab-highlight {
