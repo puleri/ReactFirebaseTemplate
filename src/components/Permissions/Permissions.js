@@ -38,7 +38,7 @@ export default function Permissions(props) {
       })
     })
   }
-
+  // tab content
   let activeMenu = <> </>
   const rosterIndex = roster.map((user) =>
   <tr key={user.email}>
@@ -61,16 +61,23 @@ export default function Permissions(props) {
     {rosterIndex}
   </table>
 )
-  const defaultTemplate = (
-    <>
-      Default Template
-    </>
-  )
+  let defaultTemplate
+
+  // tab highlighters
+  let templateTab
+  let adminTab
+  let supportTab
+
   if (active === 'Admin') {
     activeMenu = rosterFull
+    adminTab = <div className="admin-tab-highlight"></div>
   }
   if (active === "Template") {
     activeMenu = defaultTemplate
+    templateTab = <div className="temp-tab-highlight"></div>
+  }
+  if (active === "Support") {
+    supportTab = <div className="support-tab-highlight"></div>
   }
 
 
@@ -79,8 +86,15 @@ export default function Permissions(props) {
       <div className="permissions-container">
         <div className="permissions-header">
           <h2 className="perm-h1">Role Manager</h2>
-          <button onClick={(e) => { setActive('Template') }}><h3>Users</h3></button>
-          <button className="Roles-button" onClick={(e) => {userDbMatch()}}><h3>Roles</h3></button>
+          <button className="Roles-button" onClick={(e) => { setActive('Template') }}><h3>Template</h3>
+            {templateTab}
+          </button>
+          <button className="Roles-button" onClick={(e) => {userDbMatch()}}><h3>Roles</h3>
+            {adminTab}
+          </button>
+          <button className="Roles-button" onClick={(e) => { setActive('Support') }}><h3>Support</h3>
+            {supportTab}
+          </button>
           <div className="perm-prof-icon"><i className="perm-cog fas fa-cog"></i>
           <DropdownPItem className="perm-prof-icon" icon="MP" >
             <DropdownMenu />

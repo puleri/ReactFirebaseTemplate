@@ -16,6 +16,7 @@ h1, h2, h3 {
   border-bottom: 2px solid lightgray;
 }
 .perm-h1{
+  font-size: 28px;
   margin-left: 20px;
 }
 .perm-cog {
@@ -27,11 +28,12 @@ h1, h2, h3 {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-left: 20px;
+  margin-left: 20%;
   margin-right: 20px;
   font-family: 'Heebo', sans-serif;
 }
 .Roles-button {
+  font-size: 12px;
   border: none;
   background: none;
   cursor: pointer;
@@ -39,4 +41,29 @@ h1, h2, h3 {
 .admin-table {
   margin: 30px;
   outline: 1px solid black;
+}
+
+.temp-tab-highlight {
+  position: absolute;
+  height:3.5px;
+  width: 105px;
+  background: #4CA196;
+  top: 86px;
+  margin-left: -13px;
+}
+.admin-tab-highlight {
+  position: absolute;
+  height:3.5px;
+  width: 70px;
+  background: #4CA196;
+  top: 86px;
+  margin-left: -13px;
+}
+.support-tab-highlight {
+  position: absolute;
+  height:3.5px;
+  width: 95px;
+  background: #4CA196;
+  top: 86px;
+  margin-left: -13px;
 }
