@@ -90,13 +90,14 @@ h1, h2, h3 {
 /* Template Tab */
 .Template-container {
   font-family: 'Heebo', sans-serif;
-  margin: 30px 70px;
+  margin: -100px 70px;
   max-width: 100%;
 }
 .header-hero {
+  pointer-events: none;
   position: relative;
   color: white;
-  padding: 32px 70px;
+  padding: 32px 70px 200px 6%;
   font-family: 'Heebo', sans-serif;
 }
 .header-hero::after {
@@ -104,7 +105,7 @@ h1, h2, h3 {
   transform: skewY(-3deg);
   z-index: -2;
   position: absolute;
-  top:-30px;
+  top:-190px;
   left: 0;
   height: 100%;
   width: 100%;

@@ -13,6 +13,7 @@ import "./Permissions.css";
 export default function Permissions(props) {
   const [roster, setRoster] = useState([])
   const [active, setActive] = useState('Template')
+  const [existingShingle, setExistingShingle] = useState('')
 
   useEffect((e) => {
     console.log(localStorage.user)
@@ -50,14 +51,16 @@ export default function Permissions(props) {
 )
   const rosterFull = (
   <table className="admin-table">
-    <tr className="admin-table-label">
-      <th>Email</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Status</th>
-      <th>Action</th>
-    </tr>
-    {rosterIndex}
+    <tbody>
+      <tr className="admin-table-label">
+        <th>Email</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+      {rosterIndex}
+    </tbody>
   </table>
 )
   let defaultTemplate
@@ -83,86 +86,98 @@ export default function Permissions(props) {
     <>
     <div className="header-hero">
       <h1 style={{ color: 'white' }}>Roof Measurement</h1>
-      <p>All measurements entered in square feet</p>
+      <p>All measurements recorded in square feet</p>
     </div>
     <div className="Template-container">
       <form className="roof-measurement-form">
         <div className="form-group">
-        <label>Total Roof Area</label>
-        <input
-        type="number"
-        />
+          <label>Total Roof Area</label>
+          <input
+          type="number"
+          />
         </div>
         <div className="form-group">
-        <label>Ridge</label>
-        <input
-        type="number"
-        />
+          <label>Ridge</label>
+          <input
+          type="number"
+          />
         </div>
         <div className="form-group">
-        <label>Hip</label>
-        <input
-        type="number"
-        />
+          <label>Hip</label>
+          <input
+          type="number"
+          />
         </div>
         <div className="form-group">
-        <label>Valley</label>
-        <input
-        type="number"
-        />
+          <label>Valley</label>
+          <input
+          type="number"
+          />
         </div>
         <div className="form-group">
-        <label>Rake</label>
-        <input
-        type="number"
-        />
+          <label>Rake</label>
+          <input
+          type="number"
+          />
         </div>
         <div className="form-group">
-        <label>Eave</label>
-        <input
-        type="number"
-        />
+          <label>Eave</label>
+          <input
+          type="number"
+          />
         </div>
         <div className="form-group">
-        <label>Counter Flashin</label>
-        <input
-        type="number"
-        />
+          <label>Counter Flashing</label>
+          <input
+          type="number"
+          />
         </div>
         <div className="form-group">
-        <label>Step Flashing</label>
-        <input
-        type="number"
-        />
+          <label>Step Flashing</label>
+          <input
+          type="number"
+          />
         </div>
         <div className="form-group">
-        <label>Parapets</label>
-        <input
-        type="number"
-        />
+          <label>Parapets</label>
+          <input
+          type="number"
+          />
         </div>
         <div className="form-group">
-        <label>Existing Roof?</label>
-        <input
-        style={{ width:"40px", height: "40px" }}
-        type="checkbox"
-        />
+          <label>Existing Roof?</label>
+          <input
+          style={{ width:"40px", height: "40px" }}
+          type="checkbox"
+          />
         </div>
         <div className="form-group">
-        <label>Roof Type</label>
-        <select
-        name="roof_type"
-        id="roof_type"
-        size="1">
-          <option value="select">Select type</option>
-          <option value="gable">Gable</option>
-          <option value="hip">Hip</option>
-          <option value="mansard">Mansard</option>
-          <option value="dutch_hip">Dutch Hip</option>
-          <option value="gambrel">Gambrel</option>
-          <option value="flat">Flat</option>
-          <option value="shed">Shed</option>
-        </select>
+          <label>Roof Type</label>
+          <select
+          name="roof_type"
+          id="roof_type"
+          size="1">
+            <option value="select">Select type</option>
+            <option value="gable">Gable</option>
+            <option value="hip">Hip</option>
+            <option value="mansard">Mansard</option>
+            <option value="dutch_hip">Dutch Hip</option>
+            <option value="gambrel">Gambrel</option>
+            <option value="flat">Flat</option>
+            <option value="shed">Shed</option>
+          </select>
+        </div>
+        <div className="form-group">
+          <label>Existing Shingle</label>
+          <select
+          name="existing_shingle"
+          id="roof_type"
+          size="1"
+          onChange={(e) => setExistingShingle(e.target.value)}>
+            <option value="select">Select shingle</option>
+            <option value="3-tab">3-Tab</option>
+            <option value="laminate">Laminate</option>
+          </select>
         </div>
       </form>
     </div>
@@ -180,11 +195,11 @@ export default function Permissions(props) {
       <>
       <div className="permissions-container">
         <div className="permissions-header">
-          <h2 className="perm-h1">Role Manager</h2>
+          <h2 className="perm-h1">KaiserTools</h2>
           <button className="Roles-button" onClick={(e) => { setActive('Template') }}><h3>Template</h3>
             {templateTab}
           </button>
-          <button className="Roles-button" onClick={(e) => {userDbMatch()}}><h3>Roles</h3>
+          <button className="Roles-button" onClick={(e) => { userDbMatch() }}><h3>Roles</h3>
             {adminTab}
           </button>
           <button className="Roles-button" onClick={(e) => { setActive('Support') }}><h3>Support</h3>
