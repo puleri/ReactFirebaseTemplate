@@ -141,6 +141,29 @@ export default function Permissions(props) {
         type="number"
         />
         </div>
+        <div className="form-group">
+        <label>Existing Roof?</label>
+        <input
+        style={{ width:"40px", height: "40px" }}
+        type="checkbox"
+        />
+        </div>
+        <div className="form-group">
+        <label>Roof Type</label>
+        <select
+        name="roof_type"
+        id="roof_type"
+        size="1">
+          <option value="select">Select type</option>
+          <option value="gable">Gable</option>
+          <option value="hip">Hip</option>
+          <option value="mansard">Mansard</option>
+          <option value="dutch_hip">Dutch Hip</option>
+          <option value="gambrel">Gambrel</option>
+          <option value="flat">Flat</option>
+          <option value="shed">Shed</option>
+        </select>
+        </div>
       </form>
     </div>
     </>

@@ -124,7 +124,14 @@ h1, h2, h3 {
   margin: 20px 40px 20px 0;
 }
 input {
+  accent-color: #4CA196;
   border: 1px solid lightgray;
   height: 40px;
   border-radius: 10px;
+}
+#roof_type {
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  height: 40px;
+  font-family: 'Heebo', sans-serif;
 }
