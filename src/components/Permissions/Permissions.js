@@ -14,9 +14,8 @@ export default function Permissions(props) {
   const [roster, setRoster] = useState([])
   const [active, setActive] = useState('Template')
 
-  useEffect(() => {
+  useEffect((e) => {
     console.log(localStorage.user)
-    // userDbMatch()
   }, [])
 
   const userDbMatch = () => {
@@ -51,7 +50,7 @@ export default function Permissions(props) {
 )
   const rosterFull = (
   <table className="admin-table">
-    <tr>
+    <tr className="admin-table-label">
       <th>Email</th>
       <th>First Name</th>
       <th>Last Name</th>
@@ -76,13 +75,80 @@ export default function Permissions(props) {
     <div className="admin-tip"><p>Each user will have the ability to use the Kaiser Tools after they update their password from the new user default password</p></div>
     {rosterFull}
     </div>
+
     adminTab = <div className="admin-tab-highlight"></div>
   }
   if (active === "Template") {
-    activeMenu = defaultTemplate
+    activeMenu =
+    <>
+    <div className="header-hero">
+      <h1 style={{ color: 'white' }}>Roof Measurement</h1>
+      <p>All measurements entered in square feet</p>
+    </div>
+    <div className="Template-container">
+      <form className="roof-measurement-form">
+        <div className="form-group">
+        <label>Total Roof Area</label>
+        <input
+        type="number"
+        />
+        </div>
+        <div className="form-group">
+        <label>Ridge</label>
+        <input
+        type="number"
+        />
+        </div>
+        <div className="form-group">
+        <label>Hip</label>
+        <input
+        type="number"
+        />
+        </div>
+        <div className="form-group">
+        <label>Valley</label>
+        <input
+        type="number"
+        />
+        </div>
+        <div className="form-group">
+        <label>Rake</label>
+        <input
+        type="number"
+        />
+        </div>
+        <div className="form-group">
+        <label>Eave</label>
+        <input
+        type="number"
+        />
+        </div>
+        <div className="form-group">
+        <label>Counter Flashin</label>
+        <input
+        type="number"
+        />
+        </div>
+        <div className="form-group">
+        <label>Step Flashing</label>
+        <input
+        type="number"
+        />
+        </div>
+        <div className="form-group">
+        <label>Parapets</label>
+        <input
+        type="number"
+        />
+        </div>
+      </form>
+    </div>
+    </>
+
     templateTab = <div className="temp-tab-highlight"></div>
   }
   if (active === "Support") {
+    activeMenu = <h1>Support</h1>
     supportTab = <div className="support-tab-highlight"></div>
   }
 
