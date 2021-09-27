@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import './DropdownMenu.css';
 import { withRouter } from 'react-router-dom';
+import { auth } from '../../firebase';
+
 
 import { CSSTransition } from 'react-transition-group';
 
@@ -9,9 +11,15 @@ function DropdownMenu(props) {
 
   const handleLogOut = (e) => {
     // e.preventDefault()
-    localStorage.removeItem('user')
-    props.history.push('/login');
-    console.log('props are ', props)
+    auth.signOut()
+      .then(() => {
+        localStorage.removeItem('user')
+        props.history.push('/login');
+        // console.log('props are ', props)
+        console.log('successful logout')
+      })
+      .catch(err => console.err)
+
   }
   // const [activeMenu, setActiveMenu] = useState('main');
   // function MenuItem(props) {

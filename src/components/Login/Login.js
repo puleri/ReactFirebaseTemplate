@@ -39,42 +39,60 @@ export default function Login(props) {
     function login(email, password) {
 
       // localStorage.setItem('user', email)
-      // return auth.signInWithEmailAndPassword(email, password)
+      auth.signInWithEmailAndPassword(email, password)
+        .then((creds) => {
+          const user = creds.user;
+
+          if(user) {
+            props.history.push('/permissions')
+          }
+          console.log("firebase user is ", user)
+        })
+        .catch(err => console.err)
     }
 
 
     const handleSubmit = (e) => {
-      // console.log(email, " ", password)
-      // query firestore for user
-      const q = firebase.firestore().collection('users')
-      q.get().then(querySnapshot => {
-        const arrUser = querySnapshot.docs.map(d =>d.data())
-        console.log('users BIG ', arrUser)
+      // if login succesful
+      if (login(email,password)) {
+        // reset error if one exists
+        setError(null)
 
-        const tempUser = arrUser.find(el => el === email);
-        console.log("temp user is", tempUser);
+        // console.log(email, " ", password)
+        // query firestore for user
+        const q = firebase.firestore().collection('users')
+        q.get().then(querySnapshot => {
+          const arrUser = querySnapshot.docs.map(d =>d.data())
+          console.log('arrUSER ', arrUser)
+
+
+          const tempUser = arrUser.find(el => el.email === email);
+          console.log("temp user is", tempUser.first);
+        })
+      }
+
+
+
+        // console.log("form credentials", email, password)
 
         // set user in localStorage
-        localStorage.setItem('user', email)
-      })
+        // localStorage.setItem('user', email)
 
-      // reset error if there was one before
-      setError(null)
-      login(email, password)
-        .then((user = currentUser) => {
-          // Line for Kaiser Admins
-          if (user.user.email === "1@1.com") {
-            // return props.history.push('/permissions')
-          }
-          else {
-            return setError('Username or password incorrect.')
-
-          }
-          // console.log(user)
-        })
-        .catch((error) => {
-          setError('Username or password incorrect.')
-        })
+      // login(email, password)
+      //   .then((user = currentUser) => {
+      //     // Line for Kaiser Admins
+      //     if (user.user.email === "1@1.com") {
+      //       // return props.history.push('/permissions')
+      //     }
+      //     else {
+      //       return setError('Username or password incorrect.')
+      //
+      //     }
+      //     // console.log(user)
+      //   })
+      //   .catch((error) => {
+      //     setError('Username or password incorrect.')
+      //   })
     }
 
   // if (localStorage.getItem('user')) {
