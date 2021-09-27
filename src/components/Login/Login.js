@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouteMatch } from 'react-router-dom';
-import { auth } from '../../firebase';
+import firebase, { auth } from '../../firebase';
+// import { collection, query, where, getDocs } from "../../firebase";
 
 // import Button, { createRipple } from './Button'
 // <Button />
@@ -39,6 +40,11 @@ export default function Login(props) {
 
     const handleSubmit = (e) => {
       // console.log(email, " ", password)
+      const q = firebase.firestore().collection('users')
+      q.get().then(querySnapshot => {
+        const d = querySnapshot.docs.map(d =>d.data())
+        console.log('users BIG ', d)
+      })
       setError(null)
       login(email, password)
         .then((user = currentUser) => {
@@ -46,10 +52,11 @@ export default function Login(props) {
           if (user.user.email === "1@1.com") {
             return props.history.push('/permissions')
           }
-          if (user != null) {
-            return props.history.push('/template')
+          else {
+            return setError('Username or password incorrect.')
+
           }
-          console.log(user)
+          // console.log(user)
         })
         .catch((error) => {
           setError('Username or password incorrect.')

@@ -23,19 +23,23 @@ export default function Permissions(props) {
     const q = firebase.firestore().collection('users')
     // const authRef = auth.currentUser.email
     // console.log("current user is: ", auth.currentUser.email)
-    q.where('email', '==', auth.currentUser.email).onSnapshot((qs) => {
-      qs.forEach((doc) => {
-          q.get().then(querySnapshot => {
-
-            const d = querySnapshot.docs.map(d =>d.data())
-            console.log('users are ', d)
-            setRoster(d)
-            setActive('Admin')
-          })
-          console.log('roster is ', roster)
-      // console.log('user match in database: ', item.email)
-
-      })
+    // q.where('email', '==', auth.currentUser.email).onSnapshot(() => {
+    //       q.get().then(querySnapshot => {
+    //
+    //         const d = querySnapshot.docs.map(d =>d.data())
+    //         console.log('users are ', d)
+    //         setRoster(d)
+    //         setActive('Admin')
+    //       })
+    //       console.log('roster is ', roster)
+    //   // console.log('user match in database: ', item.email)
+    //
+    // })
+    q.get().then(querySnapshot => {
+      const d = querySnapshot.docs.map(d =>d.data())
+      console.log('users BIG ', d)
+      setRoster(d)
+      setActive('Admin')
     })
   }
   // tab content

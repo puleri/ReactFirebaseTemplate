@@ -74,24 +74,27 @@ background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,255,168,1) 100%);
   background: none;
   border: none;
   border-bottom: 1px solid white;
-  padding: 5px 0;
+  border-radius: 0;
+  padding: 5px 2px 0px 5px;
   color: white;
-  font-size: .7rem;
+  font-size: .8rem;
   width: 240px;
 }
 .login-email::placeholder {
   color: white;
   font-family: 'Heebo', sans-serif;
   font-weight: bold;
+  font-size: .7rem;
   letter-spacing: .1rem;
 }
 .login-password {
   background: none;
   border: none;
   border-bottom: 1px solid white;
-  padding: 5px 0;
+  border-radius: 0;
+  padding: 5px 2px 0px 5px;
   margin-top: -30px;
-  font-size: .7rem;
+  font-size: .8rem;
   color: white;
   width: 240px;
 }
@@ -99,6 +102,7 @@ background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,255,168,1) 100%);
   color: white;
   font-family: 'Heebo', sans-serif;
   font-weight: bold;
+  font-size: .7rem;
   letter-spacing: .1rem;
 }
 .pulse {
