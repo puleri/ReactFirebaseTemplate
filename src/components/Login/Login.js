@@ -25,32 +25,46 @@ export default function Login(props) {
 
     // const { login } = useAuth()
 
-    useEffect(() => {
-      const unsubscribe = auth.onAuthStateChanged(user => {
-        setCurrentUser(user)
-      })
-      return unsubscribe
-    }, [])
+
+
+    // useEffect(() => {
+    //   const unsubscribe = auth.onAuthStateChanged(user => {
+    //     setCurrentUser(user)
+    //     console.log('USER is', user)
+    //   })
+    //
+    //   return unsubscribe
+    // }, [])
 
     function login(email, password) {
-      localStorage.setItem('user', email)
-      return auth.signInWithEmailAndPassword(email, password)
+
+      // localStorage.setItem('user', email)
+      // return auth.signInWithEmailAndPassword(email, password)
     }
 
 
     const handleSubmit = (e) => {
       // console.log(email, " ", password)
+      // query firestore for user
       const q = firebase.firestore().collection('users')
       q.get().then(querySnapshot => {
-        const d = querySnapshot.docs.map(d =>d.data())
-        console.log('users BIG ', d)
+        const arrUser = querySnapshot.docs.map(d =>d.data())
+        console.log('users BIG ', arrUser)
+
+        const tempUser = arrUser.find(el => el === email);
+        console.log("temp user is", tempUser);
+
+        // set user in localStorage
+        localStorage.setItem('user', email)
       })
+
+      // reset error if there was one before
       setError(null)
       login(email, password)
         .then((user = currentUser) => {
           // Line for Kaiser Admins
           if (user.user.email === "1@1.com") {
-            return props.history.push('/permissions')
+            // return props.history.push('/permissions')
           }
           else {
             return setError('Username or password incorrect.')
@@ -62,12 +76,13 @@ export default function Login(props) {
           setError('Username or password incorrect.')
         })
     }
-  if (localStorage.getItem('user')) {
-    props.history.push('/permissions')
-    return (
-      <h1>You are already logged in. Redirecting to home.</h1>
-    )
-  }
+
+  // if (localStorage.getItem('user')) {
+  //   props.history.push('/permissions')
+  //   return (
+  //     <h1>You are already logged in. Redirecting to home.</h1>
+  //   )
+  // }
   return (
       <div className="login-page">
         <div className="login-welcome">
