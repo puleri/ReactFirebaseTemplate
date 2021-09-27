@@ -1,12 +1,19 @@
 import React, { useState } from 'react'
 import './DropdownMenu.css';
+import { withRouter } from 'react-router-dom';
 
 import { CSSTransition } from 'react-transition-group';
 
 
-export default function DropdownMenu() {
+function DropdownMenu(props) {
 
-  const [activeMenu, setActiveMenu] = useState('main');
+  const handleLogOut = (e) => {
+    // e.preventDefault()
+    localStorage.removeItem('user')
+    props.history.push('/login');
+    console.log('props are ', props)
+  }
+  // const [activeMenu, setActiveMenu] = useState('main');
   // function MenuItem(props) {
   //   <a href="#" className="menu-item">
   //     <span className="icon-button">{props.leftIcon}</span>
@@ -16,15 +23,22 @@ export default function DropdownMenu() {
   // }
   return (
     <div className="DropdownMenu">
-        <h4>
-        hello
-        </h4>
-        <h4>
-        hello world
-        </h4>
-        <h4>
-        logout
-        </h4>
+        <button className="dd-button">
+        Profile
+        </button>
+        <button className="dd-button">
+        Settings
+        </button>
+        <hr noshade id="dd-break1" />
+        <button className="dd-button">
+        Admin Panel
+        </button>
+        <hr noshade id="dd-break2" />
+        <button onClick={(e) => handleLogOut()} className="dd-button">
+        Logout
+        </button>
     </div>
   )
 }
+
+export default withRouter(DropdownMenu);

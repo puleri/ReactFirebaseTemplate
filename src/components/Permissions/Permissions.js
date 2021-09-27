@@ -207,7 +207,7 @@ export default function Permissions(props) {
           </button>
           <div className="perm-prof-icon"><i className="perm-cog fas fa-cog"></i>
           <DropdownPItem className="perm-prof-icon" icon="MP" >
-            <DropdownMenu />
+            <DropdownMenu setCurrentUser={props}/>
           </DropdownPItem>
           </div>
         </div>

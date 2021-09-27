@@ -21,14 +21,19 @@ function App(props) {
     // <AuthProvider>
     <div className="App-wrapper">
     <Switch>
-    <Route path='/login' currentUser={currentUser} setCurrentUser={setCurrentUser} component={Login}/>
+    <Route path='/login' currentUser={currentUser}
+    setCurrentUser={setCurrentUser}
+    component={Login}/>
 
       {
         // Authenticated
         // Route
       }
 
-      <Route exact path='/permissions' component={Permissions}/>
+      <Route exact path='/permissions'
+      currentUser={currentUser}
+      setCurrentUser={setCurrentUser}
+      component={Permissions}/>
     </Switch>
     </div>
      // </AuthProvider>
