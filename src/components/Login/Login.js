@@ -37,17 +37,21 @@ export default function Login(props) {
     // }, [])
 
     function login(email, password) {
-
       // localStorage.setItem('user', email)
       auth.signInWithEmailAndPassword(email, password)
         .then((creds) => {
           const user = creds.user;
+          
+          firebase.firestore().collection('users').doc(creds.user.uid).set({
+            status: 'active',
+          })
 
           if(user) {
             props.history.push('/permissions')
           }
           console.log("firebase user is ", user)
         })
+        .then()
         .catch(err => console.err)
     }
 

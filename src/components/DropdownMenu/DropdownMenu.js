@@ -18,8 +18,10 @@ function DropdownMenu(props) {
         // console.log('props are ', props)
         console.log('successful logout')
       })
-      .catch(err => console.err)
-
+      .catch(err => {
+        console.log(err)
+        console.log("Error Signing Out");
+      })
   }
   // const [activeMenu, setActiveMenu] = useState('main');
   // function MenuItem(props) {
