@@ -1,5 +1,6 @@
 .DropdownMenu {
-  background: white;
+  background: #fcfcfc;
+  box-shadow: 1px 1px 20px lightgray;
   height: 140px;
   width: 105px;
   position: absolute;

@@ -111,6 +111,13 @@ h1, h2, h3 {
   width: 100%;
   background: #1f1f1f;
 }
+.admin-form {
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
 .roof-measurement-form {
   display: flex;
   flex-wrap: wrap;
@@ -127,12 +134,49 @@ h1, h2, h3 {
 input {
   accent-color: #4CA196;
   border: 1px solid lightgray;
-  height: 40px;
+  height: 20px;
+  padding: 6px;
   border-radius: 10px;
+  font-family: 'Heebo', sans-serif;
+  font-weight: bold;
+  min-width: 150px;
+  letter-spacing: 1px;
 }
 #roof_type {
   border: 1px solid lightgray;
   border-radius: 10px;
-  height: 40px;
+  height: 35px;
+  min-width: 150px;
   font-family: 'Heebo', sans-serif;
+}
+.admin-submit {
+  position: absolute;
+  right: 0px;
+  top: 95px;
+  background: #4CD196;
+  border: none;
+  border-radius: 15px;
+  font-family: 'Heebo', sans-serif;
+  font-weight: bold;
+  color: white;
+  letter-spacing: 2px;
+  font-size: 13px;
+  height: 33px;
+  width: 120px;
+  transition: background .5s ease-out, color .5s ease-out,
+}
+.admin-submit:hover {
+  cursor: pointer;
+  background: #4CA196;
+  color: #1f1f1f;
+}
+.admin-submit:active {
+  cursor: pointer;
+  background: #4CA1965F;
+  color: #1f1f1f;
+}
+@media (max-width: 579px) {
+  .admin-submit {
+    top: 193px;
+  }
 }

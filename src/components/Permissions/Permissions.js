@@ -3,6 +3,7 @@ import DropdownMenu from '../DropdownMenu/DropdownMenu.js'
 import DropdownPItem from '../DropdownPItem/DropdownPItem.js';
 import { useRouteMatch } from 'react-router-dom';
 import firebase, { auth } from '../../firebase';
+import admin from '../../firebase';
 // import { collection, query, where, getDocs } from "../../firebase/firestore";
 
 
@@ -14,6 +15,12 @@ export default function Permissions(props) {
   const [roster, setRoster] = useState([])
   const [active, setActive] = useState('Template')
   const [existingShingle, setExistingShingle] = useState('')
+
+  // Admin form state
+  const [first, setFirst] = useState('')
+  const [last, setLast] = useState('')
+  const [email, setEmail] = useState('')
+
 
   useEffect((e) => {
     console.log(localStorage.user)
@@ -42,6 +49,36 @@ export default function Permissions(props) {
       setActive('Admin')
     })
   }
+
+  const signUpUser = (first, last, email) => {
+    // console.log('this state is', first, last, email);
+    const password = 'password'
+    // console.log('current user is', auth.currentUser)
+    admin
+      .auth()
+      .getUser(auth.currentUser.uid)
+      .then((userRecord)=>{
+      console.log('admin loggin current is ', userRecord)
+    })
+      .catch(err=>console.log('error fetching admin data', err))
+    // auth.createUserWithEmailAndPassword(email, password)
+    //   .then(creds => {
+    //     firebase.firestore().collection('users').doc(creds.user.uid).set({
+    //       id: creds.user.uid,
+    //       status: 'pending',
+    //       email: email,
+    //       first: first,
+    //       last: last
+    //     })
+    //   })
+    // .then(() => {
+    //   // reset form
+    //   setFirst('')
+    //   setLast('')
+    //   setEmail('')
+    // })
+    // .catch(err => console.log("There was a problem signing up", err))
+  }
   // tab content
   let activeMenu = <> </>
   const rosterIndex = roster.map((user) =>
@@ -49,7 +86,7 @@ export default function Permissions(props) {
     <th>{user.email}</th>
     <th>{user.first}</th>
     <th>{user.last}</th>
-    <th>{user.status === 'active' ? 'Active' : user.status === 'pending' ? 'Pending' : 'Disabled'}</th>
+    <th>{user.status === 'active' ? 'Active' : user.status === 'pending' ? 'Pending' : 'Inactive'}</th>
     <th>Update</th>
   </tr>
 )
@@ -80,6 +117,34 @@ export default function Permissions(props) {
     <h3 id="admin-header">Administrator</h3>
     <div className="admin-tip"><p>If this message is visable to you, that means you are a Kaiser Administrator and as such have the ability to create, view, update, and delete users with access to Kaiser Tools</p></div>
     <div className="admin-tip"><p>Each user will have the ability to use the Kaiser Tools after they update their password from the new user default password</p></div>
+    <div className="admin-form">
+      <div className="form-group">
+        <label>First Name</label>
+        <input type="text"
+        placeholder="Clover"
+        value={first}
+        onChange={(e) => setFirst(e.target.value)} />
+      </div>
+      <div className="form-group">
+        <label>Last Name</label>
+        <input type="text"
+        placeholder="Farshchi"
+        value={last}
+        onChange={(e) => setLast(e.target.value)} />
+      </div>
+      <div className="form-group">
+        <label>Last Name</label>
+        <input type="email"
+        placeholder="cfarshchi@gmail.com"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)} />
+      </div>
+      <button
+      className="admin-submit"
+      onClick={()=> signUpUser(first, last, email)}>
+      Invite
+      </button>
+    </div>
     {rosterFull}
     </div>
 
