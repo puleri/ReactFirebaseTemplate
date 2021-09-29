@@ -3,6 +3,32 @@ h1, h2, h3 {
   color: #1f1f1f;
   font-family: 'Heebo', sans-serif;
 }
+th {
+}
+tr:nth-child(even) {
+  background: #4CD1961F;
+}
+#th-body {
+  font-size: 12px;
+  padding: 10px;
+  transition: background .1s ease-out;
+}
+#t-body {
+  transition: background .1s ease-out;
+}
+#t-body:hover {
+  background: #4CD1964F;
+}
+.delete {
+  margin: 5px 0 0 10px;
+  font-size: 16px;
+  transition: color .2s ease-out, font-size .2s ease-out;
+}
+.delete:hover {
+  cursor: pointer;
+  color: #961212;
+  font-size: 18px;
+}
 .permissions-container {
   display: flex;
   justify-content: space-evenly;
@@ -48,7 +74,7 @@ h1, h2, h3 {
 }
 .admin-tip {
   border-radius: 5px;
-  background: #4CA1962F;
+  background: #4CD1961F;
   padding: 2px 40px;
   margin: 0 0 40px;
 }
@@ -62,6 +88,7 @@ h1, h2, h3 {
 .admin-table-label {
   border-bottom: 1px  solid black;
   border-spacing: 0 1em;
+  font-size: 14px;
 }
 .temp-tab-highlight {
   position: absolute;

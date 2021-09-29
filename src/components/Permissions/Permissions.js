@@ -82,12 +82,12 @@ export default function Permissions(props) {
   // tab content
   let activeMenu = <> </>
   const rosterIndex = roster.map((user) =>
-  <tr key={user.email}>
-    <th>{user.email}</th>
-    <th>{user.first}</th>
-    <th>{user.last}</th>
-    <th>{user.status === 'active' ? 'Active' : user.status === 'pending' ? 'Pending' : 'Inactive'}</th>
-    <th>Update</th>
+  <tr id="t-body"key={user.email}>
+    <th id="th-body">{user.email}</th>
+    <th id="th-body">{user.first}</th>
+    <th id="th-body">{user.last}</th>
+    <th id="th-body">{user.status === 'active' ? 'Active' : user.status === 'pending' ? 'Pending' : 'Inactive'}</th>
+    <th id="th-body"><i className="delete fas fa-minus-square"></i></th>
   </tr>
 )
   const rosterFull = (
@@ -98,7 +98,7 @@ export default function Permissions(props) {
         <th>First Name</th>
         <th>Last Name</th>
         <th>Status</th>
-        <th>Action</th>
+        <th>Remove</th>
       </tr>
       {rosterIndex}
     </tbody>
