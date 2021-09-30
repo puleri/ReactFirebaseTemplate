@@ -41,16 +41,29 @@ export default function Login(props) {
       auth.signInWithEmailAndPassword(email, password)
         .then((creds) => {
           const user = creds.user;
-            firebase.firestore().collection('users').doc(creds.user.uid).set({
-              status: 'active',
-            }, { merge: true })
+          const docRef = firebase.firestore().collection('users').doc(creds.user.uid);
+          // check if user is deactivated
+          docRef.get()
+            .then((doc) => {
+              const isDeactivated = doc.data().deactivated
+              if (isDeactivated)
+              {
+                props.history.push('/notauthenticated')
+              }
+              else
+              {
+                firebase.firestore().collection('users').doc(creds.user.uid).set({
+                  status: 'active',
+                }, { merge: true })
+                props.history.push('/permissions')
+              }
+              // console.log("document data:", doc.data().deactivated)
+            })
+            .catch(err => console.log("Error getting document:", err))
 
-          if(user) {
-            props.history.push('/permissions')
-          }
-          console.log("firebase user is ", user)
+          // console.log(user)
+          // console.log("firebase user is ", user)
         })
-        .then()
         .catch(err => console.err)
     }
 

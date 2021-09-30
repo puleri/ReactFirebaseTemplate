@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import DropdownMenu from '../DropdownMenu/DropdownMenu.js'
 import DropdownPItem from '../DropdownPItem/DropdownPItem.js';
-import { useRouteMatch } from 'react-router-dom';
+// import { useRouteMatch } from 'react-router-dom';
 import firebase, { auth } from '../../firebase';
-import admin from '../../firebase';
+
+// import admin from '../../firebase';
 // import { collection, query, where, getDocs } from "../../firebase/firestore";
 
 
@@ -22,7 +23,11 @@ export default function Permissions(props) {
   const [email, setEmail] = useState('')
 
   // Error div
-  const [error, setError] = useState('')
+  const [error, setError] = useState(
+    <div className="admin-tip2">
+    <h5>Please fill out all fields before inviting user</h5>
+    </div>
+  )
 
 
   useEffect((e) => {
@@ -62,11 +67,15 @@ export default function Permissions(props) {
 
   const signUpUser = (first, last, email) => {
     // check if any fields are empty: if so return with Error, if not, reset error state
-    setError('')
+    setError(
+      <div className="admin-tip2">
+      <h5>Please fill out all fields before inviting user</h5>
+      </div>
+    )
     if(first === '' || last === '' || email === '') {
       return setError(
-        <div className="error-alert">
-        <h5>Please fill out all fields before inviting user</h5>
+        <div className="admin-tip2-active">
+        <h5><em>Please fill out all fields before inviting user</em></h5>
         </div>
 
       )
@@ -124,9 +133,8 @@ export default function Permissions(props) {
     </tbody>
   </table>
 )
-  let defaultTemplate
 
-  // tab highlighters
+  // tab highlighter references initialized
   let templateTab
   let adminTab
   let supportTab
@@ -137,6 +145,7 @@ export default function Permissions(props) {
     <h3 id="admin-header">Administrator</h3>
     <div className="admin-tip"><p>If this message is visable to you, that means you are a Kaiser Administrator and as such have the ability to create, view, update, and delete users with access to Kaiser Tools</p></div>
     <div className="admin-tip"><p>Each user will have the ability to use the Kaiser Tools after they update their password from the new user default password</p></div>
+      {error}
     <div className="admin-form">
       <div className="form-group">
         <label>First Name</label>
@@ -164,7 +173,6 @@ export default function Permissions(props) {
       onClick={()=> signUpUser(first, last, email)}>
       Invite
       </button>
-        {error}
     </div>
     {rosterFull}
     </div>

@@ -78,6 +78,13 @@ tr:nth-child(even) {
   padding: 2px 40px;
   margin: 0 0 40px;
 }
+.admin-tip2 {
+  font-size: 12px;
+}
+.admin-tip2-active {
+  color: #c44602;
+  font-size: 12px;
+}
 .admin-table {
   text-align: left;
   margin-top: 60px;

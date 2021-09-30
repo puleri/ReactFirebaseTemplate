@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import firebase, { auth } from '../../firebase';
 
 
-import { CSSTransition } from 'react-transition-group';
+// import { CSSTransition } from 'react-transition-group';
 
 
 function DropdownMenu(props) {
@@ -45,11 +45,11 @@ function DropdownMenu(props) {
         <button className="dd-button">
         Settings
         </button>
-        <hr noshade id="dd-break1" />
+        <hr id="dd-break1" />
         <button className="dd-button">
         Admin Panel
         </button>
-        <hr noshade id="dd-break2" />
+        <hr id="dd-break2" />
         <button onClick={(e) => handleLogOut()} className="dd-button">
         Logout
         </button>
