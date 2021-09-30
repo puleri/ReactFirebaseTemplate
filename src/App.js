@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import Login from './components/Login/Login.js';
 import Permissions from './components/Permissions/Permissions.js';
+import Unauthorized from './components/Unauthorized/Unauthorized.js';
 import React, { useState, useEffect } from 'react';
 // import AuthProvider from './contexts/AuthContexts';
 import { auth } from 'firebase';
@@ -21,9 +22,9 @@ function App(props) {
     // <AuthProvider>
     <div className="App-wrapper">
     <Switch>
-    <Route path='/login' currentUser={currentUser}
-    setCurrentUser={setCurrentUser}
-    component={Login}/>
+      <Route path='/login' currentUser={currentUser}
+      setCurrentUser={setCurrentUser}
+      component={Login}/>
 
       {
         // Authenticated
@@ -34,6 +35,10 @@ function App(props) {
       currentUser={currentUser}
       setCurrentUser={setCurrentUser}
       component={Permissions}/>
+
+
+      <Route exact path='/unauthorized'
+      component={Unauthorized}/>
     </Switch>
     </div>
      // </AuthProvider>

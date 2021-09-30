@@ -48,7 +48,8 @@ export default function Login(props) {
               const isDeactivated = doc.data().deactivated
               if (isDeactivated)
               {
-                props.history.push('/notauthenticated')
+                props.history.push('/unauthorized')
+                auth.signOut().then(console.log("walled out")).catch(err => console.log("Error walling:", err))
               }
               else
               {
@@ -86,6 +87,10 @@ export default function Login(props) {
           console.log("temp user is", tempUser.first);
         })
       }
+      else
+      {
+          return setError('Username or password incorrect.')
+      }
 
 
 
@@ -101,7 +106,6 @@ export default function Login(props) {
       //       // return props.history.push('/permissions')
       //     }
       //     else {
-      //       return setError('Username or password incorrect.')
       //
       //     }
       //     // console.log(user)
