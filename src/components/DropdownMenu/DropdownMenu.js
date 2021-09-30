@@ -18,7 +18,7 @@ function DropdownMenu(props) {
       .then(() => {
         firebase.firestore().collection('users').doc(temp).set({
           status: 'inactive',
-        })
+        }, { merge: true })
         localStorage.removeItem('user')
         props.history.push('/login');
         // console.log('props are ', props)

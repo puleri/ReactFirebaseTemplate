@@ -26,7 +26,8 @@ export default function Permissions(props) {
 
 
   useEffect((e) => {
-    console.log(localStorage.user)
+    // console.log(localStorage.user)
+    console.log(auth.currentUser, "current")
   }, [])
 
   const userDbMatch = () => {
@@ -53,6 +54,12 @@ export default function Permissions(props) {
     })
   }
 
+  const deleteUser = (user) => {
+    auth.deleteUser(user)
+      .then()
+      .catch(err => console.log('error deleting user', err))
+  }
+
   const signUpUser = (first, last, email) => {
     // check if any fields are empty: if so return with Error, if not, reset error state
     setError('')
@@ -67,30 +74,30 @@ export default function Permissions(props) {
     // console.log('this state is', first, last, email);
     const password = 'password'
     // console.log('current user is', auth.currentUser)
-    admin
-      .auth()
-      .getUser(auth.currentUser.uid)
-      .then((userRecord)=>{
-      console.log('admin loggin current is ', userRecord)
-    })
-      .catch(err=>console.log('error fetching admin data', err))
-    // auth.createUserWithEmailAndPassword(email, password)
-    //   .then(creds => {
-    //     firebase.firestore().collection('users').doc(creds.user.uid).set({
-    //       id: creds.user.uid,
-    //       status: 'pending',
-    //       email: email,
-    //       first: first,
-    //       last: last
-    //     })
-    //   })
-    // .then(() => {
-    //   // reset form
-    //   setFirst('')
-    //   setLast('')
-    //   setEmail('')
+    // admin
+    //   .auth()
+    //   .getUser(auth.currentUser.uid)
+    //   .then((userRecord)=>{
+    //   console.log('admin loggin current is ', userRecord)
     // })
-    // .catch(err => console.log("There was a problem signing up", err))
+    //   .catch(err=>console.log('error fetching admin data', err))
+    auth.createUserWithEmailAndPassword(email, password)
+      .then(creds => {
+        firebase.firestore().collection('users').doc(creds.user.uid).set({
+          id: creds.user.uid,
+          status: 'pending',
+          email: email,
+          first: first,
+          last: last
+        })
+      })
+    .then(() => {
+      // reset form
+      setFirst('')
+      setLast('')
+      setEmail('')
+    })
+    .catch(err => console.log("There was a problem signing up", err))
   }
   // tab content
   let activeMenu = <> </>
@@ -100,7 +107,7 @@ export default function Permissions(props) {
     <th id="th-body">{user.first}</th>
     <th id="th-body">{user.last}</th>
     <th id="th-body">{user.status === 'active' ? 'Active' : user.status === 'pending' ? 'Pending' : 'Inactive'}</th>
-    <th id="th-body"><i className="delete far fa-minus-square"></i></th>
+    <th id="th-body"><i onClick={() => deleteUser(user.uid)} className="delete far fa-minus-square"></i></th>
   </tr>
 )
   const rosterFull = (

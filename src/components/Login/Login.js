@@ -41,10 +41,9 @@ export default function Login(props) {
       auth.signInWithEmailAndPassword(email, password)
         .then((creds) => {
           const user = creds.user;
-          
-          firebase.firestore().collection('users').doc(creds.user.uid).set({
-            status: 'active',
-          })
+            firebase.firestore().collection('users').doc(creds.user.uid).set({
+              status: 'active',
+            }, { merge: true })
 
           if(user) {
             props.history.push('/permissions')
