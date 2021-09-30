@@ -21,6 +21,9 @@ export default function Permissions(props) {
   const [last, setLast] = useState('')
   const [email, setEmail] = useState('')
 
+  // Error div
+  const [error, setError] = useState('')
+
 
   useEffect((e) => {
     console.log(localStorage.user)
@@ -51,6 +54,16 @@ export default function Permissions(props) {
   }
 
   const signUpUser = (first, last, email) => {
+    // check if any fields are empty: if so return with Error, if not, reset error state
+    setError('')
+    if(first === '' || last === '' || email === '') {
+      return setError(
+        <div className="error-alert">
+        <h5>Please fill out all fields before inviting user</h5>
+        </div>
+
+      )
+    }
     // console.log('this state is', first, last, email);
     const password = 'password'
     // console.log('current user is', auth.currentUser)
@@ -87,7 +100,7 @@ export default function Permissions(props) {
     <th id="th-body">{user.first}</th>
     <th id="th-body">{user.last}</th>
     <th id="th-body">{user.status === 'active' ? 'Active' : user.status === 'pending' ? 'Pending' : 'Inactive'}</th>
-    <th id="th-body"><i className="delete fas fa-minus-square"></i></th>
+    <th id="th-body"><i className="delete far fa-minus-square"></i></th>
   </tr>
 )
   const rosterFull = (
@@ -144,6 +157,7 @@ export default function Permissions(props) {
       onClick={()=> signUpUser(first, last, email)}>
       Invite
       </button>
+        {error}
     </div>
     {rosterFull}
     </div>

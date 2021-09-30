@@ -22,12 +22,12 @@ tr:nth-child(even) {
 .delete {
   margin: 5px 0 0 10px;
   font-size: 16px;
-  transition: color .2s ease-out, font-size .2s ease-out;
+  color: #c44602;
+  transition: color .2s ease-out;
 }
 .delete:hover {
   cursor: pointer;
-  color: #961212;
-  font-size: 18px;
+  color: #7a2b00;
 }
 .permissions-container {
   display: flex;
@@ -201,6 +201,18 @@ input {
   cursor: pointer;
   background: #4CA1965F;
   color: #1f1f1f;
+}
+.error-alert {
+  background: #7a2b002f;
+  border-radius: 5px;
+  font-size: 13px;
+  color: #1f1f1f;
+  width: 40%;
+  height: 30px;
+  margin: -10px 0 -60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 @media (max-width: 579px) {
   .admin-submit {
