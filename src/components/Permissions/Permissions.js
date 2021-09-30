@@ -283,10 +283,10 @@ export default function Permissions(props) {
 
     templateTab = <div className="temp-tab-highlight"></div>
   }
-  if (active === "Support") {
-    activeMenu = <h1>Support</h1>
-    supportTab = <div className="support-tab-highlight"></div>
-  }
+  // if (active === "Support") {
+  //   activeMenu = <h1>Support</h1>
+  //   supportTab = <div className="support-tab-highlight"></div>
+  // }
 
 
     return (
@@ -300,9 +300,7 @@ export default function Permissions(props) {
           <button className="Roles-button" onClick={(e) => { userDbMatch() }}><h3>Roles</h3>
             {adminTab}
           </button>
-          <button className="Roles-button" onClick={(e) => { setActive('Support') }}><h3>Support</h3>
-            {supportTab}
-          </button>
+      
           <div className="perm-prof-icon"><i className="perm-cog fas fa-cog"></i>
           <DropdownPItem className="perm-prof-icon" icon="MP" >
             <DropdownMenu setCurrentUser={props}/>
