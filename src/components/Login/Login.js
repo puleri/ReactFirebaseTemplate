@@ -41,23 +41,23 @@ export default function Login(props) {
       auth.signInWithEmailAndPassword(email, password)
         .then((creds) => {
           const user = creds.user;
-          const docRef = firebase.firestore().collection('graveyard').doc(creds.user.uid);
+          const docRef = firebase.firestore().collection('users').doc(creds.user.uid);
           // check if user is deactivated
           docRef.get()
             .then((doc) => {
-              if (doc)
-              {
-                props.history.push('/unauthorized')
-                auth.signOut().then(console.log("walled out")).catch(err => console.log("Error walling:", err))
-              }
-              else
+              if (doc.exists)
               {
                 firebase.firestore().collection('users').doc(creds.user.uid).set({
                   status: 'active',
                 }, { merge: true })
                 props.history.push('/permissions')
               }
-              // console.log("document data:", doc.data().deactivated)
+              else
+              {
+                props.history.push('/unauthorized')
+                auth.signOut().then(console.log("walled out")).catch(err => console.log("Error walling:", err))
+              }
+              console.log("document data:", doc.data().deactivated)
             })
             .catch(err => console.log("Error getting document:", err))
 
