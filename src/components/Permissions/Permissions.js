@@ -60,9 +60,14 @@ export default function Permissions(props) {
   }
 
   const deleteUser = (user) => {
-    auth.deleteUser(user)
-      .then()
-      .catch(err => console.log('error deleting user', err))
+    console.log(user)
+    firebase.firestore().collection('graveyard').doc(user.id).set({
+      email: user.email,
+      id: user.id,
+    })
+    // auth.deleteUser(user)
+    //   .then()
+    //   .catch(err => console.log('error deleting user', err))
   }
 
   const signUpUser = (first, last, email) => {
@@ -116,7 +121,7 @@ export default function Permissions(props) {
     <th id="th-body">{user.first}</th>
     <th id="th-body">{user.last}</th>
     <th id="th-body">{user.status === 'active' ? 'Active' : user.status === 'pending' ? 'Pending' : 'Inactive'}</th>
-    <th id="th-body"><i onClick={() => deleteUser(user.uid)} className="delete far fa-minus-square"></i></th>
+    <th id="th-body"><i onClick={() => deleteUser(user)} className="delete far fa-minus-square"></i></th>
   </tr>
 )
   const rosterFull = (
@@ -300,7 +305,7 @@ export default function Permissions(props) {
           <button className="Roles-button" onClick={(e) => { userDbMatch() }}><h3>Roles</h3>
             {adminTab}
           </button>
-      
+
           <div className="perm-prof-icon"><i className="perm-cog fas fa-cog"></i>
           <DropdownPItem className="perm-prof-icon" icon="MP" >
             <DropdownMenu setCurrentUser={props}/>

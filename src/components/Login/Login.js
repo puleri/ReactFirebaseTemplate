@@ -41,12 +41,11 @@ export default function Login(props) {
       auth.signInWithEmailAndPassword(email, password)
         .then((creds) => {
           const user = creds.user;
-          const docRef = firebase.firestore().collection('users').doc(creds.user.uid);
+          const docRef = firebase.firestore().collection('graveyard').doc(creds.user.uid);
           // check if user is deactivated
           docRef.get()
             .then((doc) => {
-              const isDeactivated = doc.data().deactivated
-              if (isDeactivated)
+              if (doc)
               {
                 props.history.push('/unauthorized')
                 auth.signOut().then(console.log("walled out")).catch(err => console.log("Error walling:", err))
