@@ -40,26 +40,42 @@ export default function Login(props) {
       // localStorage.setItem('user', email)
       auth.signInWithEmailAndPassword(email, password)
         .then((creds) => {
-          const user = creds.user;
-          const docRef = firebase.firestore().collection('users').doc(creds.user.uid);
-          // check if user is deactivated
-          docRef.get()
-            .then((doc) => {
-              if (doc.exists)
+          // const user = creds.user;
+          const userRef = firebase.firestore().collection('users').doc(creds.user.uid);
+          const adminRef = firebase.firestore().collection('admin').doc(creds.user.uid);
+          adminRef.get().then((admin) => {
+            // reference for isAdmin?
+            const isAdmin = admin.exists
+
+            userRef.get()
+            .then((user) => {
+              // reference for isUser?
+              const isUser = user.exists
+              if (isUser)
               {
                 firebase.firestore().collection('users').doc(creds.user.uid).set({
                   status: 'active',
                 }, { merge: true })
-                props.history.push('/permissions')
+                return props.history.push('/permissions')
               }
+
+              if (isAdmin) {
+                return props.history.push('admin')
+              }
+
               else
               {
                 props.history.push('/unauthorized')
                 auth.signOut().then("Unauthorized").catch(err => console.log("Error:", err))
               }
-              console.log("document data:", doc.data().deactivated)
             })
             .catch(err => console.log("Error getting document:", err))
+
+
+
+              }
+          )
+          // check if user || admin || deactivated user
 
           // console.log(user)
           // console.log("firebase user is ", user)
