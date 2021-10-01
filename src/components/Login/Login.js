@@ -55,7 +55,7 @@ export default function Login(props) {
               else
               {
                 props.history.push('/unauthorized')
-                auth.signOut().then(console.log("walled out")).catch(err => console.log("Error walling:", err))
+                auth.signOut().then("Unauthorized").catch(err => console.log("Error:", err))
               }
               console.log("document data:", doc.data().deactivated)
             })

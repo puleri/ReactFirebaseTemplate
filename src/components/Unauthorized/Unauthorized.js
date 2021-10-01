@@ -1,5 +1,7 @@
 import React from 'react'
 import './Unauthorized.css'
+
+import space from './spaceguy.png';
 import logo from "../../logo.svg";
 
 
@@ -23,7 +25,7 @@ export default function Unauthorized(props) {
       </div>
 
       <div className="right">
-
+        <img alt="space guy" className="space" src={space} />
       </div>
     </div>
   )
