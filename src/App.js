@@ -6,9 +6,15 @@ import { Route, Switch } from 'react-router-dom';
 import Login from './components/Login/Login.js';
 import Permissions from './components/Permissions/Permissions.js';
 import Unauthorized from './components/Unauthorized/Unauthorized.js';
+import Admin from './components/Admin/Admin.js';
+
 import React, { useState, useEffect } from 'react';
 // import AuthProvider from './contexts/AuthContexts';
+
+// **** DO NOT DELETE OR COMMENT OUT-- ignore linter
 import { auth } from 'firebase';
+// **** DO NOT DELETE OR COMMENT OUT
+
 
 function App(props) {
   const [currentUser, setCurrentUser] = useState(null);
@@ -22,14 +28,11 @@ function App(props) {
     // <AuthProvider>
     <div className="App-wrapper">
     <Switch>
+
       <Route path='/login' currentUser={currentUser}
       setCurrentUser={setCurrentUser}
       component={Login}/>
 
-      {
-        // Authenticated
-        // Route
-      }
 
       <Route exact path='/permissions'
       currentUser={currentUser}
@@ -39,6 +42,11 @@ function App(props) {
 
       <Route exact path='/unauthorized'
       component={Unauthorized}/>
+
+
+      <Route exact path='/admin'
+      component={Admin}/>
+
     </Switch>
     </div>
      // </AuthProvider>
