@@ -8,6 +8,7 @@ export default function Admin(){
   // Initial State
 
   const [roster, setRoster] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
   const [first, setFirst] = useState('')
   const [last, setLast] = useState('')
@@ -18,6 +19,10 @@ export default function Admin(){
     <h5>Please fill out all fields before inviting user</h5>
     </div>
   )
+
+  useEffect(() => {
+    userDbMatch()
+  }, [])
 
   // CRD for Users
 // CREATE user
@@ -67,16 +72,18 @@ export default function Admin(){
 
 // READ index of users
   const userDbMatch = () => {
+    setIsLoading(true)
     const q = firebase.firestore().collection('users')
     q.get().then(querySnapshot => {
       const d = querySnapshot.docs.map(d =>d.data())
-      console.log('users BIG ', d)
+      // console.log('users BIG ', d)
       setRoster(d)
     })
+    setIsLoading(false)
   }
 
-
-  const rosterIndex = roster.map((user) =>
+  const rosterIndex =
+  roster.map((user) =>
     <tr id="t-body"key={user.email}>
       <th id="th-body">{user.email}</th>
       <th id="th-body">{user.first}</th>
@@ -95,7 +102,9 @@ export default function Admin(){
           <th>Status</th>
           <th>Remove</th>
         </tr>
-        {rosterIndex}
+        {isLoading ? (
+          <h1>Loading...</h1>
+        ) : rosterIndex}
       </tbody>
     </table>
   )
@@ -149,7 +158,6 @@ const deleteUser = (user) => {
         placeholder="cfarshchi@gmail.com"
         value={email}
         onChange={(e) => setEmail(e.target.value)} />
-        <button onClick={() => userDbMatch()}/>
       </div>
       <button
       className="admin-submit"
