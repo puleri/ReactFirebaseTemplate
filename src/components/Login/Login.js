@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useRouteMatch } from 'react-router-dom';
 import firebase, { auth } from '../../firebase';
 // import { collection, query, where, getDocs } from "../../firebase";
@@ -14,14 +14,13 @@ import "./Button.css"
 
 
 export default function Login(props) {
-    const match = useRouteMatch('/login');
 
 // this logic below needs to move to the app's global scope and passed as a prop
     const [email, setEmail] = useState('');
     const [error, setError] = useState(null)
     const [password, setPassword] = useState('');
-    const [currentUser, setCurrentUser] = useState(null);
-    const [redirect, setRedirect] = useState(false);
+    // const [currentUser, setCurrentUser] = useState(null);
+    // const [redirect, setRedirect] = useState(false);
 
     // const { login } = useAuth()
 
