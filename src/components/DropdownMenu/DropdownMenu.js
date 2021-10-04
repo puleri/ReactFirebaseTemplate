@@ -13,9 +13,11 @@ function DropdownMenu(props) {
     // e.preventDefault()
     console.log("Current user", auth)
     const temp = auth.currentUser.uid;
+    const userRef = firebase.firestore().collection('users').doc(temp);
 
     auth.signOut()
       .then(() => {
+        if (userRef.exists) {
         firebase.firestore().collection('users').doc(temp).set({
           status: 'inactive',
         }, { merge: true })
@@ -23,6 +25,8 @@ function DropdownMenu(props) {
         props.history.push('/login');
         // console.log('props are ', props)
         console.log('successful logout')
+      }
+
       })
       .catch(err => {
         console.log(err)

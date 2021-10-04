@@ -59,7 +59,7 @@ export default function Login(props) {
                 return props.history.push('/permissions')
               }
 
-              if (isAdmin) {
+              else if (isAdmin) {
                 return props.history.push('admin')
               }
 
