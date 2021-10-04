@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import Header from '../../components/Header/Header.js'
+
 import firebase, { auth } from '../../firebase';
 
 import './Admin.css';
@@ -132,6 +134,8 @@ const deleteUser = (user) => {
 
 
   return (
+    <>
+    <Header />
     <div className="admin-container">
     <h3 id="admin-header">Administrator</h3>
     <div className="admin-tip"><p>If this message is visable to you, that means you are a Kaiser Administrator and as such have the ability to create, view, update, and delete users with access to Kaiser Tools</p></div>
@@ -167,5 +171,6 @@ const deleteUser = (user) => {
     </div>
     {rosterFull}
     </div>
+    </>
   )
 }

@@ -85,9 +85,9 @@ export default function Login(props) {
 
     const handleSubmit = (e) => {
       // if login succesful
+      setError(null)
       if (login(email,password)) {
         // reset error if one exists
-        setError(null)
 
         // console.log(email, " ", password)
         // query firestore for user

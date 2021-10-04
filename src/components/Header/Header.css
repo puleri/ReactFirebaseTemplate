@@ -1,0 +1,74 @@
+.colorheader {
+  position: relative;
+  padding-bottom: 2px;
+}
+.Nav-container {
+  pointer-events: all;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 67px;
+  background: white;
+}
+.logout-header {
+  margin-top: 18px;
+  border: none;
+  background: none;
+  font-family:'Montserrat', sans-serif;
+}
+.logout-header:hover {
+  cursor: pointer;
+}
+.logout-icon{
+  font-size: 22px;
+  margin:auto;
+}
+.icon-text {
+  margin-top: 2px;
+  border: none;
+  font-weight: bold;
+  text-decoration: none;
+  display: flex;
+  align-items: flex-end;
+  color: black;
+  font-family: 'Heebo', sans-serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  margin-top: -42px;
+  opacity: 0;
+  height: 60px;
+  position: absolute;
+  transition: opacity 200ms ease-out;
+}
+.icon-text:hover {
+  opacity: 1;
+}
+.calendar {
+  z-index: 10;
+  position: relative;
+  margin-top: 0px;
+  transition: margin-top 200ms ease-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.calendar:hover {
+  margin-top: -10px;
+}
+.account-icon {
+  font-size: 22px;
+}
+#Navbar-bottomline {
+  height: 2px;
+  background: black;
+}
+.fas {
+  color: black;
+}
+.brand{
+  font-family: "Heebo", sans-serif;
+}
+.perm-prof-icon {
+ font-family: "Heebo", sans-serif;
+}

@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import Footer from '../Footer/Footer.js'
 import DropdownMenu from '../DropdownMenu/DropdownMenu.js'
 import DropdownPItem from '../DropdownPItem/DropdownPItem.js';
+import Header from '../../components/Header/Header.js'
+
 // import { useRouteMatch } from 'react-router-dom';
 import firebase, { auth } from '../../firebase';
 
@@ -187,6 +190,7 @@ export default function Permissions(props) {
   if (active === "Template") {
     activeMenu =
     <>
+
     <div className="header-hero">
       <h1 style={{ color: 'white' }}>Roof Measurement</h1>
       <p>All measurements recorded in square feet</p>
@@ -295,25 +299,30 @@ export default function Permissions(props) {
 
 
     return (
-      <>
-      <div className="permissions-container">
-        <div className="permissions-header">
-          <h2 className="perm-h1">KaiserTools</h2>
-          <button className="Roles-button" onClick={(e) => { setActive('Template') }}><h3>Template</h3>
-            {templateTab}
-          </button>
-          <button className="Roles-button" onClick={(e) => { userDbMatch() }}><h3>Roles</h3>
-            {adminTab}
-          </button>
+      <div className="template-wrapper">
+      <Header />
 
-          <div className="perm-prof-icon"><i className="perm-cog fas fa-cog"></i>
-          <DropdownPItem className="perm-prof-icon" icon="MP" >
-            <DropdownMenu setCurrentUser={props}/>
-          </DropdownPItem>
-          </div>
-        </div>
-      </div>
+      {
+      // <div className="permissions-container">
+      //   <div className="permissions-header">
+      //     <h2 className="perm-h1">KaiserTools</h2>
+      //     <button className="Roles-button" onClick={(e) => { setActive('Template') }}><h3>Template</h3>
+      //       {templateTab}
+      //     </button>
+      //     <button className="Roles-button" onClick={(e) => { userDbMatch() }}><h3>Roles</h3>
+      //       {adminTab}
+      //     </button>
+      //
+      //     <div className="perm-prof-icon"><i className="perm-cog fas fa-cog"></i>
+      //     <DropdownPItem className="perm-prof-icon" icon="MP" >
+      //       <DropdownMenu setCurrentUser={props}/>
+      //     </DropdownPItem>
+      //     </div>
+      //   </div>
+      // </div>
+    }
       {activeMenu}
-      </>
+      <Footer />
+      </div>
     )
   }

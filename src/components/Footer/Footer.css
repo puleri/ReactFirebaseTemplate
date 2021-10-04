@@ -1,0 +1,132 @@
+footer {
+  pointer-events: all;
+  margin-top: 200px;
+  position: relative;
+  font-weight: bold;
+
+}
+footer::after {
+  content: '';
+  z-index: -1;
+  position: absolute;
+  width: 100%;
+  height: 140%;
+  top: -25px;
+  left: 0;
+  background: linear-gradient(125deg, rgba(36,85,79,1) 10%, rgb(76,209,150) 70%);
+  transform: skewY(2deg);
+}
+.Footer_c {
+  text-transform: uppercase;
+  color: black !important;
+  font-size: 13px;
+  margin-right: 60px;
+  margin-top: 60px;
+  right: 0;
+  position: absolute;
+  background-color: transparent;
+  border: none
+}
+#footer-icon {
+  height: 30px;
+}
+.footer_logo {
+  position: absolute;
+  top: 10px;
+  left: 5%;
+
+  text-decoration: none;
+  color: black;
+  margin: 15px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.Footer {
+  text-transform: uppercase;
+  font-family: 'Heebo', sans-serif;
+  background-color: none;
+  position:relative;
+  height: 150px;
+  width: 100vw;
+}
+
+.Footer_Nav {
+  right: 0;
+  background-color: transparent;
+  border: none;
+  text-transform: uppercase;
+  font-size: 10px;
+  margin: 10px;
+  margin-right: 40px;
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+.Footer_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 32px;
+  left: 28%;
+  top: 30px;
+  text-decoration: none;
+  border-radius: 5px;
+  box-shadow: 0 3px 15px 1px #24554F9f;
+  background: white;
+  font-size: 15px;
+  margin-right: 30px;
+  font-weight: bold;
+  color: #2C7593;
+  width: 150px;
+  border: none;
+  -webkit-transition: background 0.2s ease-out, color .2s ease-out;
+    -moz-transition: background 0.2s ease-out, color .2s ease-out;
+    -o-transition: background 0.2s ease-out, color .2s ease-out;
+  transition: background 0.2s ease-out, color .2s ease-out;
+
+  }
+
+.Footer_button:hover{
+  background: #2C7593;
+  color: white;
+}
+.footercolor {
+  position: relative;
+  bottom:0;
+}
+  @media (max-width: 1337px) {
+    /* .Footer {
+      top: 215vh;
+    } */
+  }
+@media only screen and (min-width: 764px) {
+    .F1 {
+    position: absolute;
+    right: 500px;
+  }
+    .F2 {
+    position: absolute;
+    right: 300px;
+  }
+    .F3 {
+    position: absolute;
+    right: 200px;
+  }
+    .F4 {
+    position: absolute;
+    right: 75px;
+  }
+    .F5 {
+    position: absolute;
+    right: 0px;
+  }
+}
+
+@media only screen and (max-width: 764px) {
+  .Footer_c {
+    position: static;
+    margin-left: -10px;
+  }
+}
