@@ -17,8 +17,9 @@ export default function Login(props) {
 
 // this logic below needs to move to the app's global scope and passed as a prop
     const [email, setEmail] = useState('');
-    const [error, setError] = useState(null)
     const [password, setPassword] = useState('');
+    const [error, setError] = useState(null)
+
     // const [currentUser, setCurrentUser] = useState(null);
     // const [redirect, setRedirect] = useState(false);
 
@@ -101,10 +102,10 @@ export default function Login(props) {
           console.log("temp user is", tempUser.first);
         })
       }
-      else
-      {
-          return setError('Username or password incorrect.')
-      }
+      // else
+      // {
+      //     return setError('Username or password incorrect.')
+      // }
 
 
 
@@ -151,7 +152,7 @@ export default function Login(props) {
           <input onChange = {(e) => setEmail(e.target.value)} type="email" className="login-email" placeholder="Email:"/>
           <input onChange = {(e) => setPassword(e.target.value)} type="password" className="login-password" placeholder="Password:"/>
           <button className="pulse" onClick={handleSubmit}>Sign in</button>
-          <h5 className="login-h5">Sign in with</h5>
+          <h5 className="login-h5">Powered by</h5>
           <img className="login-google" src={google} alt="Google sign in button" />
         </div>
 

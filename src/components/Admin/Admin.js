@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header/Header.js'
+import Footer from '../../components/Footer/Footer.js'
 
 import firebase, { auth } from '../../firebase';
 
@@ -134,43 +135,47 @@ const deleteUser = (user) => {
 
 
   return (
-    <>
-    <Header />
-    <div className="admin-container">
-    <h3 id="admin-header">Administrator</h3>
-    <div className="admin-tip"><p>If this message is visable to you, that means you are a Kaiser Administrator and as such have the ability to create, view, update, and delete users with access to Kaiser Tools</p></div>
-    <div className="admin-tip"><p>Each user will have the ability to use the Kaiser Tools after they update their password from the new user default password</p></div>
-      {error}
-    <div className="admin-form">
-      <div className="form-group">
-        <label>First Name</label>
-        <input type="text"
-        placeholder="Clover"
-        value={first}
-        onChange={(e) => setFirst(e.target.value)} />
+    <div className="admin-wrapper">
+      <Header />
+      <div className="admin-container">
+
+        <h3 id="admin-header">Administrator</h3>
+        <div className="admin-tip"><p>If this message is visable to you, that means you are a Kaiser Administrator and as such have the ability to create, view, update, and delete users with access to Kaiser Tools</p></div>
+        <div className="admin-tip"><p>Each user will have the ability to use the Kaiser Tools after they update their password from the new user default password</p></div>
+          {error}
+
+        <div className="admin-form">
+          <div className="form-group">
+            <label>First Name</label>
+            <input type="text"
+            placeholder="Clover"
+            value={first}
+            onChange={(e) => setFirst(e.target.value)} />
+          </div>
+          <div className="form-group">
+            <label>Last Name</label>
+            <input type="text"
+            placeholder="Farshchi"
+            value={last}
+            onChange={(e) => setLast(e.target.value)} />
+          </div>
+          <div className="form-group">
+            <label>Last Name</label>
+            <input type="email"
+            placeholder="cfarshchi@gmail.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)} />
+          </div>
+          <button
+          className="admin-submit"
+          onClick={()=> signUpUser(first, last, email)}>
+          Invite
+          </button>
+
+        </div>
+        {rosterFull}
       </div>
-      <div className="form-group">
-        <label>Last Name</label>
-        <input type="text"
-        placeholder="Farshchi"
-        value={last}
-        onChange={(e) => setLast(e.target.value)} />
-      </div>
-      <div className="form-group">
-        <label>Last Name</label>
-        <input type="email"
-        placeholder="cfarshchi@gmail.com"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)} />
-      </div>
-      <button
-      className="admin-submit"
-      onClick={()=> signUpUser(first, last, email)}>
-      Invite
-      </button>
+      <Footer />
     </div>
-    {rosterFull}
-    </div>
-    </>
   )
 }

@@ -3,7 +3,8 @@ footer {
   margin-top: 200px;
   position: relative;
   font-weight: bold;
-
+  letter-spacing: 1px;
+  color: white;
 }
 footer::after {
   content: '';
@@ -13,13 +14,14 @@ footer::after {
   height: 140%;
   top: -25px;
   left: 0;
-  background: linear-gradient(125deg, rgba(36,85,79,1) 10%, rgb(76,209,150) 70%);
+  background: #1f1f1f;
+  /* background: linear-gradient(125deg, rgba(36,85,79,1) 10%, rgb(76,209,150) 70%); */
   transform: skewY(2deg);
 }
 .Footer_c {
   text-transform: uppercase;
-  color: black !important;
-  font-size: 13px;
+  color: white !important;
+  font-size: 15px;
   margin-right: 60px;
   margin-top: 60px;
   right: 0;
@@ -36,7 +38,7 @@ footer::after {
   left: 5%;
 
   text-decoration: none;
-  color: black;
+  color: white;
   margin: 15px;
   font-weight: bold;
   font-size: 18px;
