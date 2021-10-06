@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Footer from '../Footer/Footer.js'
-import DropdownMenu from '../DropdownMenu/DropdownMenu.js'
-import DropdownPItem from '../DropdownPItem/DropdownPItem.js';
 import Header from '../../components/Header/Header.js'
 
 // import { useRouteMatch } from 'react-router-dom';
