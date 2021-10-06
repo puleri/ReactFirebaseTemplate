@@ -41,14 +41,16 @@ export default function UpgradeTool() {
           <div className="form-group">
             <label>Manual Entry</label>
             <input
-            style={{ width:"40px", height: "40px" }}
-            type="checkbox"
+            style={{ width:"20px", height: "20px" }}
+            type="radio"
+            name="roofMeasurement"
 
             />
             <label>.XML Upload</label>
             <input
-            style={{ width:"40px", height: "40px" }}
-            type="checkbox"
+            style={{ width:"20px", height: "20px" }}
+            type="radio"
+            name="roofMeasurement"
 
             />
             <button onClick={() => handlePrev()}>Previous</button>
