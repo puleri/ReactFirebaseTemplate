@@ -21,6 +21,8 @@ export default function UpgradeTool() {
     parapets: 0,
     existingRoof: false,
     roofType: "select",
+    dripRakes: false,
+    tab: 0
    })
 
   const handleMeasurementChange = (e) => {
@@ -103,7 +105,9 @@ export default function UpgradeTool() {
           </>
         )
       case 3:
-
+        if (roofTemplate.roofMeasurement === "") {
+          return setRoofTemplate({ ...roofTemplate, step: 2 })
+        }
         if (roofTemplate.roofMeasurement === "manual"){
           return (
             <>
@@ -190,42 +194,22 @@ export default function UpgradeTool() {
 
                 />
               </div>
-              <div className="form-group">
-                <label>Existing Roof?</label>
-                <input
-                style={{ width:"40px", height: "40px" }}
-                type="checkbox"
-                checked={roofTemplate.existingRoof === true }
-                onChange={(e) => setRoofTemplate({ ...roofTemplate, existingRoof: !roofTemplate.existingRoof })}
-                />
-              </div>
+
               <div className="form-group">
                 <label>Roof Type</label>
                 <select
                 name="roof_type"
                 id="roof_type"
                 size="1"
+                value={roofTemplate.roofType}
                 onChange={(e) => setRoofTemplate({ ...roofTemplate, roofType: e.target.value })}>>
                   <option value="select">Select type</option>
-                  <option value="gable">Gable</option>
-                  <option value="hip">Hip</option>
-                  <option value="mansard">Mansard</option>
-                  <option value="dutch_hip">Dutch Hip</option>
-                  <option value="gambrel">Gambrel</option>
-                  <option value="flat">Flat</option>
-                  <option value="shed">Shed</option>
-                </select>
-              </div>
-              <div className="form-group">
-                <label>Existing Shingle</label>
-                <select
-                name="existing_shingle"
-                id="roof_type"
-                size="1"
-                onChange={(e) => setRoofTemplate({ ...roofTemplate, existingShingle: e.target.value })}>
-                  <option value="select">Select shingle</option>
-                  <option value="3-tab">3-Tab</option>
-                  <option value="laminate">Laminate</option>
+                  <option value="asphalt">Asphalt</option>
+                  <option value="copper">Copper</option>
+                  <option value="metal">Metal</option>
+                  <option value="synthetic">Synthetic</option>
+                  <option value="tile">Tile</option>
+                  <option value="wood">Wood</option>
                 </select>
               </div>
               <button onClick={() => console.log(roofTemplate)}>log</button>
@@ -278,127 +262,107 @@ export default function UpgradeTool() {
             </>
           )
         }
+        break
         case 4:
+          if (roofTemplate.roofType === "asphalt") {
+            // if user went down different path we need to reset that state here
+            return (
+              <>
+              <div className="form-group">
+                  <label>Existing Shingle</label>
+                  <select
+                  name="existing_shingle"
+                  id="roof_type"
+                  size="1"
+                  value={roofTemplate.existingShingle}
+                  onChange={(e) => setRoofTemplate({ ...roofTemplate, existingShingle: e.target.value })}>
+                  <option value="select">Select shingle</option>
+                  <option value="3-tab">3-Tab</option>
+                  <option value="laminate">Laminate</option>
+                  </select>
+                  <button onClick={() => handlePrev()}>Previous</button>
+                  <button onClick={() => handleNext()}>Next</button>
+              </div>
+              </>
+            )
+          }
+        else if (roofTemplate.roofType === "metal") {
+          // if user went down different path we need to reset that state here
+          return (
+            <>
+              <h2>Drip</h2>
+              <div className="form-group">
+                <label>Rakes</label>
+                <input
+                style={{ width:"40px", height: "40px" }}
+                type="checkbox"
+                checked={roofTemplate.dripRakes === true }
+                onChange={(e) => setRoofTemplate({ ...roofTemplate, dripRakes: !roofTemplate.dripRakes })}
+                />
+                <button onClick={() => handlePrev()}>Previous</button>
+                <button onClick={() => handleNext()}>Next</button>
 
-    // return (
-    //   <>
-    //     <h1>Upgrade Tool</h1>
-    //     <div className="header-hero">
-    //       <h1 style={{ color: 'white' }}>Roof Measurement</h1>
-    //       <p>All measurements recorded in square feet</p>
-    //     </div>
-    //     <div className="Template-container">
-    //       <form className="roof-measurement-form">
-    //         <div className="form-group">
-    //           <label>Total Roof Area</label>
-    //           <input
-    //           type="number"
-    //           />
-    //         </div>
-    //         <div className="form-group">
-    //           <label>Ridge</label>
-    //           <input
-    //           type="number"
-    //           />
-    //         </div>
-    //         <div className="form-group">
-    //           <label>Hip</label>
-    //           <input
-    //           type="number"
-    //           onChange={(e) => {
-    //             setRoofTemplate({ ...roofTemplate, hip: e.target.value})
-    //           }}/>
-    //         </div>
-    //         <div className="form-group">
-    //           <label>Valley</label>
-    //           <input
-    //           type="number"
-    //           onChange={(e) => {
-    //             setRoofTemplate({ ...roofTemplate, valley: e.target.value})
-    //           }}/>
-    //         </div>
-    //         <div className="form-group">
-    //           <label>Rake</label>
-    //           <input
-    //           type="number"
-    //           onChange={(e) => {
-    //             setRoofTemplate({ ...roofTemplate, rake: e.target.value})
-    //           }}/>
-    //         </div>
-    //         <div className="form-group">
-    //           <label>Eave</label>
-    //           <input
-    //           type="number"
-    //           onChange={(e) => {
-    //             setRoofTemplate({ ...roofTemplate, eave: e.target.value})
-    //           }}/>
-    //         </div>
-    //         <div className="form-group">
-    //           <label>Counter Flashing</label>
-    //           <input
-    //           type="number"
-    //           onChange={(e) => {
-    //             setRoofTemplate({ ...roofTemplate, counterFlashing: e.target.value})
-    //           }}/>
-    //         </div>
-    //         <div className="form-group">
-    //           <label>Step Flashing</label>
-    //           <input
-    //           type="number"
-    //           onChange={(e) => {
-    //             setRoofTemplate({ ...roofTemplate, stepFlashing: e.target.value})
-    //           }}/>
-    //         </div>
-    //         <div className="form-group">
-    //           <label>Parapets</label>
-    //           <input
-    //           type="number"
-    //           onChange={(e) => {
-    //             setRoofTemplate({ ...roofTemplate, parapets: e.target.value})
-    //           }}
-    //           />
-    //         </div>
-    //         <div className="form-group">
-    //           <label>Existing Roof?</label>
-    //           <input
-    //           style={{ width:"40px", height: "40px" }}
-    //           type="checkbox"
-    //
-    //           />
-    //         </div>
-    //         <div className="form-group">
-    //           <label>Roof Type</label>
-    //           <select
-    //           name="roof_type"
-    //           id="roof_type"
-    //           size="1"
-    //           onChange={(e) => setRoofTemplate({ ...roofTemplate, roofType: e.target.value})}>
-    //             <option value="select">Select type</option>
-    //             <option value="gable">Gable</option>
-    //             <option value="hip">Hip</option>
-    //             <option value="mansard">Mansard</option>
-    //             <option value="dutch_hip">Dutch Hip</option>
-    //             <option value="gambrel">Gambrel</option>
-    //             <option value="flat">Flat</option>
-    //             <option value="shed">Shed</option>
-    //           </select>
-    //         </div>
-    //         <div className="form-group">
-    //           <label>Existing Shingle</label>
-    //           <select
-    //           name="existing_shingle"
-    //           id="roof_type"
-    //           size="1"
-    //           onChange={(e) => setRoofTemplate({ ...roofTemplate, existingShingle: e.target.value})}>
-    //             <option value="select">Select shingle</option>
-    //             <option value="3-tab">3-Tab</option>
-    //             <option value="laminate">Laminate</option>
-    //           </select>
-    //         </div>
-    //
-    //       </form>
-    //     </div>
-    //     </>
-    // )
+              </div>
+              <h2>Gutter Apron</h2>
+            </>
+          )
+        }
+        break
+      case 5:
+        if (roofTemplate.existingShingle === "3-tab") {
+          return (
+            <>
+            <div className="form-group">
+                <label>3-Tab</label>
+                <select
+                name="3_tab"
+                id="roof_type"
+                size="1"
+                value={roofTemplate.tab}
+                onChange={(e) => setRoofTemplate({ ...roofTemplate, tab: e.target.value })}>
+                <option value="select">Select shingle</option>
+                <option value="20">20</option>
+                <option value="25">25</option>
+                <option value="30">30</option>
+                </select>
+                <button onClick={() => handlePrev()}>Previous</button>
+                <button onClick={() => handleNext()}>Next</button>
+            </div>
+            </>
+          )
+        }
+      else if (roofTemplate.existingShingle === "laminate") {
+          return (
+            <>
+            <div className="form-group">
+                <label>Laminate</label>
+                <select
+                name="laminate"
+                id="roof_type"
+                size="1"
+                value={roofTemplate.laminate}
+                onChange={(e) => setRoofTemplate({ ...roofTemplate, laminate: e.target.value })}>
+                <option value="select">Select laminate</option>
+                <option value="builder">Builder Grade</option>
+                <option value="high">High Grade</option>
+                <option value="designer">Designer</option>
+                <option value="specialty">Specialty</option>
+                </select>
+                <button onClick={() => handlePrev()}>Previous</button>
+                <button onClick={() => handleNext()}>Next</button>
+            </div>
+            </>
+          )
+        }
   }
 }
+// checked
+// <div className="form-group">
+//   <label>Existing Roof?</label>
+//   <input
+//   style={{ width:"40px", height: "40px" }}
+//   type="checkbox"
+//   checked={roofTemplate.existingRoof === true }
+//   onChange={(e) => setRoofTemplate({ ...roofTemplate, existingRoof: !roofTemplate.existingRoof })}
+//   />
+// </div>
