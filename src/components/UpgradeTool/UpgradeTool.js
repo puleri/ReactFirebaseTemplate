@@ -22,7 +22,9 @@ export default function UpgradeTool() {
     existingRoof: false,
     roofType: "select",
     dripRakes: false,
-    tab: 0
+    tab: "select",
+    laminate: "select",
+    synthetic: "select"
    })
 
   const handleMeasurementChange = (e) => {
@@ -307,6 +309,32 @@ export default function UpgradeTool() {
             </>
           )
         }
+        else if (roofTemplate.roofType === "synthetic") {
+          // if user went down different path we need to reset that state here
+          return (
+            <>
+              <h2>Existing Roof</h2>
+              <div className="form-group">
+                <label>Synthetic</label>
+                <select
+                name="existing_roof"
+                id="roof_type"
+                size="1"
+                value={roofTemplate.synthetic}
+                onChange={(e) => setRoofTemplate({ ...roofTemplate, synthetic: e.target.value })}>
+                  <option value="select">Select shingle</option>
+                  <option value="builder">Builder Grade</option>
+                  <option value="better">Better Grade</option>
+                  <option value="best">Best Grade</option>
+                </select>
+
+                <button onClick={() => handlePrev()}>Previous</button>
+                <button onClick={() => handleNext()}>Next</button>
+
+              </div>
+            </>
+          )
+        }
         break
       case 5:
         if (roofTemplate.existingShingle === "3-tab") {
@@ -321,9 +349,9 @@ export default function UpgradeTool() {
                 value={roofTemplate.tab}
                 onChange={(e) => setRoofTemplate({ ...roofTemplate, tab: e.target.value })}>
                 <option value="select">Select shingle</option>
-                <option value="20">20</option>
-                <option value="25">25</option>
-                <option value="30">30</option>
+                <option value="20">20 Year</option>
+                <option value="25">25 Year</option>
+                <option value="30">30 Year</option>
                 </select>
                 <button onClick={() => handlePrev()}>Previous</button>
                 <button onClick={() => handleNext()}>Next</button>
