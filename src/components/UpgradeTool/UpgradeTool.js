@@ -517,8 +517,23 @@ export default function UpgradeTool() {
         }
       case 9:
         if (roofTemplate.metalEdge) {
+          return   (
+            <>
+            <h1>End</h1>
+            <button onClick={() => handlePrev()}>Previous</button>
+            <button onClick={() => handleNext()}>Next</button>
 
-        }
+            </>
+          )        }
+        else return   (
+          <>
+          <h1>End</h1>
+          <button onClick={() => handlePrev()}>Previous</button>
+          <button onClick={() => handleNext()}>Next</button>
+
+          </>
+        )
+
   }
 }
 // checked
