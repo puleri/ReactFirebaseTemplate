@@ -10,21 +10,22 @@ export default function UpgradeTool() {
     roofMeasurement: "",
     xmlType: "",
     existingShingle: "select",
-    roofTotal: 0,
-    ridge: 0,
-    hip: 0,
-    valley: 0,
-    rake: 0,
-    eave: 0,
-    counterFlashing: 0,
-    stepFlashing: 0,
-    parapets: 0,
+    roofTotal: undefined,
+    ridge: undefined,
+    hip: undefined,
+    valley: undefined,
+    rake: undefined,
+    eave: undefined,
+    counterFlashing: undefined,
+    stepFlashing: undefined,
+    parapets: undefined,
     existingRoof: false,
     roofType: "select",
     dripRakes: false,
     tab: "select",
     laminate: "select",
-    synthetic: "select"
+    synthetic: "select",
+    underlayment: ""
    })
 
   const handleMeasurementChange = (e) => {
@@ -37,6 +38,12 @@ export default function UpgradeTool() {
     setRoofTemplate({
       ...roofTemplate,
       xmlType: e.target.value
+    })
+  }
+  const handleUnderlaymentChange = (e) => {
+    setRoofTemplate({
+      ...roofTemplate,
+      underlayment: e.target.value
     })
   }
 
@@ -266,6 +273,9 @@ export default function UpgradeTool() {
         }
         break
         case 4:
+          if (roofTemplate.roofType === "select") {
+            return setRoofTemplate({ ...roofTemplate, step: 3 })
+          }
           if (roofTemplate.roofType === "asphalt") {
             // if user went down different path we need to reset that state here
             return (
@@ -309,34 +319,13 @@ export default function UpgradeTool() {
             </>
           )
         }
-        else if (roofTemplate.roofType === "synthetic") {
-          // if user went down different path we need to reset that state here
-          return (
-            <>
-              <h2>Existing Roof</h2>
-              <div className="form-group">
-                <label>Synthetic</label>
-                <select
-                name="existing_roof"
-                id="roof_type"
-                size="1"
-                value={roofTemplate.synthetic}
-                onChange={(e) => setRoofTemplate({ ...roofTemplate, synthetic: e.target.value })}>
-                  <option value="select">Select shingle</option>
-                  <option value="builder">Builder Grade</option>
-                  <option value="better">Better Grade</option>
-                  <option value="best">Best Grade</option>
-                </select>
-
-                <button onClick={() => handlePrev()}>Previous</button>
-                <button onClick={() => handleNext()}>Next</button>
-
-              </div>
-            </>
-          )
+        else {
+          return setRoofTemplate({ ...roofTemplate, step: 6 })
         }
-        break
       case 5:
+      if (roofTemplate.existingShingle === "select") {
+        return setRoofTemplate({ ...roofTemplate, step: 4 })
+      }
         if (roofTemplate.existingShingle === "3-tab") {
           return (
             <>
@@ -381,6 +370,154 @@ export default function UpgradeTool() {
             </div>
             </>
           )
+        }
+        break
+      case 6:
+        return (
+          <>
+            <h1>Underlayment</h1>
+            <div className="form-group">
+              <label>Felt</label>
+              <input
+              style={{ width:"20px", height: "20px" }}
+              type="radio"
+              name="underlayment"
+              value="felt"
+              checked={roofTemplate.underlayment === 'felt'}
+              onChange={handleUnderlaymentChange}
+              />
+              <label>Synthetic</label>
+              <input
+              style={{ width:"20px", height: "20px" }}
+              type="radio"
+              name="underlayment"
+              value="synthetic"
+              checked={roofTemplate.underlayment === 'synthetic'}
+              onChange={handleUnderlaymentChange}
+              />
+              <button onClick={() => handlePrev()}>Previous</button>
+              <button onClick={() => handleNext()}>Next</button>
+              <button onClick={() => console.log(roofTemplate)}>log</button>
+
+            </div>
+          </>
+        )
+      case 7:
+        if (roofTemplate.underlayment === 'felt') {
+          return (
+            <div className="form-group">
+              <label>Ice and Water Barrier</label>
+              <input
+              style={{ width:"40px", height: "40px" }}
+              type="checkbox"
+              checked={roofTemplate.iceBool=== true }
+              onChange={(e) => setRoofTemplate({ ...roofTemplate, iceBool: !roofTemplate.iceBool })}
+              />
+              <button onClick={() => handlePrev()}>Previous</button>
+              <button onClick={() => handleNext()}>Next</button>
+
+            </div>
+
+          )
+        }
+        else if (roofTemplate.underlayment === "synthetic") {
+          // if user went down different path we need to reset that state here
+          return (
+            <>
+              <div className="form-group">
+                <label>Synthetic</label>
+                <select
+                name="existing_roof"
+                id="roof_type"
+                size="1"
+                value={roofTemplate.synthetic}
+                onChange={(e) => setRoofTemplate({ ...roofTemplate, synthetic: e.target.value })}>
+                  <option value="select">Select shingle</option>
+                  <option value="builder">Builder Grade</option>
+                  <option value="better">Better Grade</option>
+                  <option value="best">Best Grade</option>
+                </select>
+
+                <button onClick={() => handlePrev()}>Previous</button>
+                <button onClick={() => handleNext()}>Next</button>
+
+              </div>
+            </>
+          )
+        }
+      break
+      case 8:
+        if (roofTemplate.iceBool) {
+          return (
+            <>
+            <h2>Ice and Water Barrier</h2>
+
+            <div className="form-group">
+              <label>Eaves</label>
+              <input
+              style={{ width:"40px", height: "40px" }}
+              type="checkbox"
+              checked={roofTemplate.iceEaves === true }
+              onChange={(e) => setRoofTemplate({ ...roofTemplate, iceEaves: !roofTemplate.iceEaves })}
+              />
+              <label>Rakes</label>
+              <input
+              style={{ width:"40px", height: "40px" }}
+              type="checkbox"
+              checked={roofTemplate.iceRakes === true }
+              onChange={(e) => setRoofTemplate({ ...roofTemplate, iceRakes: !roofTemplate.iceRakes })}
+              />
+              <label>Valleys</label>
+              <input
+              style={{ width:"40px", height: "40px" }}
+              type="checkbox"
+              checked={roofTemplate.iceValleys === true }
+              onChange={(e) => setRoofTemplate({ ...roofTemplate, iceValleys: !roofTemplate.iceValleys })}
+              />
+              <label>Low Scope</label>
+              <input
+              style={{ width:"40px", height: "40px" }}
+              type="checkbox"
+              checked={roofTemplate.iceLow === true }
+              onChange={(e) => setRoofTemplate({ ...roofTemplate, iceLow: !roofTemplate.iceLow })}
+              />
+              <label>Entire Roof</label>
+              <input
+              style={{ width:"40px", height: "40px" }}
+              type="checkbox"
+              checked={roofTemplate.iceEntire === true }
+              onChange={(e) => setRoofTemplate({ ...roofTemplate, iceEntire: !roofTemplate.iceEntire })}
+              />
+              <button onClick={() => handlePrev()}>Previous</button>
+              <button onClick={() => handleNext()}>Next</button>
+
+            </div>
+            </>
+          )
+        }
+        else {
+          return (
+            <>
+              <h2>Metal Edge</h2>
+              <div className="form-group">
+                <label>Metal Edge</label>
+                <input
+                style={{ width:"40px", height: "40px" }}
+                type="checkbox"
+                checked={roofTemplate.metalEdge === true }
+                onChange={(e) => setRoofTemplate({ ...roofTemplate, metalEdge: !roofTemplate.metalEdge })}
+                />
+                <button onClick={() => handlePrev()}>Previous</button>
+                <button onClick={() => handleNext()}>Next</button>
+
+              </div>
+
+            </>
+          )
+        }
+      case 9:
+        if (roofTemplate.metalEdge) {
+
         }
   }
 }
