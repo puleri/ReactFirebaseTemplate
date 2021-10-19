@@ -120,6 +120,12 @@ export default function UpgradeTool() {
         if (roofTemplate.roofMeasurement === "manual"){
           return (
             <>
+            <button onClick={() => handlePrev()}>Previous</button>
+            <button onClick={() => {
+              setRoofTemplate({ ...roofTemplate, xmlType: "" })
+              handleNext()
+            }}>Next</button>
+
               <h1>Manual page</h1>
               <div className="form-group">
               <div className="form-group">
@@ -127,7 +133,7 @@ export default function UpgradeTool() {
                 <input
                 type="number"
                 value={roofTemplate.roofTotal}
-                onChange={(e) => setRoofTemplate({ ...roofTemplate, roofTotal: e.target.value })}
+                onChange={ (e) => setRoofTemplate({ ...roofTemplate, roofTotal: e.target.value }) }
 
                 />
               </div>
@@ -226,6 +232,7 @@ export default function UpgradeTool() {
               <button onClick={() => handlePrev()}>Previous</button>
               <button onClick={() => {
                 console.log(roofTemplate)
+                setRoofTemplate({ ...roofTemplate, xmlType: "" })
                 handleNext()
               }}>Next</button>
               </div>
