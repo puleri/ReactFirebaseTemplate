@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
+import { useLocation } from "react-router-dom";
 import './UpgradeTool.css';
 
 export default function UpgradeTool() {
+
+  const location = useLocation();
+  const paths = location.pathname.split("/");
+  let session_uuid = paths[2];
+console.log("location is," , location)
 
   const [roofTemplate, setRoofTemplate] = useState({
     step: 1,
@@ -22,6 +28,8 @@ export default function UpgradeTool() {
     existingRoof: false,
     roofType: "select",
     dripRakes: false,
+    dripEaves: false,
+    apronEaves: false,
     tab: "select",
     laminate: "select",
     synthetic: "select",
@@ -65,6 +73,7 @@ export default function UpgradeTool() {
   switch (roofTemplate.step) {
     default:
     case 1:
+
         return (
           <>
             <h1>Homeowner Information</h1>
@@ -82,6 +91,8 @@ export default function UpgradeTool() {
               onChange={(e) => setRoofTemplate({ ...roofTemplate, name: e.target.value })}
               />
               <button onClick={() => handleNext()}>Next</button>
+              <button onClick={() => console.log(session_uuid)}>log</button>
+
             </div>
           </>
         )
@@ -318,11 +329,27 @@ export default function UpgradeTool() {
                 checked={roofTemplate.dripRakes === true }
                 onChange={(e) => setRoofTemplate({ ...roofTemplate, dripRakes: !roofTemplate.dripRakes })}
                 />
+                <label>Eaves</label>
+                <input
+                style={{ width:"40px", height: "40px" }}
+                type="checkbox"
+                checked={roofTemplate.dripEaves === true }
+                onChange={(e) => setRoofTemplate({ ...roofTemplate, dripEaves: !roofTemplate.dripEaves })}
+                />
+              </div>
+              <h2>Gutter Apron</h2>
+              <div className="form-group">
+                <label>Eaves</label>
+                <input
+                style={{ width:"40px", height: "40px" }}
+                type="checkbox"
+                checked={roofTemplate.apronEaves === true }
+                onChange={(e) => setRoofTemplate({ ...roofTemplate, apronEaves: !roofTemplate.apronEaves })}
+                />
                 <button onClick={() => handlePrev()}>Previous</button>
                 <button onClick={() => handleNext()}>Next</button>
 
               </div>
-              <h2>Gutter Apron</h2>
             </>
           )
         }
