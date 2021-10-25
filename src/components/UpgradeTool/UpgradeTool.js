@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 import './UpgradeTool.css';
 
 export default function UpgradeTool() {
 
-  const location = useLocation();
-  const paths = location.pathname.split("/");
-  let session_uuid = paths[2];
-console.log("location is," , location)
+  // const location = useLocation();
+  // const paths = location.pathname.split("/");
+  // let session_uuid = paths[2];
+// console.log("location is," , location)
 
   const [roofTemplate, setRoofTemplate] = useState({
     step: 1,
@@ -30,6 +30,7 @@ console.log("location is," , location)
     dripRakes: false,
     dripEaves: false,
     apronEaves: false,
+    valleyMetal: false,
     tab: "select",
     laminate: "select",
     synthetic: "select",
@@ -54,7 +55,24 @@ console.log("location is," , location)
       underlayment: e.target.value
     })
   }
-
+  const prevToManual = () => {
+      if (roofTemplate.roofType !== "asphalt") {
+        setRoofTemplate({
+          ...roofTemplate,
+          step: 3
+        })
+      }
+      else {
+        setRoofTemplate({
+          ...roofTemplate,
+          step: roofTemplate.step - 1
+        })
+      }
+}
+  const prevToMetal = () => setRoofTemplate({
+    ...roofTemplate,
+    step: 4
+  })
   const handlePrev =  () => setRoofTemplate({
     ...roofTemplate,
     step: roofTemplate.step - 1
@@ -91,7 +109,6 @@ console.log("location is," , location)
               onChange={(e) => setRoofTemplate({ ...roofTemplate, name: e.target.value })}
               />
               <button onClick={() => handleNext()}>Next</button>
-              <button onClick={() => console.log(session_uuid)}>log</button>
 
             </div>
           </>
@@ -357,7 +374,7 @@ console.log("location is," , location)
           return setRoofTemplate({ ...roofTemplate, step: 6 })
         }
       case 5:
-      if (roofTemplate.existingShingle === "select") {
+      if (roofTemplate.roofType === "asphalt" && roofTemplate.existingShingle === "select") {
         return setRoofTemplate({ ...roofTemplate, step: 4 })
       }
         if (roofTemplate.existingShingle === "3-tab") {
@@ -405,8 +422,28 @@ console.log("location is," , location)
             </>
           )
         }
-        break
+        else {
+          return setRoofTemplate({ ...roofTemplate, step: 6 })
+
+        }
       case 6:
+      if (roofTemplate.roofType === "metal") {
+        return (
+          <>
+          <h2>Valley Metal</h2>
+          <div className="form-group">
+          <input
+          style={{ width:"40px", height: "40px" }}
+          type="checkbox"
+          checked={roofTemplate.valleyMetal === true }
+          onChange={(e) => setRoofTemplate({ ...roofTemplate, valleyMetal: !roofTemplate.valleyMetal })}
+          />
+          </div>
+          <button onClick={ () => prevToMetal()}>Previous</button>
+          <button onClick={() => handleNext()}>Next</button>
+          </>
+        )
+      }
         return (
           <>
             <h1>Underlayment</h1>
@@ -429,7 +466,7 @@ console.log("location is," , location)
               checked={roofTemplate.underlayment === 'synthetic'}
               onChange={handleUnderlaymentChange}
               />
-              <button onClick={() => handlePrev()}>Previous</button>
+              <button onClick={() => prevToManual()}>Previous</button>
               <button onClick={() => handleNext()}>Next</button>
               <button onClick={() => console.log(roofTemplate)}>log</button>
 
@@ -437,7 +474,32 @@ console.log("location is," , location)
           </>
         )
       case 7:
-        if (roofTemplate.underlayment === 'felt') {
+        if (roofTemplate.valleyMetal === true) {
+          return (
+            <>
+            <h2>Valley Metal</h2>
+            <div className="form-group">
+            <label>Rolled</label>
+            <input
+            style={{ width:"40px", height: "40px" }}
+            type="checkbox"
+            checked={roofTemplate.valleyMetalRolled === true }
+            onChange={(e) => setRoofTemplate({ ...roofTemplate, valleyMetalRolled: !roofTemplate.valleyMetalRolled })}
+            />
+            <label>"W"</label>
+            <input
+            style={{ width:"40px", height: "40px" }}
+            type="checkbox"
+            checked={roofTemplate.valleyMetalW === true }
+            onChange={(e) => setRoofTemplate({ ...roofTemplate, valleyMetalW: !roofTemplate.valleyMetalW })}
+            />
+            </div>
+            <button onClick={ () => prevToMetal()}>Previous</button>
+            <button onClick={() => handleNext()}>Next</button>
+            </>
+          )
+        }
+        else if (roofTemplate.underlayment === 'felt') {
           return (
             <div className="form-group">
               <label>Ice and Water Barrier</label>
@@ -479,9 +541,92 @@ console.log("location is," , location)
             </>
           )
         }
-      break
+      else {
+        return (
+        <>
+        <div className="form-group">
+        <label>Neoprene/Hard Plastics</label>
+        <input
+        style={{ width:"40px", height: "40px" }}
+        type="checkbox"
+        checked={roofTemplate.pipeJacksNeo === true }
+        onChange={(e) => setRoofTemplate({ ...roofTemplate, pipeJacksNeo: !roofTemplate.pipeJacksNeo })}
+        />
+        <label>Other</label>
+        <input
+        style={{ width:"40px", height: "40px" }}
+        type="checkbox"
+        checked={roofTemplate.pipeJacksOther === true }
+        onChange={(e) => setRoofTemplate({ ...roofTemplate, pipeJacksOther: !roofTemplate.pipeJacksOther })}
+        />
+        <button onClick={() => handlePrev()}>Previous</button>
+        <button onClick={() => handleNext()}>Next</button>
+        </div>
+        </>
+      )
+    }
       case 8:
-        if (roofTemplate.iceBool) {
+        if (roofTemplate.pipeJacksNeo === true) {
+          return (
+            <>
+              <div className="form-group">
+              <h1>Neoprene/Hard Plastic</h1>
+              <input
+              style={{ width:"40px", height: "40px" }}
+              type="checkbox"
+              checked={roofTemplate.neoprene1 === true }
+              onChange={(e) => setRoofTemplate({ ...roofTemplate, neoprene1: !roofTemplate.neoprene1 })}
+              />
+              <label>1"</label>
+              <input
+              style={{ width:"40px", height: "40px" }}
+              type="checkbox"
+              checked={roofTemplate.neoprene15 === true }
+              onChange={(e) => setRoofTemplate({ ...roofTemplate, neoprene15: !roofTemplate.neoprene15 })}
+              />
+              <label>1 1/2"</label>
+              <input
+              style={{ width:"40px", height: "40px" }}
+              type="checkbox"
+              checked={roofTemplate.neoprene2 === true }
+              onChange={(e) => setRoofTemplate({ ...roofTemplate, neoprene2: !roofTemplate.neoprene2 })}
+              />
+              <label>2"</label>
+              <input
+              style={{ width:"40px", height: "40px" }}
+              type="checkbox"
+              checked={roofTemplate.neoprene25 === true }
+              onChange={(e) => setRoofTemplate({ ...roofTemplate, neoprene25: !roofTemplate.neoprene25 })}
+              />
+              <label>2 1/2"</label>
+              <input
+              style={{ width:"40px", height: "40px" }}
+              type="checkbox"
+              checked={roofTemplate.neoprene3 === true }
+              onChange={(e) => setRoofTemplate({ ...roofTemplate, neoprene3: !roofTemplate.neoprene3 })}
+              />
+              <label>3"</label>
+              <input
+              style={{ width:"40px", height: "40px" }}
+              type="checkbox"
+              checked={roofTemplate.neoprene4 === true }
+              onChange={(e) => setRoofTemplate({ ...roofTemplate, neoprene4: !roofTemplate.neoprene4 })}
+              />
+              <label>4"</label>
+              <input
+              style={{ width:"40px", height: "40px" }}
+              type="checkbox"
+              checked={roofTemplate.neoprene6 === true }
+              onChange={(e) => setRoofTemplate({ ...roofTemplate, neoprene6: !roofTemplate.neoprene6 })}
+              />
+              <label>6"</label>
+              <button onClick={() => handlePrev()}>Previous</button>
+              <button onClick={() => handleNext()}>Next</button>
+              </div>
+            </>
+          )
+        }
+        else if (roofTemplate.iceBool) {
           return (
             <>
             <h2>Ice and Water Barrier</h2>
@@ -529,6 +674,24 @@ console.log("location is," , location)
             </>
           )
         }
+        else if (roofTemplate.pipeJacksNeo === false) {
+          return (
+          <>
+          <h2>Ventilation</h2>
+          <div className="form-group">
+            <label>Ridge Vent</label>
+            <input
+            style={{ width:"40px", height: "40px" }}
+            type="checkbox"
+            checked={roofTemplate.ridgeVent === true }
+            onChange={(e) => setRoofTemplate({ ...roofTemplate, ridgeVent: !roofTemplate.ridgeVent })}
+            />
+            <button onClick={() => handlePrev()}>Previous</button>
+            <button onClick={() => handleNext()}>Next</button>
+          </div>
+          </>
+          )
+        }
         else {
           return (
             <>
@@ -543,13 +706,45 @@ console.log("location is," , location)
                 />
                 <button onClick={() => handlePrev()}>Previous</button>
                 <button onClick={() => handleNext()}>Next</button>
-
               </div>
 
             </>
           )
         }
       case 9:
+        if (roofTemplate.ridgeVent === true) {
+          return (
+            <>
+              <h1>Ridge Cap</h1>
+              <div className="form-group">
+                <label>3-Tab</label>
+                <input
+                style={{ width:"40px", height: "40px" }}
+                type="checkbox"
+                checked={roofTemplate.tab === true }
+                onChange={(e) => setRoofTemplate({ ...roofTemplate, tab: !roofTemplate.tab })}
+                />
+                <label>Standard Profile</label>
+                <input
+                style={{ width:"40px", height: "40px" }}
+                type="checkbox"
+                checked={roofTemplate.standard === true }
+                onChange={(e) => setRoofTemplate({ ...roofTemplate, standard: !roofTemplate.standard })}
+                />
+                <label>High Profile</label>
+                <input
+                style={{ width:"40px", height: "40px" }}
+                type="checkbox"
+                checked={roofTemplate.highProf === true }
+                onChange={(e) => setRoofTemplate({ ...roofTemplate, highProf: !roofTemplate.highProf })}
+                />
+                <button onClick={() => handlePrev()}>Previous</button>
+                <button onClick={() => handleNext()}>Next</button>
+
+              </div>
+            </>
+          )
+        }
         if (roofTemplate.metalEdge) {
           return   (
             <>
