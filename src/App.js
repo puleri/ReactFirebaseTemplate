@@ -40,12 +40,10 @@ function App(props) {
       setCurrentUser={setCurrentUser}
       component={Login}/>
 
-
       <Route exact path='/permissions'
       currentUser={currentUser}
       setCurrentUser={setCurrentUser}
       component={Permissions}/>
-
 
       <Route exact path='/unauthorized'
       component={Unauthorized}/>
@@ -53,7 +51,6 @@ function App(props) {
 
       <Route exact path='/admin'
       component={Admin}/>
-
     </Switch>
     </div>
      // </AuthProvider>

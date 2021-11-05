@@ -94,7 +94,8 @@ export default function UpgradeTool() {
 
         return (
           <>
-            <h1>Homeowner Information</h1>
+            <div className="question-container">
+            <h1 className="question-header">Homeowner Information</h1>
             <div className="form-group">
               <label>Job #</label>
               <input
@@ -108,14 +109,16 @@ export default function UpgradeTool() {
               value={roofTemplate.name}
               onChange={(e) => setRoofTemplate({ ...roofTemplate, name: e.target.value })}
               />
-              <button onClick={() => handleNext()}>Next</button>
 
+            </div>
+            <button className="survey-btn next" onClick={() => handleNext()}>Next</button>
             </div>
           </>
         )
     case 2:
         return (
           <>
+          <div className="question-container">
           <h1>Roof Measurement</h1>
           <div className="form-group">
             <label>Manual Entry</label>
@@ -136,8 +139,9 @@ export default function UpgradeTool() {
             checked={roofTemplate.roofMeasurement === 'xml'}
             onChange={handleMeasurementChange}
             />
-            <button onClick={() => handlePrev()}>Previous</button>
-            <button onClick={() => handleNext()}>Next</button>
+          </div>
+          <button className="survey-btn" onClick={() => handlePrev()}>Previous</button>
+          <button className="survey-btn next" onClick={() => handleNext()}>Next</button>
           </div>
           </>
         )
@@ -148,15 +152,14 @@ export default function UpgradeTool() {
         if (roofTemplate.roofMeasurement === "manual"){
           return (
             <>
-            <button onClick={() => handlePrev()}>Previous</button>
-            <button onClick={() => {
-              setRoofTemplate({ ...roofTemplate, xmlType: "" })
-              handleNext()
-            }}>Next</button>
+            <div className="multi-container">
+
+            <button className="survey-btn" onClick={() => handlePrev()}>Previous</button>
 
               <h1>Manual page</h1>
-              <div className="form-group">
-              <div className="form-group">
+              <div className="tall-form-group">
+              <div className="manual-form">
+                <div className="manual-label">
                 <label>Total Roof Area</label>
                 <input
                 type="number"
@@ -164,8 +167,9 @@ export default function UpgradeTool() {
                 onChange={ (e) => setRoofTemplate({ ...roofTemplate, roofTotal: e.target.value }) }
 
                 />
-              </div>
-              <div className="form-group">
+                </div>
+                <div className="manual-label">
+
                 <label>Ridge</label>
                 <input
                 type="number"
@@ -173,8 +177,8 @@ export default function UpgradeTool() {
                 onChange={(e) => setRoofTemplate({ ...roofTemplate, ridge: e.target.value })}
 
                 />
-              </div>
-              <div className="form-group">
+                </div>
+                <div className="manual-label">
                 <label>Hip</label>
                 <input
                 type="number"
@@ -182,8 +186,11 @@ export default function UpgradeTool() {
                 onChange={(e) => setRoofTemplate({ ...roofTemplate, hip: e.target.value })}
 
                 />
+                </div>
               </div>
-              <div className="form-group">
+              <div className="manual-form">
+              <div className="manual-label">
+
                 <label>Valley</label>
                 <input
                 type="number"
@@ -191,8 +198,11 @@ export default function UpgradeTool() {
                 onChange={(e) => setRoofTemplate({ ...roofTemplate, valley: e.target.value })}
 
                 />
+                </div>
               </div>
-              <div className="form-group">
+              <div className="manual-form">
+              <div className="manual-label">
+
                 <label>Rake</label>
                 <input
                 type="number"
@@ -200,8 +210,9 @@ export default function UpgradeTool() {
                 onChange={(e) => setRoofTemplate({ ...roofTemplate, rake: e.target.value })}
 
                 />
+                </div>
               </div>
-              <div className="form-group">
+              <div className="manual-form">
                 <label>Eave</label>
                 <input
                 type="number"
@@ -210,7 +221,7 @@ export default function UpgradeTool() {
 
                 />
               </div>
-              <div className="form-group">
+              <div className="manual-form">
                 <label>Counter Flashing</label>
                 <input
                 type="number"
@@ -219,7 +230,7 @@ export default function UpgradeTool() {
 
                 />
               </div>
-              <div className="form-group">
+              <div className="manual-form">
                 <label>Step Flashing</label>
                 <input
                 type="number"
@@ -228,7 +239,7 @@ export default function UpgradeTool() {
 
                 />
               </div>
-              <div className="form-group">
+              <div className="manual-form">
                 <label>Parapets</label>
                 <input
                 type="number"
@@ -238,7 +249,7 @@ export default function UpgradeTool() {
                 />
               </div>
 
-              <div className="form-group">
+              <div className="manual-form">
                 <label>Roof Type</label>
                 <select
                 name="roof_type"
@@ -255,11 +266,10 @@ export default function UpgradeTool() {
                   <option value="wood">Wood</option>
                 </select>
               </div>
-              <button onClick={() => console.log(roofTemplate)}>log</button>
+              </div>
 
-              <button onClick={() => handlePrev()}>Previous</button>
-              <button onClick={() => {
-                console.log(roofTemplate)
+              <button className="survey-btn" onClick={() => handlePrev()}>Previous</button>
+              <button className="survey-btn next" onClick={() => {
                 setRoofTemplate({ ...roofTemplate, xmlType: "" })
                 handleNext()
               }}>Next</button>
@@ -271,6 +281,8 @@ export default function UpgradeTool() {
         else if (roofTemplate.roofMeasurement === "xml") {
           return (
             <>
+            <div className="question-container">
+
               <h1>.XML Upload</h1>
               <div className="form-group">
                 <label>EagleView</label>
@@ -300,9 +312,11 @@ export default function UpgradeTool() {
                 checked={roofTemplate.xmlType === 'other'}
                 onChange={handleXMLChange}
                 />
-                <button onClick={() => handlePrev()}>Previous</button>
-                <button onClick={() => handleNext()}>Next</button>
               </div>
+              <button className="survey-btn" onClick={() => handlePrev()}>Previous</button>
+              <button className="survey-btn next" onClick={() => handleNext()}>Next</button>
+              </div>
+
             </>
           )
         }
@@ -315,6 +329,7 @@ export default function UpgradeTool() {
             // if user went down different path we need to reset that state here
             return (
               <>
+              <div className="question-container">
               <div className="form-group">
                   <label>Existing Shingle</label>
                   <select
@@ -327,8 +342,9 @@ export default function UpgradeTool() {
                   <option value="3-tab">3-Tab</option>
                   <option value="laminate">Laminate</option>
                   </select>
-                  <button onClick={() => handlePrev()}>Previous</button>
-                  <button onClick={() => handleNext()}>Next</button>
+              </div>
+              <button className="survey-btn" onClick={() => handlePrev()}>Previous</button>
+              <button className="survey-btn next" onClick={() => handleNext()}>Next</button>
               </div>
               </>
             )
@@ -337,6 +353,8 @@ export default function UpgradeTool() {
           // if user went down different path we need to reset that state here
           return (
             <>
+            <div className="question-container">
+
               <h2>Drip</h2>
               <div className="form-group">
                 <label>Rakes</label>
@@ -363,10 +381,12 @@ export default function UpgradeTool() {
                 checked={roofTemplate.apronEaves === true }
                 onChange={(e) => setRoofTemplate({ ...roofTemplate, apronEaves: !roofTemplate.apronEaves })}
                 />
-                <button onClick={() => handlePrev()}>Previous</button>
-                <button onClick={() => handleNext()}>Next</button>
 
               </div>
+              <button className="survey-btn" onClick={() => handlePrev()}>Previous</button>
+              <button className="survey-btn next" onClick={() => handleNext()}>Next</button>
+              </div>
+
             </>
           )
         }
@@ -380,6 +400,8 @@ export default function UpgradeTool() {
         if (roofTemplate.existingShingle === "3-tab") {
           return (
             <>
+            <div className="question-container">
+
             <div className="form-group">
                 <label>3-Tab</label>
                 <select
@@ -393,15 +415,19 @@ export default function UpgradeTool() {
                 <option value="25">25 Year</option>
                 <option value="30">30 Year</option>
                 </select>
-                <button onClick={() => handlePrev()}>Previous</button>
-                <button onClick={() => handleNext()}>Next</button>
             </div>
+            <button className="survey-btn" onClick={() => handlePrev()}>Previous</button>
+            <button className="survey-btn next" onClick={() => handleNext()}>Next</button>
+            </div>
+
             </>
           )
         }
       else if (roofTemplate.existingShingle === "laminate") {
           return (
             <>
+            <div className="question-container">
+
             <div className="form-group">
                 <label>Laminate</label>
                 <select
@@ -416,9 +442,11 @@ export default function UpgradeTool() {
                 <option value="designer">Designer</option>
                 <option value="specialty">Specialty</option>
                 </select>
-                <button onClick={() => handlePrev()}>Previous</button>
-                <button onClick={() => handleNext()}>Next</button>
             </div>
+            <button className="survey-btn" onClick={() => handlePrev()}>Previous</button>
+            <button className="survey-btn next" onClick={() => handleNext()}>Next</button>
+            </div>
+
             </>
           )
         }
@@ -430,6 +458,8 @@ export default function UpgradeTool() {
       if (roofTemplate.roofType === "metal") {
         return (
           <>
+          <div className="question-container">
+
           <h2>Valley Metal</h2>
           <div className="form-group">
           <input
@@ -439,13 +469,17 @@ export default function UpgradeTool() {
           onChange={(e) => setRoofTemplate({ ...roofTemplate, valleyMetal: !roofTemplate.valleyMetal })}
           />
           </div>
-          <button onClick={ () => prevToMetal()}>Previous</button>
-          <button onClick={() => handleNext()}>Next</button>
+          <button className="survey-btn" onClick={ () => prevToMetal()}>Previous</button>
+          <button className="survey-btn next" onClick={() => handleNext()}>Next</button>
+          </div>
+
           </>
         )
       }
         return (
           <>
+          <div className="question-container">
+
             <h1>Underlayment</h1>
             <div className="form-group">
               <label>Felt</label>
@@ -466,17 +500,20 @@ export default function UpgradeTool() {
               checked={roofTemplate.underlayment === 'synthetic'}
               onChange={handleUnderlaymentChange}
               />
-              <button onClick={() => prevToManual()}>Previous</button>
-              <button onClick={() => handleNext()}>Next</button>
-              <button onClick={() => console.log(roofTemplate)}>log</button>
 
             </div>
+            <button className="survey-btn" onClick={() => prevToManual()}>Previous</button>
+            <button className="survey-btn next" onClick={() => handleNext()}>Next</button>
+            </div>
+
           </>
         )
       case 7:
         if (roofTemplate.valleyMetal === true) {
           return (
             <>
+            <div className="question-container">
+
             <h2>Valley Metal</h2>
             <div className="form-group">
             <label>Rolled</label>
@@ -494,13 +531,18 @@ export default function UpgradeTool() {
             onChange={(e) => setRoofTemplate({ ...roofTemplate, valleyMetalW: !roofTemplate.valleyMetalW })}
             />
             </div>
-            <button onClick={ () => prevToMetal()}>Previous</button>
-            <button onClick={() => handleNext()}>Next</button>
+            <button className="survey-btn" onClick={ () => prevToMetal()}>Previous</button>
+            <button className="survey-btn next" onClick={() => handleNext()}>Next</button>
+            </div>
+
             </>
           )
         }
         else if (roofTemplate.underlayment === 'felt') {
           return (
+            <>
+            <div className="question-container">
+
             <div className="form-group">
               <label>Ice and Water Barrier</label>
               <input
@@ -509,17 +551,21 @@ export default function UpgradeTool() {
               checked={roofTemplate.iceBool=== true }
               onChange={(e) => setRoofTemplate({ ...roofTemplate, iceBool: !roofTemplate.iceBool })}
               />
-              <button onClick={() => handlePrev()}>Previous</button>
-              <button onClick={() => handleNext()}>Next</button>
 
             </div>
+            <button className="survey-btn" onClick={() => handlePrev()}>Previous</button>
+            <button className="survey-btn next" onClick={() => handleNext()}>Next</button>
+            </div>
 
+            </>
           )
         }
         else if (roofTemplate.underlayment === "synthetic") {
           // if user went down different path we need to reset that state here
           return (
             <>
+            <div className="question-container">
+
               <div className="form-group">
                 <label>Synthetic</label>
                 <select
@@ -534,16 +580,20 @@ export default function UpgradeTool() {
                   <option value="best">Best Grade</option>
                 </select>
 
-                <button onClick={() => handlePrev()}>Previous</button>
-                <button onClick={() => handleNext()}>Next</button>
 
               </div>
+              <button className="survey-btn" onClick={() => handlePrev()}>Previous</button>
+              <button className="survey-btn next" onClick={() => handleNext()}>Next</button>
+              </div>
+
             </>
           )
         }
       else {
         return (
         <>
+        <div className="question-container">
+
         <div className="form-group">
         <label>Neoprene/Hard Plastics</label>
         <input
@@ -559,9 +609,11 @@ export default function UpgradeTool() {
         checked={roofTemplate.pipeJacksOther === true }
         onChange={(e) => setRoofTemplate({ ...roofTemplate, pipeJacksOther: !roofTemplate.pipeJacksOther })}
         />
-        <button onClick={() => handlePrev()}>Previous</button>
-        <button onClick={() => handleNext()}>Next</button>
         </div>
+        <button className="survey-btn" onClick={() => handlePrev()}>Previous</button>
+        <button className="survey-btn next" onClick={() => handleNext()}>Next</button>
+        </div>
+
         </>
       )
     }
@@ -569,6 +621,8 @@ export default function UpgradeTool() {
         if (roofTemplate.pipeJacksNeo === true) {
           return (
             <>
+            <div className="question-container">
+
               <div className="form-group">
               <h1>Neoprene/Hard Plastic</h1>
               <input
@@ -620,15 +674,19 @@ export default function UpgradeTool() {
               onChange={(e) => setRoofTemplate({ ...roofTemplate, neoprene6: !roofTemplate.neoprene6 })}
               />
               <label>6"</label>
-              <button onClick={() => handlePrev()}>Previous</button>
-              <button onClick={() => handleNext()}>Next</button>
               </div>
+              <button className="survey-btn" onClick={() => handlePrev()}>Previous</button>
+              <button className="survey-btn next" onClick={() => handleNext()}>Next</button>
+              </div>
+
             </>
           )
         }
         else if (roofTemplate.iceBool) {
           return (
             <>
+            <div className="question-container">
+
             <h2>Ice and Water Barrier</h2>
 
             <div className="form-group">
@@ -667,16 +725,20 @@ export default function UpgradeTool() {
               checked={roofTemplate.iceEntire === true }
               onChange={(e) => setRoofTemplate({ ...roofTemplate, iceEntire: !roofTemplate.iceEntire })}
               />
-              <button onClick={() => handlePrev()}>Previous</button>
-              <button onClick={() => handleNext()}>Next</button>
 
             </div>
+            <button className="survey-btn" onClick={() => handlePrev()}>Previous</button>
+            <button className="survey-btn next" onClick={() => handleNext()}>Next</button>
+            </div>
+
             </>
           )
         }
         else if (roofTemplate.pipeJacksNeo === false) {
           return (
           <>
+          <div className="question-container">
+
           <h2>Ventilation</h2>
           <div className="form-group">
             <label>Ridge Vent</label>
@@ -686,15 +748,19 @@ export default function UpgradeTool() {
             checked={roofTemplate.ridgeVent === true }
             onChange={(e) => setRoofTemplate({ ...roofTemplate, ridgeVent: !roofTemplate.ridgeVent })}
             />
-            <button onClick={() => handlePrev()}>Previous</button>
-            <button onClick={() => handleNext()}>Next</button>
           </div>
+          <button className="survey-btn" onClick={() => handlePrev()}>Previous</button>
+          <button className="survey-btn next" onClick={() => handleNext()}>Next</button>
+          </div>
+
           </>
           )
         }
         else {
           return (
             <>
+            <div className="question-container">
+
               <h2>Metal Edge</h2>
               <div className="form-group">
                 <label>Metal Edge</label>
@@ -704,8 +770,9 @@ export default function UpgradeTool() {
                 checked={roofTemplate.metalEdge === true }
                 onChange={(e) => setRoofTemplate({ ...roofTemplate, metalEdge: !roofTemplate.metalEdge })}
                 />
-                <button onClick={() => handlePrev()}>Previous</button>
-                <button onClick={() => handleNext()}>Next</button>
+              </div>
+              <button className="survey-btn" onClick={() => handlePrev()}>Previous</button>
+              <button className="survey-btn next" onClick={() => handleNext()}>Next</button>
               </div>
 
             </>
@@ -715,6 +782,8 @@ export default function UpgradeTool() {
         if (roofTemplate.ridgeVent === true) {
           return (
             <>
+            <div className="question-container">
+
               <h1>Ridge Cap</h1>
               <div className="form-group">
                 <label>3-Tab</label>
@@ -738,27 +807,35 @@ export default function UpgradeTool() {
                 checked={roofTemplate.highProf === true }
                 onChange={(e) => setRoofTemplate({ ...roofTemplate, highProf: !roofTemplate.highProf })}
                 />
-                <button onClick={() => handlePrev()}>Previous</button>
-                <button onClick={() => handleNext()}>Next</button>
 
               </div>
+              <button className="survey-btn" onClick={() => handlePrev()}>Previous</button>
+              <button className="survey-btn next" onClick={() => handleNext()}>Next</button>
+              </div>
+
             </>
           )
         }
         if (roofTemplate.metalEdge) {
           return   (
             <>
+            <div className="question-container">
+
             <h1>End</h1>
-            <button onClick={() => handlePrev()}>Previous</button>
-            <button onClick={() => handleNext()}>Next</button>
+            <button className="survey-btn" onClick={() => handlePrev()}>Previous</button>
+            <button className="survey-btn next" onClick={() => handleNext()}>Next</button>
+            </div>
 
             </>
           )        }
         else return   (
           <>
+          <div className="question-container">
+
           <h1>End</h1>
-          <button onClick={() => handlePrev()}>Previous</button>
-          <button onClick={() => handleNext()}>Next</button>
+          <button className="survey-btn" onClick={() => handlePrev()}>Previous</button>
+          <button className="survey-btn next" onClick={() => handleNext()}>Next</button>
+          </div>
 
           </>
         )
