@@ -31,11 +31,93 @@ export default function UpgradeTool() {
     dripEaves: false,
     apronEaves: false,
     valleyMetal: false,
+    metalEdge: false,
     tab: "select",
     laminate: "select",
     synthetic: "select",
     underlayment: ""
    })
+
+  const existingShingleUpgrade = () => {
+    if (roofTemplate.existingShingle === "3-tab") {
+      if (roofTemplate.tab === "20") {
+        return (
+          <div>
+          25 year or 30 year 3 tab
+          </div>
+        )
+      }
+      else if (roofTemplate.tab === "25") {
+        return (
+          <div>
+          30 year 3 tab
+          </div>
+        )
+      }
+    }
+    else if (roofTemplate.existingShingle === "laminate") {
+      switch (roofTemplate.laminate) {
+        case "builder":
+          return (
+            <div>
+              High Grade, Designer, Specialty
+            </div>
+          )
+        case "high":
+          return (
+            <div>
+              Designer, Specialty
+            </div>
+          )
+        case "designer":
+          return (
+            <div>
+              Specialty, Double Laminate, Triple Laminate
+            </div>
+          )
+        default:
+      }
+    }
+  }
+  const existingMetalEdge = () => {
+    if (roofTemplate.metalEdge) {
+      if (!roofTemplate.dripEaves && !roofTemplate.apronEaves && !roofTemplate.dripRakes) {
+        return (
+          <>upgrade drip eaves, rakes and apron eaves</>
+        )
+      }
+      if (!roofTemplate.dripEaves && !roofTemplate.apronEaves) {
+        return (
+          <div>upgrade drip eaves and apron eaves</div>
+        )
+      }
+      if (!roofTemplate.dripEaves && !roofTemplate.dripRakes) {
+        return (
+          <div>upgrade drip eaves and drip rakes</div>
+        )
+      }
+      if (!roofTemplate.apronEaves && !roofTemplate.dripRakes) {
+        return (
+          <div>upgrade apron eaves and drip rakes</div>
+        )
+      }
+      if (!roofTemplate.dripEaves) {
+        return (
+          <div>Upgrade drip eaves</div>
+        )
+      }
+      if (!roofTemplate.dripRakes) {
+        return (
+          <div>Upgrade drip rakes</div>
+        )
+      }
+      if (!roofTemplate.apronEaves) {
+        return (
+          <div>Upgrade apron eaves</div>
+        )
+      }
+    }
+  }
 
   const handleMeasurementChange = (e) => {
     setRoofTemplate({
@@ -55,6 +137,7 @@ export default function UpgradeTool() {
       underlayment: e.target.value
     })
   }
+
   const prevToManual = () => {
       if (roofTemplate.roofType !== "asphalt") {
         setRoofTemplate({
@@ -73,11 +156,11 @@ export default function UpgradeTool() {
     ...roofTemplate,
     step: 4
   })
+
   const handlePrev =  () => setRoofTemplate({
     ...roofTemplate,
     step: roofTemplate.step - 1
   })
-
   const handleNext =  () => {
     switch (roofTemplate.step) {
       default:
@@ -145,7 +228,7 @@ export default function UpgradeTool() {
           </div>
           </>
         )
-      case 3:
+    case 3:
         if (roofTemplate.roofMeasurement === "") {
           return setRoofTemplate({ ...roofTemplate, step: 2 })
         }
@@ -159,6 +242,7 @@ export default function UpgradeTool() {
               <h1>Manual page</h1>
               <div className="tall-form-group">
               <div className="manual-form">
+                <div className="hz-surv">
                 <div className="manual-label">
                 <label>Total Roof Area</label>
                 <input
@@ -188,9 +272,10 @@ export default function UpgradeTool() {
                 />
                 </div>
               </div>
+              </div>
               <div className="manual-form">
+              <div className="hz-surv">
               <div className="manual-label">
-
                 <label>Valley</label>
                 <input
                 type="number"
@@ -220,6 +305,7 @@ export default function UpgradeTool() {
                 onChange={(e) => setRoofTemplate({ ...roofTemplate, eave: e.target.value })}
 
                 />
+              </div>
               </div>
               <div className="manual-form">
                 <label>Counter Flashing</label>
@@ -321,7 +407,7 @@ export default function UpgradeTool() {
           )
         }
         break
-        case 4:
+    case 4:
           if (roofTemplate.roofType === "select") {
             return setRoofTemplate({ ...roofTemplate, step: 3 })
           }
@@ -393,7 +479,7 @@ export default function UpgradeTool() {
         else {
           return setRoofTemplate({ ...roofTemplate, step: 6 })
         }
-      case 5:
+    case 5:
       if (roofTemplate.roofType === "asphalt" && roofTemplate.existingShingle === "select") {
         return setRoofTemplate({ ...roofTemplate, step: 4 })
       }
@@ -454,7 +540,7 @@ export default function UpgradeTool() {
           return setRoofTemplate({ ...roofTemplate, step: 6 })
 
         }
-      case 6:
+    case 6:
       if (roofTemplate.roofType === "metal") {
         return (
           <>
@@ -508,7 +594,7 @@ export default function UpgradeTool() {
 
           </>
         )
-      case 7:
+    case 7:
         if (roofTemplate.valleyMetal === true) {
           return (
             <>
@@ -617,7 +703,7 @@ export default function UpgradeTool() {
         </>
       )
     }
-      case 8:
+    case 8:
         if (roofTemplate.pipeJacksNeo === true) {
           return (
             <>
@@ -761,7 +847,6 @@ export default function UpgradeTool() {
             <>
             <div className="question-container">
 
-              <h2>Metal Edge</h2>
               <div className="form-group">
                 <label>Metal Edge</label>
                 <input
@@ -778,7 +863,7 @@ export default function UpgradeTool() {
             </>
           )
         }
-      case 9:
+    case 9:
         if (roofTemplate.ridgeVent === true) {
           return (
             <>
@@ -820,8 +905,10 @@ export default function UpgradeTool() {
           return   (
             <>
             <div className="question-container">
-
-            <h1>End</h1>
+            <button onClick={() => console.log(roofTemplate)}>log</button>
+            <h1>Available Upgrades</h1>
+            {existingShingleUpgrade()}
+            {existingMetalEdge()}
             <button className="survey-btn" onClick={() => handlePrev()}>Previous</button>
             <button className="survey-btn next" onClick={() => handleNext()}>Next</button>
             </div>
@@ -831,8 +918,11 @@ export default function UpgradeTool() {
         else return   (
           <>
           <div className="question-container">
+          <button onClick={() => console.log(roofTemplate)}>log</button>
 
-          <h1>End</h1>
+          <h1>Available Upgrades</h1>
+            {existingShingleUpgrade()}
+            {existingMetalEdge()}
           <button className="survey-btn" onClick={() => handlePrev()}>Previous</button>
           <button className="survey-btn next" onClick={() => handleNext()}>Next</button>
           </div>

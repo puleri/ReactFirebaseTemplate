@@ -12,6 +12,11 @@ label {
   font-family: 'Heebo', sans-serif;
   margin-top: 15px;
 }
+.hz-surv {
+  width: 100%;
+  margin-right: 300px;
+  display: flex;
+}
 .form-group {
   height: 400px;
   min-width: 430px;
