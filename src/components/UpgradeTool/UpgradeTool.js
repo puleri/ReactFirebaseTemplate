@@ -10,7 +10,7 @@ export default function UpgradeTool() {
 // console.log("location is," , location)
 
   const [roofTemplate, setRoofTemplate] = useState({
-    step: 1,
+    step: "0",
     job: "",
     name: "",
     roofMeasurement: "",
@@ -31,6 +31,8 @@ export default function UpgradeTool() {
     dripEaves: false,
     apronEaves: false,
     valleyMetal: false,
+    valleyMetalRolled: false,
+    valleyMetalW: false,
     metalEdge: false,
     tab: "select",
     laminate: "select",
@@ -118,6 +120,15 @@ export default function UpgradeTool() {
       }
     }
   }
+  const existingValleyMetal = () => {
+    if (roofTemplate.valleyMetal) {
+      if (!roofTemplate.valleyMetalRolled || !roofTemplate.valleyMetalW) {
+        return (
+          <div>upgrade valley metal "W"</div>
+        )
+      }
+    }
+  }
 
   const handleMeasurementChange = (e) => {
     setRoofTemplate({
@@ -138,281 +149,289 @@ export default function UpgradeTool() {
     })
   }
 
-  const prevToManual = () => {
-      if (roofTemplate.roofType !== "asphalt") {
-        setRoofTemplate({
-          ...roofTemplate,
-          step: 3
-        })
-      }
-      else {
-        setRoofTemplate({
-          ...roofTemplate,
-          step: roofTemplate.step - 1
-        })
-      }
-}
-  const prevToMetal = () => setRoofTemplate({
-    ...roofTemplate,
-    step: 4
-  })
-
-  const handlePrev =  () => setRoofTemplate({
-    ...roofTemplate,
-    step: roofTemplate.step - 1
-  })
-  const handleNext =  () => {
-    switch (roofTemplate.step) {
-      default:
-        setRoofTemplate({
-        ...roofTemplate,
-        step: roofTemplate.step + 1
+  const zeroNext = () => {
+    setRoofTemplate({
+      ...roofTemplate, step: 1
     })
   }
-}
+  const oneNext = () => {
+    setRoofTemplate({
+      ...roofTemplate, step: "manual"
+    })
+  }
+  const manualNext = () => {
+    setRoofTemplate({
+      ...roofTemplate, step: "roofType"
+    })
+  }
+  const roofTypeNext = () => {
+    if (roofTemplate.roofType === "asphalt") {
+      setRoofTemplate({
+        ...roofTemplate,
+        step: 'asphalt'
+      })
+    }
+    else {
+      setRoofTemplate({
+        ...roofTemplate,
+        step: 'underlayment'
+      })
+    }
+  }
+  const asphaltNext = () => {
+    if (roofTemplate.existingShingle === "3-tab") {
+    setRoofTemplate({
+      ...roofTemplate,
+      step: "3-tab"
+    })
+  }
+  else {
+    setRoofTemplate({
+      ...roofTemplate,
+      step: "laminate"
+    })
+    }
+  }
 
   switch (roofTemplate.step) {
     default:
-    case 1:
+    case "0":
+      return (
+        <>
+        <div className="question-container">
+        <h1 className="question-header">Homeowner Information</h1>
+        <div className="form-group">
+        <label>Job #</label>
+        <input
+        type="text"
+        value={roofTemplate.job}
+        onChange={(e) => setRoofTemplate({ ...roofTemplate, job: e.target.value })}
+        />
+        <label>Name</label>
+        <input
+        type="text"
+        value={roofTemplate.name}
+        onChange={(e) => setRoofTemplate({ ...roofTemplate, name: e.target.value })}
+        />
 
-        return (
-          <>
-            <div className="question-container">
-            <h1 className="question-header">Homeowner Information</h1>
-            <div className="form-group">
-              <label>Job #</label>
-              <input
-              type="text"
-              value={roofTemplate.job}
-              onChange={(e) => setRoofTemplate({ ...roofTemplate, job: e.target.value })}
-              />
-              <label>Name</label>
-              <input
-              type="text"
-              value={roofTemplate.name}
-              onChange={(e) => setRoofTemplate({ ...roofTemplate, name: e.target.value })}
-              />
+        </div>
+        <button className="survey-btn next" onClick={() => zeroNext()}>Next</button>
+        </div>
+        </>
+      )
+    case "1":
 
-            </div>
-            <button className="survey-btn next" onClick={() => handleNext()}>Next</button>
-            </div>
-          </>
-        )
-    case 2:
         return (
           <>
           <div className="question-container">
           <h1>Roof Measurement</h1>
           <div className="form-group">
-            <label>Manual Entry</label>
-            <input
-            style={{ width:"20px", height: "20px" }}
-            type="radio"
-            name="roofMeasurement"
-            value="manual"
-            checked={roofTemplate.roofMeasurement === 'manual'}
-            onChange={handleMeasurementChange}
-            />
-            <label>.XML Upload</label>
-            <input
-            style={{ width:"20px", height: "20px" }}
-            type="radio"
-            name="roofMeasurement"
-            value="xml"
-            checked={roofTemplate.roofMeasurement === 'xml'}
-            onChange={handleMeasurementChange}
-            />
+          <label>Manual Entry</label>
+          <input
+          style={{ width:"20px", height: "20px" }}
+          type="radio"
+          name="roofMeasurement"
+          value="manual"
+          checked={roofTemplate.roofMeasurement === 'manual'}
+          onChange={handleMeasurementChange}
+          />
+          <label>.XML Upload</label>
+          <input
+          style={{ width:"20px", height: "20px" }}
+          type="radio"
+          name="roofMeasurement"
+          value="xml"
+          checked={roofTemplate.roofMeasurement === 'xml'}
+          onChange={handleMeasurementChange}
+          />
           </div>
           <button className="survey-btn" onClick={() => handlePrev()}>Previous</button>
-          <button className="survey-btn next" onClick={() => handleNext()}>Next</button>
+          <button className="survey-btn next" onClick={() => oneNext()}>Next</button>
           </div>
           </>
         )
-    case 3:
-        if (roofTemplate.roofMeasurement === "") {
-          return setRoofTemplate({ ...roofTemplate, step: 2 })
-        }
-        if (roofTemplate.roofMeasurement === "manual"){
-          return (
-            <>
-            <div className="multi-container">
+    case "manual":
+        return (
+          <>
+          <div className="multi-container">
 
+          <button className="survey-btn" onClick={() => handlePrev()}>Previous</button>
+
+          <h1>Manual page</h1>
+          <div className="tall-form-group">
+          <div className="manual-form">
+          <div className="hz-surv">
+          <div className="manual-label">
+          <label>Total Roof Area</label>
+          <input
+          type="number"
+          value={roofTemplate.roofTotal}
+          onChange={ (e) => setRoofTemplate({ ...roofTemplate, roofTotal: e.target.value }) }
+
+          />
+          </div>
+          <div className="manual-label">
+
+          <label>Ridge</label>
+          <input
+          type="number"
+          value={roofTemplate.ridge}
+          onChange={(e) => setRoofTemplate({ ...roofTemplate, ridge: e.target.value })}
+
+          />
+          </div>
+          <div className="manual-label">
+          <label>Hip</label>
+          <input
+          type="number"
+          value={roofTemplate.hip}
+          onChange={(e) => setRoofTemplate({ ...roofTemplate, hip: e.target.value })}
+
+          />
+          </div>
+          </div>
+          </div>
+          <div className="manual-form">
+          <div className="hz-surv">
+          <div className="manual-label">
+          <label>Valley</label>
+          <input
+          type="number"
+          value={roofTemplate.valley}
+          onChange={(e) => setRoofTemplate({ ...roofTemplate, valley: e.target.value })}
+
+          />
+          </div>
+          </div>
+          <div className="manual-form">
+          <div className="manual-label">
+
+          <label>Rake</label>
+          <input
+          type="number"
+          value={roofTemplate.rake}
+          onChange={(e) => setRoofTemplate({ ...roofTemplate, rake: e.target.value })}
+
+          />
+          </div>
+          </div>
+          <div className="manual-form">
+          <label>Eave</label>
+          <input
+          type="number"
+          value={roofTemplate.eave}
+          onChange={(e) => setRoofTemplate({ ...roofTemplate, eave: e.target.value })}
+
+          />
+          </div>
+          </div>
+          <div className="manual-form">
+          <label>Counter Flashing</label>
+          <input
+          type="number"
+          value={roofTemplate.counterFlashing}
+          onChange={(e) => setRoofTemplate({ ...roofTemplate, counterFlashing: e.target.value })}
+
+          />
+          </div>
+          <div className="manual-form">
+          <label>Step Flashing</label>
+          <input
+          type="number"
+          value={roofTemplate.stepFlashing}
+          onChange={(e) => setRoofTemplate({ ...roofTemplate, stepFlashing: e.target.value })}
+
+          />
+          </div>
+          <div className="manual-form">
+          <label>Parapets</label>
+          <input
+          type="number"
+          value={roofTemplate.parapets}
+          onChange={(e) => setRoofTemplate({ ...roofTemplate, parapets: e.target.value })}
+
+          />
+          </div>
+
+          </div>
+
+          <button className="survey-btn" onClick={() => handlePrev()}>Previous</button>
+          <button className="survey-btn next" onClick={() => {
+            setRoofTemplate({ ...roofTemplate, xmlType: "" })
+            manualNext()
+          }}>Next</button>
+          </div>
+
+          </>
+        )
+      case "xml":
+        return (
+          <>
+          <div className="question-container">
+
+            <h1>.XML Upload</h1>
+            <div className="form-group">
+              <label>EagleView</label>
+              <input
+              style={{ width:"20px", height: "20px" }}
+              type="radio"
+              name="xmlType"
+              value="eagle"
+              checked={roofTemplate.xmlType === 'eagle'}
+              onChange={handleXMLChange}
+              />
+              <label>Hover</label>
+              <input
+              style={{ width:"20px", height: "20px" }}
+              type="radio"
+              name="xmlType"
+              value="hover"
+              checked={roofTemplate.xmlType === 'hover'}
+              onChange={handleXMLChange}
+              />
+              <label>Other</label>
+              <input
+              style={{ width:"20px", height: "20px" }}
+              type="radio"
+              name="xmlType"
+              value="other"
+              checked={roofTemplate.xmlType === 'other'}
+              onChange={handleXMLChange}
+              />
+            </div>
             <button className="survey-btn" onClick={() => handlePrev()}>Previous</button>
+            <button className="survey-btn next" onClick={() => handleNext()}>Next</button>
+            </div>
 
-              <h1>Manual page</h1>
-              <div className="tall-form-group">
-              <div className="manual-form">
-                <div className="hz-surv">
-                <div className="manual-label">
-                <label>Total Roof Area</label>
-                <input
-                type="number"
-                value={roofTemplate.roofTotal}
-                onChange={ (e) => setRoofTemplate({ ...roofTemplate, roofTotal: e.target.value }) }
+          </>
+        )
 
-                />
-                </div>
-                <div className="manual-label">
-
-                <label>Ridge</label>
-                <input
-                type="number"
-                value={roofTemplate.ridge}
-                onChange={(e) => setRoofTemplate({ ...roofTemplate, ridge: e.target.value })}
-
-                />
-                </div>
-                <div className="manual-label">
-                <label>Hip</label>
-                <input
-                type="number"
-                value={roofTemplate.hip}
-                onChange={(e) => setRoofTemplate({ ...roofTemplate, hip: e.target.value })}
-
-                />
-                </div>
-              </div>
-              </div>
-              <div className="manual-form">
-              <div className="hz-surv">
-              <div className="manual-label">
-                <label>Valley</label>
-                <input
-                type="number"
-                value={roofTemplate.valley}
-                onChange={(e) => setRoofTemplate({ ...roofTemplate, valley: e.target.value })}
-
-                />
-                </div>
-              </div>
-              <div className="manual-form">
-              <div className="manual-label">
-
-                <label>Rake</label>
-                <input
-                type="number"
-                value={roofTemplate.rake}
-                onChange={(e) => setRoofTemplate({ ...roofTemplate, rake: e.target.value })}
-
-                />
-                </div>
-              </div>
-              <div className="manual-form">
-                <label>Eave</label>
-                <input
-                type="number"
-                value={roofTemplate.eave}
-                onChange={(e) => setRoofTemplate({ ...roofTemplate, eave: e.target.value })}
-
-                />
-              </div>
-              </div>
-              <div className="manual-form">
-                <label>Counter Flashing</label>
-                <input
-                type="number"
-                value={roofTemplate.counterFlashing}
-                onChange={(e) => setRoofTemplate({ ...roofTemplate, counterFlashing: e.target.value })}
-
-                />
-              </div>
-              <div className="manual-form">
-                <label>Step Flashing</label>
-                <input
-                type="number"
-                value={roofTemplate.stepFlashing}
-                onChange={(e) => setRoofTemplate({ ...roofTemplate, stepFlashing: e.target.value })}
-
-                />
-              </div>
-              <div className="manual-form">
-                <label>Parapets</label>
-                <input
-                type="number"
-                value={roofTemplate.parapets}
-                onChange={(e) => setRoofTemplate({ ...roofTemplate, parapets: e.target.value })}
-
-                />
-              </div>
-
-              <div className="manual-form">
-                <label>Roof Type</label>
-                <select
-                name="roof_type"
-                id="roof_type"
-                size="1"
-                value={roofTemplate.roofType}
-                onChange={(e) => setRoofTemplate({ ...roofTemplate, roofType: e.target.value })}>>
-                  <option value="select">Select type</option>
-                  <option value="asphalt">Asphalt</option>
-                  <option value="copper">Copper</option>
-                  <option value="metal">Metal</option>
-                  <option value="synthetic">Synthetic</option>
-                  <option value="tile">Tile</option>
-                  <option value="wood">Wood</option>
-                </select>
-              </div>
-              </div>
-
-              <button className="survey-btn" onClick={() => handlePrev()}>Previous</button>
-              <button className="survey-btn next" onClick={() => {
-                setRoofTemplate({ ...roofTemplate, xmlType: "" })
-                handleNext()
-              }}>Next</button>
-              </div>
-
-            </>
-          )
-        }
-        else if (roofTemplate.roofMeasurement === "xml") {
+    case "roofType":
           return (
             <>
-            <div className="question-container">
-
-              <h1>.XML Upload</h1>
-              <div className="form-group">
-                <label>EagleView</label>
-                <input
-                style={{ width:"20px", height: "20px" }}
-                type="radio"
-                name="xmlType"
-                value="eagle"
-                checked={roofTemplate.xmlType === 'eagle'}
-                onChange={handleXMLChange}
-                />
-                <label>Hover</label>
-                <input
-                style={{ width:"20px", height: "20px" }}
-                type="radio"
-                name="xmlType"
-                value="hover"
-                checked={roofTemplate.xmlType === 'hover'}
-                onChange={handleXMLChange}
-                />
-                <label>Other</label>
-                <input
-                style={{ width:"20px", height: "20px" }}
-                type="radio"
-                name="xmlType"
-                value="other"
-                checked={roofTemplate.xmlType === 'other'}
-                onChange={handleXMLChange}
-                />
-              </div>
-              <button className="survey-btn" onClick={() => handlePrev()}>Previous</button>
-              <button className="survey-btn next" onClick={() => handleNext()}>Next</button>
-              </div>
-
+            <div className="roof-type">
+            <label>Roof Type</label>
+            <select
+            name="roof_type"
+            id="roof_type"
+            size="1"
+            value={roofTemplate.roofType}
+            onChange={(e) => setRoofTemplate({ ...roofTemplate, roofType: e.target.value })}>>
+            <option value="select">Select type</option>
+            <option value="asphalt">Asphalt</option>
+            <option value="copper">Copper</option>
+            <option value="metal">Metal</option>
+            <option value="synthetic">Synthetic</option>
+            <option value="tile">Tile</option>
+            <option value="wood">Wood</option>
+            </select>
+            </div>
+            <button className="survey-btn" onClick={() => handlePrev()}>Previous</button>
+            <button className="survey-btn next" onClick={() => roofTypeNext()}>Next</button>
             </>
           )
-        }
-        break
-    case 4:
-          if (roofTemplate.roofType === "select") {
-            return setRoofTemplate({ ...roofTemplate, step: 3 })
-          }
-          if (roofTemplate.roofType === "asphalt") {
-            // if user went down different path we need to reset that state here
+
+    case "asphalt":
             return (
               <>
               <div className="question-container">
@@ -430,60 +449,31 @@ export default function UpgradeTool() {
                   </select>
               </div>
               <button className="survey-btn" onClick={() => handlePrev()}>Previous</button>
-              <button className="survey-btn next" onClick={() => handleNext()}>Next</button>
+              <button className="survey-btn next" onClick={() => asphaltNext()}>Next</button>
               </div>
               </>
             )
-          }
-        else if (roofTemplate.roofType === "metal") {
           // if user went down different path we need to reset that state here
+      case "metal":
           return (
             <>
             <div className="question-container">
-
-              <h2>Drip</h2>
-              <div className="form-group">
-                <label>Rakes</label>
-                <input
-                style={{ width:"40px", height: "40px" }}
-                type="checkbox"
-                checked={roofTemplate.dripRakes === true }
-                onChange={(e) => setRoofTemplate({ ...roofTemplate, dripRakes: !roofTemplate.dripRakes })}
-                />
-                <label>Eaves</label>
-                <input
-                style={{ width:"40px", height: "40px" }}
-                type="checkbox"
-                checked={roofTemplate.dripEaves === true }
-                onChange={(e) => setRoofTemplate({ ...roofTemplate, dripEaves: !roofTemplate.dripEaves })}
-                />
-              </div>
-              <h2>Gutter Apron</h2>
-              <div className="form-group">
-                <label>Eaves</label>
-                <input
-                style={{ width:"40px", height: "40px" }}
-                type="checkbox"
-                checked={roofTemplate.apronEaves === true }
-                onChange={(e) => setRoofTemplate({ ...roofTemplate, apronEaves: !roofTemplate.apronEaves })}
-                />
-
-              </div>
+            <div className="form-group">
+              <label>Metal Edge</label>
+              <input
+              style={{ width:"40px", height: "40px" }}
+              type="checkbox"
+              checked={roofTemplate.metalEdge === true }
+              onChange={(e) => setRoofTemplate({ ...roofTemplate, metalEdge: !roofTemplate.metalEdge })}
+              />
+            </div>
               <button className="survey-btn" onClick={() => handlePrev()}>Previous</button>
               <button className="survey-btn next" onClick={() => handleNext()}>Next</button>
               </div>
 
             </>
           )
-        }
-        else {
-          return setRoofTemplate({ ...roofTemplate, step: 6 })
-        }
-    case 5:
-      if (roofTemplate.roofType === "asphalt" && roofTemplate.existingShingle === "select") {
-        return setRoofTemplate({ ...roofTemplate, step: 4 })
-      }
-        if (roofTemplate.existingShingle === "3-tab") {
+    case "3-tab":
           return (
             <>
             <div className="question-container">
@@ -508,8 +498,7 @@ export default function UpgradeTool() {
 
             </>
           )
-        }
-      else if (roofTemplate.existingShingle === "laminate") {
+          case "laminate":
           return (
             <>
             <div className="question-container">
@@ -535,13 +524,7 @@ export default function UpgradeTool() {
 
             </>
           )
-        }
-        else {
-          return setRoofTemplate({ ...roofTemplate, step: 6 })
-
-        }
-    case 6:
-      if (roofTemplate.roofType === "metal") {
+    case "bol-valley-metal":
         return (
           <>
           <div className="question-container">
@@ -561,7 +544,7 @@ export default function UpgradeTool() {
 
           </>
         )
-      }
+    case "underlayment":
         return (
           <>
           <div className="question-container">
@@ -594,8 +577,7 @@ export default function UpgradeTool() {
 
           </>
         )
-    case 7:
-        if (roofTemplate.valleyMetal === true) {
+    case "valley-metal":
           return (
             <>
             <div className="question-container">
@@ -623,8 +605,7 @@ export default function UpgradeTool() {
 
             </>
           )
-        }
-        else if (roofTemplate.underlayment === 'felt') {
+    case "ice-water-bool":
           return (
             <>
             <div className="question-container">
@@ -645,8 +626,7 @@ export default function UpgradeTool() {
 
             </>
           )
-        }
-        else if (roofTemplate.underlayment === "synthetic") {
+    case "synthetic":
           // if user went down different path we need to reset that state here
           return (
             <>
@@ -674,8 +654,7 @@ export default function UpgradeTool() {
 
             </>
           )
-        }
-      else {
+    case "pipejacks":
         return (
         <>
         <div className="question-container">
@@ -702,9 +681,8 @@ export default function UpgradeTool() {
 
         </>
       )
-    }
-    case 8:
-        if (roofTemplate.pipeJacksNeo === true) {
+
+    case "neoprene":
           return (
             <>
             <div className="question-container">
@@ -767,8 +745,7 @@ export default function UpgradeTool() {
 
             </>
           )
-        }
-        else if (roofTemplate.iceBool) {
+      case "ice-water-barrier":
           return (
             <>
             <div className="question-container">
@@ -819,8 +796,7 @@ export default function UpgradeTool() {
 
             </>
           )
-        }
-        else if (roofTemplate.pipeJacksNeo === false) {
+      case "ridge-vent":
           return (
           <>
           <div className="question-container">
@@ -841,30 +817,46 @@ export default function UpgradeTool() {
 
           </>
           )
-        }
-        else {
+      case "drip&gutter":
           return (
             <>
             <div className="question-container">
+            <h2>Drip</h2>
+            <div className="form-group">
+              <label>Rakes</label>
+              <input
+              style={{ width:"40px", height: "40px" }}
+              type="checkbox"
+              checked={roofTemplate.dripRakes === true }
+              onChange={(e) => setRoofTemplate({ ...roofTemplate, dripRakes: !roofTemplate.dripRakes })}
+              />
+              <label>Eaves</label>
+              <input
+              style={{ width:"40px", height: "40px" }}
+              type="checkbox"
+              checked={roofTemplate.dripEaves === true }
+              onChange={(e) => setRoofTemplate({ ...roofTemplate, dripEaves: !roofTemplate.dripEaves })}
+              />
+            </div>
+            <h2>Gutter Apron</h2>
+            <div className="form-group">
+              <label>Eaves</label>
+              <input
+              style={{ width:"40px", height: "40px" }}
+              type="checkbox"
+              checked={roofTemplate.apronEaves === true }
+              onChange={(e) => setRoofTemplate({ ...roofTemplate, apronEaves: !roofTemplate.apronEaves })}
+              />
 
-              <div className="form-group">
-                <label>Metal Edge</label>
-                <input
-                style={{ width:"40px", height: "40px" }}
-                type="checkbox"
-                checked={roofTemplate.metalEdge === true }
-                onChange={(e) => setRoofTemplate({ ...roofTemplate, metalEdge: !roofTemplate.metalEdge })}
-                />
-              </div>
+            </div>
               <button className="survey-btn" onClick={() => handlePrev()}>Previous</button>
               <button className="survey-btn next" onClick={() => handleNext()}>Next</button>
               </div>
 
             </>
           )
-        }
-    case 9:
-        if (roofTemplate.ridgeVent === true) {
+
+    case "ridge":
           return (
             <>
             <div className="question-container">
@@ -900,8 +892,7 @@ export default function UpgradeTool() {
 
             </>
           )
-        }
-        if (roofTemplate.metalEdge) {
+        case "upgrade-tool":
           return   (
             <>
             <div className="question-container">
@@ -909,27 +900,13 @@ export default function UpgradeTool() {
             <h1>Available Upgrades</h1>
             {existingShingleUpgrade()}
             {existingMetalEdge()}
+            {existingValleyMetal()}
             <button className="survey-btn" onClick={() => handlePrev()}>Previous</button>
             <button className="survey-btn next" onClick={() => handleNext()}>Next</button>
             </div>
 
             </>
-          )        }
-        else return   (
-          <>
-          <div className="question-container">
-          <button onClick={() => console.log(roofTemplate)}>log</button>
-
-          <h1>Available Upgrades</h1>
-            {existingShingleUpgrade()}
-            {existingMetalEdge()}
-          <button className="survey-btn" onClick={() => handlePrev()}>Previous</button>
-          <button className="survey-btn next" onClick={() => handleNext()}>Next</button>
-          </div>
-
-          </>
-        )
-
+          )
   }
 }
 // checked
