@@ -163,12 +163,14 @@ export default function UpgradeTool() {
       ...roofTemplate, step: "manual"
     })
   }
+  const onePrev = () => setRoofTemplate({ ...roofTemplate, step: '0'})
   // xmlNext
   const manualNext = () => {
     setRoofTemplate({
       ...roofTemplate, step: "roofType"
     })
   }
+  const manualPrev = () => setRoofTemplate({ ...roofTemplate, step: '1'})
   const roofTypeNext = () => {
     if (roofTemplate.roofType === "asphalt") {
       setRoofTemplate({
@@ -182,6 +184,12 @@ export default function UpgradeTool() {
         step: 'underlayment'
       })
     }
+  }
+  const roofTypePrev = () => {
+    setRoofTemplate({
+      ...roofTemplate,
+      step: "manual"
+    })
   }
   const asphaltNext = () => {
     if (roofTemplate.existingShingle === "3-tab") {
@@ -197,16 +205,34 @@ export default function UpgradeTool() {
     })
     }
   }
+  const asphaltPrev = () => {
+    setRoofTemplate({
+      ...roofTemplate,
+      step: "roofType"
+    })
+  }
   const threeNext = () => {
     setRoofTemplate({
       ...roofTemplate,
       step: "underlayment"
     })
   }
+  const threePrev = () => {
+    setRoofTemplate({
+      ...roofTemplate,
+      step: "asphalt"
+    })
+  }
   const laminateNext = () => {
     setRoofTemplate({
       ...roofTemplate,
       step: "underlayment"
+    })
+  }
+  const laminatePrev = () => {
+    setRoofTemplate({
+      ...roofTemplate,
+      step: "asphalt"
     })
   }
   const underlaymentNext = () => {
@@ -222,10 +248,34 @@ export default function UpgradeTool() {
     })
     }
   }
+  const underlaymentPrev = () => {
+    if (roofTemplate.roofType !== "asphalt") {
+      setRoofTemplate({
+        ...roofTemplate,
+        step: "roofType"
+      })
+    } else if (roofTemplate.existingShingle === "3-tab") {
+      setRoofTemplate({
+        ...roofTemplate,
+        step: "3-tab"
+      })
+    } else {
+      setRoofTemplate({
+        ...roofTemplate,
+        step: "laminate"
+      })
+    }
+  }
   const syntheticNext = () => {
     setRoofTemplate({
       ...roofTemplate,
       step: "ice-water-bool"
+    })
+  }
+  const syntheticPrev = () => {
+    setRoofTemplate({
+      ...roofTemplate,
+      step: "underlayment"
     })
   }
   const iceWaterBoolNext = () => {
@@ -241,10 +291,29 @@ export default function UpgradeTool() {
       })
     }
   }
+  const iceWaterBoolPrev = () => {
+    if (roofTemplate.underlayment==="synthetic") {
+      setRoofTemplate({
+        ...roofTemplate,
+        step: "synthetic"
+      })
+    } else {
+      setRoofTemplate({
+        ...roofTemplate,
+        step: "underlayment"
+      })
+    }
+  }
   const iceWaterNext = () => {
     setRoofTemplate({
       ...roofTemplate,
       step: "metal"
+    })
+  }
+  const iceWaterPrev = () => {
+    setRoofTemplate({
+      ...roofTemplate,
+      step: "ice-water-bool"
     })
   }
   const metalNext = () => {
@@ -260,10 +329,29 @@ export default function UpgradeTool() {
       })
     }
   }
+  const metalPrev = () => {
+    if (!roofTemplate.iceBool) {
+      setRoofTemplate({
+        ...roofTemplate,
+        step: "ice-water-bool"
+      })
+    } else {
+      setRoofTemplate({
+        ...roofTemplate,
+        step: "ice-water"
+      })
+    }
+  }
   const dripGutterNext = () => {
     setRoofTemplate({
       ...roofTemplate,
       step: "bol-valley-metal"
+    })
+  }
+  const dripGutterPrev = () => {
+    setRoofTemplate({
+      ...roofTemplate,
+      step: "metal"
     })
   }
   const bolValleyMetalNext = () => {
@@ -276,6 +364,19 @@ export default function UpgradeTool() {
       setRoofTemplate({
         ...roofTemplate,
         step: "pipejacks"
+      })
+    }
+  }
+  const bolValleyMetalPrev = () => {
+    if (!roofTemplate.metalEdge) {
+      setRoofTemplate({
+        ...roofTemplate,
+        step: "metal"
+      })
+    } else {
+      setRoofTemplate({
+        ...roofTemplate,
+        step: "drip-gutter"
       })
     }
   }
@@ -292,10 +393,22 @@ export default function UpgradeTool() {
       })
     }
   }
+  const valleyMetalPrev = () => {
+    setRoofTemplate({
+      ...roofTemplate,
+      step: "bol-valley-metal"
+    })
+  }
   const valleyMetalWNext = () => {
     setRoofTemplate({
       ...roofTemplate,
       step: "pipejacks"
+    })
+  }
+  const valleyMetalWPrev = () => {
+    setRoofTemplate({
+      ...roofTemplate,
+      step: "valley-metal"
     })
   }
   const pipejacksNext = () => {
@@ -311,10 +424,34 @@ export default function UpgradeTool() {
       })
     }
   }
+  const pipejacksPrev = () => {
+    if (!roofTemplate.valleyMetal) {
+      setRoofTemplate({
+        ...roofTemplate,
+        step: "bol-valley-metal"
+      })
+    } else if (roofTemplate.valleyMetalW) {
+      setRoofTemplate({
+        ...roofTemplate,
+        step: "valley-metal-w"
+      })
+    } else {
+      setRoofTemplate({
+        ...roofTemplate,
+        step: "valley-metal"
+      })
+    }
+  }
   const neopreneNext = () => {
     setRoofTemplate({
       ...roofTemplate,
       step: "ridge-vent"
+    })
+  }
+  const neoprenePrev = () => {
+    setRoofTemplate({
+      ...roofTemplate,
+      step: 'pipejacks'
     })
   }
   const ridgeVentNext = () => {
@@ -327,10 +464,64 @@ export default function UpgradeTool() {
       setRoofTemplate({
         ...roofTemplate,
         // TEMPORARY
-        step: "upgrade-tool"
+        step: "step-flashing"
       })
     }
   }
+  const ridgeVentPrev = () => {
+    if (roofTemplate.pipeJacksNeo) {
+      setRoofTemplate({
+        ...roofTemplate,
+        step: 'neoprene'
+      })
+    } else {
+      setRoofTemplate({
+        ...roofTemplate,
+        step: 'pipejacks'
+      })
+    }
+  }
+   const ridgeNext = () => {
+    setRoofTemplate({
+      ...roofTemplate,
+      step: 'step-flashing'
+    })
+  }
+  const ridgePrev = () => {
+    setRoofTemplate({
+      ...roofTemplate,
+      step: 'ridge-vent'
+    })
+  }
+  const stepFlashingNext = () => {
+    setRoofTemplate({
+      ...roofTemplate,
+      step: 'counter-flashing'
+    })
+  }
+  const stepFlashingPrev = () => {
+    if (roofTemplate.ridgeVent) {
+      setRoofTemplate({ ...roofTemplate, step: 'ridge'})
+    } else {
+     setRoofTemplate({...roofTemplate, step:'ridge-vent'})
+   }
+ }
+  const counterFlashingNext = () => {
+    setRoofTemplate({
+      ...roofTemplate,
+      step: 'chimney-flashing'
+    })
+  }
+  const counterFlashingPrev = () => setRoofTemplate({ ...roofTemplate, step: 'step-flashing'})
+  const chimneyFlashingNext = () => {
+    setRoofTemplate({
+      ...roofTemplate,
+      step: 'upgrade-tool'
+    })
+  }
+  const chimneyFlashingPrev = () => setRoofTemplate({ ...roofTemplate, step: 'counter-flashing'})
+  const upgradeToolPrev = () => setRoofTemplate({ ...roofTemplate, step: 'chimney-flashing'})
+
 
   switch (roofTemplate.step) {
     default:
@@ -384,7 +575,7 @@ export default function UpgradeTool() {
           onChange={handleMeasurementChange}
           />
           </div>
-          <button className="survey-btn" onClick={() => console.log("fix me")}>Previous</button>
+          <button className="survey-btn" onClick={() => onePrev()}>Previous</button>
           <button className="survey-btn next" onClick={() => oneNext()}>Next</button>
           </div>
           </>
@@ -394,7 +585,7 @@ export default function UpgradeTool() {
           <>
           <div className="multi-container">
 
-          <button className="survey-btn" onClick={() => console.log("fix me")}>Previous</button>
+          <button className="survey-btn" onClick={() => manualPrev()}>Previous</button>
 
           <h1>Manual page</h1>
           <div className="tall-form-group">
@@ -494,7 +685,7 @@ export default function UpgradeTool() {
 
           </div>
 
-          <button className="survey-btn" onClick={() => console.log("fix me")}>Previous</button>
+          <button className="survey-btn" onClick={() => manualPrev()}>Previous</button>
           <button className="survey-btn next" onClick={() => {
             setRoofTemplate({ ...roofTemplate, xmlType: "" })
             manualNext()
@@ -565,7 +756,7 @@ export default function UpgradeTool() {
             <option value="wood">Wood</option>
             </select>
             </div>
-            <button className="survey-btn" onClick={() => console.log("fix me")}>Previous</button>
+            <button className="survey-btn" onClick={() => roofTypePrev()}>Previous</button>
             <button className="survey-btn next" onClick={() => roofTypeNext()}>Next</button>
             </>
           )
@@ -587,7 +778,7 @@ export default function UpgradeTool() {
                   <option value="laminate">Laminate</option>
                   </select>
               </div>
-              <button className="survey-btn" onClick={() => console.log("fix me")}>Previous</button>
+              <button className="survey-btn" onClick={() => asphaltPrev()}>Previous</button>
               <button className="survey-btn next" onClick={() => asphaltNext()}>Next</button>
               </div>
               </>
@@ -606,7 +797,7 @@ export default function UpgradeTool() {
               onChange={(e) => setRoofTemplate({ ...roofTemplate, metalEdge: !roofTemplate.metalEdge })}
               />
             </div>
-              <button className="survey-btn" onClick={() => console.log("fix me")}>Previous</button>
+              <button className="survey-btn" onClick={() => metalPrev()}>Previous</button>
               <button className="survey-btn next" onClick={() => metalNext()}>Next</button>
               </div>
 
@@ -631,7 +822,7 @@ export default function UpgradeTool() {
                 <option value="30">30 Year</option>
                 </select>
             </div>
-            <button className="survey-btn" onClick={() => console.log("fix me")}>Previous</button>
+            <button className="survey-btn" onClick={() => threePrev()}>Previous</button>
             <button className="survey-btn next" onClick={() => threeNext()}>Next</button>
             </div>
 
@@ -657,7 +848,7 @@ export default function UpgradeTool() {
                 <option value="specialty">Specialty</option>
                 </select>
             </div>
-            <button className="survey-btn" onClick={() => console.log("fix me")}>Previous</button>
+            <button className="survey-btn" onClick={() => laminatePrev()}>Previous</button>
             <button className="survey-btn next" onClick={() => laminateNext()}>Next</button>
             </div>
 
@@ -677,7 +868,7 @@ export default function UpgradeTool() {
           onChange={(e) => setRoofTemplate({ ...roofTemplate, valleyMetal: !roofTemplate.valleyMetal })}
           />
           </div>
-          <button className="survey-btn" onClick={ () => console.log("fix me")}>Previous</button>
+          <button className="survey-btn" onClick={ () => bolValleyMetalPrev()}>Previous</button>
           <button className="survey-btn next" onClick={() => bolValleyMetalNext()}>Next</button>
           </div>
 
@@ -710,7 +901,7 @@ export default function UpgradeTool() {
               />
 
             </div>
-            <button className="survey-btn" onClick={() => console.log("fix me")}>Previous</button>
+            <button className="survey-btn" onClick={() => underlaymentPrev()}>Previous</button>
             <button className="survey-btn next" onClick={() => underlaymentNext()}>Next</button>
             </div>
 
@@ -738,7 +929,7 @@ export default function UpgradeTool() {
             onChange={(e) => setRoofTemplate({ ...roofTemplate, valleyMetalW: !roofTemplate.valleyMetalW })}
             />
             </div>
-            <button className="survey-btn" onClick={ () => console.log("fix me")}>Previous</button>
+            <button className="survey-btn" onClick={ () => valleyMetalPrev()}>Previous</button>
             <button className="survey-btn next" onClick={() => valleyMetalNext()}>Next</button>
             </div>
 
@@ -766,7 +957,7 @@ export default function UpgradeTool() {
             onChange={(e) => setRoofTemplate({ ...roofTemplate, wCopper: !roofTemplate.wCopper })}
             />
             </div>
-            <button className="survey-btn" onClick={ () => console.log("fix me")}>Previous</button>
+            <button className="survey-btn" onClick={ () => valleyMetalWPrev()}>Previous</button>
             <button className="survey-btn next" onClick={() => valleyMetalWNext()}>Next</button>
             </div>
 
@@ -787,7 +978,7 @@ export default function UpgradeTool() {
               />
 
             </div>
-            <button className="survey-btn" onClick={() => console.log("fix me")}>Previous</button>
+            <button className="survey-btn" onClick={() => iceWaterBoolPrev()}>Previous</button>
             <button className="survey-btn next" onClick={() => iceWaterBoolNext()}>Next</button>
             </div>
 
@@ -815,7 +1006,7 @@ export default function UpgradeTool() {
 
 
               </div>
-              <button className="survey-btn" onClick={() => console.log("fix me")}>Previous</button>
+              <button className="survey-btn" onClick={() => syntheticPrev()}>Previous</button>
               <button className="survey-btn next" onClick={() => syntheticNext()}>Next</button>
               </div>
 
@@ -842,7 +1033,7 @@ export default function UpgradeTool() {
         onChange={(e) => setRoofTemplate({ ...roofTemplate, pipeJacksOther: !roofTemplate.pipeJacksOther })}
         />
         </div>
-        <button className="survey-btn" onClick={() => console.log("fix me")}>Previous</button>
+        <button className="survey-btn" onClick={() => pipejacksPrev()}>Previous</button>
         <button className="survey-btn next" onClick={() => pipejacksNext()}>Next</button>
         </div>
 
@@ -906,7 +1097,7 @@ export default function UpgradeTool() {
               />
               <label>6"</label>
               </div>
-              <button className="survey-btn" onClick={() => console.log("fix me")}>Previous</button>
+              <button className="survey-btn" onClick={() => neoprenePrev()}>Previous</button>
               <button className="survey-btn next" onClick={() => neopreneNext()}>Next</button>
               </div>
 
@@ -957,7 +1148,7 @@ export default function UpgradeTool() {
               />
 
             </div>
-            <button className="survey-btn" onClick={() => console.log("fix me")}>Previous</button>
+            <button className="survey-btn" onClick={() => iceWaterPrev()}>Previous</button>
             <button className="survey-btn next" onClick={() => iceWaterNext()}>Next</button>
             </div>
 
@@ -978,7 +1169,7 @@ export default function UpgradeTool() {
             onChange={(e) => setRoofTemplate({ ...roofTemplate, ridgeVent: !roofTemplate.ridgeVent })}
             />
           </div>
-          <button className="survey-btn" onClick={() => console.log("fix me")}>Previous</button>
+          <button className="survey-btn" onClick={() => ridgeVentPrev()}>Previous</button>
           <button className="survey-btn next" onClick={() => ridgeVentNext()}>Next</button>
           </div>
 
@@ -1016,7 +1207,7 @@ export default function UpgradeTool() {
               />
 
             </div>
-              <button className="survey-btn" onClick={() => console.log("fix me")}>Previous</button>
+              <button className="survey-btn" onClick={() => dripGutterPrev()}>Previous</button>
               <button className="survey-btn next" onClick={() => dripGutterNext()}>Next</button>
               </div>
 
@@ -1053,9 +1244,36 @@ export default function UpgradeTool() {
                 />
 
               </div>
-              <button className="survey-btn" onClick={() => console.log("fix me")}>Previous</button>
-              <button className="survey-btn next" onClick={() => console.log("fix me")}>Next</button>
+              <button className="survey-btn" onClick={() => ridgePrev()}>Previous</button>
+              <button className="survey-btn next" onClick={() => ridgeNext()}>Next</button>
               </div>
+
+            </>
+          )
+        case 'step-flashing':
+          return (
+            <>
+            Step Flashing
+            <button className="survey-btn" onClick={() => stepFlashingPrev()}>Previous</button>
+            <button className="survey-btn next" onClick={() => stepFlashingNext()}>Next</button>
+
+            </>
+          )
+        case 'counter-flashing':
+          return (
+            <>
+            Counter Flashing
+            <button className="survey-btn" onClick={() => counterFlashingPrev()}>Previous</button>
+            <button className="survey-btn next" onClick={() => counterFlashingNext()}>Next</button>
+
+            </>
+          )
+        case 'chimney-flashing':
+          return (
+            <>
+              Chimney Flashing
+              <button className="survey-btn" onClick={() => chimneyFlashingPrev()}>Previous</button>
+              <button className="survey-btn next" onClick={() => chimneyFlashingNext()}>Next</button>
 
             </>
           )
@@ -1068,7 +1286,7 @@ export default function UpgradeTool() {
             {existingShingleUpgrade()}
             {existingMetalEdge()}
             {existingValleyMetal()}
-            <button className="survey-btn" onClick={() => console.log("fix me")}>Previous</button>
+            <button className="survey-btn" onClick={() => upgradeToolPrev()}>Previous</button>
             <button className="survey-btn next" onClick={() => console.log("fix me")}>Next</button>
             </div>
 
