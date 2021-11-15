@@ -34,6 +34,9 @@ export default function UpgradeTool() {
     valleyMetal: false,
     valleyMetalRolled: false,
     valleyMetalW: false,
+    wGalvanized: false,
+    wPainter: false,
+    wCopper: false,
     metalEdge: false,
     tab: "select",
     laminate: "select",
@@ -56,7 +59,7 @@ export default function UpgradeTool() {
       else if (roofTemplate.tab === "25") {
         return (
           <div>
-          30 year 3 tab
+
           </div>
         )
       }
@@ -545,8 +548,8 @@ export default function UpgradeTool() {
         />
 
         </div>
-        <button className="survey-btn next" onClick={() => zeroNext()}>Next</button>
         </div>
+        <button className="survey-btn next" onClick={() => zeroNext()}><i class="fas fa-chevron-right"></i></button>
         </>
       )
     case "1":
@@ -575,122 +578,120 @@ export default function UpgradeTool() {
           onChange={handleMeasurementChange}
           />
           </div>
-          <button className="survey-btn" onClick={() => onePrev()}>Previous</button>
-          <button className="survey-btn next" onClick={() => oneNext()}>Next</button>
           </div>
+          <button className="survey-btn prev" onClick={() => onePrev()}><i class="fas fa-chevron-left"></i></button>
+          <button className="survey-btn next" onClick={() => oneNext()}><i class="fas fa-chevron-right"></i></button>
           </>
         )
     case "manual":
         return (
           <>
           <div className="multi-container">
-
-          <button className="survey-btn" onClick={() => manualPrev()}>Previous</button>
-
           <h1>Manual page</h1>
           <div className="tall-form-group">
-          <div className="manual-form">
-          <div className="hz-surv">
-          <div className="manual-label">
-          <label>Total Roof Area</label>
-          <input
-          type="number"
-          value={roofTemplate.roofTotal}
-          onChange={ (e) => setRoofTemplate({ ...roofTemplate, roofTotal: e.target.value }) }
+            <div className="manual-form">
+              <div className="hz-surv">
+                <div className="manual-label">
+                  <label>Total Roof Area</label>
+                  <input
+                  type="number"
+                  value={roofTemplate.roofTotal}
+                  onChange={ (e) => setRoofTemplate({ ...roofTemplate, roofTotal: e.target.value }) }
 
-          />
-          </div>
-          <div className="manual-label">
+                  />
+                  </div>
+                <div className="manual-label">
 
-          <label>Ridge</label>
-          <input
-          type="number"
-          value={roofTemplate.ridge}
-          onChange={(e) => setRoofTemplate({ ...roofTemplate, ridge: e.target.value })}
+                  <label>Ridge</label>
+                  <input
+                  type="number"
+                  value={roofTemplate.ridge}
+                  onChange={(e) => setRoofTemplate({ ...roofTemplate, ridge: e.target.value })}
 
-          />
-          </div>
-          <div className="manual-label">
-          <label>Hip</label>
-          <input
-          type="number"
-          value={roofTemplate.hip}
-          onChange={(e) => setRoofTemplate({ ...roofTemplate, hip: e.target.value })}
+                  />
+                </div>
+                <div className="manual-label">
+                  <label>Hip</label>
+                  <input
+                  type="number"
+                  value={roofTemplate.hip}
+                  onChange={(e) => setRoofTemplate({ ...roofTemplate, hip: e.target.value })}
 
-          />
-          </div>
-          </div>
-          </div>
-          <div className="manual-form">
-          <div className="hz-surv">
-          <div className="manual-label">
-          <label>Valley</label>
-          <input
-          type="number"
-          value={roofTemplate.valley}
-          onChange={(e) => setRoofTemplate({ ...roofTemplate, valley: e.target.value })}
+                  />
+              </div>
+              </div>
+            </div>
+            <div className="manual-form">
+              <div className="hz-surv">
+                <div className="manual-label">
+                  <label>Valley</label>
+                  <input
+                  type="number"
+                  value={roofTemplate.valley}
+                  onChange={(e) => setRoofTemplate({ ...roofTemplate, valley: e.target.value })}
 
-          />
-          </div>
-          </div>
-          <div className="manual-form">
-          <div className="manual-label">
+                  />
+                </div>
+                <div className="manual-label">
+                  <label>Rake</label>
+                  <input
+                  type="number"
+                  value={roofTemplate.rake}
+                  onChange={(e) => setRoofTemplate({ ...roofTemplate, rake: e.target.value })}
 
-          <label>Rake</label>
-          <input
-          type="number"
-          value={roofTemplate.rake}
-          onChange={(e) => setRoofTemplate({ ...roofTemplate, rake: e.target.value })}
+                  />
+                </div>
+                <div className="manual-label">
+                  <label>Eave</label>
+                  <input
+                  type="number"
+                  value={roofTemplate.eave}
+                  onChange={(e) => setRoofTemplate({ ...roofTemplate, eave: e.target.value })}
 
-          />
-          </div>
-          </div>
-          <div className="manual-form">
-          <label>Eave</label>
-          <input
-          type="number"
-          value={roofTemplate.eave}
-          onChange={(e) => setRoofTemplate({ ...roofTemplate, eave: e.target.value })}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="manual-form">
+              <div className="hz-surv">
+                <div className="manual-label">
+                   <label>Counter Flashing</label>
+                  <input
+                  type="number"
+                  value={roofTemplate.counterFlashing}
+                  onChange={(e) => setRoofTemplate({ ...roofTemplate, counterFlashing: e.target.value })}
 
-          />
-          </div>
-          </div>
-          <div className="manual-form">
-          <label>Counter Flashing</label>
-          <input
-          type="number"
-          value={roofTemplate.counterFlashing}
-          onChange={(e) => setRoofTemplate({ ...roofTemplate, counterFlashing: e.target.value })}
+                  />
+                </div>
+                <div className="manual-label">
+                  <label>Step Flashing</label>
+                  <input
+                  type="number"
+                  value={roofTemplate.stepFlashing}
+                  onChange={(e) => setRoofTemplate({ ...roofTemplate, stepFlashing: e.target.value })}
 
-          />
-          </div>
-          <div className="manual-form">
-          <label>Step Flashing</label>
-          <input
-          type="number"
-          value={roofTemplate.stepFlashing}
-          onChange={(e) => setRoofTemplate({ ...roofTemplate, stepFlashing: e.target.value })}
+                  />
+                </div>
+                <div className="manual-label">
+                  <label>Parapets</label>
+                  <input
+                  type="number"
+                  value={roofTemplate.parapets}
+                  onChange={(e) => setRoofTemplate({ ...roofTemplate, parapets: e.target.value })}
 
-          />
-          </div>
-          <div className="manual-form">
-          <label>Parapets</label>
-          <input
-          type="number"
-          value={roofTemplate.parapets}
-          onChange={(e) => setRoofTemplate({ ...roofTemplate, parapets: e.target.value })}
-
-          />
+                  />
+              </div>
+            </div>
           </div>
 
           </div>
 
-          <button className="survey-btn" onClick={() => manualPrev()}>Previous</button>
+          </div>
+          <button className="survey-btn prev" onClick={() => manualPrev()}><i class="fas fa-chevron-left"></i></button>
           <button className="survey-btn next" onClick={() => {
             setRoofTemplate({ ...roofTemplate, xmlType: "" })
             manualNext()
-          }}>Next</button>
-          </div>
+          }}><i class="fas fa-chevron-right"></i></button>
 
           </>
         )
@@ -729,9 +730,9 @@ export default function UpgradeTool() {
               onChange={handleXMLChange}
               />
             </div>
-            <button className="survey-btn" onClick={() => console.log("fix me")}>Previous</button>
-            <button className="survey-btn next" onClick={() => console.log("fix me")}>Next</button>
             </div>
+            <button className="survey-btn" onClick={() => console.log("fix me")}><i class="fas fa-chevron-left"></i></button>
+            <button className="survey-btn next" onClick={() => console.log("fix me")}><i class="fas fa-chevron-right"></i></button>
 
           </>
         )
@@ -739,7 +740,9 @@ export default function UpgradeTool() {
     case "roofType":
           return (
             <>
-            <div className="roof-type">
+            <div className="question-container">
+            <h1>Roof Type</h1>
+            <div className="form-group">
             <label>Roof Type</label>
             <select
             name="roof_type"
@@ -756,8 +759,9 @@ export default function UpgradeTool() {
             <option value="wood">Wood</option>
             </select>
             </div>
-            <button className="survey-btn" onClick={() => roofTypePrev()}>Previous</button>
-            <button className="survey-btn next" onClick={() => roofTypeNext()}>Next</button>
+            </div>
+            <button className="survey-btn prev" onClick={() => roofTypePrev()}><i class="fas fa-chevron-left"></i></button>
+            <button className="survey-btn next" onClick={() => roofTypeNext()}><i class="fas fa-chevron-right"></i></button>
             </>
           )
 
@@ -765,6 +769,7 @@ export default function UpgradeTool() {
             return (
               <>
               <div className="question-container">
+              <h1>Existing Shingle</h1>
               <div className="form-group">
                   <label>Existing Shingle</label>
                   <select
@@ -778,9 +783,9 @@ export default function UpgradeTool() {
                   <option value="laminate">Laminate</option>
                   </select>
               </div>
-              <button className="survey-btn" onClick={() => asphaltPrev()}>Previous</button>
-              <button className="survey-btn next" onClick={() => asphaltNext()}>Next</button>
               </div>
+              <button className="survey-btn prev" onClick={() => asphaltPrev()}><i class="fas fa-chevron-left"></i></button>
+              <button className="survey-btn next" onClick={() => asphaltNext()}><i class="fas fa-chevron-right"></i></button>
               </>
             )
           // if user went down different path we need to reset that state here
@@ -788,6 +793,7 @@ export default function UpgradeTool() {
           return (
             <>
             <div className="question-container">
+            <h1>Metal Edge</h1>
             <div className="form-group">
               <label>Metal Edge</label>
               <input
@@ -797,9 +803,9 @@ export default function UpgradeTool() {
               onChange={(e) => setRoofTemplate({ ...roofTemplate, metalEdge: !roofTemplate.metalEdge })}
               />
             </div>
-              <button className="survey-btn" onClick={() => metalPrev()}>Previous</button>
-              <button className="survey-btn next" onClick={() => metalNext()}>Next</button>
               </div>
+              <button className="survey-btn prev" onClick={() => metalPrev()}><i class="fas fa-chevron-left"></i></button>
+              <button className="survey-btn next" onClick={() => metalNext()}><i class="fas fa-chevron-right"></i></button>
 
             </>
           )
@@ -807,7 +813,7 @@ export default function UpgradeTool() {
           return (
             <>
             <div className="question-container">
-
+            <h1>3-Tab</h1>
             <div className="form-group">
                 <label>3-Tab</label>
                 <select
@@ -822,9 +828,9 @@ export default function UpgradeTool() {
                 <option value="30">30 Year</option>
                 </select>
             </div>
-            <button className="survey-btn" onClick={() => threePrev()}>Previous</button>
-            <button className="survey-btn next" onClick={() => threeNext()}>Next</button>
             </div>
+            <button className="survey-btn prev" onClick={() => threePrev()}><i class="fas fa-chevron-left"></i></button>
+            <button className="survey-btn next" onClick={() => threeNext()}><i class="fas fa-chevron-right"></i></button>
 
             </>
           )
@@ -832,7 +838,7 @@ export default function UpgradeTool() {
           return (
             <>
             <div className="question-container">
-
+            <h1>Laminate</h1>
             <div className="form-group">
                 <label>Laminate</label>
                 <select
@@ -848,9 +854,9 @@ export default function UpgradeTool() {
                 <option value="specialty">Specialty</option>
                 </select>
             </div>
-            <button className="survey-btn" onClick={() => laminatePrev()}>Previous</button>
-            <button className="survey-btn next" onClick={() => laminateNext()}>Next</button>
             </div>
+            <button className="survey-btn prev" onClick={() => laminatePrev()}><i class="fas fa-chevron-left"></i></button>
+            <button className="survey-btn next" onClick={() => laminateNext()}><i class="fas fa-chevron-right"></i></button>
 
             </>
           )
@@ -859,8 +865,9 @@ export default function UpgradeTool() {
           <>
           <div className="question-container">
 
-          <h2>Valley Metal</h2>
+          <h1>Valley Metal</h1>
           <div className="form-group">
+          <label>Valley Metal</label>
           <input
           style={{ width:"40px", height: "40px" }}
           type="checkbox"
@@ -868,9 +875,9 @@ export default function UpgradeTool() {
           onChange={(e) => setRoofTemplate({ ...roofTemplate, valleyMetal: !roofTemplate.valleyMetal })}
           />
           </div>
-          <button className="survey-btn" onClick={ () => bolValleyMetalPrev()}>Previous</button>
-          <button className="survey-btn next" onClick={() => bolValleyMetalNext()}>Next</button>
           </div>
+          <button className="survey-btn prev" onClick={ () => bolValleyMetalPrev()}><i class="fas fa-chevron-left"></i></button>
+          <button className="survey-btn next" onClick={() => bolValleyMetalNext()}><i class="fas fa-chevron-right"></i></button>
 
           </>
         )
@@ -901,9 +908,9 @@ export default function UpgradeTool() {
               />
 
             </div>
-            <button className="survey-btn" onClick={() => underlaymentPrev()}>Previous</button>
-            <button className="survey-btn next" onClick={() => underlaymentNext()}>Next</button>
             </div>
+            <button className="survey-btn prev" onClick={() => underlaymentPrev()}><i class="fas fa-chevron-left"></i></button>
+            <button className="survey-btn next" onClick={() => underlaymentNext()}><i class="fas fa-chevron-right"></i></button>
 
           </>
         )
@@ -912,7 +919,7 @@ export default function UpgradeTool() {
             <>
             <div className="question-container">
 
-            <h2>Valley Metal</h2>
+            <h1>Valley Metal</h1>
             <div className="form-group">
             <label>Rolled</label>
             <input
@@ -929,9 +936,9 @@ export default function UpgradeTool() {
             onChange={(e) => setRoofTemplate({ ...roofTemplate, valleyMetalW: !roofTemplate.valleyMetalW })}
             />
             </div>
-            <button className="survey-btn" onClick={ () => valleyMetalPrev()}>Previous</button>
-            <button className="survey-btn next" onClick={() => valleyMetalNext()}>Next</button>
             </div>
+            <button className="survey-btn prev" onClick={ () => valleyMetalPrev()}><i class="fas fa-chevron-left"></i></button>
+            <button className="survey-btn next" onClick={() => valleyMetalNext()}><i class="fas fa-chevron-right"></i></button>
 
             </>
           )
@@ -940,14 +947,21 @@ export default function UpgradeTool() {
             <>
             <div className="question-container">
 
-            <h2>Valley Metal "W"</h2>
+            <h1>Valley Metal "W"</h1>
             <div className="form-group">
-            <label>Painter</label>
+            <label>Painted</label>
             <input
             style={{ width:"40px", height: "40px" }}
             type="checkbox"
             checked={roofTemplate.wPainter === true }
             onChange={(e) => setRoofTemplate({ ...roofTemplate, wPainter: !roofTemplate.wPainter })}
+            />
+            <label>Galvanized</label>
+            <input
+            style={{ width:"40px", height: "40px" }}
+            type="checkbox"
+            checked={roofTemplate.wGalvanized === true }
+            onChange={(e) => setRoofTemplate({ ...roofTemplate, wGalvanized: !roofTemplate.wGalvanized })}
             />
             <label>Copper</label>
             <input
@@ -957,9 +971,9 @@ export default function UpgradeTool() {
             onChange={(e) => setRoofTemplate({ ...roofTemplate, wCopper: !roofTemplate.wCopper })}
             />
             </div>
-            <button className="survey-btn" onClick={ () => valleyMetalWPrev()}>Previous</button>
-            <button className="survey-btn next" onClick={() => valleyMetalWNext()}>Next</button>
             </div>
+            <button className="survey-btn prev" onClick={ () => valleyMetalWPrev()}><i class="fas fa-chevron-left"></i></button>
+            <button className="survey-btn next" onClick={() => valleyMetalWNext()}><i class="fas fa-chevron-right"></i></button>
 
             </>
           )
@@ -967,7 +981,7 @@ export default function UpgradeTool() {
           return (
             <>
             <div className="question-container">
-
+            <h1>Ice and Water</h1>
             <div className="form-group">
               <label>Ice and Water Barrier</label>
               <input
@@ -978,9 +992,9 @@ export default function UpgradeTool() {
               />
 
             </div>
-            <button className="survey-btn" onClick={() => iceWaterBoolPrev()}>Previous</button>
-            <button className="survey-btn next" onClick={() => iceWaterBoolNext()}>Next</button>
             </div>
+            <button className="survey-btn prev" onClick={() => iceWaterBoolPrev()}><i class="fas fa-chevron-left"></i></button>
+            <button className="survey-btn next" onClick={() => iceWaterBoolNext()}><i class="fas fa-chevron-right"></i></button>
 
             </>
           )
@@ -989,7 +1003,7 @@ export default function UpgradeTool() {
           return (
             <>
             <div className="question-container">
-
+            <h1>Synthetic</h1>
               <div className="form-group">
                 <label>Synthetic</label>
                 <select
@@ -1006,9 +1020,9 @@ export default function UpgradeTool() {
 
 
               </div>
-              <button className="survey-btn" onClick={() => syntheticPrev()}>Previous</button>
-              <button className="survey-btn next" onClick={() => syntheticNext()}>Next</button>
               </div>
+              <button className="survey-btn prev" onClick={() => syntheticPrev()}><i class="fas fa-chevron-left"></i></button>
+              <button className="survey-btn next" onClick={() => syntheticNext()}><i class="fas fa-chevron-right"></i></button>
 
             </>
           )
@@ -1016,6 +1030,7 @@ export default function UpgradeTool() {
         return (
         <>
         <div className="question-container">
+        <h1>Pipejacks</h1>
 
         <div className="form-group">
         <label>Neoprene/Hard Plastics</label>
@@ -1033,9 +1048,9 @@ export default function UpgradeTool() {
         onChange={(e) => setRoofTemplate({ ...roofTemplate, pipeJacksOther: !roofTemplate.pipeJacksOther })}
         />
         </div>
-        <button className="survey-btn" onClick={() => pipejacksPrev()}>Previous</button>
-        <button className="survey-btn next" onClick={() => pipejacksNext()}>Next</button>
         </div>
+        <button className="survey-btn prev" onClick={() => pipejacksPrev()}><i class="fas fa-chevron-left"></i></button>
+        <button className="survey-btn next" onClick={() => pipejacksNext()}><i class="fas fa-chevron-right"></i></button>
 
         </>
       )
@@ -1045,8 +1060,8 @@ export default function UpgradeTool() {
             <>
             <div className="question-container">
 
+            <h1>Neoprene/Hard Plastic</h1>
               <div className="form-group">
-              <h1>Neoprene/Hard Plastic</h1>
               <input
               style={{ width:"40px", height: "40px" }}
               type="checkbox"
@@ -1097,9 +1112,9 @@ export default function UpgradeTool() {
               />
               <label>6"</label>
               </div>
-              <button className="survey-btn" onClick={() => neoprenePrev()}>Previous</button>
-              <button className="survey-btn next" onClick={() => neopreneNext()}>Next</button>
               </div>
+              <button className="survey-btn prev" onClick={() => neoprenePrev()}><i class="fas fa-chevron-left"></i></button>
+              <button className="survey-btn next" onClick={() => neopreneNext()}><i class="fas fa-chevron-right"></i></button>
 
             </>
           )
@@ -1108,7 +1123,7 @@ export default function UpgradeTool() {
             <>
             <div className="question-container">
 
-            <h2>Ice and Water Barrier</h2>
+            <h1>Ice and Water Barrier</h1>
 
             <div className="form-group">
               <label>Eaves</label>
@@ -1148,8 +1163,8 @@ export default function UpgradeTool() {
               />
 
             </div>
-            <button className="survey-btn" onClick={() => iceWaterPrev()}>Previous</button>
-            <button className="survey-btn next" onClick={() => iceWaterNext()}>Next</button>
+            <button className="survey-btn prev" onClick={() => iceWaterPrev()}><i class="fas fa-chevron-left"></i></button>
+            <button className="survey-btn next" onClick={() => iceWaterNext()}><i class="fas fa-chevron-right"></i></button>
             </div>
 
             </>
@@ -1159,7 +1174,7 @@ export default function UpgradeTool() {
           <>
           <div className="question-container">
 
-          <h2>Ventilation</h2>
+          <h1>Ventilation</h1>
           <div className="form-group">
             <label>Ridge Vent</label>
             <input
@@ -1169,9 +1184,9 @@ export default function UpgradeTool() {
             onChange={(e) => setRoofTemplate({ ...roofTemplate, ridgeVent: !roofTemplate.ridgeVent })}
             />
           </div>
-          <button className="survey-btn" onClick={() => ridgeVentPrev()}>Previous</button>
-          <button className="survey-btn next" onClick={() => ridgeVentNext()}>Next</button>
           </div>
+          <button className="survey-btn prev" onClick={() => ridgeVentPrev()}><i class="fas fa-chevron-left"></i></button>
+          <button className="survey-btn next" onClick={() => ridgeVentNext()}><i class="fas fa-chevron-right"></i></button>
 
           </>
           )
@@ -1179,7 +1194,7 @@ export default function UpgradeTool() {
           return (
             <>
             <div className="question-container">
-            <h2>Drip</h2>
+            <h1>Drip</h1>
             <div className="form-group">
               <label>Rakes</label>
               <input
@@ -1207,9 +1222,9 @@ export default function UpgradeTool() {
               />
 
             </div>
-              <button className="survey-btn" onClick={() => dripGutterPrev()}>Previous</button>
-              <button className="survey-btn next" onClick={() => dripGutterNext()}>Next</button>
               </div>
+              <button className="survey-btn prev" onClick={() => dripGutterPrev()}><i class="fas fa-chevron-left"></i></button>
+              <button className="survey-btn next" onClick={() => dripGutterNext()}><i class="fas fa-chevron-right"></i></button>
 
             </>
           )
@@ -1244,9 +1259,9 @@ export default function UpgradeTool() {
                 />
 
               </div>
-              <button className="survey-btn" onClick={() => ridgePrev()}>Previous</button>
-              <button className="survey-btn next" onClick={() => ridgeNext()}>Next</button>
               </div>
+              <button className="survey-btn prev" onClick={() => ridgePrev()}><i class="fas fa-chevron-left"></i></button>
+              <button className="survey-btn next" onClick={() => ridgeNext()}><i class="fas fa-chevron-right"></i></button>
 
             </>
           )
@@ -1254,8 +1269,8 @@ export default function UpgradeTool() {
           return (
             <>
             Step Flashing
-            <button className="survey-btn" onClick={() => stepFlashingPrev()}>Previous</button>
-            <button className="survey-btn next" onClick={() => stepFlashingNext()}>Next</button>
+            <button className="survey-btn prev" onClick={() => stepFlashingPrev()}><i class="fas fa-chevron-left"></i></button>
+            <button className="survey-btn next" onClick={() => stepFlashingNext()}><i class="fas fa-chevron-right"></i></button>
 
             </>
           )
@@ -1263,8 +1278,8 @@ export default function UpgradeTool() {
           return (
             <>
             Counter Flashing
-            <button className="survey-btn" onClick={() => counterFlashingPrev()}>Previous</button>
-            <button className="survey-btn next" onClick={() => counterFlashingNext()}>Next</button>
+            <button className="survey-btn prev" onClick={() => counterFlashingPrev()}><i class="fas fa-chevron-left"></i></button>
+            <button className="survey-btn next" onClick={() => counterFlashingNext()}><i class="fas fa-chevron-right"></i></button>
 
             </>
           )
@@ -1272,8 +1287,8 @@ export default function UpgradeTool() {
           return (
             <>
               Chimney Flashing
-              <button className="survey-btn" onClick={() => chimneyFlashingPrev()}>Previous</button>
-              <button className="survey-btn next" onClick={() => chimneyFlashingNext()}>Next</button>
+              <button className="survey-btn prev" onClick={() => chimneyFlashingPrev()}><i class="fas fa-chevron-left"></i></button>
+              <button className="survey-btn next" onClick={() => chimneyFlashingNext()}><i class="fas fa-chevron-right"></i></button>
 
             </>
           )
@@ -1286,8 +1301,8 @@ export default function UpgradeTool() {
             {existingShingleUpgrade()}
             {existingMetalEdge()}
             {existingValleyMetal()}
-            <button className="survey-btn" onClick={() => upgradeToolPrev()}>Previous</button>
-            <button className="survey-btn next" onClick={() => console.log("fix me")}>Next</button>
+            <button className="survey-btn prev" onClick={() => upgradeToolPrev()}><i class="fas fa-chevron-left"></i></button>
+            <button className="survey-btn next" onClick={() => console.log("fix me")}><i class="fas fa-chevron-right"></i></button>
             </div>
 
             </>

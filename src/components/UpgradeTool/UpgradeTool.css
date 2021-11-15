@@ -3,6 +3,7 @@
   max-height: 100vh;
 }
 .multi-container {
+  margin: 30px 50px;
   height: 400px;
 }
 .tall-form-group {
@@ -48,21 +49,31 @@ label {
 }
 .survey-btn {
   font-family: 'Heebo', sans-serif;
-  width: 104px;
-  height: 32px;
-  margin-left: 10px;
+  width: 65px;
+  height: 62px;
   border: none;
   color: white;
   background: #333333;
-  border-radius: 8px;
+
   transition: background .2s ease-out;
+}
+.fa-chevron-right, .fa-chevron-left {
+  color: white !important;
 }
 .survey-btn:hover {
   background: #111111;
+  cursor: pointer;
 }
 
+.prev {
+  position: absolute;
+  border-radius: 0 50% 50% 0;
+  top: 248px;
+  left: -10px;
+}
 .next {
   position: absolute;
-  top: 448px;
-  right: 50px;
+  border-radius: 50% 0 0 50%;
+  top: 248px;
+  right: -10px;
 }
