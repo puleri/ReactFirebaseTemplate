@@ -44,7 +44,17 @@ export default function UpgradeTool() {
     pipeJacksNeo: false,
     pipeJacksOther: false,
     ridgeVent: false,
-    underlayment: ""
+    underlayment: "",
+    stepAluminum: false,
+    stepCopper: false,
+    stepGalvanized: false,
+    counterAluminum: false,
+    counterCopper: false,
+    counterPainted: false,
+    chimneyAluminum: false,
+    chimneyCopper: false,
+    chimneyLead: false,
+    chimneyPainted: false,
    })
 
   const existingShingleUpgrade = () => {
@@ -1268,7 +1278,33 @@ export default function UpgradeTool() {
         case 'step-flashing':
           return (
             <>
-            Step Flashing
+            <div className="question-container">
+            <h1>Step Flashing</h1>
+
+            <div className="form-group">
+            <label>Aluminum</label>
+            <input
+            style={{ width:"40px", height: "40px" }}
+            type="checkbox"
+            checked={roofTemplate.stepAluminum === true }
+            onChange={(e) => setRoofTemplate({ ...roofTemplate, stepAluminum: !roofTemplate.stepAluminum })}
+            />
+            <label>Copper</label>
+            <input
+            style={{ width:"40px", height: "40px" }}
+            type="checkbox"
+            checked={roofTemplate.stepCopper === true }
+            onChange={(e) => setRoofTemplate({ ...roofTemplate, stepCopper: !roofTemplate.stepCopper })}
+            />
+            <label>Galvanized Metal</label>
+            <input
+            style={{ width:"40px", height: "40px" }}
+            type="checkbox"
+            checked={roofTemplate.stepGalvanized === true }
+            onChange={(e) => setRoofTemplate({ ...roofTemplate, stepGalvanized: !roofTemplate.stepGalvanized })}
+            />
+            </div>
+            </div>
             <button className="survey-btn prev" onClick={() => stepFlashingPrev()}><i class="fas fa-chevron-left"></i></button>
             <button className="survey-btn next" onClick={() => stepFlashingNext()}><i class="fas fa-chevron-right"></i></button>
 
@@ -1277,7 +1313,33 @@ export default function UpgradeTool() {
         case 'counter-flashing':
           return (
             <>
-            Counter Flashing
+            <div className="question-container">
+            <h1>Counter Flashing</h1>
+
+            <div className="form-group">
+            <label>Aluminum</label>
+            <input
+            style={{ width:"40px", height: "40px" }}
+            type="checkbox"
+            checked={roofTemplate.counterAluminum === true }
+            onChange={(e) => setRoofTemplate({ ...roofTemplate, counterAluminum: !roofTemplate.counterAluminum })}
+            />
+            <label>Copper</label>
+            <input
+            style={{ width:"40px", height: "40px" }}
+            type="checkbox"
+            checked={roofTemplate.counterCopper === true }
+            onChange={(e) => setRoofTemplate({ ...roofTemplate, counterCopper: !roofTemplate.counterCopper })}
+            />
+            <label>Painted Metal</label>
+            <input
+            style={{ width:"40px", height: "40px" }}
+            type="checkbox"
+            checked={roofTemplate.counterPainted === true }
+            onChange={(e) => setRoofTemplate({ ...roofTemplate, counterPainted: !roofTemplate.counterPainted })}
+            />
+            </div>
+            </div>
             <button className="survey-btn prev" onClick={() => counterFlashingPrev()}><i class="fas fa-chevron-left"></i></button>
             <button className="survey-btn next" onClick={() => counterFlashingNext()}><i class="fas fa-chevron-right"></i></button>
 
@@ -1286,8 +1348,41 @@ export default function UpgradeTool() {
         case 'chimney-flashing':
           return (
             <>
-              Chimney Flashing
-              <button className="survey-btn prev" onClick={() => chimneyFlashingPrev()}><i class="fas fa-chevron-left"></i></button>
+            <div className="question-container">
+            <h1>Chimney Flashing</h1>
+
+            <div className="form-group">
+            <label>Aluminum</label>
+            <input
+            style={{ width:"40px", height: "40px" }}
+            type="checkbox"
+            checked={roofTemplate.chimneyAluminum === true }
+            onChange={(e) => setRoofTemplate({ ...roofTemplate, chimneyAluminum: !roofTemplate.chimneyAluminum })}
+            />
+            <label>Copper</label>
+            <input
+            style={{ width:"40px", height: "40px" }}
+            type="checkbox"
+            checked={roofTemplate.chimneyCopper === true }
+            onChange={(e) => setRoofTemplate({ ...roofTemplate, chimneyCopper: !roofTemplate.chimneyCopper })}
+            />
+            <label>Lead</label>
+            <input
+            style={{ width:"40px", height: "40px" }}
+            type="checkbox"
+            checked={roofTemplate.chimneyLead === true }
+            onChange={(e) => setRoofTemplate({ ...roofTemplate, chimneyLead: !roofTemplate.chimneyLead })}
+            />
+            <label>Painted Metal</label>
+            <input
+            style={{ width:"40px", height: "40px" }}
+            type="checkbox"
+            checked={roofTemplate.chimneyPainted === true }
+            onChange={(e) => setRoofTemplate({ ...roofTemplate, chimneyPainted: !roofTemplate.chimneyPainted })}
+            />
+            </div>
+            </div>
+             <button className="survey-btn prev" onClick={() => chimneyFlashingPrev()}><i class="fas fa-chevron-left"></i></button>
               <button className="survey-btn next" onClick={() => chimneyFlashingNext()}><i class="fas fa-chevron-right"></i></button>
 
             </>
