@@ -1,6 +1,7 @@
 .question-container {
   margin: 30px;
   max-height: 100vh;
+  overflow: none
 }
 .multi-container {
   margin: 30px 50px;
@@ -17,6 +18,21 @@ label {
   width: 100%;
   margin-right: 300px;
   display: flex;
+}
+.surv-header {
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #4CD19639;
+}
+.surv-accent1 {
+  position: fixed;
+  bottom: -100px;
+  left: 0;
+  width: 100%;
+  height: 180px;
+  transform: skewY(-4deg);
+  background: #333333;
 }
 .form-group {
   height: 400px;
@@ -53,7 +69,7 @@ label {
   height: 62px;
   border: none;
   color: white;
-  background: #333333;
+  background: #333333f0;
 
   transition: background .2s ease-out;
 }
