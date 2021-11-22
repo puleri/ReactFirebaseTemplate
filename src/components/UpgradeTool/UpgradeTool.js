@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import StepZero from './StepZero.js';
+import StepOne from './StepOne.js';
 // import { useLocation } from "react-router-dom";
 import './UpgradeTool.css';
 
@@ -64,97 +66,54 @@ export default function UpgradeTool() {
       specialtyLam: false,
       doubleLam: false,
       tripleLam: false,
+      felt: false,
+      builderSynth: false,
+      betterSynth: false
+  })
+  const [choosenUpgrades, setChoosenUpgrades] = useState({
+    twentyFiveTab: false,
+
+    builderLam: false,
+    highLam: false,
+    designerLam: false,
+    specialtyLam: false,
+    doubleLam: false,
+    tripleLam: false,
+
+    fifteenFelt: false,
+    thirtyFelt: false,
+
+    builderSynth: false,
+    betterSynth: false,
+    bestSynth: false,
+
+    dripRakes: false,
+    dripEaves: false,
+    gutterEaves: false,
+
+    valleyMetalW: false,
+    valleyMetalPainted: false,
+    valleyMetalGalvanized: false,
+    valleyMetalCopper: false,
+
+    threeRidge: false,
+    standardRidge: false,
+    highRidge: false,
+
+    sFAlum: false,
+    sFCopper: false,
+    sFGalvan: false,
+
+    cFAlum: false,
+    cFCopper: false,
+    cFGalvan: false,
+
+    chFAlum: false,
+    chFCopper: false,
+    chFGalvan: false,
   })
 
-  const existingShingleUpgrade = () => {
-    if (roofTemplate.existingShingle === "3-tab") {
-      if (roofTemplate.tab === "20") {
-        return (
-          <div>
-          25 year or 30 year 3 tab
-          </div>
-        )
-      }
-      else if (roofTemplate.tab === "25") {
-        return (
-          <div>
 
-          </div>
-        )
-      }
-    }
-    else if (roofTemplate.existingShingle === "laminate") {
-      switch (roofTemplate.laminate) {
-        case "builder":
-          return (
-            <div>
-              High Grade, Designer, Specialty
-            </div>
-          )
-        case "high":
-          return (
-            <div>
-              Designer, Specialty
-            </div>
-          )
-        case "designer":
-          return (
-            <div>
-              Specialty, Double Laminate, Triple Laminate
-            </div>
-          )
-        default:
-      }
-    }
-  }
-  const existingMetalEdge = () => {
-    if (roofTemplate.metalEdge) {
-      if (!roofTemplate.dripEaves && !roofTemplate.apronEaves && !roofTemplate.dripRakes) {
-        return (
-          <>upgrade drip eaves, rakes and apron eaves</>
-        )
-      }
-      if (!roofTemplate.dripEaves && !roofTemplate.apronEaves) {
-        return (
-          <div>upgrade drip eaves and apron eaves</div>
-        )
-      }
-      if (!roofTemplate.dripEaves && !roofTemplate.dripRakes) {
-        return (
-          <div>upgrade drip eaves and drip rakes</div>
-        )
-      }
-      if (!roofTemplate.apronEaves && !roofTemplate.dripRakes) {
-        return (
-          <div>upgrade apron eaves and drip rakes</div>
-        )
-      }
-      if (!roofTemplate.dripEaves) {
-        return (
-          <div>Upgrade drip eaves</div>
-        )
-      }
-      if (!roofTemplate.dripRakes) {
-        return (
-          <div>Upgrade drip rakes</div>
-        )
-      }
-      if (!roofTemplate.apronEaves) {
-        return (
-          <div>Upgrade apron eaves</div>
-        )
-      }
-    }
-  }
-  const existingValleyMetal = () => {
-    if (roofTemplate.valleyMetal) {
-      if (!roofTemplate.valleyMetalRolled || !roofTemplate.valleyMetalW) {
-        return (
-          <div>upgrade valley metal "W"</div>
-        )
-      }
-    }
-  }
 
   const handleMeasurementChange = (e) => {
     setRoofTemplate({
@@ -294,6 +253,10 @@ export default function UpgradeTool() {
       step: "synthetic"
     })
   } else {
+    setUpgradeOptions({
+      ...upgradeOptions,
+      felt: true
+    })
     setRoofTemplate({
       ...roofTemplate,
       step: "ice-water-bool"
@@ -319,6 +282,18 @@ export default function UpgradeTool() {
     }
   }
   const syntheticNext = () => {
+    if (roofTemplate.synthetic === "builder") {
+      setUpgradeOptions({
+        ...upgradeOptions,
+        builderSynth: true
+      })
+    }
+    else if (roofTemplate.synthetic === "better") {
+      setUpgradeOptions({
+        ...upgradeOptions,
+        betterSynth: true
+      })
+    }
     setRoofTemplate({
       ...roofTemplate,
       step: "ice-water-bool"
@@ -533,7 +508,7 @@ export default function UpgradeTool() {
       })
     }
   }
-   const ridgeNext = () => {
+  const ridgeNext = () => {
     setRoofTemplate({
       ...roofTemplate,
       step: 'step-flashing'
@@ -574,6 +549,495 @@ export default function UpgradeTool() {
   const chimneyFlashingPrev = () => setRoofTemplate({ ...roofTemplate, step: 'counter-flashing'})
   const upgradeToolPrev = () => setRoofTemplate({ ...roofTemplate, step: 'chimney-flashing'})
 
+// upgrade conditionals
+  const existingShingleUpgrade = () => {
+    if (roofTemplate.existingShingle === "3-tab") {
+      if (roofTemplate.tab === "20") {
+        return (
+          <ul>
+            <h4>Existing Shingle Upgrades</h4>
+            <li>25 year
+            <input
+            type="checkbox"
+            checked={choosenUpgrades.twentyFiveTab === true }
+            onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, twentyFiveTab: !choosenUpgrades.twentyFiveTab })}/>
+            </li>
+          </ul>
+        )
+      }
+      else if (roofTemplate.tab === "25") {
+        return (
+          <>
+          </>
+        )
+      }
+    }
+    else if (roofTemplate.existingShingle === "laminate") {
+      switch (roofTemplate.laminate) {
+        case "builder":
+          return (
+            <ul>
+            <h4>Laminate Upgrades</h4>
+              <li>High Grade Laminate<input
+              type="checkbox"
+              checked={choosenUpgrades.highLam === true }
+              onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, highLam: !choosenUpgrades.highLam })}/>
+              </li>
+
+              <li>Designer Grade Laminate<input
+              type="checkbox"
+              checked={choosenUpgrades.designerLam === true }
+              onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, designerLam: !choosenUpgrades.designerLam })}/>
+              </li>
+
+              <li>Specialty Grade Laminate<input
+              type="checkbox"
+              checked={choosenUpgrades.specialtyLam === true }
+              onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, specialtyLam: !choosenUpgrades.specialtyLam })}/>
+              </li>
+
+              <li>Double Laminate<input
+              type="checkbox"
+              checked={choosenUpgrades.doubleLam === true }
+              onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, doubleLam: !choosenUpgrades.doubleLam })}/>
+              </li>
+
+              <li>Triple Laminate<input
+              type="checkbox"
+              checked={choosenUpgrades.tripleLam === true }
+              onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, tripleLam: !choosenUpgrades.tripleLam })}/>
+              </li>
+            </ul>
+          )
+        case "high":
+          return (
+            <ul>
+            <h4>Laminate Upgrades</h4>
+            <li>Designer Grade Laminate<input
+            type="checkbox"
+            checked={choosenUpgrades.designerLam === true }
+            onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, designerLam: !choosenUpgrades.designerLam })}/>
+            </li>
+
+            <li>Specialty Grade Laminate<input
+            type="checkbox"
+            checked={choosenUpgrades.specialtyLam === true }
+            onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, specialtyLam: !choosenUpgrades.specialtyLam })}/>
+            </li>
+
+            <li>Double Laminate<input
+            type="checkbox"
+            checked={choosenUpgrades.doubleLam === true }
+            onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, doubleLam: !choosenUpgrades.doubleLam })}/>
+            </li>
+
+            <li>Triple Laminate<input
+            type="checkbox"
+            checked={choosenUpgrades.tripleLam === true }
+            onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, tripleLam: !choosenUpgrades.tripleLam })}/>
+            </li>
+            </ul>
+          )
+        case "designer":
+          return (
+            <ul>
+            <h4>Laminate Upgrades</h4>
+            <li>Specialty Grade Laminate<input
+            type="checkbox"
+            checked={choosenUpgrades.specialtyLam === true }
+            onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, specialtyLam: !choosenUpgrades.specialtyLam })}/>
+            </li>
+
+            <li>Double Laminate<input
+            type="checkbox"
+            checked={choosenUpgrades.doubleLam === true }
+            onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, doubleLam: !choosenUpgrades.doubleLam })}/>
+            </li>
+
+            <li>Triple Laminate<input
+            type="checkbox"
+            checked={choosenUpgrades.tripleLam === true }
+            onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, tripleLam: !choosenUpgrades.tripleLam })}/>
+            </li>
+            </ul>
+          )
+        default:
+      }
+    }
+  }
+  const dripGutterUpgrade = () => {
+    if (roofTemplate.metalEdge) {
+      if (!roofTemplate.dripEaves && !roofTemplate.apronEaves && !roofTemplate.dripRakes) {
+        return (
+          <ul>
+            <h4>Existing Shingle Upgrades</h4>
+            <li>Drip Eaves
+            <input
+            type="checkbox"
+            checked={choosenUpgrades.dripEaves === true }
+            onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, dripEaves: !choosenUpgrades.dripEaves })}/>
+            </li>
+
+            <li>Drip Rakes
+            <input
+            type="checkbox"
+            checked={choosenUpgrades.dripRakes === true }
+            onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, dripRakes: !choosenUpgrades.dripRakes })}/>
+            </li>
+
+            <li>Gutter Apron Eaves
+            <input
+            type="checkbox"
+            checked={choosenUpgrades.gutterEaves === true }
+            onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, gutterEaves: !choosenUpgrades.gutterEaves })}/>
+            </li>
+          </ul>
+        )
+      }
+      if (!roofTemplate.dripEaves && !roofTemplate.apronEaves) {
+        return (
+          <ul>
+            <h4>Existing Shingle Upgrades</h4>
+            <li>Drip Eaves
+            <input
+            type="checkbox"
+            checked={choosenUpgrades.dripEaves === true }
+            onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, dripEaves: !choosenUpgrades.dripEaves })}/>
+            </li>
+
+            <li>Gutter Apron Eaves
+            <input
+            type="checkbox"
+            checked={choosenUpgrades.gutterEaves === true }
+            onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, gutterEaves: !choosenUpgrades.gutterEaves })}/>
+            </li>
+          </ul>        )
+      }
+      if (!roofTemplate.dripEaves && !roofTemplate.dripRakes) {
+        return (
+          <ul>
+            <h4>Existing Shingle Upgrades</h4>
+            <li>Drip Eaves
+            <input
+            type="checkbox"
+            checked={choosenUpgrades.dripEaves === true }
+            onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, dripEaves: !choosenUpgrades.dripEaves })}/>
+            </li>
+
+            <li>Drip Rakes
+            <input
+            type="checkbox"
+            checked={choosenUpgrades.dripRakes === true }
+            onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, dripRakes: !choosenUpgrades.dripRakes })}/>
+            </li>
+          </ul>
+        )
+      }
+      if (!roofTemplate.apronEaves && !roofTemplate.dripRakes) {
+        return (
+          <ul>
+            <h4>Existing Shingle Upgrades</h4>
+
+            <li>Drip Rakes
+            <input
+            type="checkbox"
+            checked={choosenUpgrades.dripRakes === true }
+            onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, dripRakes: !choosenUpgrades.dripRakes })}/>
+            </li>
+
+            <li>Gutter Apron Eaves
+            <input
+            type="checkbox"
+            checked={choosenUpgrades.gutterEaves === true }
+            onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, gutterEaves: !choosenUpgrades.gutterEaves })}/>
+            </li>
+          </ul>
+        )
+      }
+      if (!roofTemplate.dripEaves) {
+        return (
+          <ul>
+            <h4>Existing Shingle Upgrades</h4>
+            <li>Drip Eaves
+            <input
+            type="checkbox"
+            checked={choosenUpgrades.dripEaves === true }
+            onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, dripEaves: !choosenUpgrades.dripEaves })}/>
+            </li>
+
+          </ul>
+        )
+      }
+      if (!roofTemplate.dripRakes) {
+        return (
+          <ul>
+            <h4>Existing Shingle Upgrades</h4>
+
+            <li>Drip Rakes
+            <input
+            type="checkbox"
+            checked={choosenUpgrades.dripRakes === true }
+            onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, dripRakes: !choosenUpgrades.dripRakes })}/>
+            </li>
+          </ul>
+        )
+      }
+      if (!roofTemplate.apronEaves) {
+        return (
+          <ul>
+            <h4>Existing Shingle Upgrades</h4>
+            <li>Gutter Apron Eaves
+            <input
+            type="checkbox"
+            checked={choosenUpgrades.gutterEaves === true }
+            onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, gutterEaves: !choosenUpgrades.gutterEaves })}/>
+            </li>
+          </ul>
+        )
+      }
+    }
+  }
+  const valleyMetalUpgrade = () => {
+    if (roofTemplate.valleyMetal) {
+      if (!roofTemplate.valleyMetalRolled && !roofTemplate.valleyMetalW) {
+        return (
+          <ul>
+            <h4>Valley Metal Upgrade</h4>
+
+            <li>"W"
+            <input
+            type="checkbox"
+            checked={choosenUpgrades.valleyMetalW === true }
+            onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, valleyMetalW: !choosenUpgrades.valleyMetalW })}/>
+            </li>
+
+          </ul>
+        )
+      }
+      else if (roofTemplate.valleyMetalW) {
+        return (
+          <>
+          <ul>
+            <li>{!roofTemplate.wPainter &&
+              <>
+              Painter
+              <input
+              type="checkbox"
+              checked={choosenUpgrades.valleyMetalPainted === true }
+              onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, valleyMetalPainted: !choosenUpgrades.valleyMetalPainted })}/>
+              </>
+            }</li>
+            <li>{!roofTemplate.wGalvanized &&
+              <>
+              Galvanized
+              <input
+              type="checkbox"
+              checked={choosenUpgrades.valleyMetalGalvanized === true }
+              onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, valleyMetalGalvanized: !choosenUpgrades.valleyMetalGalvanized })}/>
+              </>
+            }</li>
+            <li>{!roofTemplate.wCopper &&
+              <>
+              Copper
+              <input
+              type="checkbox"
+              checked={choosenUpgrades.valleyMetalCopper === true }
+              onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, valleyMetalCopper: !choosenUpgrades.valleyMetalCopper })}/>
+              </>
+            }</li>
+          </ul>
+          </>
+        )
+      }
+    }
+  }
+  const feltUpgrade = () => {
+    return (
+      <ul>
+        <h4>Felt Underlayment Upgrades</h4>
+        <li>
+          #15
+          <input
+          type="checkbox"
+          checked={choosenUpgrades.fifteenFelt === true }
+          onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, fifteenFelt: !choosenUpgrades.fifteenFelt })}/>
+        </li>
+        <li>
+          #30
+          <input
+          type="checkbox"
+          checked={choosenUpgrades.thirtyFelt === true }
+          onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, thirtyFelt: !choosenUpgrades.thirtyFelt })}/>
+        </li>
+      </ul>
+    )
+  }
+  const syntheticUpgrade = () => {
+    switch (roofTemplate.synthetic) {
+      case "builder":
+      return (
+      <ul>
+      <h4>Synthetic Underlayment Upgrades</h4>
+
+        <li>Better Grade<input
+        type="checkbox"
+        checked={choosenUpgrades.betterSynth === true }
+        onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, betterSynth: !choosenUpgrades.betterSynth })}/>
+        </li>
+
+        <li>Best Grade<input
+        type="checkbox"
+        checked={choosenUpgrades.bestSynth === true }
+        onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, bestSynth: !choosenUpgrades.bestSynth })}/>
+        </li>
+      </ul>
+    )
+      case "better":
+      return (
+      <ul>
+      <h4>Synthetic Underlayment Upgrades</h4>
+        <li>Best Grade<input
+        type="checkbox"
+        checked={choosenUpgrades.bestSynth === true }
+        onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, bestSynth: !choosenUpgrades.bestSynth })}/>
+        </li>
+      </ul>
+    )
+      default:
+      <></>
+    }
+  }
+  const ridgeCapUpgrade = () => {
+    if (roofTemplate.tab) {
+      return (
+      <ul>
+      <h4>Ridge Cap Upgrade</h4>
+
+        <li>Standard Profile<input
+        type="checkbox"
+        checked={choosenUpgrades.standardRidge === true }
+        onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, standardRidge: !choosenUpgrades.standardRidge })}/>
+        </li>
+
+        <li>High Profile<input
+        type="checkbox"
+        checked={choosenUpgrades.highRidge === true }
+        onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, highRidge: !choosenUpgrades.highRidge })}/>
+        </li>
+      </ul>
+    )
+  }
+    else if (roofTemplate.standard) {
+      return (
+        <ul>
+        <h4>Ridge Cap Upgrade</h4>
+
+          <li>High Profile<input
+          type="checkbox"
+          checked={choosenUpgrades.highRidge === true }
+          onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, highRidge: !choosenUpgrades.highRidge })}/>
+          </li>
+        </ul>
+      )
+    }
+  }
+  const stepUpgrade = () => {
+    if (roofTemplate.stepAluminum) {
+      return (
+      <ul>
+      <h4>Step Flashing Upgrades</h4>
+        <li>Copper<input
+        type="checkbox"
+        checked={choosenUpgrades.sFCopper === true }
+        onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, sFCopper: !choosenUpgrades.sFCopper })}/>
+        </li>
+        <li>Galvanized<input
+        type="checkbox"
+        checked={choosenUpgrades.sFGalvan === true }
+        onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, sFGalvan: !choosenUpgrades.sFGalvan })}/>
+        </li>
+      </ul>
+      )
+    }
+    else if (roofTemplate.stepCopper) {
+      return (
+      <ul>
+      <h4>Step Flashing Upgrades</h4>
+
+        <li>Galvanized<input
+        type="checkbox"
+        checked={choosenUpgrades.sFGalvan === true }
+        onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, sFGalvan: !choosenUpgrades.sFGalvan })}/>
+        </li>
+      </ul>
+      )
+    }
+  }
+  const counterUpgrade = () => {
+    if (roofTemplate.counterAluminum) {
+      return (
+      <ul>
+      <h4>Counter Flashing Upgrades</h4>
+        <li>Copper<input
+        type="checkbox"
+        checked={choosenUpgrades.cFCopper === true }
+        onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, cFCopper: !choosenUpgrades.cFCopper })}/>
+        </li>
+        <li>Galvanized<input
+        type="checkbox"
+        checked={choosenUpgrades.cFGalvan === true }
+        onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, cFGalvan: !choosenUpgrades.cFGalvan })}/>
+        </li>
+      </ul>
+      )
+    }
+    else if (roofTemplate.counterCopper) {
+      return (
+      <ul>
+      <h4>Counter Flashing Upgrades</h4>
+
+        <li>Galvanized<input
+        type="checkbox"
+        checked={choosenUpgrades.cFGalvan === true }
+        onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, cFGalvan: !choosenUpgrades.cFGalvan })}/>
+        </li>
+      </ul>
+      )
+    }
+  }
+  const chimneyUpgrade = () => {
+    if (roofTemplate.chimneyAluminum) {
+      return (
+      <ul>
+      <h4>Chimney Flashing Upgrades</h4>
+        <li>Copper<input
+        type="checkbox"
+        checked={choosenUpgrades.chFCopper === true }
+        onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, chFCopper: !choosenUpgrades.chFCopper })}/>
+        </li>
+        <li>Galvanized<input
+        type="checkbox"
+        checked={choosenUpgrades.chFGalvan === true }
+        onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, chFGalvan: !choosenUpgrades.chFGalvan })}/>
+        </li>
+      </ul>
+      )
+    }
+    else if (roofTemplate.chimneyCopper) {
+      return (
+      <ul>
+      <h4>Chimney Flashing Upgrades</h4>
+
+        <li>Galvanized<input
+        type="checkbox"
+        checked={choosenUpgrades.chFGalvan === true }
+        onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, chFGalvan: !choosenUpgrades.chFGalvan })}/>
+        </li>
+      </ul>
+      )
+    }
+  }
+
 
   switch (roofTemplate.step) {
     default:
@@ -581,22 +1045,7 @@ export default function UpgradeTool() {
       return (
         <>
         <div className="question-container">
-        <h1 className="surv-header">Homeowner Information</h1>
-        <div className="form-group">
-        <label>Job #</label>
-        <input
-        type="text"
-        value={roofTemplate.job}
-        onChange={(e) => setRoofTemplate({ ...roofTemplate, job: e.target.value })}
-        />
-        <label>Name</label>
-        <input
-        type="text"
-        value={roofTemplate.name}
-        onChange={(e) => setRoofTemplate({ ...roofTemplate, name: e.target.value })}
-        />
-
-        </div>
+        <StepZero roofTemplate={roofTemplate} setRoofTemplate={setRoofTemplate}/>
         <div className="surv-accent1"></div>
         </div>
         <button className="survey-btn next" onClick={() => zeroNext()}><i class="fas fa-chevron-right"></i></button>
@@ -607,27 +1056,7 @@ export default function UpgradeTool() {
         return (
           <>
           <div className="question-container">
-          <h1 className="surv-header">Roof Measurement</h1>
-          <div className="form-group">
-          <label>Manual Entry</label>
-          <input
-          style={{ width:"20px", height: "20px" }}
-          type="radio"
-          name="roofMeasurement"
-          value="manual"
-          checked={roofTemplate.roofMeasurement === 'manual'}
-          onChange={handleMeasurementChange}
-          />
-          <label>.XML Upload</label>
-          <input
-          style={{ width:"20px", height: "20px" }}
-          type="radio"
-          name="roofMeasurement"
-          value="xml"
-          checked={roofTemplate.roofMeasurement === 'xml'}
-          onChange={handleMeasurementChange}
-          />
-          </div>
+          <StepOne roofTemplate={roofTemplate} handleMeasurementChange={handleMeasurementChange}/>
           <div className="surv-accent1"></div>
           </div>
           <button className="survey-btn prev" onClick={() => onePrev()}><i class="fas fa-chevron-left"></i></button>
@@ -747,7 +1176,7 @@ export default function UpgradeTool() {
 
           </>
         )
-      case "xml":
+    case "xml":
         return (
           <>
           <div className="question-container">
@@ -790,7 +1219,6 @@ export default function UpgradeTool() {
 
           </>
         )
-
     case "roofType":
           return (
             <>
@@ -820,7 +1248,6 @@ export default function UpgradeTool() {
             <button className="survey-btn next" onClick={() => roofTypeNext()}><i class="fas fa-chevron-right"></i></button>
             </>
           )
-
     case "asphalt":
             return (
               <>
@@ -847,7 +1274,7 @@ export default function UpgradeTool() {
               </>
             )
           // if user went down different path we need to reset that state here
-      case "metal":
+    case "metal":
           return (
             <>
             <div className="question-container">
@@ -896,7 +1323,7 @@ export default function UpgradeTool() {
 
             </>
           )
-          case "laminate":
+    case "laminate":
           return (
             <>
             <div className="question-container">
@@ -1132,7 +1559,6 @@ export default function UpgradeTool() {
 
         </>
       )
-
     case "neoprene":
           return (
             <>
@@ -1198,7 +1624,7 @@ export default function UpgradeTool() {
 
             </>
           )
-      case "ice-water":
+    case "ice-water":
           return (
             <>
             <div className="question-container">
@@ -1251,7 +1677,7 @@ export default function UpgradeTool() {
 
             </>
           )
-      case "ridge-vent":
+    case "ridge-vent":
           return (
           <>
           <div className="question-container">
@@ -1274,7 +1700,7 @@ export default function UpgradeTool() {
 
           </>
           )
-      case "drip-gutter":
+    case "drip-gutter":
           return (
             <>
             <div className="question-container">
@@ -1314,7 +1740,6 @@ export default function UpgradeTool() {
 
             </>
           )
-
     case "ridge":
           return (
             <>
@@ -1353,7 +1778,7 @@ export default function UpgradeTool() {
 
             </>
           )
-        case 'step-flashing':
+    case 'step-flashing':
           return (
             <>
             <div className="question-container">
@@ -1390,7 +1815,7 @@ export default function UpgradeTool() {
 
             </>
           )
-        case 'counter-flashing':
+    case 'counter-flashing':
           return (
             <>
             <div className="question-container">
@@ -1427,7 +1852,7 @@ export default function UpgradeTool() {
 
             </>
           )
-        case 'chimney-flashing':
+    case 'chimney-flashing':
           return (
             <>
             <div className="question-container">
@@ -1471,15 +1896,23 @@ export default function UpgradeTool() {
 
             </>
           )
-        case "upgrade-tool":
+
+    case "upgrade-tool":
           return   (
             <>
             <div className="question-container">
             <button onClick={() => console.log(upgradeOptions)}>log</button>
             <h1 className="surv-header">Available Upgrades</h1>
+
             {existingShingleUpgrade()}
-            {existingMetalEdge()}
-            {existingValleyMetal()}
+            {feltUpgrade()}
+            {syntheticUpgrade()}
+            {dripGutterUpgrade()}
+            {valleyMetalUpgrade()}
+            {ridgeCapUpgrade()}
+            {stepUpgrade()}
+            {counterUpgrade()}
+            {chimneyUpgrade()}
             <div className="surv-accent1"></div>
 
             </div>
