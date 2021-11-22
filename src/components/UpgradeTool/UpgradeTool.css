@@ -93,3 +93,11 @@ label {
   top: 248px;
   right: -10px;
 }
+.upgradeOptions-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 50px;
+}
+.upgrade-item {
+  margin: 10px;
+}

@@ -818,6 +818,7 @@ export default function UpgradeTool() {
         return (
           <>
           <ul>
+          <h4>Valley Metal Upgrades</h4>
             <li>{!roofTemplate.wPainter &&
               <>
               Painter
@@ -911,7 +912,7 @@ export default function UpgradeTool() {
     if (roofTemplate.tab) {
       return (
       <ul>
-      <h4>Ridge Cap Upgrade</h4>
+      <h4>Ridge Cap Upgrades</h4>
 
         <li>Standard Profile<input
         type="checkbox"
@@ -930,7 +931,7 @@ export default function UpgradeTool() {
     else if (roofTemplate.standard) {
       return (
         <ul>
-        <h4>Ridge Cap Upgrade</h4>
+        <h4>Ridge Cap Upgrades</h4>
 
           <li>High Profile<input
           type="checkbox"
@@ -1900,20 +1901,37 @@ export default function UpgradeTool() {
     case "upgrade-tool":
           return   (
             <>
-            <div className="question-container">
-            <button onClick={() => console.log(upgradeOptions)}>log</button>
-            <h1 className="surv-header">Available Upgrades</h1>
+            <div className="upgradeOptions-container">
+            <h1 className="surv-header" style={{ height: '50px'}}>Available Upgrades</h1>
 
+            <div className="upgrade-item">
             {existingShingleUpgrade()}
+            </div>
+            <div className="upgrade-item">
             {feltUpgrade()}
+            </div>
+            <div className="upgrade-item">
             {syntheticUpgrade()}
+            </div>
+            <div className="upgrade-item">
             {dripGutterUpgrade()}
+            </div>
+            <div className="upgrade-item">
             {valleyMetalUpgrade()}
+            </div>
+            <div className="upgrade-item">
             {ridgeCapUpgrade()}
+            </div>
+            <div className="upgrade-item">
             {stepUpgrade()}
+            </div>
+            <div className="upgrade-item">
             {counterUpgrade()}
+            </div>
+            <div className="upgrade-item">
             {chimneyUpgrade()}
-            <div className="surv-accent1"></div>
+            </div>
+
 
             </div>
             <button className="survey-btn prev" onClick={() => upgradeToolPrev()}><i class="fas fa-chevron-left"></i></button>
