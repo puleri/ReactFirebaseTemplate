@@ -556,7 +556,7 @@ export default function UpgradeTool() {
         return (
           <ul>
             <h4>Existing Shingle Upgrades</h4>
-            <li>25 year
+            <li className="upgrade-li" >25 year
             <input
             type="checkbox"
             checked={choosenUpgrades.twentyFiveTab === true }
@@ -578,31 +578,31 @@ export default function UpgradeTool() {
           return (
             <ul>
             <h4>Laminate Upgrades</h4>
-              <li>High Grade Laminate<input
+              <li className="upgrade-li" >High Grade Laminate<input
               type="checkbox"
               checked={choosenUpgrades.highLam === true }
               onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, highLam: !choosenUpgrades.highLam })}/>
               </li>
 
-              <li>Designer Grade Laminate<input
+              <li className="upgrade-li" >Designer Grade Laminate<input
               type="checkbox"
               checked={choosenUpgrades.designerLam === true }
               onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, designerLam: !choosenUpgrades.designerLam })}/>
               </li>
 
-              <li>Specialty Grade Laminate<input
+              <li className="upgrade-li" >Specialty Grade Laminate<input
               type="checkbox"
               checked={choosenUpgrades.specialtyLam === true }
               onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, specialtyLam: !choosenUpgrades.specialtyLam })}/>
               </li>
 
-              <li>Double Laminate<input
+              <li className="upgrade-li" >Double Laminate<input
               type="checkbox"
               checked={choosenUpgrades.doubleLam === true }
               onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, doubleLam: !choosenUpgrades.doubleLam })}/>
               </li>
 
-              <li>Triple Laminate<input
+              <li className="upgrade-li" >Triple Laminate<input
               type="checkbox"
               checked={choosenUpgrades.tripleLam === true }
               onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, tripleLam: !choosenUpgrades.tripleLam })}/>
@@ -613,25 +613,25 @@ export default function UpgradeTool() {
           return (
             <ul>
             <h4>Laminate Upgrades</h4>
-            <li>Designer Grade Laminate<input
+            <li className="upgrade-li" >Designer Grade Laminate<input
             type="checkbox"
             checked={choosenUpgrades.designerLam === true }
             onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, designerLam: !choosenUpgrades.designerLam })}/>
             </li>
 
-            <li>Specialty Grade Laminate<input
+            <li className="upgrade-li" >Specialty Grade Laminate<input
             type="checkbox"
             checked={choosenUpgrades.specialtyLam === true }
             onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, specialtyLam: !choosenUpgrades.specialtyLam })}/>
             </li>
 
-            <li>Double Laminate<input
+            <li className="upgrade-li" >Double Laminate<input
             type="checkbox"
             checked={choosenUpgrades.doubleLam === true }
             onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, doubleLam: !choosenUpgrades.doubleLam })}/>
             </li>
 
-            <li>Triple Laminate<input
+            <li className="upgrade-li" >Triple Laminate<input
             type="checkbox"
             checked={choosenUpgrades.tripleLam === true }
             onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, tripleLam: !choosenUpgrades.tripleLam })}/>
@@ -642,19 +642,19 @@ export default function UpgradeTool() {
           return (
             <ul>
             <h4>Laminate Upgrades</h4>
-            <li>Specialty Grade Laminate<input
+            <li className="upgrade-li" >Specialty Grade Laminate<input
             type="checkbox"
             checked={choosenUpgrades.specialtyLam === true }
             onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, specialtyLam: !choosenUpgrades.specialtyLam })}/>
             </li>
 
-            <li>Double Laminate<input
+            <li className="upgrade-li" >Double Laminate<input
             type="checkbox"
             checked={choosenUpgrades.doubleLam === true }
             onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, doubleLam: !choosenUpgrades.doubleLam })}/>
             </li>
 
-            <li>Triple Laminate<input
+            <li className="upgrade-li" >Triple Laminate<input
             type="checkbox"
             checked={choosenUpgrades.tripleLam === true }
             onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, tripleLam: !choosenUpgrades.tripleLam })}/>
@@ -671,21 +671,21 @@ export default function UpgradeTool() {
         return (
           <ul>
             <h4>Existing Shingle Upgrades</h4>
-            <li>Drip Eaves
+            <li className="upgrade-li" >Drip Eaves
             <input
             type="checkbox"
             checked={choosenUpgrades.dripEaves === true }
             onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, dripEaves: !choosenUpgrades.dripEaves })}/>
             </li>
 
-            <li>Drip Rakes
+            <li className="upgrade-li" >Drip Rakes
             <input
             type="checkbox"
             checked={choosenUpgrades.dripRakes === true }
             onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, dripRakes: !choosenUpgrades.dripRakes })}/>
             </li>
 
-            <li>Gutter Apron Eaves
+            <li className="upgrade-li" >Gutter Apron Eaves
             <input
             type="checkbox"
             checked={choosenUpgrades.gutterEaves === true }
@@ -698,14 +698,14 @@ export default function UpgradeTool() {
         return (
           <ul>
             <h4>Existing Shingle Upgrades</h4>
-            <li>Drip Eaves
+            <li className="upgrade-li" >Drip Eaves
             <input
             type="checkbox"
             checked={choosenUpgrades.dripEaves === true }
             onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, dripEaves: !choosenUpgrades.dripEaves })}/>
             </li>
 
-            <li>Gutter Apron Eaves
+            <li className="upgrade-li" >Gutter Apron Eaves
             <input
             type="checkbox"
             checked={choosenUpgrades.gutterEaves === true }
@@ -717,14 +717,14 @@ export default function UpgradeTool() {
         return (
           <ul>
             <h4>Existing Shingle Upgrades</h4>
-            <li>Drip Eaves
+            <li className="upgrade-li" >Drip Eaves
             <input
             type="checkbox"
             checked={choosenUpgrades.dripEaves === true }
             onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, dripEaves: !choosenUpgrades.dripEaves })}/>
             </li>
 
-            <li>Drip Rakes
+            <li className="upgrade-li" >Drip Rakes
             <input
             type="checkbox"
             checked={choosenUpgrades.dripRakes === true }
@@ -738,14 +738,14 @@ export default function UpgradeTool() {
           <ul>
             <h4>Existing Shingle Upgrades</h4>
 
-            <li>Drip Rakes
+            <li className="upgrade-li" >Drip Rakes
             <input
             type="checkbox"
             checked={choosenUpgrades.dripRakes === true }
             onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, dripRakes: !choosenUpgrades.dripRakes })}/>
             </li>
 
-            <li>Gutter Apron Eaves
+            <li className="upgrade-li" >Gutter Apron Eaves
             <input
             type="checkbox"
             checked={choosenUpgrades.gutterEaves === true }
@@ -758,7 +758,7 @@ export default function UpgradeTool() {
         return (
           <ul>
             <h4>Existing Shingle Upgrades</h4>
-            <li>Drip Eaves
+            <li className="upgrade-li" >Drip Eaves
             <input
             type="checkbox"
             checked={choosenUpgrades.dripEaves === true }
@@ -773,7 +773,7 @@ export default function UpgradeTool() {
           <ul>
             <h4>Existing Shingle Upgrades</h4>
 
-            <li>Drip Rakes
+            <li className="upgrade-li" >Drip Rakes
             <input
             type="checkbox"
             checked={choosenUpgrades.dripRakes === true }
@@ -786,7 +786,7 @@ export default function UpgradeTool() {
         return (
           <ul>
             <h4>Existing Shingle Upgrades</h4>
-            <li>Gutter Apron Eaves
+            <li className="upgrade-li" >Gutter Apron Eaves
             <input
             type="checkbox"
             checked={choosenUpgrades.gutterEaves === true }
@@ -804,7 +804,7 @@ export default function UpgradeTool() {
           <ul>
             <h4>Valley Metal Upgrade</h4>
 
-            <li>"W"
+            <li className="upgrade-li" >"W"
             <input
             type="checkbox"
             checked={choosenUpgrades.valleyMetalW === true }
@@ -819,7 +819,7 @@ export default function UpgradeTool() {
           <>
           <ul>
           <h4>Valley Metal Upgrades</h4>
-            <li>{!roofTemplate.wPainter &&
+            <li className="upgrade-li" >{!roofTemplate.wPainter &&
               <>
               Painter
               <input
@@ -828,7 +828,7 @@ export default function UpgradeTool() {
               onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, valleyMetalPainted: !choosenUpgrades.valleyMetalPainted })}/>
               </>
             }</li>
-            <li>{!roofTemplate.wGalvanized &&
+            <li className="upgrade-li" >{!roofTemplate.wGalvanized &&
               <>
               Galvanized
               <input
@@ -837,7 +837,7 @@ export default function UpgradeTool() {
               onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, valleyMetalGalvanized: !choosenUpgrades.valleyMetalGalvanized })}/>
               </>
             }</li>
-            <li>{!roofTemplate.wCopper &&
+            <li className="upgrade-li" >{!roofTemplate.wCopper &&
               <>
               Copper
               <input
@@ -856,14 +856,14 @@ export default function UpgradeTool() {
     return (
       <ul>
         <h4>Felt Underlayment Upgrades</h4>
-        <li>
+        <li className="upgrade-li" >
           #15
           <input
           type="checkbox"
           checked={choosenUpgrades.fifteenFelt === true }
           onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, fifteenFelt: !choosenUpgrades.fifteenFelt })}/>
         </li>
-        <li>
+        <li className="upgrade-li" >
           #30
           <input
           type="checkbox"
@@ -880,13 +880,13 @@ export default function UpgradeTool() {
       <ul>
       <h4>Synthetic Underlayment Upgrades</h4>
 
-        <li>Better Grade<input
+        <li className="upgrade-li" >Better Grade<input
         type="checkbox"
         checked={choosenUpgrades.betterSynth === true }
         onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, betterSynth: !choosenUpgrades.betterSynth })}/>
         </li>
 
-        <li>Best Grade<input
+        <li className="upgrade-li" >Best Grade<input
         type="checkbox"
         checked={choosenUpgrades.bestSynth === true }
         onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, bestSynth: !choosenUpgrades.bestSynth })}/>
@@ -897,7 +897,7 @@ export default function UpgradeTool() {
       return (
       <ul>
       <h4>Synthetic Underlayment Upgrades</h4>
-        <li>Best Grade<input
+        <li className="upgrade-li" >Best Grade<input
         type="checkbox"
         checked={choosenUpgrades.bestSynth === true }
         onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, bestSynth: !choosenUpgrades.bestSynth })}/>
@@ -914,13 +914,13 @@ export default function UpgradeTool() {
       <ul>
       <h4>Ridge Cap Upgrades</h4>
 
-        <li>Standard Profile<input
+        <li className="upgrade-li" >Standard Profile<input
         type="checkbox"
         checked={choosenUpgrades.standardRidge === true }
         onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, standardRidge: !choosenUpgrades.standardRidge })}/>
         </li>
 
-        <li>High Profile<input
+        <li className="upgrade-li" >High Profile<input
         type="checkbox"
         checked={choosenUpgrades.highRidge === true }
         onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, highRidge: !choosenUpgrades.highRidge })}/>
@@ -933,7 +933,7 @@ export default function UpgradeTool() {
         <ul>
         <h4>Ridge Cap Upgrades</h4>
 
-          <li>High Profile<input
+          <li className="upgrade-li" >High Profile<input
           type="checkbox"
           checked={choosenUpgrades.highRidge === true }
           onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, highRidge: !choosenUpgrades.highRidge })}/>
@@ -947,12 +947,12 @@ export default function UpgradeTool() {
       return (
       <ul>
       <h4>Step Flashing Upgrades</h4>
-        <li>Copper<input
+        <li className="upgrade-li" >Copper<input
         type="checkbox"
         checked={choosenUpgrades.sFCopper === true }
         onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, sFCopper: !choosenUpgrades.sFCopper })}/>
         </li>
-        <li>Galvanized<input
+        <li className="upgrade-li" >Galvanized<input
         type="checkbox"
         checked={choosenUpgrades.sFGalvan === true }
         onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, sFGalvan: !choosenUpgrades.sFGalvan })}/>
@@ -965,7 +965,7 @@ export default function UpgradeTool() {
       <ul>
       <h4>Step Flashing Upgrades</h4>
 
-        <li>Galvanized<input
+        <li className="upgrade-li" >Galvanized<input
         type="checkbox"
         checked={choosenUpgrades.sFGalvan === true }
         onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, sFGalvan: !choosenUpgrades.sFGalvan })}/>
@@ -979,12 +979,12 @@ export default function UpgradeTool() {
       return (
       <ul>
       <h4>Counter Flashing Upgrades</h4>
-        <li>Copper<input
+        <li className="upgrade-li" >Copper<input
         type="checkbox"
         checked={choosenUpgrades.cFCopper === true }
         onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, cFCopper: !choosenUpgrades.cFCopper })}/>
         </li>
-        <li>Galvanized<input
+        <li className="upgrade-li" >Galvanized<input
         type="checkbox"
         checked={choosenUpgrades.cFGalvan === true }
         onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, cFGalvan: !choosenUpgrades.cFGalvan })}/>
@@ -997,7 +997,7 @@ export default function UpgradeTool() {
       <ul>
       <h4>Counter Flashing Upgrades</h4>
 
-        <li>Galvanized<input
+        <li className="upgrade-li" >Galvanized<input
         type="checkbox"
         checked={choosenUpgrades.cFGalvan === true }
         onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, cFGalvan: !choosenUpgrades.cFGalvan })}/>
@@ -1011,12 +1011,12 @@ export default function UpgradeTool() {
       return (
       <ul>
       <h4>Chimney Flashing Upgrades</h4>
-        <li>Copper<input
+        <li className="upgrade-li" >Copper<input
         type="checkbox"
         checked={choosenUpgrades.chFCopper === true }
         onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, chFCopper: !choosenUpgrades.chFCopper })}/>
         </li>
-        <li>Galvanized<input
+        <li className="upgrade-li" >Galvanized<input
         type="checkbox"
         checked={choosenUpgrades.chFGalvan === true }
         onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, chFGalvan: !choosenUpgrades.chFGalvan })}/>
@@ -1029,7 +1029,7 @@ export default function UpgradeTool() {
       <ul>
       <h4>Chimney Flashing Upgrades</h4>
 
-        <li>Galvanized<input
+        <li className="upgrade-li" >Galvanized<input
         type="checkbox"
         checked={choosenUpgrades.chFGalvan === true }
         onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, chFGalvan: !choosenUpgrades.chFGalvan })}/>
