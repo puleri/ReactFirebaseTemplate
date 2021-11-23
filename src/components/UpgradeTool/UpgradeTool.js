@@ -113,6 +113,142 @@ export default function UpgradeTool() {
     chFPainted: false,
   })
 
+  // upgrades with string names and number prices
+  const upgradeObjects = {
+    twentyFiveTab: {
+      name: "25 Year 3-Tab",
+      price: 200
+    },
+
+    builderLam: {
+      name: "Builder grade laminate",
+      price: 200
+    },
+    highLam: {
+      name: "High grade laminate",
+      price: 200
+    },
+    designerLam: {
+      name: "Designer grade laminate",
+      price: 200
+    },
+    specialtyLam: {
+      name: "Specialty grade laminate",
+      price: 200
+    },
+    doubleLam: {
+      name: "Double laminate",
+      price: 200
+    },
+    tripleLam: {
+      name: "Triple laminate",
+      price: 200
+    },
+
+    synth: {
+      name: "Synthetic Underlayment",
+      price: 200
+    },
+
+    builderSynth: {
+      name: "Builder grade synthetic underlayment",
+      price: 200
+    },
+    betterSynth: {
+      name: "Better grade synthetic underlayment",
+      price: 200
+    },
+    bestSynth: {
+      name: "Best grade synthetic underlayment",
+      price: 200
+    },
+
+    dripRakes: {
+      name: "Drip rakes",
+      price: 200
+    },
+    dripEaves: {
+      name: "Drip eaves",
+      price: 200
+    },
+    gutterEaves: {
+      name: "Gutter eaves",
+      price: 200
+    },
+
+    valleyMetalW: {
+      name: "\"W\" valley metal",
+      price: 200
+    },
+    valleyMetalPainted: {
+      name: "Painted valley metal",
+      price: 200
+    },
+    valleyMetalGalvanized: {
+      name: "Galvanized valley metal",
+      price: 200
+    },
+    valleyMetalCopper: {
+      name: "Copper valley metal",
+      price: 200
+    },
+
+    threeRidge: {
+      name: "3-Tab ridge cap",
+      price: 200
+    },
+    standardRidge: {
+      name: "Standard profile ridge cap",
+      price: 200
+    },
+    highRidge: {
+      name: "High profile ridge cap",
+      price: 200
+    },
+
+    sFAlum: {
+      name: "Aluminum step flashing",
+      price: 200
+    },
+    sFCopper: {
+      name: "Copper step flashing",
+      price: 200
+    },
+    sFGalvan: {
+      name: "Galvanized step flashing",
+      price: 200
+    },
+
+    cFAlum: {
+      name: "Aluminum counter flashing",
+      price: 200
+    },
+    cFCopper: {
+      name: "Copper counter flashing",
+      price: 200
+    },
+    cFPainted: {
+      name: "Painted metal counter flashing",
+      price: 200
+    },
+
+    chFAlum: {
+      name: "Aluminum chimney flashing",
+      price: 200
+    },
+    chFCopper: {
+      name: "Copper chimney flashing",
+      price: 200
+    },
+    chFLead: {
+      name: "Lead chimney flashing",
+      price: 200
+    },
+    chFPainted: {
+      name: "Painted metal chimney flashing",
+      price: 200
+    },
+  }
 
 
   const handleMeasurementChange = (e) => {
@@ -548,7 +684,8 @@ export default function UpgradeTool() {
   }
   const chimneyFlashingPrev = () => setRoofTemplate({ ...roofTemplate, step: 'counter-flashing'})
   const upgradeToolPrev = () => setRoofTemplate({ ...roofTemplate, step: 'chimney-flashing'})
-
+  const upgradeToolNext = () => setRoofTemplate({...roofTemplate, step: 'selected-upgrades'})
+  const selectedUpgradesPrev = () => setRoofTemplate({...roofTemplate, step: 'upgrade-tool'})
 // upgrade conditionals
   const existingShingleUpgrade = () => {
     if (roofTemplate.existingShingle === "3-tab") {
@@ -1058,7 +1195,9 @@ export default function UpgradeTool() {
 
   // selected upgrades
   const selectedUpgrades = () => {
-
+    let keys = Object.keys(choosenUpgrades);
+    let data = keys.filter((i) => choosenUpgrades[i] === true)              
+     console.log(data)
   }
 
   switch (roofTemplate.step) {
@@ -1961,14 +2100,18 @@ export default function UpgradeTool() {
 
             </div>
             <button className="survey-btn prev" onClick={() => upgradeToolPrev()}><i class="fas fa-chevron-left"></i></button>
-            <button className="survey-btn next" onClick={() => console.log("fix me")}><i class="fas fa-chevron-right"></i></button>
+            <button className="survey-btn next" onClick={() => upgradeToolNext()}><i class="fas fa-chevron-right"></i></button>
 
             </>
           )
     case "selected-upgrades":
       return (
         <div>
-          {selectedUpgrades()}
+        <div className="question-container">
+        <h1 className="surv-header">Chimney Flashing</h1>
+        {selectedUpgrades()}
+        </div>
+          <button className="survey-btn prev" onClick={() => selectedUpgradesPrev()}><i class="fas fa-chevron-left"></i></button>
         </div>
       )
   }
