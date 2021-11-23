@@ -80,8 +80,7 @@ export default function UpgradeTool() {
     doubleLam: false,
     tripleLam: false,
 
-    fifteenFelt: false,
-    thirtyFelt: false,
+    synth: false,
 
     builderSynth: false,
     betterSynth: false,
@@ -106,11 +105,12 @@ export default function UpgradeTool() {
 
     cFAlum: false,
     cFCopper: false,
-    cFGalvan: false,
+    cFPainted: false,
 
     chFAlum: false,
     chFCopper: false,
-    chFGalvan: false,
+    chFLead: false,
+    chFPainted: false,
   })
 
 
@@ -855,21 +855,15 @@ export default function UpgradeTool() {
   const feltUpgrade = () => {
     return (
       <ul>
-        <h4>Felt Underlayment Upgrades</h4>
+        <h4>Underlayment Upgrades</h4>
         <li className="upgrade-li" >
-          #15
+          Synthetic
           <input
           type="checkbox"
-          checked={choosenUpgrades.fifteenFelt === true }
-          onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, fifteenFelt: !choosenUpgrades.fifteenFelt })}/>
+          checked={choosenUpgrades.synth === true }
+          onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, synth: !choosenUpgrades.synth })}/>
         </li>
-        <li className="upgrade-li" >
-          #30
-          <input
-          type="checkbox"
-          checked={choosenUpgrades.thirtyFelt === true }
-          onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, thirtyFelt: !choosenUpgrades.thirtyFelt })}/>
-        </li>
+
       </ul>
     )
   }
@@ -984,10 +978,10 @@ export default function UpgradeTool() {
         checked={choosenUpgrades.cFCopper === true }
         onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, cFCopper: !choosenUpgrades.cFCopper })}/>
         </li>
-        <li className="upgrade-li" >Galvanized<input
+        <li className="upgrade-li" >Painted Metal<input
         type="checkbox"
-        checked={choosenUpgrades.cFGalvan === true }
-        onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, cFGalvan: !choosenUpgrades.cFGalvan })}/>
+        checked={choosenUpgrades.cFPainted === true }
+        onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, cFPainted: !choosenUpgrades.cFPainted })}/>
         </li>
       </ul>
       )
@@ -997,10 +991,10 @@ export default function UpgradeTool() {
       <ul>
       <h4>Counter Flashing Upgrades</h4>
 
-        <li className="upgrade-li" >Galvanized<input
+        <li className="upgrade-li" >Painted Metal<input
         type="checkbox"
-        checked={choosenUpgrades.cFGalvan === true }
-        onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, cFGalvan: !choosenUpgrades.cFGalvan })}/>
+        checked={choosenUpgrades.cFPainted === true }
+        onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, cFPainted: !choosenUpgrades.cFPainted })}/>
         </li>
       </ul>
       )
@@ -1016,10 +1010,15 @@ export default function UpgradeTool() {
         checked={choosenUpgrades.chFCopper === true }
         onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, chFCopper: !choosenUpgrades.chFCopper })}/>
         </li>
-        <li className="upgrade-li" >Galvanized<input
+        <li className="upgrade-li" >Lead<input
         type="checkbox"
-        checked={choosenUpgrades.chFGalvan === true }
-        onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, chFGalvan: !choosenUpgrades.chFGalvan })}/>
+        checked={choosenUpgrades.chFLead === true }
+        onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, chFLead: !choosenUpgrades.chFLead })}/>
+        </li>
+        <li className="upgrade-li" >Painted Metal<input
+        type="checkbox"
+        checked={choosenUpgrades.chFPainted === true }
+        onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, chFPainted: !choosenUpgrades.chFPainted })}/>
         </li>
       </ul>
       )
@@ -1029,16 +1028,38 @@ export default function UpgradeTool() {
       <ul>
       <h4>Chimney Flashing Upgrades</h4>
 
-        <li className="upgrade-li" >Galvanized<input
+        <li className="upgrade-li" >Lead<input
         type="checkbox"
-        checked={choosenUpgrades.chFGalvan === true }
-        onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, chFGalvan: !choosenUpgrades.chFGalvan })}/>
+        checked={choosenUpgrades.chFLead === true }
+        onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, chFLead: !choosenUpgrades.chFLead })}/>
+        </li>
+        <li className="upgrade-li" >Painted Metal<input
+        type="checkbox"
+        checked={choosenUpgrades.chFPainted === true }
+        onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, chFPainted: !choosenUpgrades.chFPainted })}/>
+        </li>
+      </ul>
+      )
+    }
+    else if (roofTemplate.chimneyLead) {
+      return (
+      <ul>
+      <h4>Chimney Flashing Upgrades</h4>
+
+        <li className="upgrade-li" >Painted Metal<input
+        type="checkbox"
+        checked={choosenUpgrades.chFPainted === true }
+        onChange={(e) => setChoosenUpgrades({ ...choosenUpgrades, chFPainted: !choosenUpgrades.chFPainted })}/>
         </li>
       </ul>
       )
     }
   }
 
+  // selected upgrades
+  const selectedUpgrades = () => {
+
+  }
 
   switch (roofTemplate.step) {
     default:
@@ -1281,11 +1302,18 @@ export default function UpgradeTool() {
             <div className="question-container">
             <h1 className="surv-header">Metal Edge</h1>
             <div className="form-group">
-              <label>Metal Edge</label>
+              <label>Yes</label>
               <input
-              style={{ width:"40px", height: "40px" }}
-              type="checkbox"
+              style={{ width:"20px", height: "20px" }}
+              type="radio"
               checked={roofTemplate.metalEdge === true }
+              onChange={(e) => setRoofTemplate({ ...roofTemplate, metalEdge: !roofTemplate.metalEdge })}
+              />
+              <label>No</label>
+              <input
+              style={{ width:"20px", height: "20px" }}
+              type="radio"
+              checked={roofTemplate.metalEdge === false }
               onChange={(e) => setRoofTemplate({ ...roofTemplate, metalEdge: !roofTemplate.metalEdge })}
               />
             </div>
@@ -1705,8 +1733,9 @@ export default function UpgradeTool() {
           return (
             <>
             <div className="question-container">
-            <h1 className="surv-header">Drip</h1>
+            <h1 className="surv-header">Drip & Gutter Apron</h1>
             <div className="form-group">
+            <h2>Drip</h2>
               <label>Rakes</label>
               <input
               style={{ width:"40px", height: "40px" }}
@@ -1721,9 +1750,7 @@ export default function UpgradeTool() {
               checked={roofTemplate.dripEaves === true }
               onChange={(e) => setRoofTemplate({ ...roofTemplate, dripEaves: !roofTemplate.dripEaves })}
               />
-            </div>
             <h2>Gutter Apron</h2>
-            <div className="form-group">
               <label>Eaves</label>
               <input
               style={{ width:"40px", height: "40px" }}
@@ -1731,7 +1758,6 @@ export default function UpgradeTool() {
               checked={roofTemplate.apronEaves === true }
               onChange={(e) => setRoofTemplate({ ...roofTemplate, apronEaves: !roofTemplate.apronEaves })}
               />
-
             </div>
             <div className="surv-accent1"></div>
 
@@ -1939,6 +1965,12 @@ export default function UpgradeTool() {
 
             </>
           )
+    case "selected-upgrades":
+      return (
+        <div>
+          {selectedUpgrades()}
+        </div>
+      )
   }
 }
 // checked
