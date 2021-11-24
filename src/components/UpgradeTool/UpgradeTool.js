@@ -1194,7 +1194,6 @@ export default function UpgradeTool() {
     }
   }
 
-  // selected upgrades
   const selectedUpgrades = () => {
     let keys = Object.keys(chosenUpgrades);
     // returns keys of chosen upgrades in array
@@ -1209,10 +1208,10 @@ export default function UpgradeTool() {
     data.forEach(getNameAndPrice);
     return namesAndPrices.map((item, index) => {
       return (
-        <div>
-          <h4>Name: {item.name}</h4>
-          <p>Price: {item.price}</p>
-        </div>
+        <tr key={index}>
+          <td>{item.name}</td>
+          <td>{item.price}</td>
+        </tr>
       )
     })
   }
@@ -2126,7 +2125,15 @@ export default function UpgradeTool() {
         <div>
         <div className="question-container">
         <h1 className="surv-header">Selected Upgrades</h1>
-        {selectedUpgrades()}
+          <table>
+            <tbody>
+            <tr>
+              <th>Name</th>
+              <th>Price</th>
+            </tr>
+              {selectedUpgrades()}
+            </tbody>
+          </table>
         </div>
           <button className="survey-btn prev" onClick={() => selectedUpgradesPrev()}><i class="fas fa-chevron-left"></i></button>
         </div>
