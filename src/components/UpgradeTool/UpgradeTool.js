@@ -1199,11 +1199,22 @@ export default function UpgradeTool() {
     let keys = Object.keys(chosenUpgrades);
     // returns keys of chosen upgrades in array
     let data = keys.filter((i) => chosenUpgrades[i] === true)
+
     // returns each item's name and price
+    let namesAndPrices = [];
     const getNameAndPrice = (upgrade) => {
-      console.log(upgradeObjects[upgrade])
+      namesAndPrices.push({ name: upgradeObjects[upgrade].name, price: upgradeObjects[upgrade].price})
+      // return (upgradeObjects[upgrade].name + ' ' + upgradeObjects[upgrade].price)
     };
     data.forEach(getNameAndPrice);
+    return namesAndPrices.map((item, index) => {
+      return (
+        <div>
+          <h4>Name: {item.name}</h4>
+          <p>Price: {item.price}</p>
+        </div>
+      )
+    })
   }
 
   switch (roofTemplate.step) {
@@ -2114,7 +2125,7 @@ export default function UpgradeTool() {
       return (
         <div>
         <div className="question-container">
-        <h1 className="surv-header">Chimney Flashing</h1>
+        <h1 className="surv-header">Selected Upgrades</h1>
         {selectedUpgrades()}
         </div>
           <button className="survey-btn prev" onClick={() => selectedUpgradesPrev()}><i class="fas fa-chevron-left"></i></button>
