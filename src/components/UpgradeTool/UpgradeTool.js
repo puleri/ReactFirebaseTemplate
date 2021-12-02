@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
+
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Container'
+
 import StepZero from './StepZero.js';
 import StepOne from './StepOne.js';
+
+
 // import { useLocation } from "react-router-dom";
 import './UpgradeTool.css';
 
@@ -1244,7 +1251,7 @@ export default function UpgradeTool() {
         return (
           <>
           <div className="question-container">
-          <h1 className="surv-header">Manual page</h1>
+          <h1 className="surv-header">Manual Entry</h1>
           <div className="tall-form-group">
             <div className="manual-form">
               <div className="hz-surv">
@@ -1542,13 +1549,20 @@ export default function UpgradeTool() {
 
           <h1 className="surv-header">Valley Metal</h1>
           <div className="form-group">
-          <label>Valley Metal</label>
-          <input
-          style={{ width:"40px", height: "40px" }}
-          type="checkbox"
-          checked={roofTemplate.valleyMetal === true }
-          onChange={(e) => setRoofTemplate({ ...roofTemplate, valleyMetal: !roofTemplate.valleyMetal })}
-          />
+            <label>Yes</label>
+            <input
+            style={{ width:"20px", height: "20px" }}
+            type="radio"
+            checked={roofTemplate.valleyMetal === true }
+            onChange={(e) => setRoofTemplate({ ...roofTemplate, valleyMetal: !roofTemplate.valleyMetal })}
+            />
+            <label>No</label>
+            <input
+            style={{ width:"20px", height: "20px" }}
+            type="radio"
+            checked={roofTemplate.valleyMetal === false }
+            onChange={(e) => setRoofTemplate({ ...roofTemplate, valleyMetal: !roofTemplate.valleyMetal })}
+            />
           </div>
           <div className="surv-accent1"></div>
 
@@ -1666,14 +1680,20 @@ export default function UpgradeTool() {
             <div className="question-container">
             <h1 className="surv-header">Ice and Water</h1>
             <div className="form-group">
-              <label>Ice and Water Barrier</label>
+              <label>Yes</label>
               <input
-              style={{ width:"40px", height: "40px" }}
-              type="checkbox"
+              style={{ width:"20px", height: "20px" }}
+              type="radio"
               checked={roofTemplate.iceBool=== true }
               onChange={(e) => setRoofTemplate({ ...roofTemplate, iceBool: !roofTemplate.iceBool })}
               />
-
+              <label>No</label>
+              <input
+              style={{ width:"20px", height: "20px" }}
+              type="radio"
+              checked={roofTemplate.iceBool=== false }
+              onChange={(e) => setRoofTemplate({ ...roofTemplate, iceBool: !roofTemplate.iceBool })}
+              />
             </div>
             <div className="surv-accent1"></div>
 
@@ -1749,57 +1769,70 @@ export default function UpgradeTool() {
             <div className="question-container">
 
             <h1 className="surv-header">Neoprene/Hard Plastic</h1>
-              <div className="form-group">
-              <input
-              style={{ width:"40px", height: "40px" }}
-              type="checkbox"
-              checked={roofTemplate.neoprene1 === true }
-              onChange={(e) => setRoofTemplate({ ...roofTemplate, neoprene1: !roofTemplate.neoprene1 })}
-              />
-              <label>1"</label>
-              <input
-              style={{ width:"40px", height: "40px" }}
-              type="checkbox"
-              checked={roofTemplate.neoprene15 === true }
-              onChange={(e) => setRoofTemplate({ ...roofTemplate, neoprene15: !roofTemplate.neoprene15 })}
-              />
-              <label>1 1/2"</label>
-              <input
-              style={{ width:"40px", height: "40px" }}
-              type="checkbox"
-              checked={roofTemplate.neoprene2 === true }
-              onChange={(e) => setRoofTemplate({ ...roofTemplate, neoprene2: !roofTemplate.neoprene2 })}
-              />
-              <label>2"</label>
-              <input
-              style={{ width:"40px", height: "40px" }}
-              type="checkbox"
-              checked={roofTemplate.neoprene25 === true }
-              onChange={(e) => setRoofTemplate({ ...roofTemplate, neoprene25: !roofTemplate.neoprene25 })}
-              />
-              <label>2 1/2"</label>
-              <input
-              style={{ width:"40px", height: "40px" }}
-              type="checkbox"
-              checked={roofTemplate.neoprene3 === true }
-              onChange={(e) => setRoofTemplate({ ...roofTemplate, neoprene3: !roofTemplate.neoprene3 })}
-              />
-              <label>3"</label>
-              <input
-              style={{ width:"40px", height: "40px" }}
-              type="checkbox"
-              checked={roofTemplate.neoprene4 === true }
-              onChange={(e) => setRoofTemplate({ ...roofTemplate, neoprene4: !roofTemplate.neoprene4 })}
-              />
-              <label>4"</label>
-              <input
-              style={{ width:"40px", height: "40px" }}
-              type="checkbox"
-              checked={roofTemplate.neoprene6 === true }
-              onChange={(e) => setRoofTemplate({ ...roofTemplate, neoprene6: !roofTemplate.neoprene6 })}
-              />
-              <label>6"</label>
-              </div>
+              <Container fluid={true} >
+                <Row>
+                <Col md={8} className="neoprene">
+                <label>1"</label>
+                <input
+                type="text"
+                value={roofTemplate.neo1}
+                onChange={(e) => setRoofTemplate({ ...roofTemplate, neo1: e.target.value })}
+                />
+                </Col>
+                <Col md={8} className="neoprene">
+                <label>1 1/2"</label>
+                <input
+                type="text"
+                value={roofTemplate.neo15}
+                onChange={(e) => setRoofTemplate({ ...roofTemplate, neo15: e.target.value })}
+                />
+                </Col>
+                </Row>
+                <Row>
+                <Col md={8} className="neoprene">
+                <label>2"</label>
+                <input
+                type="text"
+                value={roofTemplate.neo2}
+                onChange={(e) => setRoofTemplate({ ...roofTemplate, neo2: e.target.value })}
+                />
+                </Col>
+                <Col md={8}  className="neoprene">
+                <label>2 1/2"</label>
+                <input
+                type="text"
+                value={roofTemplate.neo25}
+                onChange={(e) => setRoofTemplate({ ...roofTemplate, neo25: e.target.value })}
+                />
+                </Col>
+                </Row>
+                <Row>
+                <Col md={8} className="neoprene">
+                <label>3"</label>
+                <input
+                type="text"
+                value={roofTemplate.neo3}
+                onChange={(e) => setRoofTemplate({ ...roofTemplate, neo3: e.target.value })}
+                />
+                </Col>
+                <Col md={8} className="neoprene">
+                <label>4"</label>
+                <input
+                type="text"
+                value={roofTemplate.neo4}
+                onChange={(e) => setRoofTemplate({ ...roofTemplate, neo4: e.target.value })}
+                />
+                </Col>
+                <Col md={8} className="neoprene">
+                <label>6"</label>
+                <input
+                type="text"
+                value={roofTemplate.neo6}
+                onChange={(e) => setRoofTemplate({ ...roofTemplate, neo6: e.target.value })}
+                />
+                </Col>
+                </Row>
+              </Container>
               <div className="surv-accent1"></div>
 
               </div>
@@ -1866,13 +1899,20 @@ export default function UpgradeTool() {
           <>
           <div className="question-container">
 
-          <h1 className="surv-header">Ventilation</h1>
+          <h1 className="surv-header">Ridge Vent</h1>
           <div className="form-group">
-            <label>Ridge Vent</label>
+            <label>Yes</label>
             <input
-            style={{ width:"40px", height: "40px" }}
-            type="checkbox"
+            style={{ width:"20px", height: "20px" }}
+            type="radio"
             checked={roofTemplate.ridgeVent === true }
+            onChange={(e) => setRoofTemplate({ ...roofTemplate, ridgeVent: !roofTemplate.ridgeVent })}
+            />
+            <label>No</label>
+            <input
+            style={{ width:"20px", height: "20px" }}
+            type="radio"
+            checked={roofTemplate.ridgeVent === false }
             onChange={(e) => setRoofTemplate({ ...roofTemplate, ridgeVent: !roofTemplate.ridgeVent })}
             />
           </div>

@@ -177,7 +177,7 @@ input {
   border-radius: 10px;
   font-family: 'Heebo', sans-serif;
   font-weight: bold;
-  min-width: 150px;
+  /* min-width: 150px; */
   letter-spacing: 1px;
 }
 #roof_type {

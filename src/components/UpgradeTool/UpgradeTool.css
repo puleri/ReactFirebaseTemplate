@@ -111,3 +111,7 @@ label {
   background: linear-gradient(120deg, #4CD19610 0%,  #4CD19639 100%);
   border-radius: 5px;
 }
+.neoprene {
+  display: flex;
+  flex-direction: column;
+}

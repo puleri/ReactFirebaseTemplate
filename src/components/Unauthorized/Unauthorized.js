@@ -11,7 +11,7 @@ export default function Unauthorized(props) {
     props.history.push('login')
   }
   return (
-    <div className="container">
+    <div className="cont">
       <img alt="kaiser logo" src={logo} className="unauth-logo"/>
       <div className="left">
       </div>
