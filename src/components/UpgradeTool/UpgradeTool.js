@@ -687,11 +687,18 @@ export default function UpgradeTool() {
   const chimneyFlashingNext = () => {
     setRoofTemplate({
       ...roofTemplate,
-      step: 'upgrade-tool'
+      step: 'materials-make'
     })
   }
   const chimneyFlashingPrev = () => setRoofTemplate({ ...roofTemplate, step: 'counter-flashing'})
-  const upgradeToolPrev = () => setRoofTemplate({ ...roofTemplate, step: 'chimney-flashing'})
+  const matsNext = () => {
+    setRoofTemplate({
+      ...roofTemplate,
+      step: 'upgrade-tool'
+    })
+  }
+  const matsPrev = () => setRoofTemplate({ ...roofTemplate, step: 'chimney-flashing' })
+  const upgradeToolPrev = () => setRoofTemplate({ ...roofTemplate, step: 'materials-make'})
   const upgradeToolNext = () => setRoofTemplate({...roofTemplate, step: 'selected-upgrades'})
   const selectedUpgradesPrev = () => setRoofTemplate({...roofTemplate, step: 'upgrade-tool'})
 // upgrade conditionals
@@ -1769,7 +1776,7 @@ export default function UpgradeTool() {
             <div className="question-container">
 
             <h1 className="surv-header">Neoprene/Hard Plastic</h1>
-              <Container fluid={true} >
+              <Container fluid="md" >
                 <Row>
                 <Col md={8} className="neoprene">
                 <label>1"</label>
@@ -1778,8 +1785,7 @@ export default function UpgradeTool() {
                 value={roofTemplate.neo1}
                 onChange={(e) => setRoofTemplate({ ...roofTemplate, neo1: e.target.value })}
                 />
-                </Col>
-                <Col md={8} className="neoprene">
+
                 <label>1 1/2"</label>
                 <input
                 type="text"
@@ -2118,7 +2124,14 @@ export default function UpgradeTool() {
 
             </>
           )
-
+    case 'materials-make':
+      return (
+        <>
+          <h1 className="surv-header" style={{ height: '50px'}}>Material Make</h1>
+          <button className="survey-btn prev" onClick={() => matsPrev()}><i class="fas fa-chevron-left"></i></button>
+          <button className="survey-btn next" onClick={() => matsNext()}><i class="fas fa-chevron-right"></i></button>
+        </>
+      )
     case "upgrade-tool":
           return   (
             <>
