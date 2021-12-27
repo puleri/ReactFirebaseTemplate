@@ -36,7 +36,6 @@ label {
 }
 .form-group {
   height: 400px;
-  min-width: 430px;
   width: 55%;
   margin: auto;
   margin-top: -20px;
@@ -115,3 +114,5 @@ label {
   display: flex;
   flex-direction: column;
 }
+
+@media ()

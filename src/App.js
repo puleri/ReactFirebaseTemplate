@@ -8,7 +8,7 @@ import Permissions from './components/Permissions/Permissions.js';
 import Unauthorized from './components/Unauthorized/Unauthorized.js';
 import Admin from './components/Admin/Admin.js';
 import Header from './components/Header/Header.js'
-import UpgradeTool from './components/UpgradeTool/UpgradeTool.js'
+import UpgradeNav from './components/NavComplete/UpgradeNav.js'
 
 import React, { useState, useEffect } from 'react';
 // import AuthProvider from './contexts/AuthContexts';
@@ -34,7 +34,7 @@ function App(props) {
       component={Header} />
 
       <Route path="/upgradetool"
-      component={UpgradeTool} />
+      component={UpgradeNav} />
 
       <Route path='/login' currentUser={currentUser}
       setCurrentUser={setCurrentUser}

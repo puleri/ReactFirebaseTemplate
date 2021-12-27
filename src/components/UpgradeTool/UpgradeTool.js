@@ -64,6 +64,7 @@ export default function UpgradeTool() {
     chimneyCopper: false,
     chimneyLead: false,
     chimneyPainted: false,
+    materials: "select"
    })
   const [upgradeOptions, setUpgradeOptions] = useState({
       twentyTab: false,
@@ -2127,7 +2128,25 @@ export default function UpgradeTool() {
     case 'materials-make':
       return (
         <>
+          <div className="question-container">
           <h1 className="surv-header" style={{ height: '50px'}}>Material Make</h1>
+          <div className="form-group">
+          <label>Company</label>
+          <select
+          name="roof_type"
+          id="roof_type"
+          size="1"
+          value={roofTemplate.materials}
+          onChange={(e) => setRoofTemplate({ ...roofTemplate, materials: e.target.value })}>>
+          <option value="select">Select make</option>
+          <option value="asphalt">Example</option>
+          <option value="copper">Example</option>
+          <option value="metal">Example</option>
+          </select>
+          </div>
+          <div className="surv-accent1"></div>
+
+          </div>
           <button className="survey-btn prev" onClick={() => matsPrev()}><i class="fas fa-chevron-left"></i></button>
           <button className="survey-btn next" onClick={() => matsNext()}><i class="fas fa-chevron-right"></i></button>
         </>
@@ -2168,6 +2187,8 @@ export default function UpgradeTool() {
 
 
             </div>
+            <div className="surv-accent1"></div>
+
             <button className="survey-btn prev" onClick={() => upgradeToolPrev()}><i class="fas fa-chevron-left"></i></button>
             <button className="survey-btn next" onClick={() => upgradeToolNext()}><i class="fas fa-chevron-right"></i></button>
 
@@ -2188,6 +2209,8 @@ export default function UpgradeTool() {
             </tbody>
           </table>
         </div>
+        <div className="surv-accent1"></div>
+
           <button className="survey-btn prev" onClick={() => selectedUpgradesPrev()}><i class="fas fa-chevron-left"></i></button>
         </div>
       )
