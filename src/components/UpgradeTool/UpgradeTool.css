@@ -9,6 +9,8 @@
 }
 .tall-form-group {
   height: 400px;
+  text-align: center;
+  margin: auto;
 }
 label {
   font-family: 'Heebo', sans-serif;
@@ -16,8 +18,9 @@ label {
 }
 .hz-surv {
   width: 100%;
-  margin-right: 300px;
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .surv-header {
   text-align: center;
@@ -34,6 +37,9 @@ label {
   transform: skewY(-4deg);
   background: #333333;
 }
+.man-bot {
+  margin-bottom: 130px;
+}
 .form-group {
   height: 400px;
   width: 55%;
@@ -41,9 +47,9 @@ label {
   margin-top: -20px;
 }
 .manual-form {
+  margin: auto;
   min-width: 400px;
   width: 100%;
-  margin: 10px 50px;
 }
 .roof-type {
   display: flex;

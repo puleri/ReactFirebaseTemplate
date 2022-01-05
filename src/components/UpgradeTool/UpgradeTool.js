@@ -1264,26 +1264,24 @@ export default function UpgradeTool() {
             <div className="manual-form">
               <div className="hz-surv">
                 <div className="manual-label">
-                  <label>Total Roof Area</label>
+                  <label>Total Roof Area <span style={{ fontSize: '10px' }}>ft<sup>2</sup></span></label>
                   <input
                   type="number"
                   value={roofTemplate.roofTotal}
                   onChange={ (e) => setRoofTemplate({ ...roofTemplate, roofTotal: e.target.value }) }
 
                   />
-                  </div>
-                <div className="manual-label">
 
-                  <label>Ridge</label>
+
+                  <label>Ridge <span style={{ fontSize: '10px' }}>ft</span></label>
                   <input
                   type="number"
                   value={roofTemplate.ridge}
                   onChange={(e) => setRoofTemplate({ ...roofTemplate, ridge: e.target.value })}
 
                   />
-                </div>
-                <div className="manual-label">
-                  <label>Hip</label>
+
+                  <label>Hip <span style={{ fontSize: '10px' }}>ft</span></label>
                   <input
                   type="number"
                   value={roofTemplate.hip}
@@ -1296,25 +1294,23 @@ export default function UpgradeTool() {
             <div className="manual-form">
               <div className="hz-surv">
                 <div className="manual-label">
-                  <label>Valley</label>
+                  <label>Valley <span style={{ fontSize: '10px' }}>ft</span></label>
                   <input
                   type="number"
                   value={roofTemplate.valley}
                   onChange={(e) => setRoofTemplate({ ...roofTemplate, valley: e.target.value })}
 
                   />
-                </div>
-                <div className="manual-label">
-                  <label>Rake</label>
+
+                  <label>Rake <span style={{ fontSize: '10px' }}>ft</span></label>
                   <input
                   type="number"
                   value={roofTemplate.rake}
                   onChange={(e) => setRoofTemplate({ ...roofTemplate, rake: e.target.value })}
 
                   />
-                </div>
-                <div className="manual-label">
-                  <label>Eave</label>
+
+                  <label>Eave <span style={{ fontSize: '10px' }}>ft</span></label>
                   <input
                   type="number"
                   value={roofTemplate.eave}
@@ -1327,27 +1323,26 @@ export default function UpgradeTool() {
             <div className="manual-form">
               <div className="hz-surv">
                 <div className="manual-label">
-                   <label>Counter Flashing</label>
+                   <label>Counter Flashing <span style={{ fontSize: '10px' }}>ft</span></label>
                   <input
                   type="number"
                   value={roofTemplate.counterFlashing}
                   onChange={(e) => setRoofTemplate({ ...roofTemplate, counterFlashing: e.target.value })}
 
                   />
-                </div>
-                <div className="manual-label">
-                  <label>Step Flashing</label>
+
+                  <label>Step Flashing <span style={{ fontSize: '10px' }}>ft</span></label>
                   <input
                   type="number"
                   value={roofTemplate.stepFlashing}
                   onChange={(e) => setRoofTemplate({ ...roofTemplate, stepFlashing: e.target.value })}
 
                   />
-                </div>
-                <div className="manual-label">
-                  <label>Parapets</label>
+
+                  <label>Parapets <span style={{ fontSize: '10px' }}>ft</span></label>
                   <input
                   type="number"
+                  className="man-bot"
                   value={roofTemplate.parapets}
                   onChange={(e) => setRoofTemplate({ ...roofTemplate, parapets: e.target.value })}
 
@@ -2028,12 +2023,19 @@ export default function UpgradeTool() {
             checked={roofTemplate.stepCopper === true }
             onChange={(e) => setRoofTemplate({ ...roofTemplate, stepCopper: !roofTemplate.stepCopper })}
             />
-            <label>Galvanized Metal</label>
+            <label>Aluminum/Metal</label>
             <input
             style={{ width:"40px", height: "40px" }}
             type="checkbox"
             checked={roofTemplate.stepGalvanized === true }
             onChange={(e) => setRoofTemplate({ ...roofTemplate, stepGalvanized: !roofTemplate.stepGalvanized })}
+            />
+            <label>None</label>
+            <input
+            style={{ width:"40px", height: "40px" }}
+            type="checkbox"
+            checked={roofTemplate.none === true }
+            onChange={(e) => setRoofTemplate({ ...roofTemplate, none: !roofTemplate.none })}
             />
             </div>
             <div className="surv-accent1"></div>
