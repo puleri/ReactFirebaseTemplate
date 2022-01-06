@@ -22,6 +22,9 @@
   border-radius: 5px;
   text-align: center;
 }
+.show {
+  margin-bottom: 45px;
+}
 
 .nav-item {
   margin: 10px;
@@ -32,13 +35,21 @@
 
 .c1 {
   color: #05678D;
+  transition: color .3s ease-out;
 }
 .c2 {
   color: #027F91;
+    transition: color .3s ease-out;
 }
 .c3 {
   color: #00A694;
+    transition: color .3s ease-out;
 }
 .c4 {
   color: #2FB895;
+    transition: color .3s ease-out;
+}
+.c1:hover, .c2:hover, .c3:hover, .c4:hover {
+  color: #333333;
+  text-decoration: none;
 }

@@ -37,6 +37,12 @@ label {
   transform: skewY(-4deg);
   background: #333333;
 }
+.man-entry {
+  margin: auto;
+  font-size: 11px;
+  border-radius: 5px;
+  width: 80px;
+}
 .man-bot {
   margin-bottom: 130px;
 }

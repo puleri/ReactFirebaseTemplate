@@ -1266,7 +1266,7 @@ export default function UpgradeTool() {
                 <div className="manual-label">
                   <label>Total Roof Area <span style={{ fontSize: '10px' }}>ft<sup>2</sup></span></label>
                   <input
-                  type="number"
+                  className="man-entry"
                   value={roofTemplate.roofTotal}
                   onChange={ (e) => setRoofTemplate({ ...roofTemplate, roofTotal: e.target.value }) }
 
@@ -1275,7 +1275,7 @@ export default function UpgradeTool() {
 
                   <label>Ridge <span style={{ fontSize: '10px' }}>ft</span></label>
                   <input
-                  type="number"
+                  className="man-entry"
                   value={roofTemplate.ridge}
                   onChange={(e) => setRoofTemplate({ ...roofTemplate, ridge: e.target.value })}
 
@@ -1283,7 +1283,7 @@ export default function UpgradeTool() {
 
                   <label>Hip <span style={{ fontSize: '10px' }}>ft</span></label>
                   <input
-                  type="number"
+                  className="man-entry"
                   value={roofTemplate.hip}
                   onChange={(e) => setRoofTemplate({ ...roofTemplate, hip: e.target.value })}
 
@@ -1296,7 +1296,7 @@ export default function UpgradeTool() {
                 <div className="manual-label">
                   <label>Valley <span style={{ fontSize: '10px' }}>ft</span></label>
                   <input
-                  type="number"
+                  className="man-entry"
                   value={roofTemplate.valley}
                   onChange={(e) => setRoofTemplate({ ...roofTemplate, valley: e.target.value })}
 
@@ -1304,7 +1304,7 @@ export default function UpgradeTool() {
 
                   <label>Rake <span style={{ fontSize: '10px' }}>ft</span></label>
                   <input
-                  type="number"
+                  className="man-entry"
                   value={roofTemplate.rake}
                   onChange={(e) => setRoofTemplate({ ...roofTemplate, rake: e.target.value })}
 
@@ -1312,7 +1312,7 @@ export default function UpgradeTool() {
 
                   <label>Eave <span style={{ fontSize: '10px' }}>ft</span></label>
                   <input
-                  type="number"
+                  className="man-entry"
                   value={roofTemplate.eave}
                   onChange={(e) => setRoofTemplate({ ...roofTemplate, eave: e.target.value })}
 
@@ -1325,7 +1325,7 @@ export default function UpgradeTool() {
                 <div className="manual-label">
                    <label>Counter Flashing <span style={{ fontSize: '10px' }}>ft</span></label>
                   <input
-                  type="number"
+                  className="man-entry"
                   value={roofTemplate.counterFlashing}
                   onChange={(e) => setRoofTemplate({ ...roofTemplate, counterFlashing: e.target.value })}
 
@@ -1333,7 +1333,7 @@ export default function UpgradeTool() {
 
                   <label>Step Flashing <span style={{ fontSize: '10px' }}>ft</span></label>
                   <input
-                  type="number"
+                  className="man-entry"
                   value={roofTemplate.stepFlashing}
                   onChange={(e) => setRoofTemplate({ ...roofTemplate, stepFlashing: e.target.value })}
 
@@ -1341,8 +1341,7 @@ export default function UpgradeTool() {
 
                   <label>Parapets <span style={{ fontSize: '10px' }}>ft</span></label>
                   <input
-                  type="number"
-                  className="man-bot"
+                  className="man-entry man-bot"
                   value={roofTemplate.parapets}
                   onChange={(e) => setRoofTemplate({ ...roofTemplate, parapets: e.target.value })}
 
