@@ -1,8 +1,10 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 export default function StepZero(props) {
   return (
-    <>
+    <
+    >
     <h1 className="surv-header">Roof Measurement</h1>
     <div className="form-group">
     <label>Manual Entry</label>

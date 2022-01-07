@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -18,6 +19,8 @@ export default function UpgradeTool() {
   // let session_uuid = paths[2];
 // console.log("location is," , location)
 
+// setting left animation for survey
+  const [left, setLeft] = useState('0');
   const [roofTemplate, setRoofTemplate] = useState({
     step: "0",
     job: "",
@@ -1234,10 +1237,16 @@ export default function UpgradeTool() {
   switch (roofTemplate.step) {
     default:
     case "0":
+    let init;
+    if (left === '0') {
+      init = '-100vw'
+    }
       return (
         <>
         <div className="question-container">
+        
         <StepZero roofTemplate={roofTemplate} setRoofTemplate={setRoofTemplate}/>
+        
         <div className="surv-accent1"></div>
         </div>
         <button className="survey-btn next" onClick={() => zeroNext()}><i class="fas fa-chevron-right"></i></button>
