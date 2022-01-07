@@ -29,6 +29,7 @@ function App(props) {
   return (
     // <AuthProvider>
     <div className="App-wrapper">
+    <p style={{ fontSize:'9px', position: 'absolute', top: '4px', left: '4px', color: 'grey'}}> v 0.1.16.B</p>
     <Switch>
       <Route path="/header"
       component={Header} />

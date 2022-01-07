@@ -9,7 +9,7 @@ import firebase, { auth } from '../../firebase';
 
 function DropdownMenu(props) {
 
-  const handleLogOut = (e) => {
+  const logOut = (e) => {
     // e.preventDefault()
     console.log("Current user", auth)
     const temp = auth.currentUser.uid;
@@ -22,12 +22,13 @@ function DropdownMenu(props) {
           status: 'inactive',
         }, { merge: true })
         localStorage.removeItem('user')
-        props.history.push('/login');
-        // console.log('props are ', props)
-        console.log('successful logout')
+
       }
 
       })
+      .then(() => { props.history.push('/login');
+      // console.log('props are ', props)
+      console.log('successful logout')})
       .catch(err => {
         console.log(err)
         console.log("Error Signing Out");
@@ -54,7 +55,7 @@ function DropdownMenu(props) {
         Admin Panel
         </button>
         <hr id="dd-break2" />
-        <button onClick={(e) => handleLogOut()} className="dd-button">
+        <button onClick={(e) => logOut()} className="dd-button">
         Logout
         </button>
     </div>

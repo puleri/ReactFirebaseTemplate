@@ -1505,7 +1505,6 @@ export default function UpgradeTool() {
                 <option value="select">Select shingle</option>
                 <option value="20">20 Year</option>
                 <option value="25">25 Year</option>
-                <option value="30">30 Year</option>
                 </select>
             </div>
             <div className="surv-accent1"></div>
@@ -2022,7 +2021,7 @@ export default function UpgradeTool() {
             checked={roofTemplate.stepCopper === true }
             onChange={(e) => setRoofTemplate({ ...roofTemplate, stepCopper: !roofTemplate.stepCopper })}
             />
-            <label>Aluminum/Metal</label>
+            <label>Metal</label>
             <input
             style={{ width:"40px", height: "40px" }}
             type="checkbox"
