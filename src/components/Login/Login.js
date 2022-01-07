@@ -56,7 +56,7 @@ export default function Login(props) {
                 firebase.firestore().collection('users').doc(creds.user.uid).set({
                   status: 'active',
                 }, { merge: true })
-                return props.history.push('/permissions')
+                return props.history.push('/upgradetool')
               }
 
               else if (isAdmin) {

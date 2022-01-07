@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Header from '../../components/Header/Header.js'
+// import Header from '../../components/Header/Header.js'
+import Navbar from '../Navbar/Navbar.js';
+
 import Footer from '../../components/Footer/Footer.js'
 
 import firebase, { auth } from '../../firebase';
@@ -136,7 +138,7 @@ const deleteUser = (user) => {
 
   return (
     <div className="admin-wrapper">
-      <Header />
+      <Navbar />
       <div className="admin-container">
 
         <h3 id="admin-header">Administrator</h3>
