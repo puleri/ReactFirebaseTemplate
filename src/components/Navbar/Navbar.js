@@ -38,7 +38,7 @@ function Navbar(props) {
   return (
     <div className="home-container">
       <nav className="navbar bg-primary-light justify-content-between">
-        <img style={{ filter:'brightness(.8) invert()', height: '50px' }} src={logoName} alt="Blueberry Pediactrics" />
+        <img style={{ filter:'brightness(1)', height: '50px' }} src={logoName} alt="Blueberry Pediactrics" />
         <button className="btn" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" >
           <img style={{ height: '30px' }} src={hamburger} alt="menu" />
         </button>
@@ -48,7 +48,7 @@ function Navbar(props) {
           <a className="nav-item c1" href="/upgradetool">Start</a> <br />
           <a className="nav-item c2" href="/admin">Administrator</a> <br />
           <a className="nav-item c3" href="#">FAQ</a> <br />
-          <button className="nav-item c4" onClick={()=> logOut()}>Logout</button> <br />
+          <button className="logout nav-item c4" onClick={()=> logOut()}>Logout</button> <br />
         </div>
       </div>
     </div>
