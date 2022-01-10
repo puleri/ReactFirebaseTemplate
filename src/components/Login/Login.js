@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useRouteMatch } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import firebase, { getAuth } from '../../firebase';
 // import { collection, query, where, getDocs } from "../../firebase";
 
@@ -13,7 +13,7 @@ import "./Button.css"
 // import { useAuth } from '../../contexts/AuthContexts';
 
 
-export default function Login(props) {
+function Login(props) {
 
 // this logic below needs to move to the app's global scope and passed as a prop
     const [email, setEmail] = useState('');
@@ -39,6 +39,7 @@ export default function Login(props) {
     function login(email, password) {
       // localStorage.setItem('user', email)
       getAuth.signInWithEmailAndPassword(email, password)
+        .then(props.history.push('/upgradetool'))
         .then((creds) => {
           // const user = creds.user;
           const userRef = firebase.firestore().collection('users').doc(creds.user.uid);
@@ -56,7 +57,7 @@ export default function Login(props) {
                 firebase.firestore().collection('users').doc(creds.user.uid).set({
                   status: 'active',
                 }, { merge: true })
-                return props.history.push('/upgradetool')
+
               }
 
               else if (isAdmin) {
@@ -69,7 +70,6 @@ export default function Login(props) {
                 getAuth.signOut().then("Unauthorized").catch(err => console.log("Error:", err))
               }
             })
-            .then(console.log("Current user", getAuth))
             .catch(err => console.log("Error getting document:", err))
 
 
@@ -160,3 +160,5 @@ export default function Login(props) {
       </div>
     )
   }
+
+  export default withRouter(Login)

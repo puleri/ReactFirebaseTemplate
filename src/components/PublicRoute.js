@@ -1,13 +1,12 @@
 import React from 'react';
-// import { Redirect, withRouter } from 'react-router-dom'
+
 import { useAuthListener } from './useAuthHook';
 
 // import Spinner from '../Spinner';
-// import Login from './Login/Login';
+// import UpgradeNav from './NavComplete/UpgradeNav'
 import { Redirect, withRouter } from 'react-router-dom'
 
-
-const ProtectedRoute = ({ component: Component }) => {
+const PublicRoute = ({ component: Component }) => {
   // a custom hook to keep track of user's auth status
   const { loggedIn, checkingStatus } = useAuthListener();
 
@@ -17,16 +16,16 @@ const ProtectedRoute = ({ component: Component }) => {
         // display a spinner while auth status being checked
         checkingStatus
           ? <h1 >Waiting </h1>
-          : loggedIn
+          : !loggedIn
             // if user is logged in, grant the access to the route
             // note: in this example component is Bar
             ? <Component />
             // else render an unauthorised component
             // stating the reason why it cannot access the route
-            : <Redirect to="/login" />
+            : <Redirect to='/upgradetool' />
       }
     </>
   );
 };
 
-export default withRouter(ProtectedRoute);
+export default withRouter(PublicRoute);

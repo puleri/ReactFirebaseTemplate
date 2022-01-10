@@ -13,6 +13,8 @@ import UpgradeNav from './components/NavComplete/UpgradeNav.js'
 import { AuthContextProvider, useAuthState, getAuth }from './firebase'
 // import firebase
 import PrivateRoute from './components/PrivateRoute';
+import PublicRoute from './components/PublicRoute';
+
 
 import React, { useState, useEffect } from 'react';
 
@@ -64,17 +66,18 @@ function App(props) {
   return (
     // <AuthProvider>
     <div className="App-wrapper">
-    <p style={{ zIndex: 99999, fontSize:'8px', position: 'absolute', top: '0', left: '4px', color: 'grey'}}> v 0.1.17.B</p>
+    <p style={{ zIndex: 99999, fontSize:'8px', position: 'absolute', top: '0', left: '4px', color: 'grey'}}> v 0.1.18.B</p>
     <AuthContextProvider>
 
         <Switch>
           <Route path="/header"
           component={Header} />
 
-          <Route path='/login'
+          <PublicRoute
+          path='/login'
           currentUser={currentUser}
           setCurrentUser={setCurrentUser}
-          component={ Login  } />
+          component={ Login } />
 
     {
     // private routes
