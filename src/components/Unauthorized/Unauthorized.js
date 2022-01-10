@@ -1,14 +1,15 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 import './Unauthorized.css'
 
 import space from './spaceguy.png';
 import logo from "../../logo.svg";
 
 
-export default function Unauthorized(props) {
+function Unauthorized(props) {
 
   const home = (e) => {
-    props.history.push('login')
+    props.history.push('/login')
   }
   return (
     <div className="cont">
@@ -30,3 +31,5 @@ export default function Unauthorized(props) {
     </div>
   )
 }
+
+export default withRouter(Unauthorized)

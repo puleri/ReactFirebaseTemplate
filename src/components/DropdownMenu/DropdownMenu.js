@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './DropdownMenu.css';
 import { withRouter } from 'react-router-dom';
-import firebase, { auth } from '../../firebase';
+import firebase, { getAuth } from '../../firebase';
 
 
 // import { CSSTransition } from 'react-transition-group';
@@ -11,11 +11,11 @@ function DropdownMenu(props) {
 
   const logOut = (e) => {
     // e.preventDefault()
-    console.log("Current user", auth)
-    const temp = auth.currentUser.uid;
+    console.log("Current user", getAuth)
+    const temp = getAuth.currentUser.uid;
     const userRef = firebase.firestore().collection('users').doc(temp);
 
-    auth.signOut()
+    getAuth.signOut()
       .then(() => {
         if (userRef.exists) {
         firebase.firestore().collection('users').doc(temp).set({

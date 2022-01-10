@@ -3,7 +3,7 @@ import Footer from '../Footer/Footer.js'
 import Header from '../../components/Header/Header.js'
 
 // import { useRouteMatch } from 'react-router-dom';
-import firebase, { auth } from '../../firebase';
+import firebase, { getAuth } from '../../firebase';
 
 // import admin from '../../firebase';
 // import { collection, query, where, getDocs } from "../../firebase/firestore";
@@ -33,7 +33,7 @@ export default function Permissions(props) {
 
   useEffect((e) => {
     // console.log(localStorage.user)
-    console.log(auth.currentUser, "current")
+    console.log(getAuth.currentUser, "current")
   }, [])
 
   const userDbMatch = () => {
@@ -96,7 +96,7 @@ export default function Permissions(props) {
     //   console.log('admin loggin current is ', userRecord)
     // })
     //   .catch(err=>console.log('error fetching admin data', err))
-    auth.createUserWithEmailAndPassword(email, password)
+    getAuth.createUserWithEmailAndPassword(email, password)
       .then(creds => {
         firebase.firestore().collection('users').doc(creds.user.uid).set({
           id: creds.user.uid,

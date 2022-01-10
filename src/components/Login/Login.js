@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useRouteMatch } from 'react-router-dom';
-import firebase, { auth } from '../../firebase';
+import firebase, { getAuth } from '../../firebase';
 // import { collection, query, where, getDocs } from "../../firebase";
 
 // import Button, { createRipple } from './Button'
@@ -38,7 +38,7 @@ export default function Login(props) {
 
     function login(email, password) {
       // localStorage.setItem('user', email)
-      auth.signInWithEmailAndPassword(email, password)
+      getAuth.signInWithEmailAndPassword(email, password)
         .then((creds) => {
           // const user = creds.user;
           const userRef = firebase.firestore().collection('users').doc(creds.user.uid);
@@ -66,9 +66,10 @@ export default function Login(props) {
               else
               {
                 props.history.push('/unauthorized')
-                auth.signOut().then("Unauthorized").catch(err => console.log("Error:", err))
+                getAuth.signOut().then("Unauthorized").catch(err => console.log("Error:", err))
               }
             })
+            .then(console.log("Current user", getAuth))
             .catch(err => console.log("Error getting document:", err))
 
 

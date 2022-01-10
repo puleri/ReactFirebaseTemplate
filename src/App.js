@@ -1,7 +1,8 @@
 // import logo from './logo.svg';
 import './App.css';
 
-import { Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
+import firebase from 'firebase/app';
 
 import Login from './components/Login/Login.js';
 import Permissions from './components/Permissions/Permissions.js';
@@ -9,17 +10,51 @@ import Unauthorized from './components/Unauthorized/Unauthorized.js';
 import Admin from './components/Admin/Admin.js';
 import Header from './components/Header/Header.js'
 import UpgradeNav from './components/NavComplete/UpgradeNav.js'
+import { AuthContextProvider, useAuthState, getAuth }from './firebase'
+// import firebase
+import PrivateRoute from './components/PrivateRoute';
 
 import React, { useState, useEffect } from 'react';
-// import AuthProvider from './contexts/AuthContexts';
 
 // **** DO NOT DELETE OR COMMENT OUT-- ignore linter
-import { auth } from 'firebase';
+// import firebase, { auth } from 'firebase';
 // **** DO NOT DELETE OR COMMENT OUT
 
 
+
 function App(props) {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState('');
+
+  // let email = firebase.auth().currentUser ? firebase.auth().currentUser.email : false
+
+  useEffect(() => {
+    console.log(firebase.auth().currentUser)
+    setCurrentUser(firebase.auth().currentUser)
+  }, [])
+
+  // const AuthenticatedRoute = ({ conponent: C, ...props }) => {
+  //   // const { isAuthenticated } = useAuthState()
+  //   // console.log('App scope', JSON.stringify(getAuth))
+  //   return (
+  //     <Route
+  //     {...props}
+  //     render={routeProps =>
+  //       currentUser ? <C /> : <Redirect to="/login" />}
+  //       />
+  //     )
+  //   }
+  //   const UnauthenticatedRoute = ({ conponent: C, ...props }) => {
+  //     // const { isAuthenticated } = useAuthState()
+  //     // console.log(isAuthenticated)
+  //     // console.log('App scope', JSON.stringify(getAuth))
+  //     return (
+  //       <Route
+  //       {...props}
+  //       render={routeProps =>
+  //         !currentUser ? <C /> : <Redirect to="/upgradetool" />}
+  //         />
+  //       )
+  //     }
 
   // clearing local storage for when working on the same dev port as other projects
   // useEffect(() => {
@@ -29,32 +64,43 @@ function App(props) {
   return (
     // <AuthProvider>
     <div className="App-wrapper">
-    <p style={{ zIndex: 99999, fontSize:'8px', position: 'absolute', top: '0', left: '4px', color: 'grey'}}> v 0.1.16.B</p>
-    <Switch>
-      <Route path="/header"
-      component={Header} />
+    <p style={{ zIndex: 99999, fontSize:'8px', position: 'absolute', top: '0', left: '4px', color: 'grey'}}> v 0.1.17.B</p>
+    <AuthContextProvider>
 
-      <Route path="/upgradetool"
-      component={UpgradeNav} />
+        <Switch>
+          <Route path="/header"
+          component={Header} />
 
-      <Route path='/login' currentUser={currentUser}
-      setCurrentUser={setCurrentUser}
-      component={Login}/>
+          <Route path='/login'
+          currentUser={currentUser}
+          setCurrentUser={setCurrentUser}
+          component={ Login  } />
 
-      <Route exact path='/permissions'
-      currentUser={currentUser}
-      setCurrentUser={setCurrentUser}
-      component={Permissions}/>
+    {
+    // private routes
+    }
+            <PrivateRoute exact path='/admin'
+            currentUser={currentUser}
+            component={ Admin }/>
 
-      <Route exact path='/unauthorized'
-      component={Unauthorized}/>
+            <PrivateRoute path="/upgradetool"
+            component={ UpgradeNav } />
+
+            <PrivateRoute exact path='/permissions'
+            currentUser={currentUser}
+            setCurrentUser={setCurrentUser}
+            component={ Permissions  }/>
+    {
+    // private routes
+    }
+
+          <Route exact path='/unauthorized'
+          component={Unauthorized}/>
 
 
-      <Route exact path='/admin'
-      component={Admin}/>
-    </Switch>
+        </Switch>
+    </AuthContextProvider>
     </div>
-     // </AuthProvider>
   );
 }
 

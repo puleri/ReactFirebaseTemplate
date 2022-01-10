@@ -4,7 +4,10 @@ import Navbar from '../Navbar/Navbar.js';
 
 import Footer from '../../components/Footer/Footer.js'
 
-import firebase, { auth } from '../../firebase';
+import firebase, { getAuth } from '../../firebase';
+
+import 'firebase/firestore';
+
 
 import './Admin.css';
 
@@ -56,7 +59,7 @@ export default function Admin(){
     //   console.log('admin loggin current is ', userRecord)
     // })
     //   .catch(err=>console.log('error fetching admin data', err))
-    auth.createUserWithEmailAndPassword(email, password)
+    getAuth.createUserWithEmailAndPassword(email, password)
       .then(creds => {
         firebase.firestore().collection('users').doc(creds.user.uid).set({
           id: creds.user.uid,
