@@ -150,23 +150,26 @@ const deleteUser = (user) => {
           {error}
 
         <div className="admin-form">
-          <div className="form-group">
+          <div className="admin-input-group">
             <label>First Name</label>
             <input type="text"
+            className="admin-input"
             placeholder="Clover"
             value={first}
             onChange={(e) => setFirst(e.target.value)} />
           </div>
-          <div className="form-group">
+          <div className="admin-input-group">
             <label>Last Name</label>
             <input type="text"
+            className="admin-input"
             placeholder="Farshchi"
             value={last}
             onChange={(e) => setLast(e.target.value)} />
           </div>
-          <div className="form-group">
+          <div className="admin-input-group">
             <label>Last Name</label>
             <input type="email"
+            className="admin-input"
             placeholder="cfarshchi@gmail.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)} />

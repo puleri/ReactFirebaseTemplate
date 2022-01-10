@@ -4,3 +4,20 @@
   height: 1100px;
   overflow: none !important;
 }
+.admin-form {
+  margin-top: 20px;
+  margin-bottom: 120px;
+}
+.admin-input-group {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.admin-input {
+  font-size: 12px;
+  height: 30px;
+  min-width: 400px;
+  width: 70%;
+}
