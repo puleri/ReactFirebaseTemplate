@@ -1244,9 +1244,9 @@ export default function UpgradeTool() {
       return (
         <>
         <div className="question-container">
-        
+
         <StepZero roofTemplate={roofTemplate} setRoofTemplate={setRoofTemplate}/>
-        
+
         <div className="surv-accent1"></div>
         </div>
         <button className="survey-btn next" onClick={() => zeroNext()}><i class="fas fa-chevron-right"></i></button>
@@ -1273,7 +1273,7 @@ export default function UpgradeTool() {
             <div className="manual-form">
               <div className="hz-surv">
                 <div className="manual-label">
-                  <label>Total Roof Area <span style={{ fontSize: '10px' }}>ft<sup>2</sup></span></label>
+                  <label className="manual-label-width">Total Roof Area <span style={{ fontSize: '12px' }}>SF</span></label>
                   <input
                   className="man-entry"
                   value={roofTemplate.roofTotal}
@@ -1282,7 +1282,7 @@ export default function UpgradeTool() {
                   />
 
 
-                  <label>Ridge <span style={{ fontSize: '10px' }}>ft</span></label>
+                  <label className="manual-label-width">Ridge <span style={{ fontSize: '12px' }}>LF</span></label>
                   <input
                   className="man-entry"
                   value={roofTemplate.ridge}
@@ -1290,7 +1290,7 @@ export default function UpgradeTool() {
 
                   />
 
-                  <label>Hip <span style={{ fontSize: '10px' }}>ft</span></label>
+                  <label className="manual-label-width">Hip <span style={{ fontSize: '12px' }}>LF</span></label>
                   <input
                   className="man-entry"
                   value={roofTemplate.hip}
@@ -1303,7 +1303,7 @@ export default function UpgradeTool() {
             <div className="manual-form">
               <div className="hz-surv">
                 <div className="manual-label">
-                  <label>Valley <span style={{ fontSize: '10px' }}>ft</span></label>
+                  <label className="manual-label-width">Valley <span style={{ fontSize: '12px' }}>LF</span></label>
                   <input
                   className="man-entry"
                   value={roofTemplate.valley}
@@ -1311,7 +1311,7 @@ export default function UpgradeTool() {
 
                   />
 
-                  <label>Rake <span style={{ fontSize: '10px' }}>ft</span></label>
+                  <label className="manual-label-width">Rake <span style={{ fontSize: '12px' }}>LF</span></label>
                   <input
                   className="man-entry"
                   value={roofTemplate.rake}
@@ -1319,7 +1319,7 @@ export default function UpgradeTool() {
 
                   />
 
-                  <label>Eave <span style={{ fontSize: '10px' }}>ft</span></label>
+                  <label className="manual-label-width">Eave <span style={{ fontSize: '12px' }}>LF</span></label>
                   <input
                   className="man-entry"
                   value={roofTemplate.eave}
@@ -1332,7 +1332,7 @@ export default function UpgradeTool() {
             <div className="manual-form">
               <div className="hz-surv">
                 <div className="manual-label">
-                   <label>Counter Flashing <span style={{ fontSize: '10px' }}>ft</span></label>
+                   <label className="manual-label-width">Counter Flashing <span style={{ fontSize: '12px' }}>LF</span></label>
                   <input
                   className="man-entry"
                   value={roofTemplate.counterFlashing}
@@ -1340,7 +1340,7 @@ export default function UpgradeTool() {
 
                   />
 
-                  <label>Step Flashing <span style={{ fontSize: '10px' }}>ft</span></label>
+                  <label className="manual-label-width">Step Flashing <span style={{ fontSize: '12px' }}>LF</span></label>
                   <input
                   className="man-entry"
                   value={roofTemplate.stepFlashing}
@@ -1348,7 +1348,7 @@ export default function UpgradeTool() {
 
                   />
 
-                  <label>Parapets <span style={{ fontSize: '10px' }}>ft</span></label>
+                  <label className="manual-label-width">Parapets <span style={{ fontSize: '12px' }}>LF</span></label>
                   <input
                   className="man-entry man-bot"
                   value={roofTemplate.parapets}
@@ -1420,7 +1420,7 @@ export default function UpgradeTool() {
             <div className="question-container">
             <h1 className="surv-header">Roof Type</h1>
             <div className="form-group">
-            <label>Roof Type</label>
+            <label>Existing Roof Material</label>
             <select
             name="roof_type"
             id="roof_type"
@@ -1429,11 +1429,14 @@ export default function UpgradeTool() {
             onChange={(e) => setRoofTemplate({ ...roofTemplate, roofType: e.target.value })}>>
             <option value="select">Select type</option>
             <option value="asphalt">Asphalt</option>
-            <option value="copper">Copper</option>
-            <option value="metal">Metal</option>
-            <option value="synthetic">Synthetic</option>
-            <option value="tile">Tile</option>
-            <option value="wood">Wood</option>
+            {
+              // FUTURE OPTIONS
+            // <option value="copper">Copper</option>
+            // <option value="metal">Metal</option>
+            // <option value="synthetic">Synthetic</option>
+            // <option value="tile">Tile</option>
+            // <option value="wood">Wood</option>
+            }
             </select>
             </div>
             <div className="surv-accent1"></div>
@@ -1473,7 +1476,7 @@ export default function UpgradeTool() {
           return (
             <>
             <div className="question-container">
-            <h1 className="surv-header">Metal Edge</h1>
+            <h1 className="surv-header">Current Metal Edge</h1>
             <div className="form-group">
               <label>Yes</label>
               <input
@@ -1587,7 +1590,7 @@ export default function UpgradeTool() {
           <>
           <div className="question-container">
 
-            <h1 className="surv-header">Underlayment</h1>
+            <h1 className="surv-header">Existing Underlayment</h1>
             <div className="form-group">
               <label>Felt</label>
               <input
@@ -1688,7 +1691,7 @@ export default function UpgradeTool() {
           return (
             <>
             <div className="question-container">
-            <h1 className="surv-header">Ice and Water</h1>
+            <h1 className="surv-header">Ice and Water Barrier Existing</h1>
             <div className="form-group">
               <label>Yes</label>
               <input
@@ -1747,7 +1750,7 @@ export default function UpgradeTool() {
         return (
         <>
         <div className="question-container">
-        <h1 className="surv-header">Pipejacks</h1>
+        <h1 className="surv-header">Current Pipejacks</h1>
 
         <div className="form-group">
         <label>Neoprene/Hard Plastics</label>
@@ -1908,7 +1911,7 @@ export default function UpgradeTool() {
           <>
           <div className="question-container">
 
-          <h1 className="surv-header">Ridge Vent</h1>
+          <h1 className="surv-header">Current Ridge Vent</h1>
           <div className="form-group">
             <label>Yes</label>
             <input
@@ -2013,7 +2016,7 @@ export default function UpgradeTool() {
           return (
             <>
             <div className="question-container">
-            <h1 className="surv-header">Step Flashing</h1>
+            <h1 className="surv-header">Step Flashing Existing on House</h1>
 
             <div className="form-group">
             <label>Aluminum</label>
@@ -2057,7 +2060,7 @@ export default function UpgradeTool() {
           return (
             <>
             <div className="question-container">
-            <h1 className="surv-header">Counter Flashing</h1>
+            <h1 className="surv-header">Counter Flashing Existing on House</h1>
 
             <div className="form-group">
             <label>Aluminum</label>
@@ -2094,7 +2097,7 @@ export default function UpgradeTool() {
           return (
             <>
             <div className="question-container">
-            <h1 className="surv-header">Chimney Flashing</h1>
+            <h1 className="surv-header">Chimney Flashing Existing on House</h1>
 
             <div className="form-group">
             <label>Aluminum</label>
@@ -2138,7 +2141,7 @@ export default function UpgradeTool() {
       return (
         <>
           <div className="question-container">
-          <h1 className="surv-header" style={{ height: '50px'}}>Material Make</h1>
+          <h1 className="surv-header" style={{ height: '50px'}}>Material Manufacturer</h1>
           <div className="form-group">
           <label>Company</label>
           <select
@@ -2147,10 +2150,8 @@ export default function UpgradeTool() {
           size="1"
           value={roofTemplate.materials}
           onChange={(e) => setRoofTemplate({ ...roofTemplate, materials: e.target.value })}>>
-          <option value="select">Select make</option>
-          <option value="asphalt">Example</option>
-          <option value="copper">Example</option>
-          <option value="metal">Example</option>
+          <option value="select">Select manufacturer</option>
+          <option value="owens">Owens Corning</option>
           </select>
           </div>
           <div className="surv-accent1"></div>

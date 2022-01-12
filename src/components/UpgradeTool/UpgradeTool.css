@@ -16,6 +16,8 @@ label {
   font-family: 'Heebo', sans-serif;
   margin-top: 15px;
 }
+.manual-label-width {
+}
 .hz-surv {
   width: 100%;
   display: flex;
@@ -66,7 +68,7 @@ label {
 }
 .manual-label {
   display: flex;
-  width: 25%;
+  width: 35%;
   flex-direction: column;
   justify-content: center;
   margin: 0px 40px 0px 0;

@@ -16,15 +16,17 @@ export default function StepZero(props) {
     checked={props.roofTemplate.roofMeasurement === 'manual'}
     onChange={props.handleMeasurementChange}
     />
-    <label>.XML Upload</label>
-    <input
-    style={{ width:"20px", height: "20px" }}
-    type="radio"
-    name="roofMeasurement"
-    value="xml"
-    checked={props.roofTemplate.roofMeasurement === 'xml'}
-    onChange={props.handleMeasurementChange}
-    />
+    {
+    //   <label>.XML Upload</label>
+    // <input
+    // style={{ width:"20px", height: "20px" }}
+    // type="radio"
+    // name="roofMeasurement"
+    // value="xml"
+    // checked={props.roofTemplate.roofMeasurement === 'xml'}
+    // onChange={props.handleMeasurementChange}
+    // />
+  }
     </div>
     </>
   )
