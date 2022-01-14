@@ -1,6 +1,7 @@
 import React from 'react';
 
 export default function StepZero(props) {
+
   return (
     <>
     <h1 className="surv-header">Homeowner Information</h1>

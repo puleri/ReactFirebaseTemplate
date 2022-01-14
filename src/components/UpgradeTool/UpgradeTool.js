@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -12,7 +12,20 @@ import StepOne from './StepOne.js';
 // import { useLocation } from "react-router-dom";
 import './UpgradeTool.css';
 
+const swipeConfidenceThreshold = 10000;
+const swipePower = (offset: number, velocity: number) => {
+  return Math.abs(offset) * velocity;
+};
+
+
 export default function UpgradeTool() {
+
+  const [[page, direction], setPage] = useState([0, 0]);
+
+  const paginate = (newDirection: number) => {
+  setPage([page + newDirection, newDirection]);
+};
+
 
   // const location = useLocation();
   // const paths = location.pathname.split("/");
@@ -20,7 +33,7 @@ export default function UpgradeTool() {
 // console.log("location is," , location)
 
 // setting left animation for survey
-  const [left, setLeft] = useState('0');
+  const [left, setLeft] = useState('');
   const [roofTemplate, setRoofTemplate] = useState({
     step: "0",
     job: "",
@@ -289,6 +302,7 @@ export default function UpgradeTool() {
     setRoofTemplate({
       ...roofTemplate, step: '1'
     })
+    setLeft('0')
   }
   const oneNext = () => {
     setRoofTemplate({
@@ -1228,16 +1242,38 @@ export default function UpgradeTool() {
   switch (roofTemplate.step) {
     default:
     case "0":
-    let init;
-    if (left === '0') {
-      init = '-100vw'
-    }
+
       return (
         <>
         <div className="question-container">
+        <AnimatePresence>
+        <motion.div
+        initial="enter"
+        transition={{
+          x: { type: "spring", stiffness: 300, damping: 30 },
+          opacity: { duration: 0.2 }
+        }}
+        animate="center"
+        exit="exit"
+        drag="x"
+        dragConstraints={{ left: 0, right: 0 }}
+        dragElastic={1}
+        onDragEnd={(e, { offset, velocity }) => {
+          const swipe = swipePower(offset.x, velocity.x);
+
+          if (swipe < -swipeConfidenceThreshold) {
+            zeroNext();
+          } else if (swipe > swipeConfidenceThreshold) {
+            paginate(-1);
+          }
+        }}
+
+        >
 
         <StepZero roofTemplate={roofTemplate} setRoofTemplate={setRoofTemplate}/>
 
+        </motion.div>
+        </AnimatePresence>
         <div className="surv-accent1"></div>
         </div>
         <button className="survey-btn next" onClick={() => zeroNext()}><i class="fas fa-chevron-right"></i></button>

@@ -3,7 +3,10 @@ import { motion } from 'framer-motion';
 
 export default function StepZero(props) {
   return (
-    <
+    <motion.div
+      initial={{ x:'100vw'}}
+      animate={{ x: 0}}
+      transition={{duration:0.5}}
     >
     <h1 className="surv-header">Roof Measurement</h1>
     <div className="form-group">
@@ -28,6 +31,6 @@ export default function StepZero(props) {
     // />
   }
     </div>
-    </>
+    </motion.div>
   )
 }
