@@ -12,6 +12,27 @@ import StepOne from './StepOne.js';
 // import { useLocation } from "react-router-dom";
 import './UpgradeTool.css';
 
+const variants = {
+  enter: (direction) => {
+    return {
+      x: direction > 0 ? 1000 : -1000,
+      opacity: 0
+    };
+  },
+  center: {
+    zIndex: 1,
+    x: 0,
+    opacity: 1
+  },
+  exit: (direction) => {
+    return {
+      zIndex: 0,
+      x: direction < 0 ? 1000 : -1000,
+      opacity: 0
+    };
+  }
+};
+
 const swipeConfidenceThreshold = 10000;
 const swipePower = (offset: number, velocity: number) => {
   return Math.abs(offset) * velocity;
@@ -20,11 +41,11 @@ const swipePower = (offset: number, velocity: number) => {
 
 export default function UpgradeTool() {
 
-  const [[page, direction], setPage] = useState([0, 0]);
+  // const [[page, direction], setPage] = useState([0, 1]);
 
-  const paginate = (newDirection: number) => {
-  setPage([page + newDirection, newDirection]);
-};
+//   const paginate = (newDirection: number) => {
+//   setPage([page + newDirection, newDirection]);
+// };
 
 
   // const location = useLocation();
@@ -33,7 +54,7 @@ export default function UpgradeTool() {
 // console.log("location is," , location)
 
 // setting left animation for survey
-  const [left, setLeft] = useState('');
+  const [direction, setDirection] = useState(1);
   const [roofTemplate, setRoofTemplate] = useState({
     step: "0",
     job: "",
@@ -299,17 +320,30 @@ export default function UpgradeTool() {
   }
 
   const zeroNext = () => {
+    // setDirection(1)
+    setIsShown("1"); setTimeout( ()=> {
     setRoofTemplate({
       ...roofTemplate, step: '1'
     })
-    setLeft('0')
+  }
+    , 700)
   }
   const oneNext = () => {
+    // setDirection(1)
+    setIsShown("manual"); setTimeout( ()=> {
     setRoofTemplate({
       ...roofTemplate, step: "manual"
     })
   }
-  const onePrev = () => setRoofTemplate({ ...roofTemplate, step: '0'})
+    , 700)
+  }
+  const onePrev = () => {
+    // setDirection(-1)
+    setIsShown("0"); setTimeout( ()=> {
+    setRoofTemplate({ ...roofTemplate, step: '0'})
+  }
+    , 700)
+}
   // xmlNext
   const manualNext = () => {
     setRoofTemplate({
@@ -1239,7 +1273,11 @@ export default function UpgradeTool() {
     })
   }
 
-  switch (roofTemplate.step) {
+const [isShown, setIsShown] = useState('0')
+const [key, setKey] = useState(1)
+
+    const _switchRender = () => {
+      switch (roofTemplate.step) {
     default:
     case "0":
 
@@ -1247,33 +1285,20 @@ export default function UpgradeTool() {
         <>
         <div className="question-container">
         <AnimatePresence>
-        <motion.div
-        initial="enter"
-        transition={{
-          x: { type: "spring", stiffness: 300, damping: 30 },
-          opacity: { duration: 0.2 }
-        }}
-        animate="center"
-        exit="exit"
-        drag="x"
-        dragConstraints={{ left: 0, right: 0 }}
-        dragElastic={1}
-        onDragEnd={(e, { offset, velocity }) => {
-          const swipe = swipePower(offset.x, velocity.x);
-
-          if (swipe < -swipeConfidenceThreshold) {
-            zeroNext();
-          } else if (swipe > swipeConfidenceThreshold) {
-            paginate(-1);
-          }
-        }}
-
-        >
+        { (isShown === '0') && (
+          <motion.div
+          key={"2"}
+          initial={{x: "50%", opacity: 0}}
+          animate={{x:0, opacity:1}}
+          exit={{x:"-50%", opacity:0}}
+          transition={{ duration: .7 }}
+          >
 
         <StepZero roofTemplate={roofTemplate} setRoofTemplate={setRoofTemplate}/>
-
         </motion.div>
-        </AnimatePresence>
+      )}
+      </AnimatePresence>
+
         <div className="surv-accent1"></div>
         </div>
         <button className="survey-btn next" onClick={() => zeroNext()}><i class="fas fa-chevron-right"></i></button>
@@ -1284,7 +1309,19 @@ export default function UpgradeTool() {
         return (
           <>
           <div className="question-container">
+          <AnimatePresence>
+          { (isShown === '1') && (
+            <motion.div
+            key={"2"}
+            initial={{x: "50%", opacity: 0}}
+            animate={{x:0, opacity:1}}
+            exit={{x:"-50%", opacity:0}}
+            transition={{ duration: .7 }}
+            >
           <StepOne roofTemplate={roofTemplate} handleMeasurementChange={handleMeasurementChange}/>
+          </motion.div>
+        )}
+        </AnimatePresence>
           <div className="surv-accent1"></div>
           </div>
           <button className="survey-btn prev" onClick={() => onePrev()}><i class="fas fa-chevron-left"></i></button>
@@ -2252,6 +2289,14 @@ export default function UpgradeTool() {
         </div>
       )
   }
+  }
+
+  return (
+    <AnimatePresence exitBeforeEnter>
+      {_switchRender()}
+    </AnimatePresence>
+  )
+
 }
 // checked
 // <div className="form-group">
