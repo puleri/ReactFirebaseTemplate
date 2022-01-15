@@ -54,6 +54,9 @@ export default function UpgradeTool() {
 // console.log("location is," , location)
 
 // setting left animation for survey
+
+  const [goingBackTo, setGoingBackTo] = useState('');
+  const [prevSlideMotion, setPrevSlideMotion] = useState('');
   const [direction, setDirection] = useState(1);
   const [roofTemplate, setRoofTemplate] = useState({
     step: "0",
@@ -321,6 +324,7 @@ export default function UpgradeTool() {
 
   const zeroNext = () => {
     // setDirection(1)
+    setPrevSlideMotion('0')
     setIsShown("1"); setTimeout( ()=> {
     setRoofTemplate({
       ...roofTemplate, step: '1'
@@ -330,6 +334,8 @@ export default function UpgradeTool() {
   }
   const oneNext = () => {
     // setDirection(1)
+    // When exiting to the right we set this as the previous slide
+    setPrevSlideMotion('1')
     setIsShown("manual"); setTimeout( ()=> {
     setRoofTemplate({
       ...roofTemplate, step: "manual"
@@ -339,6 +345,9 @@ export default function UpgradeTool() {
   }
   const onePrev = () => {
     // setDirection(-1)
+    // when exiting to the previous slide we set our destination so we can check when setting out exit animation
+    setGoingBackTo('0')
+    setPrevSlideMotion('0')
     setIsShown("0"); setTimeout( ()=> {
     setRoofTemplate({ ...roofTemplate, step: '0'})
   }
@@ -1287,8 +1296,8 @@ const [key, setKey] = useState(1)
         <AnimatePresence>
         { (isShown === '0') && (
           <motion.div
-          key={"2"}
-          initial={{x: "50%", opacity: 0}}
+          key={"0"}
+          initial={{x:  (prevSlideMotion==='0') ? "-50%" : "50%", opacity: 0 }}
           animate={{x:0, opacity:1}}
           exit={{x:"-50%", opacity:0}}
           transition={{ duration: .7 }}
@@ -1312,10 +1321,10 @@ const [key, setKey] = useState(1)
           <AnimatePresence>
           { (isShown === '1') && (
             <motion.div
-            key={"2"}
-            initial={{x: "50%", opacity: 0}}
+            key={"1"}
+            initial={{x: (goingBackTo==='1') ? "-50%" : "50%", opacity: 0}}
             animate={{x:0, opacity:1}}
-            exit={{x:"-50%", opacity:0}}
+            exit={{x:(prevSlideMotion==='1') ? "-50%" : "50%", opacity:0}}
             transition={{ duration: .7 }}
             >
           <StepOne roofTemplate={roofTemplate} handleMeasurementChange={handleMeasurementChange}/>
