@@ -38,6 +38,11 @@ const swipePower = (offset: number, velocity: number) => {
   return Math.abs(offset) * velocity;
 };
 
+// const emptyPromise = new Promise((res, err) => {
+//   console.log('promise')
+//   console.log("error is ", err)
+// })
+
 
 export default function UpgradeTool() {
 
@@ -57,7 +62,9 @@ export default function UpgradeTool() {
 
   const [goingBackTo, setGoingBackTo] = useState('');
   const [prevSlideMotion, setPrevSlideMotion] = useState('');
-  const [direction, setDirection] = useState(1);
+
+  // true means forwards, false means backwards
+  const [direction, setDirection] = useState(true);
   const [roofTemplate, setRoofTemplate] = useState({
     step: "0",
     job: "",
@@ -322,6 +329,8 @@ export default function UpgradeTool() {
     })
   }
 
+
+
   const zeroNext = () => {
     // setDirection(1)
     setPrevSlideMotion('0')
@@ -333,10 +342,14 @@ export default function UpgradeTool() {
     , 700)
   }
   const oneNext = () => {
-    // setDirection(1)
+
+    setDirection(true)
     // When exiting to the right we set this as the previous slide
     setPrevSlideMotion('1')
-    setIsShown("manual"); setTimeout( ()=> {
+    setTimeout( () => {
+      setIsShown("manual");
+    }, 0)
+    setTimeout( ()=> {
     setRoofTemplate({
       ...roofTemplate, step: "manual"
     })
@@ -344,20 +357,34 @@ export default function UpgradeTool() {
     , 700)
   }
   const onePrev = () => {
-    // setDirection(-1)
-    // when exiting to the previous slide we set our destination so we can check when setting out exit animation
-    setGoingBackTo('0')
-    setPrevSlideMotion('0')
-    setIsShown("0"); setTimeout( ()=> {
-    setRoofTemplate({ ...roofTemplate, step: '0'})
+    async function prev() {
+      try {
+      await setDirection(false)
+    } catch(e) {
+      console.log(e)
+    } finally {
+      setGoingBackTo('0')
+      setPrevSlideMotion('0')
+      setIsShown("0");
+      setTimeout( ()=> {
+      setRoofTemplate({ ...roofTemplate, step: '0'})
+    }
+      , 700)
+    }
+        // when exiting to the previous slide we set our destination so we can check when setting out exit
   }
-    , 700)
+  prev()
 }
   // xmlNext
   const manualNext = () => {
+    setGoingBackTo('1')
+    setPrevSlideMotion('1')
+    setIsShown("1"); setTimeout( ()=> {
     setRoofTemplate({
       ...roofTemplate, step: "roofType"
     })
+  }
+    , 700)
   }
   const manualPrev = () => setRoofTemplate({ ...roofTemplate, step: '1'})
   const roofTypeNext = () => {
@@ -1322,9 +1349,9 @@ const [key, setKey] = useState(1)
           { (isShown === '1') && (
             <motion.div
             key={"1"}
-            initial={{x: (goingBackTo==='1') ? "-50%" : "50%", opacity: 0}}
+            initial={{x: (prevSlideMotion==='1') ? "-50%" : "50%", opacity: 0}}
             animate={{x:0, opacity:1}}
-            exit={{x:(prevSlideMotion==='1') ? "-50%" : "50%", opacity:0}}
+            exit={{x: prevSlideMotion==="0" ? "50%" : "-50%", opacity:0}}
             transition={{ duration: .7 }}
             >
           <StepOne roofTemplate={roofTemplate} handleMeasurementChange={handleMeasurementChange}/>
