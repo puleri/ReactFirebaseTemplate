@@ -1338,9 +1338,9 @@ const [key, setKey] = useState(1)
         { (isShown === '0') && (
           <motion.div
           key={"0"}
-          initial={{x:  (prevSlideMotion==='0') ? "-50%" : "50%", opacity: 0 }}
+          initial={{ opacity: 0 }}
           animate={{x:0, opacity:1}}
-          exit={{x:"-50%", opacity:0}}
+          exit={{opacity:0}}
           transition={{ duration: .7 }}
           >
 
@@ -1363,9 +1363,9 @@ const [key, setKey] = useState(1)
           { (isShown === '1') && (
             <motion.div
             key={"1"}
-            initial={{x: (prevSlideMotion==='1') ? "-50%" : "50%", opacity: 0}}
+            initial={{opacity: 0}}
             animate={{x:0, opacity:1}}
-            exit={{x: prevSlideMotion==="0" ? "50%" : "-50%", opacity:0}}
+            exit={{ opacity:0}}
             transition={{ duration: .7 }}
             >
           <StepOne roofTemplate={roofTemplate} handleMeasurementChange={handleMeasurementChange}/>
@@ -1386,9 +1386,9 @@ const [key, setKey] = useState(1)
           { (isShown === 'manual') && (
             <motion.div
             key={"1"}
-            initial={{x: (prevSlideMotion==='manual') ? "-50%" : "50%", opacity: 0}}
+            initial={{opacity: 0}}
             animate={{x:0, opacity:1}}
-            exit={{x: prevSlideMotion==="1" ? "50%" : "-50%", opacity:0}}
+            exit={{ opacity:0}}
             transition={{ duration: .7 }}
             >
           <h1 className="surv-header">Manual Entry</h1>
@@ -1544,6 +1544,15 @@ const [key, setKey] = useState(1)
           return (
             <>
             <div className="question-container">
+            <AnimatePresence>
+            { (roofTemplate.step === 'roofType') && (
+              <motion.div
+              key={"1"}
+              initial={{opacity: 0}}
+              animate={{x:0, opacity:1}}
+              exit={{ opacity:0}}
+              transition={{ duration: .7 }}
+              >
             <h1 className="surv-header">What type of material is existing on the roof?</h1>
             <div className="form-group">
             <label>Existing Roof Material</label>
@@ -1565,6 +1574,9 @@ const [key, setKey] = useState(1)
             }
             </select>
             </div>
+            </motion.div>
+          )}
+            </AnimatePresence>
             <div className="surv-accent1"></div>
 
             </div>
@@ -1576,6 +1588,15 @@ const [key, setKey] = useState(1)
             return (
               <>
               <div className="question-container">
+              <AnimatePresence>
+              { (roofTemplate.step === 'asphalt') && (
+                <motion.div
+                key={"1"}
+                initial={{opacity: 0}}
+                animate={{x:0, opacity:1}}
+                exit={{ opacity:0}}
+                transition={{ duration: .7 }}
+                >
               <h1 className="surv-header">What kind of shingle is existing on the roof?</h1>
               <div className="form-group">
                   <label>Existing Shingle</label>
@@ -1590,6 +1611,9 @@ const [key, setKey] = useState(1)
                   <option value="laminate">Laminate</option>
                   </select>
               </div>
+              </motion.div>
+            )}
+            </AnimatePresence>
               <div className="surv-accent1"></div>
 
               </div>
@@ -1602,6 +1626,15 @@ const [key, setKey] = useState(1)
           return (
             <>
             <div className="question-container">
+            <AnimatePresence>
+            { (roofTemplate.step === 'metal') && (
+              <motion.div
+              key={"1"}
+              initial={{opacity: 0}}
+              animate={{x:0, opacity:1}}
+              exit={{ opacity:0}}
+              transition={{ duration: .7 }}
+              >
             <h1 className="surv-header">Is a drip edge or gutter apron existing on the roof?</h1>
             <div className="form-group">
               <label>Yes</label>
@@ -1619,6 +1652,9 @@ const [key, setKey] = useState(1)
               onChange={(e) => setRoofTemplate({ ...roofTemplate, metalEdge: !roofTemplate.metalEdge })}
               />
             </div>
+            </motion.div>
+          )}
+          </AnimatePresence>
             <div className="surv-accent1"></div>
 
               </div>
@@ -1631,6 +1667,15 @@ const [key, setKey] = useState(1)
           return (
             <>
             <div className="question-container">
+            <AnimatePresence>
+            { (roofTemplate.step === '3-tab') && (
+              <motion.div
+              key={"1"}
+              initial={{opacity: 0}}
+              animate={{x:0, opacity:1}}
+              exit={{ opacity:0}}
+              transition={{ duration: .7 }}
+              >
             <h1 className="surv-header">Which 3-Tab is existing on the roof?</h1>
             <div className="form-group">
                 <label>3-Tab</label>
@@ -1645,6 +1690,9 @@ const [key, setKey] = useState(1)
                 <option value="25">25 Year</option>
                 </select>
             </div>
+            </motion.div>
+          )}
+          </AnimatePresence>
             <div className="surv-accent1"></div>
 
             </div>
@@ -1657,6 +1705,15 @@ const [key, setKey] = useState(1)
           return (
             <>
             <div className="question-container">
+            <AnimatePresence>
+            { (roofTemplate.step === 'laminate') && (
+              <motion.div
+              key={"1"}
+              initial={{opacity: 0}}
+              animate={{x:0, opacity:1}}
+              exit={{ opacity:0}}
+              transition={{ duration: .7 }}
+              >
             <h1 className="surv-header">Which grade of laminate is existing on the roof?</h1>
             <div className="form-group">
                 <label>Laminate</label>
@@ -1673,6 +1730,9 @@ const [key, setKey] = useState(1)
                 <option value="specialty">Specialty</option>
                 </select>
             </div>
+            </motion.div>
+          )}
+          </AnimatePresence>
             <div className="surv-accent1"></div>
 
             </div>
@@ -1685,7 +1745,15 @@ const [key, setKey] = useState(1)
         return (
           <>
           <div className="question-container">
-
+          <AnimatePresence>
+          { (roofTemplate.step === 'bol-valley-metal') && (
+            <motion.div
+            key={"1"}
+            initial={{opacity: 0}}
+            animate={{x:0, opacity:1}}
+            exit={{ opacity:0}}
+            transition={{ duration: .7 }}
+            >
           <h1 className="surv-header">Valley Metal</h1>
           <div className="form-group">
             <label>Yes</label>
@@ -1703,6 +1771,9 @@ const [key, setKey] = useState(1)
             onChange={(e) => setRoofTemplate({ ...roofTemplate, valleyMetal: !roofTemplate.valleyMetal })}
             />
           </div>
+          </motion.div>
+        )}
+        </AnimatePresence>
           <div className="surv-accent1"></div>
 
           </div>
