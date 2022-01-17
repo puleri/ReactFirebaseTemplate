@@ -343,13 +343,13 @@ export default function UpgradeTool() {
   }
   const oneNext = () => {
 
-    setDirection(true)
     // When exiting to the right we set this as the previous slide
     setPrevSlideMotion('1')
     setTimeout( () => {
       setIsShown("manual");
     }, 0)
     setTimeout( ()=> {
+
     setRoofTemplate({
       ...roofTemplate, step: "manual"
     })
@@ -377,16 +377,30 @@ export default function UpgradeTool() {
 }
   // xmlNext
   const manualNext = () => {
-    setGoingBackTo('1')
-    setPrevSlideMotion('1')
-    setIsShown("1"); setTimeout( ()=> {
+    setPrevSlideMotion('manual')
+
+    setTimeout( () => {
+      setIsShown("roofType");
+    }, 0)
+    setTimeout( ()=> {
     setRoofTemplate({
       ...roofTemplate, step: "roofType"
     })
   }
     , 700)
   }
-  const manualPrev = () => setRoofTemplate({ ...roofTemplate, step: '1'})
+  const manualPrev = () => {
+    setPrevSlideMotion('1')
+    setTimeout(() => {
+
+      setIsShown("1");
+    }, 0)
+
+  setTimeout( ()=> {
+   setRoofTemplate({ ...roofTemplate, step: '1'})}
+   , 700)
+ }
+
   const roofTypeNext = () => {
     if (roofTemplate.roofType === "asphalt") {
       setRoofTemplate({
@@ -1337,7 +1351,7 @@ const [key, setKey] = useState(1)
 
         <div className="surv-accent1"></div>
         </div>
-        <button className="survey-btn next" onClick={() => zeroNext()}><i class="fas fa-chevron-right"></i></button>
+        <button className="survey-btn next" onClick={() => zeroNext()}><i className="fas fa-chevron-right"></i></button>
         </>
       )
     case "1":
@@ -1360,14 +1374,23 @@ const [key, setKey] = useState(1)
         </AnimatePresence>
           <div className="surv-accent1"></div>
           </div>
-          <button className="survey-btn prev" onClick={() => onePrev()}><i class="fas fa-chevron-left"></i></button>
-          <button className="survey-btn next" onClick={() => oneNext()}><i class="fas fa-chevron-right"></i></button>
+          <button className="survey-btn prev" onClick={() => onePrev()}><i className="fas fa-chevron-left"></i></button>
+          <button className="survey-btn next" onClick={() => oneNext()}><i className="fas fa-chevron-right"></i></button>
           </>
         )
     case "manual":
         return (
           <>
           <div className="question-container">
+          <AnimatePresence>
+          { (isShown === 'manual') && (
+            <motion.div
+            key={"1"}
+            initial={{x: (prevSlideMotion==='manual') ? "-50%" : "50%", opacity: 0}}
+            animate={{x:0, opacity:1}}
+            exit={{x: prevSlideMotion==="1" ? "50%" : "-50%", opacity:0}}
+            transition={{ duration: .7 }}
+            >
           <h1 className="surv-header">Manual Entry</h1>
           <div className="tall-form-group">
             <div className="manual-form">
@@ -1460,14 +1483,17 @@ const [key, setKey] = useState(1)
           </div>
 
           </div>
+          </motion.div>
+        )}
+          </AnimatePresence>
           <div className="surv-accent1"></div>
 
           </div>
-          <button className="survey-btn prev" onClick={() => manualPrev()}><i class="fas fa-chevron-left"></i></button>
+          <button className="survey-btn prev" onClick={() => manualPrev()}><i className="fas fa-chevron-left"></i></button>
           <button className="survey-btn next" onClick={() => {
             setRoofTemplate({ ...roofTemplate, xmlType: "" })
             manualNext()
-          }}><i class="fas fa-chevron-right"></i></button>
+          }}><i className="fas fa-chevron-right"></i></button>
 
           </>
         )
@@ -1509,8 +1535,8 @@ const [key, setKey] = useState(1)
             <div className="surv-accent1"></div>
 
             </div>
-            <button className="survey-btn" onClick={() => console.log("fix me")}><i class="fas fa-chevron-left"></i></button>
-            <button className="survey-btn next" onClick={() => console.log("fix me")}><i class="fas fa-chevron-right"></i></button>
+            <button className="survey-btn" onClick={() => console.log("fix me")}><i className="fas fa-chevron-left"></i></button>
+            <button className="survey-btn next" onClick={() => console.log("fix me")}><i className="fas fa-chevron-right"></i></button>
 
           </>
         )
@@ -1542,8 +1568,8 @@ const [key, setKey] = useState(1)
             <div className="surv-accent1"></div>
 
             </div>
-            <button className="survey-btn prev" onClick={() => roofTypePrev()}><i class="fas fa-chevron-left"></i></button>
-            <button className="survey-btn next" onClick={() => roofTypeNext()}><i class="fas fa-chevron-right"></i></button>
+            <button className="survey-btn prev" onClick={() => roofTypePrev()}><i className="fas fa-chevron-left"></i></button>
+            <button className="survey-btn next" onClick={() => roofTypeNext()}><i className="fas fa-chevron-right"></i></button>
             </>
           )
     case "asphalt":
@@ -1567,8 +1593,8 @@ const [key, setKey] = useState(1)
               <div className="surv-accent1"></div>
 
               </div>
-              <button className="survey-btn prev" onClick={() => asphaltPrev()}><i class="fas fa-chevron-left"></i></button>
-              <button className="survey-btn next" onClick={() => asphaltNext()}><i class="fas fa-chevron-right"></i></button>
+              <button className="survey-btn prev" onClick={() => asphaltPrev()}><i className="fas fa-chevron-left"></i></button>
+              <button className="survey-btn next" onClick={() => asphaltNext()}><i className="fas fa-chevron-right"></i></button>
               </>
             )
           // if user went down different path we need to reset that state here
@@ -1596,8 +1622,8 @@ const [key, setKey] = useState(1)
             <div className="surv-accent1"></div>
 
               </div>
-              <button className="survey-btn prev" onClick={() => metalPrev()}><i class="fas fa-chevron-left"></i></button>
-              <button className="survey-btn next" onClick={() => metalNext()}><i class="fas fa-chevron-right"></i></button>
+              <button className="survey-btn prev" onClick={() => metalPrev()}><i className="fas fa-chevron-left"></i></button>
+              <button className="survey-btn next" onClick={() => metalNext()}><i className="fas fa-chevron-right"></i></button>
 
             </>
           )
@@ -1622,8 +1648,8 @@ const [key, setKey] = useState(1)
             <div className="surv-accent1"></div>
 
             </div>
-            <button className="survey-btn prev" onClick={() => threePrev()}><i class="fas fa-chevron-left"></i></button>
-            <button className="survey-btn next" onClick={() => threeNext()}><i class="fas fa-chevron-right"></i></button>
+            <button className="survey-btn prev" onClick={() => threePrev()}><i className="fas fa-chevron-left"></i></button>
+            <button className="survey-btn next" onClick={() => threeNext()}><i className="fas fa-chevron-right"></i></button>
 
             </>
           )
@@ -1650,8 +1676,8 @@ const [key, setKey] = useState(1)
             <div className="surv-accent1"></div>
 
             </div>
-            <button className="survey-btn prev" onClick={() => laminatePrev()}><i class="fas fa-chevron-left"></i></button>
-            <button className="survey-btn next" onClick={() => laminateNext()}><i class="fas fa-chevron-right"></i></button>
+            <button className="survey-btn prev" onClick={() => laminatePrev()}><i className="fas fa-chevron-left"></i></button>
+            <button className="survey-btn next" onClick={() => laminateNext()}><i className="fas fa-chevron-right"></i></button>
 
             </>
           )
@@ -1680,8 +1706,8 @@ const [key, setKey] = useState(1)
           <div className="surv-accent1"></div>
 
           </div>
-          <button className="survey-btn prev" onClick={ () => bolValleyMetalPrev()}><i class="fas fa-chevron-left"></i></button>
-          <button className="survey-btn next" onClick={() => bolValleyMetalNext()}><i class="fas fa-chevron-right"></i></button>
+          <button className="survey-btn prev" onClick={ () => bolValleyMetalPrev()}><i className="fas fa-chevron-left"></i></button>
+          <button className="survey-btn next" onClick={() => bolValleyMetalNext()}><i className="fas fa-chevron-right"></i></button>
 
           </>
         )
@@ -1715,8 +1741,8 @@ const [key, setKey] = useState(1)
             <div className="surv-accent1"></div>
 
             </div>
-            <button className="survey-btn prev" onClick={() => underlaymentPrev()}><i class="fas fa-chevron-left"></i></button>
-            <button className="survey-btn next" onClick={() => underlaymentNext()}><i class="fas fa-chevron-right"></i></button>
+            <button className="survey-btn prev" onClick={() => underlaymentPrev()}><i className="fas fa-chevron-left"></i></button>
+            <button className="survey-btn next" onClick={() => underlaymentNext()}><i className="fas fa-chevron-right"></i></button>
 
           </>
         )
@@ -1745,8 +1771,8 @@ const [key, setKey] = useState(1)
             <div className="surv-accent1"></div>
 
             </div>
-            <button className="survey-btn prev" onClick={ () => valleyMetalPrev()}><i class="fas fa-chevron-left"></i></button>
-            <button className="survey-btn next" onClick={() => valleyMetalNext()}><i class="fas fa-chevron-right"></i></button>
+            <button className="survey-btn prev" onClick={ () => valleyMetalPrev()}><i className="fas fa-chevron-left"></i></button>
+            <button className="survey-btn next" onClick={() => valleyMetalNext()}><i className="fas fa-chevron-right"></i></button>
 
             </>
           )
@@ -1782,8 +1808,8 @@ const [key, setKey] = useState(1)
             <div className="surv-accent1"></div>
 
             </div>
-            <button className="survey-btn prev" onClick={ () => valleyMetalWPrev()}><i class="fas fa-chevron-left"></i></button>
-            <button className="survey-btn next" onClick={() => valleyMetalWNext()}><i class="fas fa-chevron-right"></i></button>
+            <button className="survey-btn prev" onClick={ () => valleyMetalWPrev()}><i className="fas fa-chevron-left"></i></button>
+            <button className="survey-btn next" onClick={() => valleyMetalWNext()}><i className="fas fa-chevron-right"></i></button>
 
             </>
           )
@@ -1811,8 +1837,8 @@ const [key, setKey] = useState(1)
             <div className="surv-accent1"></div>
 
             </div>
-            <button className="survey-btn prev" onClick={() => iceWaterBoolPrev()}><i class="fas fa-chevron-left"></i></button>
-            <button className="survey-btn next" onClick={() => iceWaterBoolNext()}><i class="fas fa-chevron-right"></i></button>
+            <button className="survey-btn prev" onClick={() => iceWaterBoolPrev()}><i className="fas fa-chevron-left"></i></button>
+            <button className="survey-btn next" onClick={() => iceWaterBoolNext()}><i className="fas fa-chevron-right"></i></button>
 
             </>
           )
@@ -1841,8 +1867,8 @@ const [key, setKey] = useState(1)
               <div className="surv-accent1"></div>
 
               </div>
-              <button className="survey-btn prev" onClick={() => syntheticPrev()}><i class="fas fa-chevron-left"></i></button>
-              <button className="survey-btn next" onClick={() => syntheticNext()}><i class="fas fa-chevron-right"></i></button>
+              <button className="survey-btn prev" onClick={() => syntheticPrev()}><i className="fas fa-chevron-left"></i></button>
+              <button className="survey-btn next" onClick={() => syntheticNext()}><i className="fas fa-chevron-right"></i></button>
 
             </>
           )
@@ -1871,8 +1897,8 @@ const [key, setKey] = useState(1)
         <div className="surv-accent1"></div>
 
         </div>
-        <button className="survey-btn prev" onClick={() => pipejacksPrev()}><i class="fas fa-chevron-left"></i></button>
-        <button className="survey-btn next" onClick={() => pipejacksNext()}><i class="fas fa-chevron-right"></i></button>
+        <button className="survey-btn prev" onClick={() => pipejacksPrev()}><i className="fas fa-chevron-left"></i></button>
+        <button className="survey-btn next" onClick={() => pipejacksNext()}><i className="fas fa-chevron-right"></i></button>
 
         </>
       )
@@ -1948,8 +1974,8 @@ const [key, setKey] = useState(1)
               <div className="surv-accent1"></div>
 
               </div>
-              <button className="survey-btn prev" onClick={() => neoprenePrev()}><i class="fas fa-chevron-left"></i></button>
-              <button className="survey-btn next" onClick={() => neopreneNext()}><i class="fas fa-chevron-right"></i></button>
+              <button className="survey-btn prev" onClick={() => neoprenePrev()}><i className="fas fa-chevron-left"></i></button>
+              <button className="survey-btn next" onClick={() => neopreneNext()}><i className="fas fa-chevron-right"></i></button>
 
             </>
           )
@@ -2001,8 +2027,8 @@ const [key, setKey] = useState(1)
             <div className="surv-accent1"></div>
 
             </div>
-            <button className="survey-btn prev" onClick={() => iceWaterPrev()}><i class="fas fa-chevron-left"></i></button>
-            <button className="survey-btn next" onClick={() => iceWaterNext()}><i class="fas fa-chevron-right"></i></button>
+            <button className="survey-btn prev" onClick={() => iceWaterPrev()}><i className="fas fa-chevron-left"></i></button>
+            <button className="survey-btn next" onClick={() => iceWaterNext()}><i className="fas fa-chevron-right"></i></button>
 
             </>
           )
@@ -2031,8 +2057,8 @@ const [key, setKey] = useState(1)
           <div className="surv-accent1"></div>
 
           </div>
-          <button className="survey-btn prev" onClick={() => ridgeVentPrev()}><i class="fas fa-chevron-left"></i></button>
-          <button className="survey-btn next" onClick={() => ridgeVentNext()}><i class="fas fa-chevron-right"></i></button>
+          <button className="survey-btn prev" onClick={() => ridgeVentPrev()}><i className="fas fa-chevron-left"></i></button>
+          <button className="survey-btn next" onClick={() => ridgeVentNext()}><i className="fas fa-chevron-right"></i></button>
 
           </>
           )
@@ -2069,8 +2095,8 @@ const [key, setKey] = useState(1)
             <div className="surv-accent1"></div>
 
               </div>
-              <button className="survey-btn prev" onClick={() => dripGutterPrev()}><i class="fas fa-chevron-left"></i></button>
-              <button className="survey-btn next" onClick={() => dripGutterNext()}><i class="fas fa-chevron-right"></i></button>
+              <button className="survey-btn prev" onClick={() => dripGutterPrev()}><i className="fas fa-chevron-left"></i></button>
+              <button className="survey-btn next" onClick={() => dripGutterNext()}><i className="fas fa-chevron-right"></i></button>
 
             </>
           )
@@ -2107,8 +2133,8 @@ const [key, setKey] = useState(1)
               <div className="surv-accent1"></div>
 
               </div>
-              <button className="survey-btn prev" onClick={() => ridgePrev()}><i class="fas fa-chevron-left"></i></button>
-              <button className="survey-btn next" onClick={() => ridgeNext()}><i class="fas fa-chevron-right"></i></button>
+              <button className="survey-btn prev" onClick={() => ridgePrev()}><i className="fas fa-chevron-left"></i></button>
+              <button className="survey-btn next" onClick={() => ridgeNext()}><i className="fas fa-chevron-right"></i></button>
 
             </>
           )
@@ -2151,8 +2177,8 @@ const [key, setKey] = useState(1)
             <div className="surv-accent1"></div>
 
             </div>
-            <button className="survey-btn prev" onClick={() => stepFlashingPrev()}><i class="fas fa-chevron-left"></i></button>
-            <button className="survey-btn next" onClick={() => stepFlashingNext()}><i class="fas fa-chevron-right"></i></button>
+            <button className="survey-btn prev" onClick={() => stepFlashingPrev()}><i className="fas fa-chevron-left"></i></button>
+            <button className="survey-btn next" onClick={() => stepFlashingNext()}><i className="fas fa-chevron-right"></i></button>
 
             </>
           )
@@ -2188,8 +2214,8 @@ const [key, setKey] = useState(1)
             <div className="surv-accent1"></div>
 
             </div>
-            <button className="survey-btn prev" onClick={() => counterFlashingPrev()}><i class="fas fa-chevron-left"></i></button>
-            <button className="survey-btn next" onClick={() => counterFlashingNext()}><i class="fas fa-chevron-right"></i></button>
+            <button className="survey-btn prev" onClick={() => counterFlashingPrev()}><i className="fas fa-chevron-left"></i></button>
+            <button className="survey-btn next" onClick={() => counterFlashingNext()}><i className="fas fa-chevron-right"></i></button>
 
             </>
           )
@@ -2232,8 +2258,8 @@ const [key, setKey] = useState(1)
             <div className="surv-accent1"></div>
 
             </div>
-             <button className="survey-btn prev" onClick={() => chimneyFlashingPrev()}><i class="fas fa-chevron-left"></i></button>
-              <button className="survey-btn next" onClick={() => chimneyFlashingNext()}><i class="fas fa-chevron-right"></i></button>
+             <button className="survey-btn prev" onClick={() => chimneyFlashingPrev()}><i className="fas fa-chevron-left"></i></button>
+              <button className="survey-btn next" onClick={() => chimneyFlashingNext()}><i className="fas fa-chevron-right"></i></button>
 
             </>
           )
@@ -2257,8 +2283,8 @@ const [key, setKey] = useState(1)
           <div className="surv-accent1"></div>
 
           </div>
-          <button className="survey-btn prev" onClick={() => matsPrev()}><i class="fas fa-chevron-left"></i></button>
-          <button className="survey-btn next" onClick={() => matsNext()}><i class="fas fa-chevron-right"></i></button>
+          <button className="survey-btn prev" onClick={() => matsPrev()}><i className="fas fa-chevron-left"></i></button>
+          <button className="survey-btn next" onClick={() => matsNext()}><i className="fas fa-chevron-right"></i></button>
         </>
       )
     case "upgrade-tool":
@@ -2299,8 +2325,8 @@ const [key, setKey] = useState(1)
             </div>
             <div className="surv-accent1"></div>
 
-            <button className="survey-btn prev" onClick={() => upgradeToolPrev()}><i class="fas fa-chevron-left"></i></button>
-            <button className="survey-btn next" onClick={() => upgradeToolNext()}><i class="fas fa-chevron-right"></i></button>
+            <button className="survey-btn prev" onClick={() => upgradeToolPrev()}><i className="fas fa-chevron-left"></i></button>
+            <button className="survey-btn next" onClick={() => upgradeToolNext()}><i className="fas fa-chevron-right"></i></button>
 
             </>
           )
@@ -2321,7 +2347,7 @@ const [key, setKey] = useState(1)
         </div>
         <div className="surv-accent1"></div>
 
-          <button className="survey-btn prev" onClick={() => selectedUpgradesPrev()}><i class="fas fa-chevron-left"></i></button>
+          <button className="survey-btn prev" onClick={() => selectedUpgradesPrev()}><i className="fas fa-chevron-left"></i></button>
         </div>
       )
   }

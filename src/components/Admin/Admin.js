@@ -111,7 +111,7 @@ export default function Admin(){
           <th>Remove</th>
         </tr>
         {isLoading ? (
-          <h1>Loading...</h1>
+          <tr><th>Loading...</th></tr>
         ) : rosterIndex}
       </tbody>
     </table>
