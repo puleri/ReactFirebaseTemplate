@@ -398,7 +398,10 @@ export default function UpgradeTool() {
     } finally {
       setGoingBackTo('1')
       setPrevSlideMotion('1')
-      setIsShown("1");
+      setTimeout( () => {
+        setIsShown("1");
+      }, 0)
+      // setIsShown("1");
       setTimeout( ()=> {
       setRoofTemplate({ ...roofTemplate, step: '1'})
     }
