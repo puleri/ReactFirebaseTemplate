@@ -34,19 +34,21 @@ background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,255,168,1) 100%);
   position: absolute;
   top: 100px;
   left: 100px;
+  font-weight: normal;
   font-size: 3.5em;
   color: #333333;
   letter-spacing: .14rem;
-  font-family: 'Heebo', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 .login-h2 {
   position: absolute;
+  font-weight: normal;
   top: 330px;
   left: 105px;
   font-size: 1em;
   color: #333333;
   letter-spacing: .14rem;
-  font-family: 'Heebo', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 .logo {
   height: 100px;
@@ -66,7 +68,7 @@ background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,255,168,1) 100%);
 }
 .error-message{
   font-size: 10px;
-  font-family: 'Heebo', sans-serif;
+  font-family: 'Poppins', sans-serif;
   color: white;
   margin: -40px 0;
 }
@@ -75,24 +77,24 @@ background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,255,168,1) 100%);
   border: none;
   border-bottom: 1px solid white;
   border-radius: 0;
-  padding: 5px 2px 0px 5px;
+  padding: 10px 9px;
   color: white;
   font-size: .8rem;
+  font-weight: normal;
   width: 240px;
 }
 .login-email::placeholder {
   color: white;
-  font-family: 'Heebo', sans-serif;
-  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
   font-size: .7rem;
-  letter-spacing: .1rem;
 }
 .login-password {
   background: none;
   border: none;
   border-bottom: 1px solid white;
+  font-weight: normal;
   border-radius: 0;
-  padding: 5px 2px 0px 5px;
+  padding: 10px 9px;
   margin-top: -30px;
   font-size: .8rem;
   color: white;
@@ -100,10 +102,8 @@ background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,255,168,1) 100%);
 }
 .login-password::placeholder {
   color: white;
-  font-family: 'Heebo', sans-serif;
-  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
   font-size: .7rem;
-  letter-spacing: .1rem;
 }
 .pulse {
   position: relative;
@@ -112,18 +112,18 @@ background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,255,168,1) 100%);
   transition: background 400ms;
   width: 120px;
   height: 30px;
+  padding-bottom: 0;
   border-radius: 50px;
   border: none;
-  font-family: 'Heebo', sans-serif;
-  font-weight: bold;
-  font-size: .77em;
-  letter-spacing: .1rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: normal;
+  font-size: .79em;
   cursor: pointer;
   background: white;
 }
 .login-h5 {
-  font-family: 'Heebo', sans-serif;
-  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  font-weight: normal;
   color: white;
   margin-top: -40px;
   font-size: .67em;
@@ -135,12 +135,12 @@ background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,255,168,1) 100%);
   margin-top: -60px;
 }
 
-@media (max-width: 1180px) {
+@media (max-width: 1270px) {
   .login-h2 {
     width: 300px;
   }
 }
-@media (max-width: 1042px) {
+@media (max-width: 1112px) {
   .login-form {
     left: 150px;
   }

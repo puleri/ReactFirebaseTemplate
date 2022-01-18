@@ -2,7 +2,7 @@ footer {
   pointer-events: all;
   margin-top: 200px;
   position: relative;
-  font-weight: bold;
+  font-weight: normal;
   letter-spacing: 1px;
   color: white;
 }
@@ -40,13 +40,13 @@ footer::after {
   text-decoration: none;
   color: white;
   margin: 15px;
-  font-weight: bold;
+  font-weight: normal;
   font-size: 18px;
 }
 
 .Footer {
   text-transform: uppercase;
-  font-family: 'Heebo', sans-serif;
+  font-family: 'Poppins', sans-serif;
   background-color: none;
   position:relative;
   height: 150px;
@@ -62,7 +62,7 @@ footer::after {
   margin: 10px;
   margin-right: 40px;
   margin-left: 10px;
-  font-weight: bold;
+  font-weight: normal;
 }
 
 .Footer_button {
@@ -79,7 +79,7 @@ footer::after {
   background: white;
   font-size: 15px;
   margin-right: 30px;
-  font-weight: bold;
+  font-weight: normal;
   color: #2C7593;
   width: 150px;
   border: none;
@@ -93,6 +93,7 @@ footer::after {
 .Footer_button:hover{
   background: #2C7593;
   color: white;
+  text-decoration: none;
 }
 .footercolor {
   position: relative;

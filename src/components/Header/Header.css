@@ -32,7 +32,7 @@
   display: flex;
   align-items: flex-end;
   color: black;
-  font-family: 'Heebo', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 12px;
   letter-spacing: 1px;
   margin-top: -42px;
@@ -67,8 +67,8 @@
   color: black;
 }
 .brand{
-  font-family: "Heebo", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 .perm-prof-icon {
- font-family: "Heebo", sans-serif;
+ font-family: "Poppins", sans-serif;
 }

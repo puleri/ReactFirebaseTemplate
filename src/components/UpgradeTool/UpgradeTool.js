@@ -611,7 +611,7 @@ export default function UpgradeTool() {
     } else {
       setRoofTemplate({
         ...roofTemplate,
-        step: "bol-valley-metal"
+        step: "pipejacks"
       })
     }
   }
@@ -631,7 +631,7 @@ export default function UpgradeTool() {
   const dripGutterNext = () => {
     setRoofTemplate({
       ...roofTemplate,
-      step: "bol-valley-metal"
+      step: "pipejacks"
     })
   }
   const dripGutterPrev = () => {
@@ -706,10 +706,10 @@ export default function UpgradeTool() {
 
   }
   const pipejacksPrev = () => {
-    if (!roofTemplate.valleyMetal) {
+    if (!roofTemplate.metalEdge) {
       setRoofTemplate({
         ...roofTemplate,
-        step: "bol-valley-metal"
+        step: "metal"
       })
     } else if (roofTemplate.valleyMetalW) {
       setRoofTemplate({
@@ -719,7 +719,7 @@ export default function UpgradeTool() {
     } else {
       setRoofTemplate({
         ...roofTemplate,
-        step: "valley-metal"
+        step: "drip-gutter"
       })
     }
   }
@@ -1406,7 +1406,7 @@ const [key, setKey] = useState(1)
             <div className="manual-form">
               <div className="hz-surv">
                 <div className="manual-label">
-                  <label className="manual-label-width">Total Roof Area <span style={{ fontSize: '12px' }}>(SF)</span></label>
+                  <label className="total manual-label-width">Total Roof Area <span style={{ fontSize: '12px' }}>(SF)</span></label>
                   <input
                   className="man-entry"
                   value={roofTemplate.roofTotal}
@@ -1415,7 +1415,7 @@ const [key, setKey] = useState(1)
                   />
 
 
-                  <label className="manual-label-width">Ridge <span style={{ fontSize: '12px' }}>(LF)</span></label>
+                  <label className="ridge manual-label-width">Ridge <span style={{ fontSize: '12px' }}>(LF)</span></label>
                   <input
                   className="man-entry"
                   value={roofTemplate.ridge}
@@ -1423,7 +1423,7 @@ const [key, setKey] = useState(1)
 
                   />
 
-                  <label className="manual-label-width">Hip <span style={{ fontSize: '12px' }}>(LF)</span></label>
+                  <label className="hip manual-label-width">Hip <span style={{ fontSize: '12px' }}>(LF)</span></label>
                   <input
                   className="man-entry"
                   value={roofTemplate.hip}
@@ -1436,7 +1436,7 @@ const [key, setKey] = useState(1)
             <div className="manual-form">
               <div className="hz-surv">
                 <div className="manual-label">
-                  <label className="manual-label-width">Valley <span style={{ fontSize: '12px' }}>(LF)</span></label>
+                  <label className="valley manual-label-width">Valley <span style={{ fontSize: '12px' }}>(LF)</span></label>
                   <input
                   className="man-entry"
                   value={roofTemplate.valley}
@@ -1444,7 +1444,7 @@ const [key, setKey] = useState(1)
 
                   />
 
-                  <label className="manual-label-width">Rake <span style={{ fontSize: '12px' }}>(LF)</span></label>
+                  <label className="rake manual-label-width">Rake <span style={{ fontSize: '12px' }}>(LF)</span></label>
                   <input
                   className="man-entry"
                   value={roofTemplate.rake}
@@ -1452,7 +1452,7 @@ const [key, setKey] = useState(1)
 
                   />
 
-                  <label className="manual-label-width">Eave <span style={{ fontSize: '12px' }}>(LF)</span></label>
+                  <label className="eave manual-label-width">Eave <span style={{ fontSize: '12px' }}>(LF)</span></label>
                   <input
                   className="man-entry"
                   value={roofTemplate.eave}
@@ -1465,7 +1465,7 @@ const [key, setKey] = useState(1)
             <div className="manual-form">
               <div className="hz-surv">
                 <div className="manual-label">
-                   <label className="manual-label-width">Counter Flashing <span style={{ fontSize: '12px' }}>(LF)</span></label>
+                   <label className="flashing manual-label-width">Counter Flashing <span style={{ fontSize: '12px' }}>(LF)</span></label>
                   <input
                   className="man-entry"
                   value={roofTemplate.counterFlashing}
@@ -1473,7 +1473,7 @@ const [key, setKey] = useState(1)
 
                   />
 
-                  <label className="manual-label-width">Step Flashing <span style={{ fontSize: '12px' }}>(LF)</span></label>
+                  <label className="flashing manual-label-width">Step Flashing <span style={{ fontSize: '12px' }}>(LF)</span></label>
                   <input
                   className="man-entry"
                   value={roofTemplate.stepFlashing}
@@ -1481,7 +1481,7 @@ const [key, setKey] = useState(1)
 
                   />
 
-                  <label className="manual-label-width">Parapets <span style={{ fontSize: '12px' }}>(LF)</span></label>
+                  <label className="parapets manual-label-width">Parapets <span style={{ fontSize: '12px' }}>(LF)</span></label>
                   <input
                   className="man-entry man-bot"
                   value={roofTemplate.parapets}
@@ -1765,14 +1765,14 @@ const [key, setKey] = useState(1)
             <div className="form-group">
             <label>Rolled</label>
             <input
-            style={{ width:"40px", height: "40px" }}
+            style={{ width:"20px", height: "20px" }}
             type="checkbox"
             checked={roofTemplate.valleyMetalRolled === true }
             onChange={(e) => setRoofTemplate({ ...roofTemplate, valleyMetalRolled: !roofTemplate.valleyMetalRolled })}
             />
             <label>"W"</label>
             <input
-            style={{ width:"40px", height: "40px" }}
+            style={{ width:"20px", height: "20px" }}
             type="checkbox"
             checked={roofTemplate.valleyMetalW === true }
             onChange={(e) => setRoofTemplate({ ...roofTemplate, valleyMetalW: !roofTemplate.valleyMetalW })}
@@ -1795,21 +1795,21 @@ const [key, setKey] = useState(1)
             <div className="form-group">
             <label>Painted</label>
             <input
-            style={{ width:"40px", height: "40px" }}
+            style={{ width:"20px", height: "20px" }}
             type="checkbox"
             checked={roofTemplate.wPainter === true }
             onChange={(e) => setRoofTemplate({ ...roofTemplate, wPainter: !roofTemplate.wPainter })}
             />
             <label>Galvanized</label>
             <input
-            style={{ width:"40px", height: "40px" }}
+            style={{ width:"20px", height: "20px" }}
             type="checkbox"
             checked={roofTemplate.wGalvanized === true }
             onChange={(e) => setRoofTemplate({ ...roofTemplate, wGalvanized: !roofTemplate.wGalvanized })}
             />
             <label>Copper</label>
             <input
-            style={{ width:"40px", height: "40px" }}
+            style={{ width:"20px", height: "20px" }}
             type="checkbox"
             checked={roofTemplate.wCopper === true }
             onChange={(e) => setRoofTemplate({ ...roofTemplate, wCopper: !roofTemplate.wCopper })}
@@ -1886,20 +1886,22 @@ const [key, setKey] = useState(1)
         return (
         <>
         <div className="question-container">
-        <h1 className="surv-header">What type of pipejacks are currently on the roof? How many?</h1>
+        <h1 className="surv-header">What type of pipejacks are currently on the roof?</h1>
 
         <div className="form-group">
         <label>Neoprene/Hard Plastics</label>
         <input
-        style={{ width:"40px", height: "40px" }}
+        style={{ width:"50px", height: "35px" }}
         type="text"
+        placeholder="3"
         value={roofTemplate.pipeJacksNeo}
         onChange={(e) => setRoofTemplate({ ...roofTemplate, pipeJacksNeo: e.target.value })}
         />
         <label>Other</label>
         <input
-        style={{ width:"40px", height: "40px" }}
+        style={{ width:"50px", height: "35px" }}
         type="text"
+        placeholder="3"
         value={roofTemplate.pipeJacksOther}
         onChange={ (e) => setRoofTemplate({ ...roofTemplate, pipeJacksOther: e.target.value }) }
         />
@@ -1999,35 +2001,35 @@ const [key, setKey] = useState(1)
             <div className="form-group">
               <label>Eaves</label>
               <input
-              style={{ width:"40px", height: "40px" }}
+              style={{ width:"20px", height: "20px" }}
               type="checkbox"
               checked={roofTemplate.iceEaves === true }
               onChange={(e) => setRoofTemplate({ ...roofTemplate, iceEaves: !roofTemplate.iceEaves })}
               />
               <label>Rakes</label>
               <input
-              style={{ width:"40px", height: "40px" }}
+              style={{ width:"20px", height: "20px" }}
               type="checkbox"
               checked={roofTemplate.iceRakes === true }
               onChange={(e) => setRoofTemplate({ ...roofTemplate, iceRakes: !roofTemplate.iceRakes })}
               />
               <label>Valleys</label>
               <input
-              style={{ width:"40px", height: "40px" }}
+              style={{ width:"20px", height: "20px" }}
               type="checkbox"
               checked={roofTemplate.iceValleys === true }
               onChange={(e) => setRoofTemplate({ ...roofTemplate, iceValleys: !roofTemplate.iceValleys })}
               />
               <label>Low Scope</label>
               <input
-              style={{ width:"40px", height: "40px" }}
+              style={{ width:"20px", height: "20px" }}
               type="checkbox"
               checked={roofTemplate.iceLow === true }
               onChange={(e) => setRoofTemplate({ ...roofTemplate, iceLow: !roofTemplate.iceLow })}
               />
               <label>Entire Roof</label>
               <input
-              style={{ width:"40px", height: "40px" }}
+              style={{ width:"20px", height: "20px" }}
               type="checkbox"
               checked={roofTemplate.iceEntire === true }
               onChange={(e) => setRoofTemplate({ ...roofTemplate, iceEntire: !roofTemplate.iceEntire })}
@@ -2076,27 +2078,27 @@ const [key, setKey] = useState(1)
           return (
             <>
             <div className="question-container">
-            <h1 className="surv-header">Where is the drip edge and/or gutter apron located on the roof?</h1>
+            <h1 className="surv-header">Where is the drip edge/gutter apron located on the roof?</h1>
             <div className="form-group">
-            <h2>Drip</h2>
+            <h2 className="drip-h2">Drip</h2>
               <label>Rakes</label>
               <input
-              style={{ width:"40px", height: "40px" }}
+              style={{ width:"20px", height: "20px" }}
               type="checkbox"
               checked={roofTemplate.dripRakes === true }
               onChange={(e) => setRoofTemplate({ ...roofTemplate, dripRakes: !roofTemplate.dripRakes })}
               />
               <label>Eaves</label>
               <input
-              style={{ width:"40px", height: "40px" }}
+              style={{ width:"20px", height: "20px" }}
               type="checkbox"
               checked={roofTemplate.dripEaves === true }
               onChange={(e) => setRoofTemplate({ ...roofTemplate, dripEaves: !roofTemplate.dripEaves })}
               />
-            <h2>Gutter Apron</h2>
+            <h2 className="gutter-h2">Gutter Apron</h2>
               <label>Eaves</label>
               <input
-              style={{ width:"40px", height: "40px" }}
+              style={{ width:"20px", height: "20px" }}
               type="checkbox"
               checked={roofTemplate.apronEaves === true }
               onChange={(e) => setRoofTemplate({ ...roofTemplate, apronEaves: !roofTemplate.apronEaves })}
@@ -2119,21 +2121,21 @@ const [key, setKey] = useState(1)
               <div className="form-group">
                 <label>3-Tab</label>
                 <input
-                style={{ width:"40px", height: "40px" }}
+                style={{ width:"20px", height: "20px" }}
                 type="checkbox"
                 checked={roofTemplate.tab3 === true }
                 onChange={(e) => setRoofTemplate({ ...roofTemplate, tab3: !roofTemplate.tab3 })}
                 />
                 <label>Standard Profile</label>
                 <input
-                style={{ width:"40px", height: "40px" }}
+                style={{ width:"20px", height: "20px" }}
                 type="checkbox"
                 checked={roofTemplate.standard === true }
                 onChange={(e) => setRoofTemplate({ ...roofTemplate, standard: !roofTemplate.standard })}
                 />
                 <label>High Profile</label>
                 <input
-                style={{ width:"40px", height: "40px" }}
+                style={{ width:"20px", height: "20px" }}
                 type="checkbox"
                 checked={roofTemplate.highProf === true }
                 onChange={(e) => setRoofTemplate({ ...roofTemplate, highProf: !roofTemplate.highProf })}
@@ -2157,28 +2159,28 @@ const [key, setKey] = useState(1)
             <div className="form-group">
             <label>Aluminum</label>
             <input
-            style={{ width:"40px", height: "40px" }}
+            style={{ width:"20px", height: "20px" }}
             type="checkbox"
             checked={roofTemplate.stepAluminum === true }
             onChange={(e) => setRoofTemplate({ ...roofTemplate, stepAluminum: !roofTemplate.stepAluminum })}
             />
             <label>Copper</label>
             <input
-            style={{ width:"40px", height: "40px" }}
+            style={{ width:"20px", height: "20px" }}
             type="checkbox"
             checked={roofTemplate.stepCopper === true }
             onChange={(e) => setRoofTemplate({ ...roofTemplate, stepCopper: !roofTemplate.stepCopper })}
             />
             <label>Metal</label>
             <input
-            style={{ width:"40px", height: "40px" }}
+            style={{ width:"20px", height: "20px" }}
             type="checkbox"
             checked={roofTemplate.stepGalvanized === true }
             onChange={(e) => setRoofTemplate({ ...roofTemplate, stepGalvanized: !roofTemplate.stepGalvanized })}
             />
             <label>None</label>
             <input
-            style={{ width:"40px", height: "40px" }}
+            style={{ width:"20px", height: "20px" }}
             type="checkbox"
             checked={roofTemplate.none === true }
             onChange={(e) => setRoofTemplate({ ...roofTemplate, none: !roofTemplate.none })}
@@ -2201,21 +2203,21 @@ const [key, setKey] = useState(1)
             <div className="form-group">
             <label>Aluminum</label>
             <input
-            style={{ width:"40px", height: "40px" }}
+            style={{ width:"20px", height: "20px" }}
             type="checkbox"
             checked={roofTemplate.counterAluminum === true }
             onChange={(e) => setRoofTemplate({ ...roofTemplate, counterAluminum: !roofTemplate.counterAluminum })}
             />
             <label>Copper</label>
             <input
-            style={{ width:"40px", height: "40px" }}
+            style={{ width:"20px", height: "20px" }}
             type="checkbox"
             checked={roofTemplate.counterCopper === true }
             onChange={(e) => setRoofTemplate({ ...roofTemplate, counterCopper: !roofTemplate.counterCopper })}
             />
             <label>Painted Metal</label>
             <input
-            style={{ width:"40px", height: "40px" }}
+            style={{ width:"20px", height: "20px" }}
             type="checkbox"
             checked={roofTemplate.counterPainted === true }
             onChange={(e) => setRoofTemplate({ ...roofTemplate, counterPainted: !roofTemplate.counterPainted })}
@@ -2238,28 +2240,28 @@ const [key, setKey] = useState(1)
             <div className="form-group">
             <label>Aluminum</label>
             <input
-            style={{ width:"40px", height: "40px" }}
+            style={{ width:"20px", height: "20px" }}
             type="checkbox"
             checked={roofTemplate.chimneyAluminum === true }
             onChange={(e) => setRoofTemplate({ ...roofTemplate, chimneyAluminum: !roofTemplate.chimneyAluminum })}
             />
             <label>Copper</label>
             <input
-            style={{ width:"40px", height: "40px" }}
+            style={{ width:"20px", height: "20px" }}
             type="checkbox"
             checked={roofTemplate.chimneyCopper === true }
             onChange={(e) => setRoofTemplate({ ...roofTemplate, chimneyCopper: !roofTemplate.chimneyCopper })}
             />
             <label>Lead</label>
             <input
-            style={{ width:"40px", height: "40px" }}
+            style={{ width:"20px", height: "20px" }}
             type="checkbox"
             checked={roofTemplate.chimneyLead === true }
             onChange={(e) => setRoofTemplate({ ...roofTemplate, chimneyLead: !roofTemplate.chimneyLead })}
             />
             <label>Painted Metal</label>
             <input
-            style={{ width:"40px", height: "40px" }}
+            style={{ width:"20px", height: "20px" }}
             type="checkbox"
             checked={roofTemplate.chimneyPainted === true }
             onChange={(e) => setRoofTemplate({ ...roofTemplate, chimneyPainted: !roofTemplate.chimneyPainted })}
@@ -2374,7 +2376,7 @@ const [key, setKey] = useState(1)
 // <div className="form-group">
 //   <label>Existing Roof?</label>
 //   <input
-//   style={{ width:"40px", height: "40px" }}
+//   style={{ width:"20px", height: "20px" }}
 //   type="checkbox"
 //   checked={roofTemplate.existingRoof === true }
 //   onChange={(e) => setRoofTemplate({ ...roofTemplate, existingRoof: !roofTemplate.existingRoof })}
