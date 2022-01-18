@@ -187,5 +187,8 @@ label {
   text-decoration: underline;
 }
 
+.homeowner-input {
+  height: 30px;
+}
 
 /* @media () */
