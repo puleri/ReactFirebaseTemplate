@@ -2347,9 +2347,9 @@ const [key, setKey] = useState(1)
     case "selected-upgrades":
       return (
         <div>
-        <div className="question-container">
+        <div className="selected question-container">
         <h1 className="surv-header">Selected Upgrades</h1>
-          <table>
+          <table id="selected-table">
             <tbody>
             <tr>
               <th>Name</th>

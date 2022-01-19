@@ -192,6 +192,17 @@ label {
   letter-spacing: 0;
 }
 
+.selected {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+#selected-table {
+  overflow-y: auto;
+  margin-bottom: 50px;
+}
+
 .homeowner-input {
   height: 30px;
 }
