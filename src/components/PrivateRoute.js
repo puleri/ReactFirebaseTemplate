@@ -16,7 +16,13 @@ const ProtectedRoute = ({ component: Component }) => {
       {
         // display a spinner while auth status being checked
         checkingStatus
-          ? <h1 >Waiting </h1>
+          ? (
+            <div id="spinner">
+            <div class="lds-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            <p id="spinner-tip">Authorizing...</p>
+            </div>
+          )
+
           : loggedIn
             // if user is logged in, grant the access to the route
             // note: in this example component is Bar

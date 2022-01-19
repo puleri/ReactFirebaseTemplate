@@ -1891,17 +1891,19 @@ const [key, setKey] = useState(1)
         <div className="form-group">
         <label>Neoprene/Hard Plastics</label>
         <input
-        style={{ width:"50px", height: "35px" }}
+        className="neoprene-placeholder"
+        style={{ width:"110px", height: "35px" }}
         type="text"
-        placeholder="3"
+        placeholder="enter a number"
         value={roofTemplate.pipeJacksNeo}
         onChange={(e) => setRoofTemplate({ ...roofTemplate, pipeJacksNeo: e.target.value })}
         />
         <label>Other</label>
         <input
-        style={{ width:"50px", height: "35px" }}
+        className="neoprene-placeholder"
+        style={{ width:"110px", height: "35px" }}
         type="text"
-        placeholder="3"
+        placeholder="enter a number"
         value={roofTemplate.pipeJacksOther}
         onChange={ (e) => setRoofTemplate({ ...roofTemplate, pipeJacksOther: e.target.value }) }
         />

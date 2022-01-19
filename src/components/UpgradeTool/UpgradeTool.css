@@ -25,21 +25,21 @@ label {
   justify-content: center;
 }
 .surv-header {
-  color: #2C9B95;
+  color: #088256;
   font-weight: bold;
   display: inline-block;
   text-align: center;
   padding: 5px 10px;
   /* border-radius: 50px; */
   letter-spacing: 0;
-  background: linear-gradient(180deg, rgba(255,255,255,0) 65%, #FFD0AE 65%);
+  background: linear-gradient(180deg, rgba(255,255,255,0) 65%, #02EF9Da1 65%);
 }
 @media (max-width: 1200px) {
   .surv-header {
     font-size: 30px;
     margin: 0 80px 0;
     width: 70%;
-    background: linear-gradient(180deg, rgba(255,255,255,0) 85%, #FFD0AE 65%);
+    background: linear-gradient(180deg, rgba(255,255,255,0) 85%, #02EF9Da1 65%);
   }
 }
 .surv-accent1 {
@@ -185,6 +185,11 @@ label {
   font-size: 20px;
   font-weight: bold;
   text-decoration: underline;
+}
+
+.neoprene-placeholder::placeholder {
+  font-size: 12px;
+  letter-spacing: 0;
 }
 
 .homeowner-input {
