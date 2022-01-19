@@ -1326,7 +1326,7 @@ export default function UpgradeTool() {
     return namesAndPrices.map((item, index) => {
       return (
         <tr key={index}>
-          <td>{item.name}</td>
+          <td className="selected-name-row">{item.name}</td>
           <td>{item.price}</td>
         </tr>
       )
@@ -1334,7 +1334,7 @@ export default function UpgradeTool() {
   }
 
 const [isShown, setIsShown] = useState('0')
-const [key, setKey] = useState(1)
+// const [key, setKey] = useState(1)
 
     const _switchRender = () => {
       switch (roofTemplate.step) {
@@ -2000,7 +2000,7 @@ const [key, setKey] = useState(1)
 
             <h1 className="surv-header">Where is the ice and water barrier existing on the roof?</h1>
 
-            <div className="form-group">
+            <div className="ice-water-inputs form-group">
               <label>Eaves</label>
               <input
               style={{ width:"20px", height: "20px" }}
@@ -2158,7 +2158,7 @@ const [key, setKey] = useState(1)
             <div className="question-container">
             <h1 className="surv-header">Which type of step flashing is existing on the roof?</h1>
 
-            <div className="form-group">
+            <div className="flashing-inputs form-group">
             <label>Aluminum</label>
             <input
             style={{ width:"20px", height: "20px" }}
@@ -2202,7 +2202,7 @@ const [key, setKey] = useState(1)
             <div className="question-container">
             <h1 className="surv-header">Which type of counter flashing is existing on the roof?</h1>
 
-            <div className="form-group">
+            <div className="flashing-inputs form-group">
             <label>Aluminum</label>
             <input
             style={{ width:"20px", height: "20px" }}
@@ -2239,7 +2239,7 @@ const [key, setKey] = useState(1)
             <div className="question-container">
             <h1 className="surv-header">Which type of chimney flashing is existing on the roof?</h1>
 
-            <div className="form-group">
+            <div className="flashing-inputs form-group">
             <label>Aluminum</label>
             <input
             style={{ width:"20px", height: "20px" }}

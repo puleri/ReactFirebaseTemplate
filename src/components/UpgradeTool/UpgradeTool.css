@@ -207,4 +207,15 @@ label {
   height: 30px;
 }
 
+.ice-water-inputs {
+  margin-top: -15px;
+}
+
+.flashing-inputs {
+  margin-top: -25px;
+}
+
+.selected-name-row {
+  padding-right: 100px;
+}
 /* @media () */
