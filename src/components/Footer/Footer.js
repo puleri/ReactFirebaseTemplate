@@ -26,7 +26,7 @@ const Footer = props => {
       <ListGroup.Item className="Footer_Nav F5">
         Admin
       </ListGroup.Item>
-      <ListGroup.Item className="Footer_c">© Kaiser Siding and Roofing LLC 2021</ListGroup.Item>
+      <ListGroup.Item className="Footer_c">© Kaiser Siding and Roofing LLC 2022</ListGroup.Item>
     </Navbar>
     </footer>
   )

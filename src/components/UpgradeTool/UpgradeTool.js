@@ -342,19 +342,19 @@ export default function UpgradeTool() {
     , 700)
   }
   const oneNext = () => {
-
     // When exiting to the right we set this as the previous slide
     setPrevSlideMotion('1')
+
     setTimeout( () => {
       setIsShown("manual");
     }, 0)
-    setTimeout( ()=> {
 
+    setTimeout( ()=> {
     setRoofTemplate({
       ...roofTemplate, step: "manual"
-    })
-  }
-    , 700)
+      })
+    }, 700)
+
   }
   const onePrev = () => {
     async function prev() {
@@ -412,64 +412,145 @@ export default function UpgradeTool() {
  }
 
   const roofTypeNext = () => {
+    setPrevSlideMotion('roofType')
+
     if (roofTemplate.roofType === "asphalt") {
+      setTimeout( () => {
+        setIsShown("asphalt");
+      }, 0)
+      setTimeout( ()=> {
       setRoofTemplate({
         ...roofTemplate,
         step: 'asphalt'
       })
+    }, 700)
     }
     else {
+      setTimeout( () => {
+        setIsShown("underlayment");
+      }, 0)
+      setTimeout( ()=> {
       setRoofTemplate({
         ...roofTemplate,
         step: 'underlayment'
       })
     }
+      , 700)
+    }
   }
   const roofTypePrev = () => {
-    setRoofTemplate({
-      ...roofTemplate,
-      step: "manual"
-    })
+
+    async function prev() {
+      try {
+      await setDirection(false)
+    } catch(e) {
+      console.log(e)
+    } finally {
+      setGoingBackTo('manual')
+      setPrevSlideMotion('manual')
+      setTimeout( () => {
+        setIsShown("manual");
+      }, 0)
+      // setIsShown("1");
+      setTimeout( ()=> {
+        setRoofTemplate({
+          ...roofTemplate,
+          step: "manual"
+        })    }
+      , 700)
+    }
+  }
+    prev()
   }
   const asphaltNext = () => {
+    setPrevSlideMotion('asphalt')
     if (roofTemplate.existingShingle === "3-tab") {
+      setTimeout( () => {
+        setIsShown("3-tab");
+      }, 0)
+      setTimeout( ()=> {
       setRoofTemplate({
         ...roofTemplate,
         step: "3-tab"
       })
+    }, 700)
   } else {
-    setRoofTemplate({
+    setTimeout( ()=> {
+      setRoofTemplate({
       ...roofTemplate,
       step: "laminate"
     })
+    }, 700)
   }
 
   }
   const asphaltPrev = () => {
-    setRoofTemplate({
-      ...roofTemplate,
-      step: "roofType"
-    })
+    async function prev() {
+      try {
+      await setDirection(false)
+    } catch(e) {
+      console.log(e)
+    } finally {
+      setGoingBackTo('roofType')
+      setPrevSlideMotion('roofType')
+      setTimeout( () => {
+        setIsShown("roofType");
+      }, 0)
+      // setIsShown("1");
+      setTimeout( ()=> {
+        setRoofTemplate({
+          ...roofTemplate,
+          step: "roofType"
+        })    }
+      , 700)
+    }
+  }
+    prev()
   }
   const threeNext = () => {
+    setPrevSlideMotion('3-tab')
     if (roofTemplate.tab === "20") {
       setUpgradeOptions({
         ...upgradeOptions,
         twentyTab: true
       })
     }
+    setTimeout( () => {
+      setIsShown("underlayment");
+    }, 0)
+      setTimeout( ()=> {
       setRoofTemplate({
         ...roofTemplate,
         step: "underlayment",
       })
+      }, 700)
   }
   const threePrev = () => {
-    setRoofTemplate({
-      ...roofTemplate,
-      step: "asphalt"
-    })
+    async function prev() {
+      try {
+      await setDirection(false)
+    } catch(e) {
+      console.log(e)
+    } finally {
+      setGoingBackTo('asphalt')
+      setPrevSlideMotion('asphalt')
+      setTimeout( () => {
+        setIsShown("asphalt");
+      }, 0)
+      // setIsShown("asphalt");
+      setTimeout( ()=> {
+      setRoofTemplate({ ...roofTemplate, step: 'asphalt'})
+    }
+      , 700)
+    }
+  }
+    prev()
   }
   const laminateNext = () => {
+    setPrevSlideMotion('laminate')
+    setTimeout( () => {
+      setIsShown("underlayment");
+    }, 0)
     if (roofTemplate.laminate === "builder") {
       setUpgradeOptions({
         ...upgradeOptions,
@@ -494,53 +575,102 @@ export default function UpgradeTool() {
         specialtyLam: true
       })
     }
+    setTimeout( ()=> {
     setRoofTemplate({
       ...roofTemplate,
       step: "underlayment"
     })
+      }, 700)
   }
   const laminatePrev = () => {
-    setRoofTemplate({
-      ...roofTemplate,
-      step: "asphalt"
-    })
+    async function prev() {
+      try {
+      await setDirection(false)
+    } catch(e) {
+      console.log(e)
+    } finally {
+      setGoingBackTo('asphalt')
+      setPrevSlideMotion('asphalt')
+      setTimeout( () => {
+        setIsShown("asphalt");
+      }, 0)
+      // setIsShown("asphalt");
+      setTimeout( ()=> {
+      setRoofTemplate({ ...roofTemplate, step: 'asphalt'})
+    }, 700)
+    }
+  }
+    prev()
   }
   const underlaymentNext = () => {
+    setPrevSlideMotion('underlayment')
     if (roofTemplate.underlayment === "synthetic") {
+      setTimeout( () => {
+        setIsShown("synthetic");
+      }, 0)
+      setTimeout( ()=> {
     setRoofTemplate({
       ...roofTemplate,
       step: "synthetic"
     })
+    }, 700)
   } else {
+    setTimeout( () => {
+      setIsShown("ice-water-bool");
+    }, 0)
     setUpgradeOptions({
       ...upgradeOptions,
       felt: true
     })
+    setTimeout( ()=> {
     setRoofTemplate({
       ...roofTemplate,
       step: "ice-water-bool"
     })
+    }, 700)
     }
   }
   const underlaymentPrev = () => {
     if (roofTemplate.roofType !== "asphalt") {
+      setGoingBackTo('roofType')
+      setPrevSlideMotion('roofType')
+      setTimeout( () => {
+        setIsShown("roofType");
+      }, 0)
+      setTimeout( ()=> {
       setRoofTemplate({
         ...roofTemplate,
         step: "roofType"
       })
+      }, 700)
     } else if (roofTemplate.existingShingle === "3-tab") {
+      setGoingBackTo('3-tab')
+      setPrevSlideMotion('3-tab')
+      setTimeout( () => {
+        setIsShown("3-tab");
+      }, 0)
+      setTimeout( ()=> {
       setRoofTemplate({
         ...roofTemplate,
         step: "3-tab"
       })
+      }, 700)
     } else {
+      setGoingBackTo('laminate')
+      setPrevSlideMotion('laminate')
+      setTimeout( () => {
+        setIsShown("laminate");
+      }, 0)
+      setTimeout( ()=> {
       setRoofTemplate({
         ...roofTemplate,
         step: "laminate"
       })
+      }, 700)
     }
   }
   const syntheticNext = () => {
+    setPrevSlideMotion('synthetic')
     if (roofTemplate.synthetic === "builder") {
       setUpgradeOptions({
         ...upgradeOptions,
@@ -553,94 +683,184 @@ export default function UpgradeTool() {
         betterSynth: true
       })
     }
+    setTimeout( () => {
+      setIsShown("ice-water-bool");
+    }, 0)
+    setTimeout( ()=> {
     setRoofTemplate({
       ...roofTemplate,
       step: "ice-water-bool"
     })
+      }, 700)
   }
   const syntheticPrev = () => {
+    setGoingBackTo('underlayment')
+    setPrevSlideMotion('underlayment')
+    setTimeout( () => {
+      setIsShown("underlayment");
+    }, 0)
+    setTimeout( ()=> {
     setRoofTemplate({
       ...roofTemplate,
       step: "underlayment"
     })
-  }
+    }, 700)  }
   const iceWaterBoolNext = () => {
+    setPrevSlideMotion('ice-water-bool')
     if (roofTemplate.iceBool === true) {
+      setTimeout( () => {
+        setIsShown("ice-water");
+      }, 0)
+      setTimeout( ()=> {
       setRoofTemplate({
         ...roofTemplate,
         step: "ice-water"
       })
+      }, 700)
     } else {
+      setTimeout( () => {
+        setIsShown("metal");
+      }, 0)
+      setTimeout( ()=> {
       setRoofTemplate({
         ...roofTemplate,
         step: "metal"
       })
+      }, 700)
     }
   }
   const iceWaterBoolPrev = () => {
     if (roofTemplate.underlayment==="synthetic") {
+      setGoingBackTo('synthetic')
+      setPrevSlideMotion('synthetic')
+      setTimeout( () => {
+        setIsShown("synthetic");
+      }, 0)
+      setTimeout( ()=> {
       setRoofTemplate({
         ...roofTemplate,
         step: "synthetic"
       })
+      }, 700)
     } else {
+      setGoingBackTo('underlayment')
+      setPrevSlideMotion('underlayment')
+      setTimeout( () => {
+        setIsShown("underlayment");
+      }, 0)
+      setTimeout( ()=> {
       setRoofTemplate({
         ...roofTemplate,
         step: "underlayment"
       })
+      }, 700)
     }
   }
   const iceWaterNext = () => {
+    setPrevSlideMotion('ice-water')
+    setTimeout( () => {
+      setIsShown("metal");
+    }, 0)
+    setTimeout( ()=> {
     setRoofTemplate({
       ...roofTemplate,
       step: "metal"
     })
+      }, 700)
   }
   const iceWaterPrev = () => {
+    setGoingBackTo('ice-water-bool')
+    setPrevSlideMotion('ice-water-bool')
+    setTimeout( () => {
+      setIsShown("ice-water-bool");
+    }, 0)
+    setTimeout( ()=> {
     setRoofTemplate({
       ...roofTemplate,
       step: "ice-water-bool"
     })
+    }, 700)
   }
   const metalNext = () => {
+    setPrevSlideMotion('metal')
+
     if (roofTemplate.metalEdge === true) {
+      setTimeout( () => {
+        setIsShown("drip-gutter");
+      }, 0)
+      setTimeout( ()=> {
       setRoofTemplate({
         ...roofTemplate,
         step: "drip-gutter"
       })
+      }, 700)
     } else {
+      setTimeout( () => {
+        setIsShown("pipejacks");
+      }, 0)
+      setTimeout( ()=> {
       setRoofTemplate({
         ...roofTemplate,
         step: "pipejacks"
       })
+      }, 700)
     }
   }
   const metalPrev = () => {
     if (!roofTemplate.iceBool) {
+      setGoingBackTo('ice-water-bool')
+      setPrevSlideMotion('ice-water-bool')
+      setTimeout( () => {
+        setIsShown("ice-water-bool");
+      }, 0)
+      setTimeout( ()=> {
       setRoofTemplate({
         ...roofTemplate,
         step: "ice-water-bool"
       })
+      }, 700)
     } else {
+      setGoingBackTo('ice-water')
+      setPrevSlideMotion('ice-water')
+      setTimeout( () => {
+        setIsShown("ice-water");
+      }, 0)
+      setTimeout( ()=> {
       setRoofTemplate({
         ...roofTemplate,
         step: "ice-water"
       })
+      }, 700)
     }
   }
   const dripGutterNext = () => {
+    setPrevSlideMotion('drip-gutter')
+    setTimeout( () => {
+      setIsShown("pipejacks");
+    }, 0)
+    setTimeout( ()=> {
     setRoofTemplate({
       ...roofTemplate,
       step: "pipejacks"
     })
+    }, 700)
   }
   const dripGutterPrev = () => {
+    setGoingBackTo('metal')
+    setPrevSlideMotion('metal')
+    setTimeout( () => {
+      setIsShown("metal");
+    }, 0)
+    setTimeout( ()=> {
     setRoofTemplate({
       ...roofTemplate,
       step: "metal"
     })
+    }, 700)
   }
   const bolValleyMetalNext = () => {
+    setPrevSlideMotion('bol-valley-metal')
+
     if (roofTemplate.valleyMetal === true) {
       setRoofTemplate({
         ...roofTemplate,
@@ -655,155 +875,381 @@ export default function UpgradeTool() {
   }
   const bolValleyMetalPrev = () => {
     if (!roofTemplate.metalEdge) {
+      setGoingBackTo('metal')
+      setPrevSlideMotion('metal')
+      setTimeout( () => {
+        setIsShown("metal");
+      }, 0)
+      setTimeout( ()=> {
       setRoofTemplate({
         ...roofTemplate,
         step: "metal"
       })
+      }, 700)
     } else {
+      setGoingBackTo('drip-gutter')
+      setPrevSlideMotion('drip-gutter')
+      setTimeout( () => {
+        setIsShown("drip-gutter");
+      }, 0)
+      setTimeout( ()=> {
       setRoofTemplate({
         ...roofTemplate,
         step: "drip-gutter"
       })
+      }, 700)
     }
   }
   const valleyMetalNext = () => {
+    setPrevSlideMotion('valley-metal')
+
     if (roofTemplate.valleyMetalW === true) {
+      setTimeout( () => {
+        setIsShown("valley-metal-w");
+      }, 0)
+      setTimeout( ()=> {
       setRoofTemplate({
         ...roofTemplate,
         step: "valley-metal-w"
       })
+      }, 700)
     } else {
+      setTimeout( () => {
+        setIsShown("pipejacks");
+      }, 0)
+      setTimeout( ()=> {
       setRoofTemplate({
         ...roofTemplate,
         step: "pipejacks"
       })
+      }, 700)
     }
   }
   const valleyMetalPrev = () => {
+    setGoingBackTo('bol-valley-metal')
+    setPrevSlideMotion('bol-valley-metal')
+    setTimeout( () => {
+      setIsShown("bol-valley-metal");
+    }, 0)
+    setTimeout( ()=> {
     setRoofTemplate({
       ...roofTemplate,
       step: "bol-valley-metal"
     })
+    }, 700)
   }
   const valleyMetalWNext = () => {
+    setPrevSlideMotion('valley-metal-w')
+    setTimeout( () => {
+      setIsShown("pipejacks");
+    }, 0)
+    setTimeout( ()=> {
     setRoofTemplate({
       ...roofTemplate,
       step: "pipejacks"
     })
+    }, 700)
   }
   const valleyMetalWPrev = () => {
+    setGoingBackTo('valley-metal')
+    setPrevSlideMotion('valley-metal')
+    setTimeout( () => {
+      setIsShown("valley-metal");
+    }, 0)
+    setTimeout( ()=> {
     setRoofTemplate({
       ...roofTemplate,
       step: "valley-metal"
     })
+    }, 700)
   }
   const pipejacksNext = () => {
     // skip neoprene number
+    setPrevSlideMotion('pipejacks')
+    setTimeout( () => {
+      setIsShown("ridge-vent");
+    }, 0)
+    setTimeout( ()=> {
       setRoofTemplate({
         ...roofTemplate,
         step: "ridge-vent"
       })
-
+      }, 700)
   }
   const pipejacksPrev = () => {
     if (!roofTemplate.metalEdge) {
+      setGoingBackTo('metal')
+      setPrevSlideMotion('metal')
+      setTimeout( () => {
+        setIsShown("metal");
+      }, 0)
+      setTimeout( ()=> {
       setRoofTemplate({
         ...roofTemplate,
         step: "metal"
       })
+      }, 700)
     } else if (roofTemplate.valleyMetalW) {
+      setGoingBackTo('valley-metal-w')
+      setPrevSlideMotion('valley-metal-w')
+      setTimeout( () => {
+        setIsShown("valley-metal-w");
+      }, 0)
+      setTimeout( ()=> {
       setRoofTemplate({
         ...roofTemplate,
         step: "valley-metal-w"
       })
+      }, 700)
     } else {
+      setGoingBackTo('drip-gutter')
+      setPrevSlideMotion('drip-gutter')
+      setTimeout( () => {
+        setIsShown("drip-gutter");
+      }, 0)
+      setTimeout( ()=> {
       setRoofTemplate({
         ...roofTemplate,
         step: "drip-gutter"
       })
+      }, 700)
     }
   }
   const neopreneNext = () => {
+    setPrevSlideMotion('neoprene')
+    setTimeout( () => {
+      setIsShown("ridge-vent");
+    }, 0)
+    setTimeout( ()=> {
     setRoofTemplate({
       ...roofTemplate,
       step: "ridge-vent"
     })
+    }, 700)
   }
   const neoprenePrev = () => {
+    setGoingBackTo('pipejacks')
+    setPrevSlideMotion('pipejacks')
+    setTimeout( () => {
+      setIsShown("pipejacks");
+    }, 0)
+    setTimeout( ()=> {
     setRoofTemplate({
       ...roofTemplate,
-      step: 'pipejacks'
+      step: "pipejacks"
     })
+    }, 700)
   }
   const ridgeVentNext = () => {
+    setPrevSlideMotion('ridge-vent')
+
     if (roofTemplate.ridgeVent === true) {
+      setTimeout( () => {
+        setIsShown("ridge");
+      }, 0)
+      setTimeout( ()=> {
       setRoofTemplate({
         ...roofTemplate,
         step: "ridge"
       })
+      }, 700)
     } else {
+      setTimeout( () => {
+        setIsShown("step-flashing");
+      }, 0)
+      setTimeout( ()=> {
       setRoofTemplate({
         ...roofTemplate,
         // TEMPORARY
         step: "step-flashing"
       })
+      }, 700)
     }
   }
   const ridgeVentPrev = () => {
-      setRoofTemplate({
-        ...roofTemplate,
-        step: 'pipejacks'
-      })
+    setGoingBackTo('pipejacks')
+    setPrevSlideMotion('pipejacks')
+    setTimeout( () => {
+      setIsShown("pipejacks");
+    }, 0)
+    setTimeout( ()=> {
+    setRoofTemplate({
+      ...roofTemplate,
+      step: "pipejacks"
+    })
+    }, 700)
   }
   const ridgeNext = () => {
+    setPrevSlideMotion('ridge')
+    setTimeout( () => {
+      setIsShown("step-flashing");
+    }, 0)
+    setTimeout( ()=> {
     setRoofTemplate({
       ...roofTemplate,
       step: 'step-flashing'
     })
+    }, 700)
   }
   const ridgePrev = () => {
+    setGoingBackTo('ridge-vent')
+    setPrevSlideMotion('ridge-vent')
+    setTimeout( () => {
+      setIsShown("ridge-vent");
+    }, 0)
+    setTimeout( ()=> {
     setRoofTemplate({
       ...roofTemplate,
-      step: 'ridge-vent'
+      step: "ridge-vent"
     })
+    }, 700)
   }
   const stepFlashingNext = () => {
+    setPrevSlideMotion('step-flashing')
+    setTimeout( () => {
+      setIsShown("counter-flashing");
+    }, 0)
+    setTimeout( ()=> {
     setRoofTemplate({
       ...roofTemplate,
       step: 'counter-flashing'
     })
+    }, 700)
   }
   const stepFlashingPrev = () => {
     if (roofTemplate.ridgeVent) {
-      setRoofTemplate({ ...roofTemplate, step: 'ridge'})
-    } else {
-     setRoofTemplate({...roofTemplate, step:'ridge-vent'})
+      setGoingBackTo('ridge')
+      setPrevSlideMotion('ridge')
+      setTimeout( () => {
+        setIsShown("ridge");
+      }, 0)
+      setTimeout( ()=> {
+      setRoofTemplate({
+        ...roofTemplate,
+        step: "ridge"
+      })
+      }, 700)    } else {
+        setGoingBackTo('ridge-vent')
+        setPrevSlideMotion('ridge-vent')
+        setTimeout( () => {
+          setIsShown("ridge-vent");
+        }, 0)
+        setTimeout( ()=> {
+        setRoofTemplate({
+          ...roofTemplate,
+          step: "ridge-vent"
+        })
+        }, 700)
    }
  }
   const counterFlashingNext = () => {
+    setPrevSlideMotion('counter-flashing')
+    setTimeout( () => {
+      setIsShown("chimney-flashing");
+    }, 0)
+    setTimeout( ()=> {
     setRoofTemplate({
       ...roofTemplate,
       step: 'chimney-flashing'
     })
+    }, 700)
   }
-  const counterFlashingPrev = () => setRoofTemplate({ ...roofTemplate, step: 'step-flashing'})
+  const counterFlashingPrev = () => {
+    setGoingBackTo('step-flashing')
+    setPrevSlideMotion('step-flashing')
+    setTimeout( () => {
+      setIsShown("step-flashing");
+    }, 0)
+    setTimeout( ()=> {
+    setRoofTemplate({
+      ...roofTemplate,
+      step: "step-flashing"
+    })
+    }, 700)
+  }
   const chimneyFlashingNext = () => {
+    setPrevSlideMotion('chimney-flashing')
+    setTimeout( () => {
+      setIsShown("materials-make");
+    }, 0)
+    setTimeout( ()=> {
     setRoofTemplate({
       ...roofTemplate,
       step: 'materials-make'
     })
+    }, 700)
   }
-  const chimneyFlashingPrev = () => setRoofTemplate({ ...roofTemplate, step: 'counter-flashing'})
+  const chimneyFlashingPrev = () => {
+    setGoingBackTo('counter-flashing')
+    setPrevSlideMotion('counter-flashing')
+    setTimeout( () => {
+      setIsShown("counter-flashing");
+    }, 0)
+    setTimeout( ()=> {
+    setRoofTemplate({
+      ...roofTemplate,
+      step: "counter-flashing"
+    })
+    }, 700)}
   const matsNext = () => {
+    setPrevSlideMotion('materials-make')
+    setTimeout( () => {
+      setIsShown("upgrade-tool");
+    }, 0)
+    setTimeout( ()=> {
     setRoofTemplate({
       ...roofTemplate,
       step: 'upgrade-tool'
     })
+    }, 700)
   }
-  const matsPrev = () => setRoofTemplate({ ...roofTemplate, step: 'chimney-flashing' })
-  const upgradeToolPrev = () => setRoofTemplate({ ...roofTemplate, step: 'materials-make'})
-  const upgradeToolNext = () => setRoofTemplate({...roofTemplate, step: 'selected-upgrades'})
-  const selectedUpgradesPrev = () => setRoofTemplate({...roofTemplate, step: 'upgrade-tool'})
+  const matsPrev = () => {
+    setGoingBackTo('chimney-flashing')
+    setPrevSlideMotion('chimney-flashing')
+    setTimeout( () => {
+      setIsShown("chimney-flashing");
+    }, 0)
+    setTimeout( ()=> {
+    setRoofTemplate({
+      ...roofTemplate,
+      step: "chimney-flashing"
+    })
+    }, 700)
+  }
+  const upgradeToolPrev = () => {
+    setGoingBackTo('materials-make')
+    setPrevSlideMotion('materials-make')
+    setTimeout( () => {
+      setIsShown("materials-make");
+    }, 0)
+    setTimeout( ()=> {
+    setRoofTemplate({
+      ...roofTemplate,
+      step: "materials-make"
+    })
+    }, 700)
+  }
+  const upgradeToolNext = () => {
+    setPrevSlideMotion('upgrade-tool')
+    setTimeout( () => {
+      setIsShown("selected-upgrades");
+    }, 0)
+    setTimeout( ()=> {
+    setRoofTemplate({...roofTemplate, step: 'selected-upgrades'})
+    }, 700)
+}
+  const selectedUpgradesPrev = () => {
+    setGoingBackTo('upgrade-tool')
+    setPrevSlideMotion('upgrade-tool')
+    setTimeout( () => {
+      setIsShown("upgrade-tool");
+    }, 0)
+    setTimeout( ()=> {
+    setRoofTemplate({
+      ...roofTemplate,
+      step: "upgrade-tool"
+    })
+    }, 700)}
 // upgrade conditionals
   const existingShingleUpgrade = () => {
     if (roofTemplate.existingShingle === "3-tab") {
@@ -1554,6 +2000,15 @@ const [isShown, setIsShown] = useState('0')
           return (
             <>
             <div className="question-container">
+            <AnimatePresence>
+            { (isShown === 'roofType') && (
+              <motion.div
+              key={"1"}
+              initial={{x: (prevSlideMotion==='roofType') ? "-50%" : "50%", opacity: 0}}
+              animate={{x:0, opacity:1}}
+              exit={{x: prevSlideMotion==="manual" ? "50%" : "-50%", opacity:0}}
+              transition={{ duration: .7 }}
+              >
             <h1 className="surv-header">What type of material is existing on the roof?</h1>
             <div className="form-group">
             <label>Existing Roof Material</label>
@@ -1575,6 +2030,9 @@ const [isShown, setIsShown] = useState('0')
             }
             </select>
             </div>
+            </motion.div>
+          )}
+            </AnimatePresence>
             <div className="surv-accent1"></div>
 
             </div>
@@ -1586,6 +2044,15 @@ const [isShown, setIsShown] = useState('0')
             return (
               <>
               <div className="question-container">
+              <AnimatePresence>
+              { (isShown === 'asphalt') && (
+                <motion.div
+                key={"1"}
+                initial={{x: (prevSlideMotion==='asphalt') ? "-50%" : "50%", opacity: 0}}
+                animate={{x:0, opacity:1}}
+                exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+                transition={{ duration: .7 }}
+                >
               <h1 className="surv-header">What kind of shingle is existing on the roof?</h1>
               <div className="form-group">
                   <label>Existing Shingle</label>
@@ -1600,6 +2067,9 @@ const [isShown, setIsShown] = useState('0')
                   <option value="laminate">Laminate</option>
                   </select>
               </div>
+              </motion.div>
+            )}
+              </AnimatePresence>
               <div className="surv-accent1"></div>
 
               </div>
@@ -1612,6 +2082,15 @@ const [isShown, setIsShown] = useState('0')
           return (
             <>
             <div className="question-container">
+            <AnimatePresence>
+            { (isShown === 'metal') && (
+              <motion.div
+              key={"1"}
+              initial={{x: (prevSlideMotion==='metal') ? "-50%" : "50%", opacity: 0}}
+              animate={{x:0, opacity:1}}
+              exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+              transition={{ duration: .7 }}
+              >
             <h1 className="surv-header">Is a drip edge or gutter apron existing on the roof?</h1>
             <div className="form-group">
               <label>Yes</label>
@@ -1629,6 +2108,9 @@ const [isShown, setIsShown] = useState('0')
               onChange={(e) => setRoofTemplate({ ...roofTemplate, metalEdge: !roofTemplate.metalEdge })}
               />
             </div>
+            </motion.div>
+          )}
+            </AnimatePresence>
             <div className="surv-accent1"></div>
 
               </div>
@@ -1641,6 +2123,15 @@ const [isShown, setIsShown] = useState('0')
           return (
             <>
             <div className="question-container">
+            <AnimatePresence>
+            { (isShown === '3-tab') && (
+              <motion.div
+              key={"1"}
+              initial={{x: (prevSlideMotion==='3-tab') ? "-50%" : "50%", opacity: 0}}
+              animate={{x:0, opacity:1}}
+              exit={{x: prevSlideMotion==="asphalt" ? "50%" : "-50%", opacity:0}}
+              transition={{ duration: .7 }}
+              >
             <h1 className="surv-header">Which 3-Tab is existing on the roof?</h1>
             <div className="form-group">
                 <label>3-Tab</label>
@@ -1655,6 +2146,9 @@ const [isShown, setIsShown] = useState('0')
                 <option value="25">25 Year</option>
                 </select>
             </div>
+            </motion.div>
+          )}
+            </AnimatePresence>
             <div className="surv-accent1"></div>
 
             </div>
@@ -1667,6 +2161,15 @@ const [isShown, setIsShown] = useState('0')
           return (
             <>
             <div className="question-container">
+            <AnimatePresence>
+            { (isShown === 'laminate') && (
+              <motion.div
+              key={"1"}
+              initial={{x: (prevSlideMotion==='laminate') ? "-50%" : "50%", opacity: 0}}
+              animate={{x:0, opacity:1}}
+              exit={{x: prevSlideMotion==="asphalt" ? "50%" : "-50%", opacity:0}}
+              transition={{ duration: .7 }}
+              >
             <h1 className="surv-header">Which grade of laminate is existing on the roof?</h1>
             <div className="form-group">
                 <label>Laminate</label>
@@ -1683,6 +2186,9 @@ const [isShown, setIsShown] = useState('0')
                 <option value="specialty">Specialty</option>
                 </select>
             </div>
+            </motion.div>
+          )}
+            </AnimatePresence>
             <div className="surv-accent1"></div>
 
             </div>
@@ -1695,7 +2201,15 @@ const [isShown, setIsShown] = useState('0')
         return (
           <>
           <div className="question-container">
-
+          <AnimatePresence>
+          { (isShown === 'bol-valley-metal') && (
+            <motion.div
+            key={"1"}
+            initial={{x: (prevSlideMotion==='bol-valley-metal') ? "-50%" : "50%", opacity: 0}}
+            animate={{x:0, opacity:1}}
+            exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+            transition={{ duration: .7 }}
+            >
           <h1 className="surv-header">Valley Metal</h1>
           <div className="form-group">
             <label>Yes</label>
@@ -1713,6 +2227,9 @@ const [isShown, setIsShown] = useState('0')
             onChange={(e) => setRoofTemplate({ ...roofTemplate, valleyMetal: !roofTemplate.valleyMetal })}
             />
           </div>
+          </motion.div>
+        )}
+          </AnimatePresence>
           <div className="surv-accent1"></div>
 
           </div>
@@ -1725,7 +2242,15 @@ const [isShown, setIsShown] = useState('0')
         return (
           <>
           <div className="question-container">
-
+          <AnimatePresence>
+          { (isShown === 'underlayment') && (
+            <motion.div
+            key={"1"}
+            initial={{x: (prevSlideMotion==='underlayment') ? "-50%" : "50%", opacity: 0}}
+            animate={{x:0, opacity:1}}
+            exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+            transition={{ duration: .7 }}
+            >
             <h1 className="surv-header">Which type of underlayment is existing on the roof?</h1>
             <div className="form-group">
               <label>Felt</label>
@@ -1748,6 +2273,9 @@ const [isShown, setIsShown] = useState('0')
               />
 
             </div>
+            </motion.div>
+          )}
+            </AnimatePresence>
             <div className="surv-accent1"></div>
 
             </div>
@@ -1827,6 +2355,15 @@ const [isShown, setIsShown] = useState('0')
           return (
             <>
             <div className="question-container">
+            <AnimatePresence>
+            { (isShown === 'ice-water-bool') && (
+              <motion.div
+              key={"1"}
+              initial={{x: (prevSlideMotion==='ice-water-bool') ? "-50%" : "50%", opacity: 0}}
+              animate={{x:0, opacity:1}}
+              exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+              transition={{ duration: .7 }}
+              >
             <h1 className="surv-header">Is there an ice and water barrier existing on the roof?</h1>
             <div className="form-group">
               <label>Yes</label>
@@ -1844,6 +2381,9 @@ const [isShown, setIsShown] = useState('0')
               onChange={(e) => setRoofTemplate({ ...roofTemplate, iceBool: !roofTemplate.iceBool })}
               />
             </div>
+            </motion.div>
+          )}
+            </AnimatePresence>
             <div className="surv-accent1"></div>
 
             </div>
@@ -1857,7 +2397,16 @@ const [isShown, setIsShown] = useState('0')
           return (
             <>
             <div className="question-container">
-            <h1 className="surv-header">Which grade of synthetic underlayment is existing on the roof?</h1>
+            <AnimatePresence>
+            { (isShown === 'synthetic') && (
+              <motion.div
+              key={"1"}
+              initial={{x: (prevSlideMotion==='synthetic') ? "-50%" : "50%", opacity: 0}}
+              animate={{x:0, opacity:1}}
+              exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+              transition={{ duration: .7 }}
+              >
+              <h1 className="surv-header">Which grade of synthetic underlayment is existing on the roof?</h1>
               <div className="form-group">
                 <label>Synthetic</label>
                 <select
@@ -1874,6 +2423,9 @@ const [isShown, setIsShown] = useState('0')
 
 
               </div>
+              </motion.div>
+            )}
+              </AnimatePresence>
               <div className="surv-accent1"></div>
 
               </div>
@@ -1886,8 +2438,17 @@ const [isShown, setIsShown] = useState('0')
         return (
         <>
         <div className="question-container">
+        <AnimatePresence>
+        { (isShown === 'pipejacks') && (
+          <motion.div
+          key={"1"}
+          initial={{x: (prevSlideMotion==='pipejacks') ? "-50%" : "50%", opacity: 0}}
+          animate={{x:0, opacity:1}}
+          exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+          transition={{ duration: .7 }}
+          >
         <h1 className="surv-header">What type of pipejacks are currently on the roof?</h1>
-
+        <h1 className="surv-header">If present, how many?</h1>
         <div className="form-group">
         <label>Neoprene/Hard Plastics</label>
         <input
@@ -1908,6 +2469,9 @@ const [isShown, setIsShown] = useState('0')
         onChange={ (e) => setRoofTemplate({ ...roofTemplate, pipeJacksOther: e.target.value }) }
         />
         </div>
+        </motion.div>
+      )}
+        </AnimatePresence>
         <div className="surv-accent1"></div>
 
         </div>
@@ -1920,8 +2484,16 @@ const [isShown, setIsShown] = useState('0')
           return (
             <>
             <div className="question-container">
-
-            <h1 className="surv-header">Neoprene/Hard Plastic</h1>
+            <AnimatePresence>
+            { (isShown === 'neoprene') && (
+              <motion.div
+              key={"1"}
+              initial={{x: (prevSlideMotion==='neoprene') ? "-50%" : "50%", opacity: 0}}
+              animate={{x:0, opacity:1}}
+              exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+              transition={{ duration: .7 }}
+              >
+              <h1 className="surv-header">Neoprene/Hard Plastic</h1>
               <Container fluid="md" >
                 <Row>
                 <Col md={8} className="neoprene">
@@ -1985,6 +2557,9 @@ const [isShown, setIsShown] = useState('0')
                 </Col>
                 </Row>
               </Container>
+              </motion.div>
+            )}
+              </AnimatePresence>
               <div className="surv-accent1"></div>
 
               </div>
@@ -1997,7 +2572,15 @@ const [isShown, setIsShown] = useState('0')
           return (
             <>
             <div className="question-container">
-
+            <AnimatePresence>
+            { (isShown === 'ice-water') && (
+              <motion.div
+              key={"1"}
+              initial={{x: (prevSlideMotion==='ice-water') ? "-50%" : "50%", opacity: 0}}
+              animate={{x:0, opacity:1}}
+              exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+              transition={{ duration: .7 }}
+              >
             <h1 className="surv-header">Where is the ice and water barrier existing on the roof?</h1>
 
             <div className="ice-water-inputs form-group">
@@ -2038,6 +2621,9 @@ const [isShown, setIsShown] = useState('0')
               />
 
             </div>
+            </motion.div>
+          )}
+            </AnimatePresence>
             <div className="surv-accent1"></div>
 
             </div>
@@ -2050,7 +2636,15 @@ const [isShown, setIsShown] = useState('0')
           return (
           <>
           <div className="question-container">
-
+          <AnimatePresence>
+          { (isShown === 'ridge-vent') && (
+            <motion.div
+            key={"1"}
+            initial={{x: (prevSlideMotion==='ridge-vent') ? "-50%" : "50%", opacity: 0}}
+            animate={{x:0, opacity:1}}
+            exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+            transition={{ duration: .7 }}
+            >
           <h1 className="surv-header">Is there a ridge vent currently on the roof?</h1>
           <div className="form-group">
             <label>Yes</label>
@@ -2068,6 +2662,9 @@ const [isShown, setIsShown] = useState('0')
             onChange={(e) => setRoofTemplate({ ...roofTemplate, ridgeVent: !roofTemplate.ridgeVent })}
             />
           </div>
+          </motion.div>
+        )}
+          </AnimatePresence>
           <div className="surv-accent1"></div>
 
           </div>
@@ -2080,6 +2677,15 @@ const [isShown, setIsShown] = useState('0')
           return (
             <>
             <div className="question-container">
+            <AnimatePresence>
+            { (isShown === 'drip-gutter') && (
+              <motion.div
+              key={"1"}
+              initial={{x: (prevSlideMotion==='drip-gutter') ? "-50%" : "50%", opacity: 0}}
+              animate={{x:0, opacity:1}}
+              exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+              transition={{ duration: .7 }}
+              >
             <h1 className="surv-header">Where is the drip edge/gutter apron located on the roof?</h1>
             <div className="form-group">
             <h2 className="drip-h2">Drip</h2>
@@ -2106,6 +2712,9 @@ const [isShown, setIsShown] = useState('0')
               onChange={(e) => setRoofTemplate({ ...roofTemplate, apronEaves: !roofTemplate.apronEaves })}
               />
             </div>
+            </motion.div>
+          )}
+            </AnimatePresence>
             <div className="surv-accent1"></div>
 
               </div>
@@ -2118,7 +2727,15 @@ const [isShown, setIsShown] = useState('0')
           return (
             <>
             <div className="question-container">
-
+            <AnimatePresence>
+            { (isShown === 'ridge') && (
+              <motion.div
+              key={"1"}
+              initial={{x: (prevSlideMotion==='ridge') ? "-50%" : "50%", opacity: 0}}
+              animate={{x:0, opacity:1}}
+              exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+              transition={{ duration: .7 }}
+              >
               <h1 className="surv-header">What types of ridge cap are existing on the roof?</h1>
               <div className="form-group">
                 <label>3-Tab</label>
@@ -2144,6 +2761,9 @@ const [isShown, setIsShown] = useState('0')
                 />
 
               </div>
+              </motion.div>
+            )}
+              </AnimatePresence>
               <div className="surv-accent1"></div>
 
               </div>
@@ -2156,6 +2776,15 @@ const [isShown, setIsShown] = useState('0')
           return (
             <>
             <div className="question-container">
+            <AnimatePresence>
+            { (isShown === 'step-flashing') && (
+              <motion.div
+              key={"1"}
+              initial={{x: (prevSlideMotion==='step-flashing') ? "-50%" : "50%", opacity: 0}}
+              animate={{x:0, opacity:1}}
+              exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+              transition={{ duration: .7 }}
+              >
             <h1 className="surv-header">Which type of step flashing is existing on the roof?</h1>
 
             <div className="flashing-inputs form-group">
@@ -2188,6 +2817,9 @@ const [isShown, setIsShown] = useState('0')
             onChange={(e) => setRoofTemplate({ ...roofTemplate, none: !roofTemplate.none })}
             />
             </div>
+            </motion.div>
+          )}
+            </AnimatePresence>
             <div className="surv-accent1"></div>
 
             </div>
@@ -2200,6 +2832,15 @@ const [isShown, setIsShown] = useState('0')
           return (
             <>
             <div className="question-container">
+            <AnimatePresence>
+            { (isShown === 'counter-flashing') && (
+              <motion.div
+              key={"1"}
+              initial={{x: (prevSlideMotion==='counter-flashing') ? "-50%" : "50%", opacity: 0}}
+              animate={{x:0, opacity:1}}
+              exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+              transition={{ duration: .7 }}
+              >
             <h1 className="surv-header">Which type of counter flashing is existing on the roof?</h1>
 
             <div className="flashing-inputs form-group">
@@ -2225,6 +2866,9 @@ const [isShown, setIsShown] = useState('0')
             onChange={(e) => setRoofTemplate({ ...roofTemplate, counterPainted: !roofTemplate.counterPainted })}
             />
             </div>
+            </motion.div>
+          )}
+            </AnimatePresence>
             <div className="surv-accent1"></div>
 
             </div>
@@ -2237,6 +2881,15 @@ const [isShown, setIsShown] = useState('0')
           return (
             <>
             <div className="question-container">
+            <AnimatePresence>
+            { (isShown === 'chimney-flashing') && (
+              <motion.div
+              key={"1"}
+              initial={{x: (prevSlideMotion==='chimney-flashing') ? "-50%" : "50%", opacity: 0}}
+              animate={{x:0, opacity:1}}
+              exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+              transition={{ duration: .7 }}
+              >
             <h1 className="surv-header">Which type of chimney flashing is existing on the roof?</h1>
 
             <div className="flashing-inputs form-group">
@@ -2269,6 +2922,9 @@ const [isShown, setIsShown] = useState('0')
             onChange={(e) => setRoofTemplate({ ...roofTemplate, chimneyPainted: !roofTemplate.chimneyPainted })}
             />
             </div>
+            </motion.div>
+          )}
+            </AnimatePresence>
             <div className="surv-accent1"></div>
 
             </div>
@@ -2281,6 +2937,15 @@ const [isShown, setIsShown] = useState('0')
       return (
         <>
           <div className="question-container">
+          <AnimatePresence>
+          { (isShown === 'materials-make') && (
+            <motion.div
+            key={"1"}
+            initial={{x: (prevSlideMotion==='materials-make') ? "-50%" : "50%", opacity: 0}}
+            animate={{x:0, opacity:1}}
+            exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+            transition={{ duration: .7 }}
+            >
           <h1 className="surv-header">Which material manufacturer is existing on the roof?</h1>
           <div className="form-group">
           <label>Company</label>
@@ -2294,6 +2959,9 @@ const [isShown, setIsShown] = useState('0')
           <option value="owens">Owens Corning</option>
           </select>
           </div>
+          </motion.div>
+        )}
+          </AnimatePresence>
           <div className="surv-accent1"></div>
 
           </div>
@@ -2304,7 +2972,16 @@ const [isShown, setIsShown] = useState('0')
     case "upgrade-tool":
           return   (
             <>
-            <div className="upgradeOptions-container">
+            <div className="selected upgradeOptions-container">
+            <AnimatePresence>
+            { (isShown === 'upgrade-tool') && (
+              <motion.div
+              key={"1"}
+              initial={{x: (prevSlideMotion==='upgrade-tool') ? "-50%" : "50%", opacity: 0}}
+              animate={{x:0, opacity:1}}
+              exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+              transition={{ duration: .7 }}
+              >
             <h1 className="surv-header" style={{ height: '50px'}}>Available Upgrades</h1>
 
             <div className="upgrade-item">
@@ -2336,6 +3013,9 @@ const [isShown, setIsShown] = useState('0')
             </div>
 
 
+            </motion.div>
+          )}
+            </AnimatePresence>
             </div>
             <div className="surv-accent1"></div>
 
@@ -2348,6 +3028,15 @@ const [isShown, setIsShown] = useState('0')
       return (
         <div>
         <div className="selected question-container">
+        <AnimatePresence>
+        { (isShown === 'selected-upgrades') && (
+          <motion.div
+          key={"1"}
+          initial={{x: (prevSlideMotion==='selected-upgrades') ? "-50%" : "50%", opacity: 0}}
+          animate={{x:0, opacity:1}}
+          exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+          transition={{ duration: .7 }}
+          >
         <h1 className="surv-header">Selected Upgrades</h1>
           <table id="selected-table">
             <tbody>
@@ -2358,6 +3047,9 @@ const [isShown, setIsShown] = useState('0')
               {selectedUpgrades()}
             </tbody>
           </table>
+        </motion.div>
+      )}
+        </AnimatePresence>
         </div>
         <div className="surv-accent1"></div>
 
