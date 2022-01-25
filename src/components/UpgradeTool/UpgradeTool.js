@@ -1123,17 +1123,27 @@ export default function UpgradeTool() {
     }
   }
   const bolStepPrev = () => {
-
-  }
-  const stepFlashingNext = () => {
-    setPrevSlideMotion('step-flashing')
+    setGoingBackTo('ridge')
+    setPrevSlideMotion('ridge')
     setTimeout( () => {
-      setIsShown("counter-flashing");
+      setIsShown("ridge");
     }, 0)
     setTimeout( ()=> {
     setRoofTemplate({
       ...roofTemplate,
-      step: 'counter-flashing'
+      step: "ridge"
+    })
+    }, 700)
+  }
+  const stepFlashingNext = () => {
+    setPrevSlideMotion('step-flashing')
+    setTimeout( () => {
+      setIsShown("bol-counter");
+    }, 0)
+    setTimeout( ()=> {
+    setRoofTemplate({
+      ...roofTemplate,
+      step: 'bol-counter'
     })
     }, 700)
   }
@@ -1151,10 +1161,39 @@ export default function UpgradeTool() {
     }, 700)
  }
   const bolCounterPrev = () => {
-
+    if (roofTemplate.bolStep) {
+      setTimeout( () => {
+        setIsShown("step-flashing");
+      }, 0)
+      setTimeout( ()=> {
+        setRoofTemplate({ ...roofTemplate, step: 'step-flashing'})
+      }, 700)
+    } else {
+      setTimeout( () => {
+        setIsShown("bol-step");
+      }, 0)
+      setTimeout( ()=> {
+        setRoofTemplate({ ...roofTemplate, step: 'bol-step'})
+      }, 700)
+    }
   }
   const bolCounterNext = () => {
-    
+    setPrevSlideMotion('bol-counter')
+    if (roofTemplate.bolCounter) {
+      setTimeout( () => {
+        setIsShown("counter-flashing");
+      }, 0)
+      setTimeout( ()=> {
+        setRoofTemplate({ ...roofTemplate, step: 'counter-flashing'})
+      }, 700)
+    } else {
+      setTimeout( () => {
+        setIsShown("bol-chimney");
+      }, 0)
+      setTimeout( ()=> {
+        setRoofTemplate({ ...roofTemplate, step: 'bol-chimney'})
+      }, 700)
+    }
   }
   const counterFlashingNext = () => {
     setPrevSlideMotion('counter-flashing')
@@ -1185,7 +1224,21 @@ export default function UpgradeTool() {
 
   }
   const bolChimneyNext = () => {
-
+    if (roofTemplate.bolChimney) {
+      setTimeout( () => {
+        setIsShown("chimney-flashing");
+      }, 0)
+      setTimeout( ()=> {
+        setRoofTemplate({ ...roofTemplate, step: 'chimney-flashing'})
+      }, 700)
+    } else {
+      setTimeout( () => {
+        setIsShown("materials-make");
+      }, 0)
+      setTimeout( ()=> {
+        setRoofTemplate({ ...roofTemplate, step: 'materials-make'})
+      }, 700)
+    }
   }
   const chimneyFlashingNext = () => {
     setPrevSlideMotion('chimney-flashing')
@@ -1224,17 +1277,21 @@ export default function UpgradeTool() {
     }, 700)
   }
   const matsPrev = () => {
-    setGoingBackTo('chimney-flashing')
-    setPrevSlideMotion('chimney-flashing')
-    setTimeout( () => {
-      setIsShown("chimney-flashing");
-    }, 0)
-    setTimeout( ()=> {
-    setRoofTemplate({
-      ...roofTemplate,
-      step: "chimney-flashing"
-    })
-    }, 700)
+    if (roofTemplate.bolChimney) {
+      setTimeout( () => {
+        setIsShown("chimney-flashing");
+      }, 0)
+      setTimeout( ()=> {
+        setRoofTemplate({ ...roofTemplate, step: 'chimney-flashing'})
+      }, 700)
+    } else {
+      setTimeout( () => {
+        setIsShown("bol-chimney");
+      }, 0)
+      setTimeout( ()=> {
+        setRoofTemplate({ ...roofTemplate, step: 'bol-chimney'})
+      }, 700)
+    }
   }
   const upgradeToolPrev = () => {
     setGoingBackTo('materials-make')
