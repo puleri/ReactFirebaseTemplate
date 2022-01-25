@@ -1055,13 +1055,13 @@ export default function UpgradeTool() {
       }, 700)
     } else {
       setTimeout( () => {
-        setIsShown("step-flashing");
+        setIsShown("bol-step");
       }, 0)
       setTimeout( ()=> {
       setRoofTemplate({
         ...roofTemplate,
         // TEMPORARY
-        step: "step-flashing"
+        step: "bol-step"
       })
       }, 700)
     }
@@ -1082,12 +1082,12 @@ export default function UpgradeTool() {
   const ridgeNext = () => {
     setPrevSlideMotion('ridge')
     setTimeout( () => {
-      setIsShown("step-flashing");
+      setIsShown("bol-step");
     }, 0)
     setTimeout( ()=> {
     setRoofTemplate({
       ...roofTemplate,
-      step: 'step-flashing'
+      step: 'bol-step'
     })
     }, 700)
   }
@@ -1104,6 +1104,27 @@ export default function UpgradeTool() {
     })
     }, 700)
   }
+  const bolStepNext = () => {
+    setPrevSlideMotion('bol-step')
+    if (roofTemplate.bolStep) {
+      setTimeout( () => {
+        setIsShown("step-flashing");
+      }, 0)
+      setTimeout( ()=> {
+        setRoofTemplate({ ...roofTemplate, step: 'step-flashing'})
+      }, 700)
+    } else {
+      setTimeout( () => {
+        setIsShown("bol-counter");
+      }, 0)
+      setTimeout( ()=> {
+        setRoofTemplate({ ...roofTemplate, step: 'bol-counter'})
+      }, 700)
+    }
+  }
+  const bolStepPrev = () => {
+
+  }
   const stepFlashingNext = () => {
     setPrevSlideMotion('step-flashing')
     setTimeout( () => {
@@ -1117,31 +1138,24 @@ export default function UpgradeTool() {
     }, 700)
   }
   const stepFlashingPrev = () => {
-    if (roofTemplate.ridgeVent) {
-      setGoingBackTo('ridge')
-      setPrevSlideMotion('ridge')
-      setTimeout( () => {
-        setIsShown("ridge");
-      }, 0)
-      setTimeout( ()=> {
-      setRoofTemplate({
-        ...roofTemplate,
-        step: "ridge"
-      })
-      }, 700)    } else {
-        setGoingBackTo('ridge-vent')
-        setPrevSlideMotion('ridge-vent')
-        setTimeout( () => {
-          setIsShown("ridge-vent");
-        }, 0)
-        setTimeout( ()=> {
-        setRoofTemplate({
-          ...roofTemplate,
-          step: "ridge-vent"
-        })
-        }, 700)
-   }
+    setGoingBackTo('bol-step')
+    setPrevSlideMotion('bol-step')
+    setTimeout( () => {
+      setIsShown("bol-step");
+    }, 0)
+    setTimeout( ()=> {
+    setRoofTemplate({
+      ...roofTemplate,
+      step: "bol-step"
+    })
+    }, 700)
  }
+  const bolCounterPrev = () => {
+
+  }
+  const bolCounterNext = () => {
+    
+  }
   const counterFlashingNext = () => {
     setPrevSlideMotion('counter-flashing')
     setTimeout( () => {
@@ -1166,6 +1180,12 @@ export default function UpgradeTool() {
       step: "step-flashing"
     })
     }, 700)
+  }
+  const bolChimneyPrev = () => {
+
+  }
+  const bolChimneyNext = () => {
+
   }
   const chimneyFlashingNext = () => {
     setPrevSlideMotion('chimney-flashing')
@@ -2019,7 +2039,7 @@ const [isShown, setIsShown] = useState('0')
             value={roofTemplate.roofType}
             onChange={(e) => setRoofTemplate({ ...roofTemplate, roofType: e.target.value })}>>
             <option value="select">Select type</option>
-            <option value="asphalt">Asphalt</option>
+            <option value="asphalt">Asphalt Shingle</option>
             {
               // FUTURE OPTIONS
             // <option value="copper">Copper</option>
@@ -2772,6 +2792,48 @@ const [isShown, setIsShown] = useState('0')
 
             </>
           )
+    case "bol-step":
+          return (
+            <>
+            <div className="question-container">
+            <AnimatePresence>
+            { (isShown === 'bol-step') && (
+              <motion.div
+              key={"1"}
+              initial={{x: (prevSlideMotion==='bol-step') ? "-50%" : "50%", opacity: 0}}
+              animate={{x:0, opacity:1}}
+              exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+              transition={{ duration: .7 }}
+              >
+            <h1 className="surv-header">Is step flashing existing on the roof?</h1>
+
+            <div className="flashing-inputs form-group">
+            <label>Yes</label>
+            <input
+            style={{ width:"20px", height: "20px" }}
+            type="checkbox"
+            checked={roofTemplate.bolStep === true }
+            onChange={(e) => setRoofTemplate({ ...roofTemplate, bolStep: !roofTemplate.bolStep })}
+            />
+            <label>No</label>
+            <input
+            style={{ width:"20px", height: "20px" }}
+            type="checkbox"
+            checked={roofTemplate.bolStep === false }
+            onChange={(e) => setRoofTemplate({ ...roofTemplate, bolStep: !roofTemplate.bolStep })}
+            />
+            </div>
+            </motion.div>
+          )}
+            </AnimatePresence>
+            <div className="surv-accent1"></div>
+
+            </div>
+            <button className="survey-btn prev" onClick={() => bolStepPrev()}><i class="fas fa-chevron-left"></i></button>
+            <button className="survey-btn next" onClick={() => bolStepNext()}><i class="fas fa-chevron-right"></i></button>
+
+            </>
+          )
     case 'step-flashing':
           return (
             <>
@@ -2828,6 +2890,48 @@ const [isShown, setIsShown] = useState('0')
 
             </>
           )
+    case "bol-counter":
+          return (
+            <>
+            <div className="question-container">
+            <AnimatePresence>
+            { (isShown === 'bol-counter') && (
+              <motion.div
+              key={"1"}
+              initial={{x: (prevSlideMotion==='bol-counter') ? "-50%" : "50%", opacity: 0}}
+              animate={{x:0, opacity:1}}
+              exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+              transition={{ duration: .7 }}
+              >
+            <h1 className="surv-header">Is counter flashing existing on the roof?</h1>
+
+            <div className="flashing-inputs form-group">
+            <label>Yes</label>
+            <input
+            style={{ width:"20px", height: "20px" }}
+            type="checkbox"
+            checked={roofTemplate.bolCounter === true }
+            onChange={(e) => setRoofTemplate({ ...roofTemplate, bolCounter: !roofTemplate.bolCounter })}
+            />
+            <label>No</label>
+            <input
+            style={{ width:"20px", height: "20px" }}
+            type="checkbox"
+            checked={roofTemplate.bolCounter === false }
+            onChange={(e) => setRoofTemplate({ ...roofTemplate, bolCounter: !roofTemplate.bolCounter })}
+            />
+            </div>
+            </motion.div>
+          )}
+            </AnimatePresence>
+            <div className="surv-accent1"></div>
+
+            </div>
+            <button className="survey-btn prev" onClick={() => bolCounterPrev()}><i class="fas fa-chevron-left"></i></button>
+            <button className="survey-btn next" onClick={() => bolCounterNext()}><i class="fas fa-chevron-right"></i></button>
+
+            </>
+          )
     case 'counter-flashing':
           return (
             <>
@@ -2874,6 +2978,48 @@ const [isShown, setIsShown] = useState('0')
             </div>
             <button className="survey-btn prev" onClick={() => counterFlashingPrev()}><i class="fas fa-chevron-left"></i></button>
             <button className="survey-btn next" onClick={() => counterFlashingNext()}><i class="fas fa-chevron-right"></i></button>
+
+            </>
+          )
+    case "bol-chimney":
+          return (
+            <>
+            <div className="question-container">
+            <AnimatePresence>
+            { (isShown === 'bol-chimney') && (
+              <motion.div
+              key={"1"}
+              initial={{x: (prevSlideMotion==='bol-chimney') ? "-50%" : "50%", opacity: 0}}
+              animate={{x:0, opacity:1}}
+              exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+              transition={{ duration: .7 }}
+              >
+            <h1 className="surv-header">Is chimney flashing existing on the roof?</h1>
+
+            <div className="flashing-inputs form-group">
+            <label>Yes</label>
+            <input
+            style={{ width:"20px", height: "20px" }}
+            type="checkbox"
+            checked={roofTemplate.bolChimney === true }
+            onChange={(e) => setRoofTemplate({ ...roofTemplate, bolChimney: !roofTemplate.bolChimney })}
+            />
+            <label>No</label>
+            <input
+            style={{ width:"20px", height: "20px" }}
+            type="checkbox"
+            checked={roofTemplate.bolChimney === false }
+            onChange={(e) => setRoofTemplate({ ...roofTemplate, bolChimney: !roofTemplate.bolChimney })}
+            />
+            </div>
+            </motion.div>
+          )}
+            </AnimatePresence>
+            <div className="surv-accent1"></div>
+
+            </div>
+            <button className="survey-btn prev" onClick={() => bolChimneyPrev()}><i class="fas fa-chevron-left"></i></button>
+            <button className="survey-btn next" onClick={() => bolChimneyNext()}><i class="fas fa-chevron-right"></i></button>
 
             </>
           )
@@ -2946,7 +3092,7 @@ const [isShown, setIsShown] = useState('0')
             exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
             transition={{ duration: .7 }}
             >
-          <h1 className="surv-header">Which material manufacturer is existing on the roof?</h1>
+          <h1 className="surv-header">Which material manufacturer do you want to use?</h1>
           <div className="form-group">
           <label>Company</label>
           <select
@@ -3051,6 +3197,7 @@ const [isShown, setIsShown] = useState('0')
       )}
         </AnimatePresence>
         </div>
+        <button onClick={()=> console.log(chosenUpgrades, '\n', roofTemplate)}>log</button>
         <div className="surv-accent1"></div>
 
           <button className="survey-btn prev" onClick={() => selectedUpgradesPrev()}><i class="fas fa-chevron-left"></i></button>

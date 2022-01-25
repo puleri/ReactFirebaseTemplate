@@ -167,7 +167,7 @@ const deleteUser = (user) => {
             onChange={(e) => setLast(e.target.value)} />
           </div>
           <div className="admin-input-group">
-            <label>Last Name</label>
+            <label>Email</label>
             <input type="email"
             className="admin-input"
             placeholder="cfarshchi@gmail.com"
