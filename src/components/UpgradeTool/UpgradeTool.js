@@ -1042,8 +1042,6 @@ export default function UpgradeTool() {
   }
   const ridgeVentNext = () => {
     setPrevSlideMotion('ridge-vent')
-
-    if (roofTemplate.ridgeVent === true) {
       setTimeout( () => {
         setIsShown("ridge");
       }, 0)
@@ -1053,18 +1051,6 @@ export default function UpgradeTool() {
         step: "ridge"
       })
       }, 700)
-    } else {
-      setTimeout( () => {
-        setIsShown("bol-step");
-      }, 0)
-      setTimeout( ()=> {
-      setRoofTemplate({
-        ...roofTemplate,
-        // TEMPORARY
-        step: "bol-step"
-      })
-      }, 700)
-    }
   }
   const ridgeVentPrev = () => {
     setGoingBackTo('pipejacks')
@@ -1208,20 +1194,34 @@ export default function UpgradeTool() {
     }, 700)
   }
   const counterFlashingPrev = () => {
-    setGoingBackTo('step-flashing')
-    setPrevSlideMotion('step-flashing')
+    setGoingBackTo('bol-counter')
+    setPrevSlideMotion('bol-counter')
     setTimeout( () => {
-      setIsShown("step-flashing");
+      setIsShown("bol-counter");
     }, 0)
     setTimeout( ()=> {
     setRoofTemplate({
       ...roofTemplate,
-      step: "step-flashing"
+      step: "bol-counter"
     })
     }, 700)
   }
   const bolChimneyPrev = () => {
-
+    if (roofTemplate.bolCounter) {
+      setTimeout( () => {
+        setIsShown("counter-flashing");
+      }, 0)
+      setTimeout( ()=> {
+        setRoofTemplate({ ...roofTemplate, step: 'counter-flashing'})
+      }, 700)
+    } else {
+      setTimeout( () => {
+        setIsShown("bol-counter");
+      }, 0)
+      setTimeout( ()=> {
+        setRoofTemplate({ ...roofTemplate, step: 'bol-counter'})
+      }, 700)
+    }
   }
   const bolChimneyNext = () => {
     if (roofTemplate.bolChimney) {
@@ -1242,6 +1242,7 @@ export default function UpgradeTool() {
   }
   const chimneyFlashingNext = () => {
     setPrevSlideMotion('chimney-flashing')
+
     setTimeout( () => {
       setIsShown("materials-make");
     }, 0)
@@ -1253,17 +1254,18 @@ export default function UpgradeTool() {
     }, 700)
   }
   const chimneyFlashingPrev = () => {
-    setGoingBackTo('counter-flashing')
-    setPrevSlideMotion('counter-flashing')
+    setGoingBackTo('bol-chimney')
+    setPrevSlideMotion('bol-chimney')
     setTimeout( () => {
-      setIsShown("counter-flashing");
+      setIsShown("bol-chimney");
     }, 0)
     setTimeout( ()=> {
     setRoofTemplate({
       ...roofTemplate,
-      step: "counter-flashing"
+      step: "bol-chimney"
     })
-    }, 700)}
+    }, 700)
+  }
   const matsNext = () => {
     setPrevSlideMotion('materials-make')
     setTimeout( () => {
@@ -1871,9 +1873,9 @@ const [isShown, setIsShown] = useState('0')
         { (isShown === '0') && (
           <motion.div
           key={"0"}
-          initial={{x:  (prevSlideMotion==='0') ? "-50%" : "50%", opacity: 0 }}
+          initial={{x:  (prevSlideMotion==='0') ? "0" : "0", opacity: 0 }}
           animate={{x:0, opacity:1}}
-          exit={{x:"-50%", opacity:0}}
+          exit={{x:"0", opacity:0}}
           transition={{ duration: .7 }}
           >
 
@@ -1896,9 +1898,9 @@ const [isShown, setIsShown] = useState('0')
           { (isShown === '1') && (
             <motion.div
             key={"1"}
-            initial={{x: (prevSlideMotion==='1') ? "-50%" : "50%", opacity: 0}}
+            initial={{x: (prevSlideMotion==='1') ? "0" : "0", opacity: 0}}
             animate={{x:0, opacity:1}}
-            exit={{x: prevSlideMotion==="0" ? "50%" : "-50%", opacity:0}}
+            exit={{x: prevSlideMotion==="0" ? "0" : "0", opacity:0}}
             transition={{ duration: .7 }}
             >
           <StepOne roofTemplate={roofTemplate} handleMeasurementChange={handleMeasurementChange}/>
@@ -1919,9 +1921,9 @@ const [isShown, setIsShown] = useState('0')
           { (isShown === 'manual') && (
             <motion.div
             key={"1"}
-            initial={{x: (prevSlideMotion==='manual') ? "-50%" : "50%", opacity: 0}}
+            initial={{x: (prevSlideMotion==='manual') ? "0" : "0", opacity: 0}}
             animate={{x:0, opacity:1}}
-            exit={{x: prevSlideMotion==="1" ? "50%" : "-50%", opacity:0}}
+            exit={{x: prevSlideMotion==="1" ? "0" : "0", opacity:0}}
             transition={{ duration: .7 }}
             >
           <h1 className="surv-header">Manual Entry</h1>
@@ -2081,9 +2083,9 @@ const [isShown, setIsShown] = useState('0')
             { (isShown === 'roofType') && (
               <motion.div
               key={"1"}
-              initial={{x: (prevSlideMotion==='roofType') ? "-50%" : "50%", opacity: 0}}
+              initial={{x: (prevSlideMotion==='roofType') ? "0" : "0", opacity: 0}}
               animate={{x:0, opacity:1}}
-              exit={{x: prevSlideMotion==="manual" ? "50%" : "-50%", opacity:0}}
+              exit={{x: prevSlideMotion==="manual" ? "0" : "0", opacity:0}}
               transition={{ duration: .7 }}
               >
             <h1 className="surv-header">What type of material is existing on the roof?</h1>
@@ -2125,9 +2127,9 @@ const [isShown, setIsShown] = useState('0')
               { (isShown === 'asphalt') && (
                 <motion.div
                 key={"1"}
-                initial={{x: (prevSlideMotion==='asphalt') ? "-50%" : "50%", opacity: 0}}
+                initial={{x: (prevSlideMotion==='asphalt') ? "0" : "0", opacity: 0}}
                 animate={{x:0, opacity:1}}
-                exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+                exit={{x: prevSlideMotion==="roofType" ? "0" : "0", opacity:0}}
                 transition={{ duration: .7 }}
                 >
               <h1 className="surv-header">What kind of shingle is existing on the roof?</h1>
@@ -2163,9 +2165,9 @@ const [isShown, setIsShown] = useState('0')
             { (isShown === 'metal') && (
               <motion.div
               key={"1"}
-              initial={{x: (prevSlideMotion==='metal') ? "-50%" : "50%", opacity: 0}}
+              initial={{x: (prevSlideMotion==='metal') ? "0" : "0", opacity: 0}}
               animate={{x:0, opacity:1}}
-              exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+              exit={{x: prevSlideMotion==="roofType" ? "0" : "0", opacity:0}}
               transition={{ duration: .7 }}
               >
             <h1 className="surv-header">Is a drip edge or gutter apron existing on the roof?</h1>
@@ -2204,9 +2206,9 @@ const [isShown, setIsShown] = useState('0')
             { (isShown === '3-tab') && (
               <motion.div
               key={"1"}
-              initial={{x: (prevSlideMotion==='3-tab') ? "-50%" : "50%", opacity: 0}}
+              initial={{x: (prevSlideMotion==='3-tab') ? "0" : "0", opacity: 0}}
               animate={{x:0, opacity:1}}
-              exit={{x: prevSlideMotion==="asphalt" ? "50%" : "-50%", opacity:0}}
+              exit={{x: prevSlideMotion==="asphalt" ? "0" : "0", opacity:0}}
               transition={{ duration: .7 }}
               >
             <h1 className="surv-header">Which 3-Tab is existing on the roof?</h1>
@@ -2242,9 +2244,9 @@ const [isShown, setIsShown] = useState('0')
             { (isShown === 'laminate') && (
               <motion.div
               key={"1"}
-              initial={{x: (prevSlideMotion==='laminate') ? "-50%" : "50%", opacity: 0}}
+              initial={{x: (prevSlideMotion==='laminate') ? "0" : "0", opacity: 0}}
               animate={{x:0, opacity:1}}
-              exit={{x: prevSlideMotion==="asphalt" ? "50%" : "-50%", opacity:0}}
+              exit={{x: prevSlideMotion==="asphalt" ? "0" : "0", opacity:0}}
               transition={{ duration: .7 }}
               >
             <h1 className="surv-header">Which grade of laminate is existing on the roof?</h1>
@@ -2282,9 +2284,9 @@ const [isShown, setIsShown] = useState('0')
           { (isShown === 'bol-valley-metal') && (
             <motion.div
             key={"1"}
-            initial={{x: (prevSlideMotion==='bol-valley-metal') ? "-50%" : "50%", opacity: 0}}
+            initial={{x: (prevSlideMotion==='bol-valley-metal') ? "0" : "0", opacity: 0}}
             animate={{x:0, opacity:1}}
-            exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+            exit={{x: prevSlideMotion==="roofType" ? "0" : "0", opacity:0}}
             transition={{ duration: .7 }}
             >
           <h1 className="surv-header">Valley Metal</h1>
@@ -2323,9 +2325,9 @@ const [isShown, setIsShown] = useState('0')
           { (isShown === 'underlayment') && (
             <motion.div
             key={"1"}
-            initial={{x: (prevSlideMotion==='underlayment') ? "-50%" : "50%", opacity: 0}}
+            initial={{x: (prevSlideMotion==='underlayment') ? "0" : "0", opacity: 0}}
             animate={{x:0, opacity:1}}
-            exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+            exit={{x: prevSlideMotion==="roofType" ? "0" : "0", opacity:0}}
             transition={{ duration: .7 }}
             >
             <h1 className="surv-header">Which type of underlayment is existing on the roof?</h1>
@@ -2436,9 +2438,9 @@ const [isShown, setIsShown] = useState('0')
             { (isShown === 'ice-water-bool') && (
               <motion.div
               key={"1"}
-              initial={{x: (prevSlideMotion==='ice-water-bool') ? "-50%" : "50%", opacity: 0}}
+              initial={{x: (prevSlideMotion==='ice-water-bool') ? "0" : "0", opacity: 0}}
               animate={{x:0, opacity:1}}
-              exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+              exit={{x: prevSlideMotion==="roofType" ? "0" : "0", opacity:0}}
               transition={{ duration: .7 }}
               >
             <h1 className="surv-header">Is there an ice and water barrier existing on the roof?</h1>
@@ -2478,9 +2480,9 @@ const [isShown, setIsShown] = useState('0')
             { (isShown === 'synthetic') && (
               <motion.div
               key={"1"}
-              initial={{x: (prevSlideMotion==='synthetic') ? "-50%" : "50%", opacity: 0}}
+              initial={{x: (prevSlideMotion==='synthetic') ? "0" : "0", opacity: 0}}
               animate={{x:0, opacity:1}}
-              exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+              exit={{x: prevSlideMotion==="roofType" ? "0" : "0", opacity:0}}
               transition={{ duration: .7 }}
               >
               <h1 className="surv-header">Which grade of synthetic underlayment is existing on the roof?</h1>
@@ -2519,9 +2521,9 @@ const [isShown, setIsShown] = useState('0')
         { (isShown === 'pipejacks') && (
           <motion.div
           key={"1"}
-          initial={{x: (prevSlideMotion==='pipejacks') ? "-50%" : "50%", opacity: 0}}
+          initial={{x: (prevSlideMotion==='pipejacks') ? "0" : "0", opacity: 0}}
           animate={{x:0, opacity:1}}
-          exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+          exit={{x: prevSlideMotion==="roofType" ? "0" : "0", opacity:0}}
           transition={{ duration: .7 }}
           >
         <h1 className="surv-header">What type of pipejacks are currently on the roof?</h1>
@@ -2565,9 +2567,9 @@ const [isShown, setIsShown] = useState('0')
             { (isShown === 'neoprene') && (
               <motion.div
               key={"1"}
-              initial={{x: (prevSlideMotion==='neoprene') ? "-50%" : "50%", opacity: 0}}
+              initial={{x: (prevSlideMotion==='neoprene') ? "0" : "0", opacity: 0}}
               animate={{x:0, opacity:1}}
-              exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+              exit={{x: prevSlideMotion==="roofType" ? "0" : "0", opacity:0}}
               transition={{ duration: .7 }}
               >
               <h1 className="surv-header">Neoprene/Hard Plastic</h1>
@@ -2653,9 +2655,9 @@ const [isShown, setIsShown] = useState('0')
             { (isShown === 'ice-water') && (
               <motion.div
               key={"1"}
-              initial={{x: (prevSlideMotion==='ice-water') ? "-50%" : "50%", opacity: 0}}
+              initial={{x: (prevSlideMotion==='ice-water') ? "0" : "0", opacity: 0}}
               animate={{x:0, opacity:1}}
-              exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+              exit={{x: prevSlideMotion==="roofType" ? "0" : "0", opacity:0}}
               transition={{ duration: .7 }}
               >
             <h1 className="surv-header">Where is the ice and water barrier existing on the roof?</h1>
@@ -2717,9 +2719,9 @@ const [isShown, setIsShown] = useState('0')
           { (isShown === 'ridge-vent') && (
             <motion.div
             key={"1"}
-            initial={{x: (prevSlideMotion==='ridge-vent') ? "-50%" : "50%", opacity: 0}}
+            initial={{x: (prevSlideMotion==='ridge-vent') ? "0" : "0", opacity: 0}}
             animate={{x:0, opacity:1}}
-            exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+            exit={{x: prevSlideMotion==="roofType" ? "0" : "0", opacity:0}}
             transition={{ duration: .7 }}
             >
           <h1 className="surv-header">Is there a ridge vent currently on the roof?</h1>
@@ -2758,9 +2760,9 @@ const [isShown, setIsShown] = useState('0')
             { (isShown === 'drip-gutter') && (
               <motion.div
               key={"1"}
-              initial={{x: (prevSlideMotion==='drip-gutter') ? "-50%" : "50%", opacity: 0}}
+              initial={{x: (prevSlideMotion==='drip-gutter') ? "0" : "0", opacity: 0}}
               animate={{x:0, opacity:1}}
-              exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+              exit={{x: prevSlideMotion==="roofType" ? "0" : "0", opacity:0}}
               transition={{ duration: .7 }}
               >
             <h1 className="surv-header">Where is the drip edge/gutter apron located on the roof?</h1>
@@ -2808,9 +2810,9 @@ const [isShown, setIsShown] = useState('0')
             { (isShown === 'ridge') && (
               <motion.div
               key={"1"}
-              initial={{x: (prevSlideMotion==='ridge') ? "-50%" : "50%", opacity: 0}}
+              initial={{x: (prevSlideMotion==='ridge') ? "0" : "0", opacity: 0}}
               animate={{x:0, opacity:1}}
-              exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+              exit={{x: prevSlideMotion==="roofType" ? "0" : "0", opacity:0}}
               transition={{ duration: .7 }}
               >
               <h1 className="surv-header">What types of ridge cap are existing on the roof?</h1>
@@ -2857,9 +2859,9 @@ const [isShown, setIsShown] = useState('0')
             { (isShown === 'bol-step') && (
               <motion.div
               key={"1"}
-              initial={{x: (prevSlideMotion==='bol-step') ? "-50%" : "50%", opacity: 0}}
+              initial={{x: (prevSlideMotion==='bol-step') ? "0" : "0", opacity: 0}}
               animate={{x:0, opacity:1}}
-              exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+              exit={{x: prevSlideMotion==="roofType" ? "0" : "0", opacity:0}}
               transition={{ duration: .7 }}
               >
             <h1 className="surv-header">Is step flashing existing on the roof?</h1>
@@ -2899,9 +2901,9 @@ const [isShown, setIsShown] = useState('0')
             { (isShown === 'step-flashing') && (
               <motion.div
               key={"1"}
-              initial={{x: (prevSlideMotion==='step-flashing') ? "-50%" : "50%", opacity: 0}}
+              initial={{x: (prevSlideMotion==='step-flashing') ? "0" : "0", opacity: 0}}
               animate={{x:0, opacity:1}}
-              exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+              exit={{x: prevSlideMotion==="roofType" ? "0" : "0", opacity:0}}
               transition={{ duration: .7 }}
               >
             <h1 className="surv-header">Which type of step flashing is existing on the roof?</h1>
@@ -2955,9 +2957,9 @@ const [isShown, setIsShown] = useState('0')
             { (isShown === 'bol-counter') && (
               <motion.div
               key={"1"}
-              initial={{x: (prevSlideMotion==='bol-counter') ? "-50%" : "50%", opacity: 0}}
+              initial={{x: (prevSlideMotion==='bol-counter') ? "0" : "0", opacity: 0}}
               animate={{x:0, opacity:1}}
-              exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+              exit={{x: prevSlideMotion==="roofType" ? "0" : "0", opacity:0}}
               transition={{ duration: .7 }}
               >
             <h1 className="surv-header">Is counter flashing existing on the roof?</h1>
@@ -2997,9 +2999,9 @@ const [isShown, setIsShown] = useState('0')
             { (isShown === 'counter-flashing') && (
               <motion.div
               key={"1"}
-              initial={{x: (prevSlideMotion==='counter-flashing') ? "-50%" : "50%", opacity: 0}}
+              initial={{x: (prevSlideMotion==='counter-flashing') ? "0" : "0", opacity: 0}}
               animate={{x:0, opacity:1}}
-              exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+              exit={{x: prevSlideMotion==="roofType" ? "0" : "0", opacity:0}}
               transition={{ duration: .7 }}
               >
             <h1 className="surv-header">Which type of counter flashing is existing on the roof?</h1>
@@ -3046,9 +3048,9 @@ const [isShown, setIsShown] = useState('0')
             { (isShown === 'bol-chimney') && (
               <motion.div
               key={"1"}
-              initial={{x: (prevSlideMotion==='bol-chimney') ? "-50%" : "50%", opacity: 0}}
+              initial={{x: (prevSlideMotion==='bol-chimney') ? "0" : "0", opacity: 0}}
               animate={{x:0, opacity:1}}
-              exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+              exit={{x: prevSlideMotion==="roofType" ? "0" : "0", opacity:0}}
               transition={{ duration: .7 }}
               >
             <h1 className="surv-header">Is chimney flashing existing on the roof?</h1>
@@ -3088,9 +3090,9 @@ const [isShown, setIsShown] = useState('0')
             { (isShown === 'chimney-flashing') && (
               <motion.div
               key={"1"}
-              initial={{x: (prevSlideMotion==='chimney-flashing') ? "-50%" : "50%", opacity: 0}}
+              initial={{x: (prevSlideMotion==='chimney-flashing') ? "0" : "0", opacity: 0}}
               animate={{x:0, opacity:1}}
-              exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+              exit={{x: prevSlideMotion==="roofType" ? "0" : "0", opacity:0}}
               transition={{ duration: .7 }}
               >
             <h1 className="surv-header">Which type of chimney flashing is existing on the roof?</h1>
@@ -3144,9 +3146,9 @@ const [isShown, setIsShown] = useState('0')
           { (isShown === 'materials-make') && (
             <motion.div
             key={"1"}
-            initial={{x: (prevSlideMotion==='materials-make') ? "-50%" : "50%", opacity: 0}}
+            initial={{x: (prevSlideMotion==='materials-make') ? "0" : "0", opacity: 0}}
             animate={{x:0, opacity:1}}
-            exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+            exit={{x: prevSlideMotion==="roofType" ? "0" : "0", opacity:0}}
             transition={{ duration: .7 }}
             >
           <h1 className="surv-header">Which material manufacturer do you want to use?</h1>
@@ -3180,9 +3182,9 @@ const [isShown, setIsShown] = useState('0')
             { (isShown === 'upgrade-tool') && (
               <motion.div
               key={"1"}
-              initial={{x: (prevSlideMotion==='upgrade-tool') ? "-50%" : "50%", opacity: 0}}
+              initial={{x: (prevSlideMotion==='upgrade-tool') ? "0" : "0", opacity: 0}}
               animate={{x:0, opacity:1}}
-              exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+              exit={{x: prevSlideMotion==="roofType" ? "0" : "0", opacity:0}}
               transition={{ duration: .7 }}
               >
             <h1 className="surv-header" style={{ height: '50px'}}>Available Upgrades</h1>
@@ -3235,9 +3237,9 @@ const [isShown, setIsShown] = useState('0')
         { (isShown === 'selected-upgrades') && (
           <motion.div
           key={"1"}
-          initial={{x: (prevSlideMotion==='selected-upgrades') ? "-50%" : "50%", opacity: 0}}
+          initial={{x: (prevSlideMotion==='selected-upgrades') ? "0" : "0", opacity: 0}}
           animate={{x:0, opacity:1}}
-          exit={{x: prevSlideMotion==="roofType" ? "50%" : "-50%", opacity:0}}
+          exit={{x: prevSlideMotion==="roofType" ? "0" : "0", opacity:0}}
           transition={{ duration: .7 }}
           >
         <h1 className="surv-header">Selected Upgrades</h1>
@@ -3254,14 +3256,13 @@ const [isShown, setIsShown] = useState('0')
       )}
         </AnimatePresence>
         </div>
-        <button onClick={()=> console.log(chosenUpgrades, '\n', roofTemplate)}>log</button>
         <div className="surv-accent1"></div>
 
           <button className="survey-btn prev" onClick={() => selectedUpgradesPrev()}><i class="fas fa-chevron-left"></i></button>
         </div>
       )
   }
-  }
+}
 
   return (
     <AnimatePresence exitBeforeEnter>
