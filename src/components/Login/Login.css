@@ -72,6 +72,16 @@ background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,255,168,1) 100%);
   color: white;
   margin: -40px 0;
 }
+.login-email:focus, .login-password:focus {
+  outline: 1px solid rgba(0,255,168,1);
+  border-radius: 7px;
+  outline-offset: 10px;
+}
+.login-email:hover, .login-password:hover {
+  outline: 1px solid #7FDCBB;
+  border-radius: 7px;
+  outline-offset: 10px;
+}
 .login-email {
   background: none;
   border: none;
@@ -82,6 +92,7 @@ background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,255,168,1) 100%);
   font-size: .8rem;
   font-weight: normal;
   width: 240px;
+  transition: border-radius .3s ease, outline .3s ease;
 }
 .login-email::placeholder {
   color: white;
@@ -99,6 +110,8 @@ background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,255,168,1) 100%);
   font-size: .8rem;
   color: white;
   width: 240px;
+  transition: border-radius .3s ease, outline .3s ease;
+
 }
 .login-password::placeholder {
   color: white;
@@ -120,6 +133,17 @@ background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,255,168,1) 100%);
   font-size: .79em;
   cursor: pointer;
   background: white;
+  outline: 1px solid white;
+  transition: border .3s ease;
+
+}
+.pulse:focus {
+  outline: 1px solid rgba(0,255,168,1);
+  border: 1px solid rgba(0,255,168,1);
+}
+.pulse:hover {
+  outline: 1px solid #7FDCBB;
+  border: 1px solid #7FDCBB;
 }
 .login-h5 {
   font-family: 'Poppins', sans-serif;
