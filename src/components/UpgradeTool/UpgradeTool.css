@@ -25,7 +25,7 @@ label {
   justify-content: center;
 }
 .surv-header {
-  color: #088256;
+  color: #088256D9;
   font-weight: bold;
   display: inline-block;
   text-align: center;
@@ -188,7 +188,9 @@ label {
 }
 
 .neoprene-placeholder::placeholder {
-  font-size: 12px;
+  text-align: center;
+  font-style: italic;
+  font-size: 10px;
   letter-spacing: 0;
 }
 
@@ -204,8 +206,29 @@ label {
 }
 
 .homeowner-input {
-  height: 30px;
+  height: 35px;
 }
+
+.homeowner-input, select, .next, .prev, .neoprene-placeholder {
+  transition: .2s outline ease;
+}
+
+.homeowner-input:hover, select:hover, .next:hover, .prev:hover, .neoprene-placeholder:hover {
+  outline: 3px solid #4CA196;
+
+}
+.homeowner-input:focus, select:focus, .next:focus, .prev:focus, .neoprene-placeholder:focus {
+  outline: 5px solid #02EF9Da1;
+
+}
+
+ .man-entry:hover {
+  outline: 1px solid #4CA196;
+}
+ .man-entry:focus {
+  outline: 3px solid #02EF9Da1;
+}
+
 
 .ice-water-inputs {
   margin-top: -15px;
