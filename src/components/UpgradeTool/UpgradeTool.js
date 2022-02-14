@@ -118,6 +118,11 @@ export default function UpgradeTool() {
    })
   const [upgradeOptions, setUpgradeOptions] = useState({
       twentyTab: false,
+      twentyFiveTab: false,
+      oakridgeTab: false,
+      durationTab: false,
+      durationDesignerTab: false,
+      berkshireTab: false,
       builderLam: false,
       highLam: false,
       designerLam: false,
@@ -131,6 +136,10 @@ export default function UpgradeTool() {
 
   const [chosenUpgrades, setChosenUpgrades] = useState({
     twentyFiveTab: false,
+    oakridgeTab: false,
+    durationTab: false,
+    durationDesignerTab: false,
+    berkshireTab: false,
 
     builderLam: false,
     highLam: false,
@@ -178,6 +187,22 @@ export default function UpgradeTool() {
       name: "25 Year 3-Tab",
       price: 200
     },
+    'oakridgeTab': {
+      name: "Oakridge",
+      price: 200
+    },
+    'durationTab': {
+      name: "Duration",
+      price: 200
+    },
+    'durationDesignerTab': {
+      name: "Duration Designer",
+      price: 200
+    },
+    'berkshireTab': {
+      name: "Berkshire",
+      price: 200
+    },
 
     'builderLam': {
       name: "Builder grade laminate",
@@ -217,7 +242,7 @@ export default function UpgradeTool() {
       name: "Better grade synthetic underlayment",
       price: 200
     },
-    bestSynth: {
+    'bestSynth': {
       name: "Best grade synthetic underlayment",
       price: 200
     },
@@ -1895,6 +1920,7 @@ export default function UpgradeTool() {
 
   const selectedUpgrades = () => {
     let keys = Object.keys(chosenUpgrades);
+    console.log(chosenUpgrades)
     // returns keys of chosen upgrades in array
     let data = keys.filter((i) => chosenUpgrades[i] === true)
 
@@ -1902,7 +1928,7 @@ export default function UpgradeTool() {
     let namesAndPrices = [];
     const getNameAndPrice = (upgrade) => {
       namesAndPrices.push({ name: upgradeObjects[upgrade].name, price: upgradeObjects[upgrade].price})
-      // return (upgradeObjects[upgrade].name + ' ' + upgradeObjects[upgrade].price)
+      return (upgradeObjects[upgrade].name + ' ' + upgradeObjects[upgrade].price)
     };
     data.forEach(getNameAndPrice);
     return namesAndPrices.map((item, index) => {
