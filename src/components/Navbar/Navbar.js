@@ -75,7 +75,7 @@ function Navbar(props) {
     return (
       <div className="home-container">
         <nav className="navbar bg-primary-light justify-content-between">
-          <img style={{ filter:'brightness(1)', height: '50px' }} src={logoName} alt="Blueberry Pediactrics" />
+          <img style={{ filter:'brightness(1)', height: '50px' }} src={logoName} alt="Kaiser Siding and Roofing" />
           <button className="btn" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" >
             <hamburger style={{ height: '30px' }} src={hamburger}  className="hamburger1" alt="menu" />
           </button>

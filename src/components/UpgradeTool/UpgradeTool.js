@@ -1212,12 +1212,12 @@ export default function UpgradeTool() {
   const counterFlashingNext = () => {
     setPrevSlideMotion('counter-flashing')
     setTimeout( () => {
-      setIsShown("chimney-flashing");
+      setIsShown("bol-chimney");
     }, 0)
     setTimeout( ()=> {
     setRoofTemplate({
       ...roofTemplate,
-      step: 'chimney-flashing'
+      step: 'bol-chimney'
     })
     }, 700)
   }
@@ -1363,7 +1363,7 @@ export default function UpgradeTool() {
       if (roofTemplate.tab === "20") {
         return (
           <ul>
-            <h4>Existing Shingle Upgrades</h4>
+            <h4>Shingle</h4>
             <li className="upgrade-li" >Supreme (25 year)
             <input
             type="checkbox"
@@ -1401,7 +1401,7 @@ export default function UpgradeTool() {
         return (
           <>
           <ul>
-            <h4>Existing Shingle Upgrades</h4>
+            <h4>Shingle</h4>
           <li className="upgrade-li" >Oakridge
           <input
           type="checkbox"
@@ -1436,7 +1436,7 @@ export default function UpgradeTool() {
         case "builder":
           return (
             <ul>
-            <h4>Laminate Upgrades</h4>
+            <h4>Laminate</h4>
               <li className="upgrade-li" >Duration
               <input
               type="checkbox"
@@ -1472,7 +1472,7 @@ export default function UpgradeTool() {
         case "high":
           return (
             <ul>
-            <h4>Laminate Upgrades</h4>
+            <h4>Laminate</h4>
             <li className="upgrade-li" >Duration Designer
             <input
             type="checkbox"
@@ -1502,7 +1502,7 @@ export default function UpgradeTool() {
         case "designer":
           return (
             <ul>
-            <h4>Laminate Upgrades</h4>
+            <h4>Laminate</h4>
             <li className="upgrade-li" >Berkshire
             <input
             type="checkbox"
@@ -1532,7 +1532,7 @@ export default function UpgradeTool() {
       if (!roofTemplate.dripEaves && !roofTemplate.apronEaves && !roofTemplate.dripRakes) {
         return (
           <ul>
-            <h4>Existing Shingle Upgrades</h4>
+            <h4>Drip Rake and Gutter Apron</h4>
             <li className="upgrade-li" >Drip Eaves
             <input
             type="checkbox"
@@ -1559,7 +1559,7 @@ export default function UpgradeTool() {
       if (!roofTemplate.dripEaves && !roofTemplate.apronEaves) {
         return (
           <ul>
-            <h4>Existing Shingle Upgrades</h4>
+            <h4>Drip Rake and Gutter Apron</h4>
             <li className="upgrade-li" >Drip Eaves
             <input
             type="checkbox"
@@ -1578,7 +1578,7 @@ export default function UpgradeTool() {
       if (!roofTemplate.dripEaves && !roofTemplate.dripRakes) {
         return (
           <ul>
-            <h4>Existing Shingle Upgrades</h4>
+            <h4>Drip Rake and Gutter Apron</h4>
             <li className="upgrade-li" >Drip Eaves
             <input
             type="checkbox"
@@ -1598,7 +1598,7 @@ export default function UpgradeTool() {
       if (!roofTemplate.apronEaves && !roofTemplate.dripRakes) {
         return (
           <ul>
-            <h4>Existing Shingle Upgrades</h4>
+            <h4>Drip Rake and Gutter Apron</h4>
 
             <li className="upgrade-li" >Drip Rakes
             <input
@@ -1619,7 +1619,7 @@ export default function UpgradeTool() {
       if (!roofTemplate.dripEaves) {
         return (
           <ul>
-            <h4>Existing Shingle Upgrades</h4>
+            <h4>Drip Rake and Gutter Apron</h4>
             <li className="upgrade-li" >Drip Eaves
             <input
             type="checkbox"
@@ -1633,7 +1633,7 @@ export default function UpgradeTool() {
       if (!roofTemplate.dripRakes) {
         return (
           <ul>
-            <h4>Existing Shingle Upgrades</h4>
+            <h4>Drip Rake and Gutter Apron</h4>
 
             <li className="upgrade-li" >Drip Rakes
             <input
@@ -1647,7 +1647,7 @@ export default function UpgradeTool() {
       if (!roofTemplate.apronEaves) {
         return (
           <ul>
-            <h4>Existing Shingle Upgrades</h4>
+            <h4>Drip Rake and Gutter Apron</h4>
             <li className="upgrade-li" >Gutter Apron Eaves
             <input
             type="checkbox"
@@ -1664,7 +1664,7 @@ export default function UpgradeTool() {
       if (!roofTemplate.valleyMetalRolled && !roofTemplate.valleyMetalW) {
         return (
           <ul>
-            <h4>Valley Metal Upgrade</h4>
+            <h4>Valley Metal</h4>
 
             <li className="upgrade-li" >"W"
             <input
@@ -1680,7 +1680,7 @@ export default function UpgradeTool() {
         return (
           <>
           <ul>
-          <h4>Valley Metal Upgrades</h4>
+          <h4>Valley Metal</h4>
             <li className="upgrade-li" >{!roofTemplate.wPainter &&
               <>
               Painter
@@ -1717,7 +1717,7 @@ export default function UpgradeTool() {
   const feltUpgrade = () => {
     return (
       <ul>
-        <h4>Underlayment Upgrades</h4>
+        <h4>Underlayment</h4>
         <li className="upgrade-li" >
           Synthetic
           <input
@@ -1734,7 +1734,7 @@ export default function UpgradeTool() {
       case "builder":
       return (
       <ul>
-      <h4>Synthetic Underlayment Upgrades</h4>
+      <h4>Synthetic Underlayment</h4>
 
         <li className="upgrade-li" >Better Grade<input
         type="checkbox"
@@ -1752,7 +1752,7 @@ export default function UpgradeTool() {
       case "better":
       return (
       <ul>
-      <h4>Synthetic Underlayment Upgrades</h4>
+      <h4>Synthetic Underlayment</h4>
         <li className="upgrade-li" >Best Grade<input
         type="checkbox"
         checked={chosenUpgrades.bestSynth === true }
@@ -1768,7 +1768,7 @@ export default function UpgradeTool() {
     if (roofTemplate.tab) {
       return (
       <ul>
-      <h4>Ridge Cap Upgrades</h4>
+      <h4>Ridge Cap</h4>
 
         <li className="upgrade-li" >Standard Profile<input
         type="checkbox"
@@ -1787,7 +1787,7 @@ export default function UpgradeTool() {
     else if (roofTemplate.standard) {
       return (
         <ul>
-        <h4>Ridge Cap Upgrades</h4>
+        <h4>Ridge Cap</h4>
 
           <li className="upgrade-li" >High Profile<input
           type="checkbox"
@@ -1802,7 +1802,7 @@ export default function UpgradeTool() {
     if (roofTemplate.stepAluminum) {
       return (
       <ul>
-      <h4>Step Flashing Upgrades</h4>
+      <h4>Step Flashing</h4>
         <li className="upgrade-li" >Copper<input
         type="checkbox"
         checked={chosenUpgrades.sFCopper === true }
@@ -1819,7 +1819,7 @@ export default function UpgradeTool() {
     else if (roofTemplate.stepCopper) {
       return (
       <ul>
-      <h4>Step Flashing Upgrades</h4>
+      <h4>Step Flashing</h4>
 
         <li className="upgrade-li" >Galvanized<input
         type="checkbox"
@@ -1834,7 +1834,7 @@ export default function UpgradeTool() {
     if (roofTemplate.counterAluminum) {
       return (
       <ul>
-      <h4>Counter Flashing Upgrades</h4>
+      <h4>Counter Flashing</h4>
         <li className="upgrade-li" >Copper<input
         type="checkbox"
         checked={chosenUpgrades.cFCopper === true }
@@ -1851,7 +1851,7 @@ export default function UpgradeTool() {
     else if (roofTemplate.counterCopper) {
       return (
       <ul>
-      <h4>Counter Flashing Upgrades</h4>
+      <h4>Counter Flashing</h4>
 
         <li className="upgrade-li" >Painted Metal<input
         type="checkbox"
@@ -1866,7 +1866,7 @@ export default function UpgradeTool() {
     if (roofTemplate.chimneyAluminum) {
       return (
       <ul>
-      <h4>Chimney Flashing Upgrades</h4>
+      <h4>Chimney Flashing</h4>
         <li className="upgrade-li" >Copper<input
         type="checkbox"
         checked={chosenUpgrades.chFCopper === true }
@@ -1888,7 +1888,7 @@ export default function UpgradeTool() {
     else if (roofTemplate.chimneyCopper) {
       return (
       <ul>
-      <h4>Chimney Flashing Upgrades</h4>
+      <h4>Chimney Flashing</h4>
 
         <li className="upgrade-li" >Lead<input
         type="checkbox"
@@ -1906,7 +1906,7 @@ export default function UpgradeTool() {
     else if (roofTemplate.chimneyLead) {
       return (
       <ul>
-      <h4>Chimney Flashing Upgrades</h4>
+      <h4>Chimney Flashing</h4>
 
         <li className="upgrade-li" >Painted Metal<input
         type="checkbox"
