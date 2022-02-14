@@ -475,6 +475,9 @@ export default function UpgradeTool() {
       })
     }, 700)
   } else {
+    setTimeout( () => {
+      setIsShown("laminate");
+    }, 0)
     setTimeout( ()=> {
       setRoofTemplate({
       ...roofTemplate,
@@ -1336,11 +1339,35 @@ export default function UpgradeTool() {
         return (
           <ul>
             <h4>Existing Shingle Upgrades</h4>
-            <li className="upgrade-li" >25 year
+            <li className="upgrade-li" >Supreme (25 year)
             <input
             type="checkbox"
             checked={chosenUpgrades.twentyFiveTab === true }
             onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, twentyFiveTab: !chosenUpgrades.twentyFiveTab })}/>
+            </li>
+            <li className="upgrade-li" >Oakridge
+            <input
+            type="checkbox"
+            checked={chosenUpgrades.oakridgeTab === true }
+            onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, oakridgeTab: !chosenUpgrades.oakridgeTab })}/>
+            </li>
+            <li className="upgrade-li" >Duration
+            <input
+            type="checkbox"
+            checked={chosenUpgrades.durationTab === true }
+            onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, durationTab: !chosenUpgrades.durationTab })}/>
+            </li>
+            <li className="upgrade-li" >Duration Designer
+            <input
+            type="checkbox"
+            checked={chosenUpgrades.durationDesignerTab === true }
+            onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, durationDesignerTab: !chosenUpgrades.durationDesignerTab })}/>
+            </li>
+            <li className="upgrade-li" >Berkshire
+            <input
+            type="checkbox"
+            checked={chosenUpgrades.berkshireTab === true }
+            onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, berkshireTab: !chosenUpgrades.berkshireTab })}/>
             </li>
           </ul>
         )
@@ -1348,6 +1375,33 @@ export default function UpgradeTool() {
       else if (roofTemplate.tab === "25") {
         return (
           <>
+          <ul>
+            <h4>Existing Shingle Upgrades</h4>
+          <li className="upgrade-li" >Oakridge
+          <input
+          type="checkbox"
+          checked={chosenUpgrades.oakridgeTab === true }
+          onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, oakridgeTab: !chosenUpgrades.oakridgeTab })}/>
+          </li>
+          <li className="upgrade-li" >Duration
+          <input
+          type="checkbox"
+          checked={chosenUpgrades.durationTab === true }
+          onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, durationTab: !chosenUpgrades.durationTab })}/>
+          </li>
+          <li className="upgrade-li" >Duration Designer
+          <input
+          type="checkbox"
+          checked={chosenUpgrades.durationDesignerTab === true }
+          onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, durationDesignerTab: !chosenUpgrades.durationDesignerTab })}/>
+          </li>
+          <li className="upgrade-li" >Berkshire
+          <input
+          type="checkbox"
+          checked={chosenUpgrades.berkshireTab === true }
+          onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, berkshireTab: !chosenUpgrades.berkshireTab })}/>
+          </li>
+          </ul>
           </>
         )
       }
@@ -1358,22 +1412,23 @@ export default function UpgradeTool() {
           return (
             <ul>
             <h4>Laminate Upgrades</h4>
-              <li className="upgrade-li" >High Grade Laminate<input
+              <li className="upgrade-li" >Duration
+              <input
               type="checkbox"
-              checked={chosenUpgrades.highLam === true }
-              onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, highLam: !chosenUpgrades.highLam })}/>
+              checked={chosenUpgrades.durationTab === true }
+              onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, durationTab: !chosenUpgrades.durationTab })}/>
               </li>
-
-              <li className="upgrade-li" >Designer Grade Laminate<input
+              <li className="upgrade-li" >Duration Designer
+              <input
               type="checkbox"
-              checked={chosenUpgrades.designerLam === true }
-              onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, designerLam: !chosenUpgrades.designerLam })}/>
+              checked={chosenUpgrades.durationDesignerTab === true }
+              onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, durationDesignerTab: !chosenUpgrades.durationDesignerTab })}/>
               </li>
-
-              <li className="upgrade-li" >Specialty Grade Laminate<input
+              <li className="upgrade-li" >Berkshire
+              <input
               type="checkbox"
-              checked={chosenUpgrades.specialtyLam === true }
-              onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, specialtyLam: !chosenUpgrades.specialtyLam })}/>
+              checked={chosenUpgrades.berkshireTab === true }
+              onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, berkshireTab: !chosenUpgrades.berkshireTab })}/>
               </li>
 
               <li className="upgrade-li" >Double Laminate<input
@@ -1393,16 +1448,17 @@ export default function UpgradeTool() {
           return (
             <ul>
             <h4>Laminate Upgrades</h4>
-            <li className="upgrade-li" >Designer Grade Laminate<input
+            <li className="upgrade-li" >Duration Designer
+            <input
             type="checkbox"
-            checked={chosenUpgrades.designerLam === true }
-            onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, designerLam: !chosenUpgrades.designerLam })}/>
+            checked={chosenUpgrades.durationDesignerTab === true }
+            onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, durationDesignerTab: !chosenUpgrades.durationDesignerTab })}/>
             </li>
-
-            <li className="upgrade-li" >Specialty Grade Laminate<input
+            <li className="upgrade-li" >Berkshire
+            <input
             type="checkbox"
-            checked={chosenUpgrades.specialtyLam === true }
-            onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, specialtyLam: !chosenUpgrades.specialtyLam })}/>
+            checked={chosenUpgrades.berkshireTab === true }
+            onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, berkshireTab: !chosenUpgrades.berkshireTab })}/>
             </li>
 
             <li className="upgrade-li" >Double Laminate<input
@@ -1422,10 +1478,11 @@ export default function UpgradeTool() {
           return (
             <ul>
             <h4>Laminate Upgrades</h4>
-            <li className="upgrade-li" >Specialty Grade Laminate<input
+            <li className="upgrade-li" >Berkshire
+            <input
             type="checkbox"
-            checked={chosenUpgrades.specialtyLam === true }
-            onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, specialtyLam: !chosenUpgrades.specialtyLam })}/>
+            checked={chosenUpgrades.berkshireTab === true }
+            onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, berkshireTab: !chosenUpgrades.berkshireTab })}/>
             </li>
 
             <li className="upgrade-li" >Double Laminate<input
@@ -2261,8 +2318,8 @@ const [isShown, setIsShown] = useState('0')
                 <option value="select">Select laminate</option>
                 <option value="builder">Builder Grade</option>
                 <option value="high">High Grade</option>
-                <option value="designer">Designer</option>
-                <option value="specialty">Specialty</option>
+                <option value="designer">Designer Grade</option>
+                <option value="specialty">Specialty Grade</option>
                 </select>
             </div>
             </motion.div>
