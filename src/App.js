@@ -9,6 +9,8 @@ import Permissions from './components/Permissions/Permissions.js';
 import Unauthorized from './components/Unauthorized/Unauthorized.js';
 import Admin from './components/Admin/Admin.js';
 import Header from './components/Header/Header.js'
+import Profile from './components/Profile/Profile.js'
+
 import UpgradeNav from './components/NavComplete/UpgradeNav.js'
 import { AuthContextProvider, useAuthState, getAuth }from './firebase'
 // import firebase
@@ -80,11 +82,15 @@ function App(props) {
           component={ Login } />
 
     {
-    // private routes
+    // start of private routes
     }
             <PrivateRoute exact path='/admin'
             currentUser={currentUser}
             component={ Admin }/>
+
+            <PrivateRoute exact path='/profile'
+            currentUser={currentUser}
+            component={ Profile }/>
 
             <PrivateRoute path="/upgradetool"
             component={ UpgradeNav } />
@@ -94,7 +100,7 @@ function App(props) {
             setCurrentUser={setCurrentUser}
             component={ Permissions  }/>
     {
-    // private routes
+    // end of private routes
     }
 
           <Route exact path='/unauthorized'
