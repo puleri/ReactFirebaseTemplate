@@ -65,7 +65,7 @@ function Navbar(props) {
           <div className="nav-drop-custom">
             <a className="nav-item c1" href="/upgradetool">Start</a> <br />
             <a className="nav-item c2" href="/admin">Administrator</a> <br />
-            <a className="nav-item c3" href="#">FAQ</a> <br />
+            <a className="nav-item c3" href="/profile">Profile</a> <br />
             <button className="logout nav-item c4" onClick={()=> logOut()}>Logout</button> <br />
           </div>
         </div>
@@ -83,7 +83,7 @@ function Navbar(props) {
         <div className="collapse" id="collapseExample">
           <div className="nav-drop-custom">
             <a className="nav-item c1" href="/upgradetool">Start</a> <br />
-            <a className="nav-item c3" href="#">FAQ</a> <br />
+            <a className="nav-item c3" href="profile">Profile</a> <br />
             <button className="logout nav-item c4" onClick={()=> logOut()}>Logout</button> <br />
           </div>
         </div>

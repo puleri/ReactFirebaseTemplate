@@ -44,7 +44,7 @@ function YearSelect () {
     role="button"
     onKeyPress={() => toggle(!isActive)}
     onClick={(e) => toggle(!isActive)}
-    onBlur={(e) => yearValidation(e)}
+    // onBlur={(e) => yearValidation(e)}
 
     css={css`
       text-align: center;

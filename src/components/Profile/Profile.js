@@ -129,12 +129,12 @@ function Form () {
     <>
     <Navbar />
     <div className="settings-form-with-img">
-      <div className={toasterShow}><img id="check" src={check} />Changes have been saved successfully</div>
+      <div className={toasterShow}><img alt="check" id="check" src={check} />Changes have been saved successfully</div>
       <div>
       <div className="settings-form-container">
       <h2 className="settings-header">Settings</h2>
       <form className="form-wrapper">
-        <label>first name*</label>
+        <label className="profile-label">first name*</label>
         <input
         className={firstValid.classes}
         onChange={ (e) => setFormValues({ ...formValues, firstName: e.target.value })}
@@ -152,7 +152,7 @@ function Form () {
           { firstValid.isValid ? '' : 'This field is required*'}
         </em>
 
-        <label>last name*</label>
+        <label className="profile-label">last name*</label>
         <input
         className={lastValid.classes}
         onChange={ (e) => setFormValues({ ...formValues, lastName: e.target.value })}
@@ -170,7 +170,7 @@ function Form () {
           { lastValid.isValid ? '' : 'This field is required*'}
         </em>
 
-        <label>email*</label>
+        <label className="profile-label">email*</label>
         <input
         className={emailValid.classes}
         onChange={ (e) => setFormValues({ ...formValues, email: e.target.value })}
@@ -188,7 +188,7 @@ function Form () {
           { emailValid.isValid ? '' : 'This field is required*'}
         </em>
 
-        <label>phone*</label>
+        <label className="profile-label">phone*</label>
         <input
         className={phoneValid.classes}
         onChange={ (e) => setFormValues({ ...formValues, phone: e.target.value })}
@@ -210,7 +210,7 @@ function Form () {
           // Start of Custom Dropdown
         }
 
-        <label>select your date of birth*</label>
+        <label className="profile-label">select your date of birth</label>
         <div id="dropdown-date" style={{ display: 'flex' }}>
         <MonthSelect clearHandler={clearHandler}/>
         <DaySelect clearHandler={clearHandler}/>
@@ -221,11 +221,10 @@ function Form () {
           // End of Custom Dropdown
         }
 
-        <label>bio*</label>
+        <label className="profile-label">bio</label>
         <textarea
         className={bioValid.classes}
         onChange={ (e) => setFormValues({ ...formValues, bio: e.target.value })}
-        onBlur={(e) => bioValidation(e) }
         name='firstName'
         value={formValues.bio}
         rows="20" cols="50" />
@@ -247,33 +246,7 @@ function Form () {
         </div>
       </div>
       </div>
-      <div className="image-drop">
-        <label className="image">image</label>
-        <div className="image-wrapper">
-        <Dropzone className="drag-drop" onDrop={acceptedFiles => {
-          console.log(acceptedFiles)
-          setProfilePic(
-            acceptedFiles.map((file) => Object.assign(file, {
-              preview: URL.createObjectURL(file)
-            }))
-          )
-        }}>
-          {({ getRootProps, getInputProps }) => (
-            <section id="drag-drop">
-              <div {...getRootProps()}>
-                <input {...getInputProps()} />
-                <img alt="default profile pifcture" style={{ width: '75px' }} src={ profilePic[0].preview || unicorn }/>
-                <img
-                alt="upload"
-                id="upload"
-                src={upload}/>
-                <h5 className="upload-label" onClick={(e) => handlePic(e)}>{ profilePic[0].preview ? 'Remove' : 'Upload'}</h5>
-              </div>
-            </section>
-          )}
-          </Dropzone>
-        </div>
-      </div>
+
     </div>
     </>
   )

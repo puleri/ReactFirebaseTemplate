@@ -20,14 +20,14 @@ textarea {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   }
-input:focus, select:focus, textarea:focus {
+.settings-input:focus, textarea:focus {
   outline: none;
   border: 1px solid #317f6d;
 }
-input:hover, select:hover, textarea:hover {
+.settings-input:hover, textarea:hover {
   border: 1px solid #63686f;
 }
-label {
+.profile-label {
   color: #a3aab1;
   font-variant: small-caps;
   font-size: 10px;
@@ -89,7 +89,7 @@ label {
   align-items: center;
   min-height: 100vh;
 }
-.settings-input, select {
+.settings-input {
   font-size: 10px;
   font-family: "Poppins", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -109,16 +109,6 @@ label {
 .bio {
   resize: none;
   height: 150px;
-}
-select {
-  background: #2a2e35 ;
-}
-option {
-  background: #2a2e35;
-  color: #ccd3da;
-  border: none;
-  outline: none;
-  height: 100px;
 }
 
 #dropdown-date {
@@ -195,7 +185,7 @@ option {
 }
 .no-toast {
   visibility:hidden;
-  position: absolute;
+  position: fixed;
   top: 0;
 }
 #check {
@@ -207,10 +197,10 @@ option {
   display: flex;
   align-items: bottom;
   justify-content: center;
-  padding-top: 15px;
-  height: 40px;
+  padding: 15px 0;
+  height: 55px;
   width: 100vw;
-  position: absolute;
+  position: fixed;
   top: 0;
   color: #eaf2f9;
   background: #317f6d;

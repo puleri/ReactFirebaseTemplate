@@ -45,8 +45,7 @@ function DaySelect () {
     role="button"
     onKeyPress={() => toggle(!isActive)}
     onClick={(e) => toggle(!isActive)}
-    onBlur={(e) => dayValidation(e)}
-
+    // onBlur={(e) => dayValidation(e)}
     css={css`
       text-align: center;
       background: #2a2e35 ;

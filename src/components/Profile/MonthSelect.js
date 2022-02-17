@@ -56,8 +56,8 @@ function MonthSelect (props) {
     role="button"
     onKeyPress={() => toggle(!isActive)}
     onClick={(e) => toggle(!isActive)}
-    onBlur={(e) => monthValidation(e)}
-    css={css`
+// {    onBlur={(e) => monthValidation(e)}    exit focus validation }
+      css={css`
       text-align: center;
       background: #2a2e35 ;
       position: relative;
