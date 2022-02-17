@@ -4,6 +4,17 @@
   height: 1100px;
   overflow: none !important;
 }
+.admin-label {
+  color: #3b3b3b;
+  font-variant: small-caps;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: left;
+  min-width: 400px;
+  width: 70%;
+  margin: 5px 0 0;
+}
+
 .admin-form {
   margin-top: 20px;
   margin-bottom: 120px;
@@ -14,10 +25,20 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
+
 }
 .admin-input {
   font-size: 12px;
   height: 30px;
   min-width: 400px;
   width: 70%;
+  box-sizing: border-box;
+}
+
+.admin-input:focus {
+  outline: 1px solid #02EF9D;
+}
+.admin-input:hover {
+  border: 1px solid #63686f;
 }

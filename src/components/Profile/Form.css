@@ -30,7 +30,7 @@ textarea {
 .profile-label {
   color: #3b3b3b;
   font-variant: small-caps;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: bold;
   text-align: left;
   width: 400px;
@@ -95,8 +95,7 @@ textarea {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   color: #333333;
-  background: #e6e6e6 ;
-  border: 1px solid #3b3b3b;
+  background: white ;
   border-radius: 5px;
   min-height: 25px;
   margin: 0px 0;
@@ -107,6 +106,7 @@ textarea {
   width: 400px;
 }
 .bio {
+  border: 1px solid lightgrey;
   resize: none;
   height: 150px;
 }
@@ -147,7 +147,7 @@ textarea {
 }
 .light-line {
   border: none;
-  border-top: 1px solid #353940;
+  border-top: 1px solid lightgrey;
   margin-top: 25px;
   width: 400px;
 }
