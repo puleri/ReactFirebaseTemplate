@@ -57,13 +57,13 @@ function DaySelect () {
       font-family: "Poppins", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
         'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
         sans-serif;
-      color: #ccd3da;
-      background: #2a2e35 ;
-      border: 1px solid #3e434a;
+        color: #333333;
+        background: #e6e6e6 ;
+        border: 1px solid #3b3b3b;
       border-radius: 5px;
       max-height: 25px;
       margin: 7px 0;
-      padding: 0px 10px;
+      padding: 15px 10px 0;
       box-sizing: border-box;
       grid-template-columns: 40% 25% 30%;
       width: 100px;
@@ -96,7 +96,9 @@ function DaySelect () {
           <div
           css={css`
             text-align: center;
-            background: #3A3F46 ;
+            color: #333333;
+            background: #e6e6e6 ;
+            border: 1px solid #3b3b3b;
             position: absolute;
             z-index: 9;
             font-size: 10px;
@@ -104,14 +106,12 @@ function DaySelect () {
             font-family: "Poppins", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
               'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
               sans-serif;
-            color: #ccd3da;
-            border: 1px solid #3e434a;
             border-radius: 5px;
             max-height: 165px;
             overflow-y: auto;
             padding: 2.5px 5px;
             box-sizing: border-box;
-            box-shadow: 0px 0px 20px rgb(34,38,45);
+            box-shadow: 0px 0px 20px #787878;
             grid-template-columns: 40% 25% 30%;
             width: 100px;
           `}

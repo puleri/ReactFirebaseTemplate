@@ -2,7 +2,7 @@
   width: 100%;
   font-size: 20px;
   text-align: left;
-  color: #eaf2f9;
+  color: #333333;
 }
 
 .upload-label {
@@ -28,7 +28,7 @@ textarea {
   border: 1px solid #63686f;
 }
 .profile-label {
-  color: #a3aab1;
+  color: #3b3b3b;
   font-variant: small-caps;
   font-size: 10px;
   font-weight: bold;
@@ -42,7 +42,7 @@ textarea {
   align-items: center;
   width: 100%;
   min-height: 100vh;
-  background: #22262d;
+  background: #F5F5F5;
 }
 .settings-form-container {
   display: flex;
@@ -94,9 +94,9 @@ textarea {
   font-family: "Poppins", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  color: #ccd3da;
-  background: #2a2e35 ;
-  border: 1px solid #3e434a;
+  color: #333333;
+  background: #e6e6e6 ;
+  border: 1px solid #3b3b3b;
   border-radius: 5px;
   min-height: 25px;
   margin: 0px 0;
@@ -234,11 +234,11 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active{
-    -webkit-box-shadow: 0 0 0 300px #2a2e35 inset !important;
+    -webkit-box-shadow: 0 0 0 300px #e6e6e6 inset !important;
 }
 /*Change text in autofill textbox*/
 input:-webkit-autofill{
-    -webkit-text-fill-color: #ccd3da !important;
+    -webkit-text-fill-color: #333333 !important;
 }
 
 .up {

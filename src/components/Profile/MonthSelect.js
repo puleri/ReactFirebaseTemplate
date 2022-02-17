@@ -68,16 +68,18 @@ function MonthSelect (props) {
       font-family: "Poppins", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
         'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
         sans-serif;
-      color: #ccd3da;
-      background: #2a2e35 ;
-      border: 1px solid #3e434a;
+        color: #333333;
+        background: #e6e6e6 ;
+        border: 1px solid #3b3b3b;
       border-radius: 5px;
       max-height: 25px;
       margin: 7px 0;
-      padding: 14px 10px 0;
+      padding: 15px 10px 0;
       box-sizing: border-box;
       grid-template-columns: 40% 25% 30%;
       width: 160px;
+      overflow:visible;
+
       min-height: 25px;
       &:focus {
         border: 1px solid #317f6d;
@@ -107,22 +109,24 @@ function MonthSelect (props) {
           <div
           css={css`
             text-align: center;
-            background: #3A3F46 ;
             position: absolute;
-            z-index: 9;
+            z-index: 19;
             font-size: 10px;
             font-weight: 500;
             font-family: "Poppins", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
               'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
               sans-serif;
-            color: #ccd3da;
-            border: 1px solid #3e434a;
+              color: #333333;
+              background: #e6e6e6 ;
+              border: 1px solid #3b3b3b;
             border-radius: 5px;
             max-height: 122px;
             overflow-y: auto;
+            outline: 10px solid transparent;
+
             padding: 2.5px 5px;
             box-sizing: border-box;
-            box-shadow: 0px 0px 20px rgb(34,38,45);
+            box-shadow: 3px 10px 20px #787878;
             grid-template-columns: 40% 25% 30%;
             width: 160px;
           `}>

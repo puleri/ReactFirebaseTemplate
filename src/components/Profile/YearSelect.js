@@ -57,13 +57,13 @@ function YearSelect () {
       font-family: "Poppins", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
         'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
         sans-serif;
-      color: #ccd3da;
-      background: #2a2e35 ;
-      border: 1px solid #3e434a;
+        color: #333333;
+        background: #e6e6e6 ;
+        border: 1px solid #3b3b3b;
       border-radius: 5px;
       max-height: 25px;
       margin: 7px 0;
-      padding: 0px 10px;
+      padding: 15px 10px 0;
       box-sizing: border-box;
       grid-template-columns: 40% 25% 30%;
       width: 120px;
@@ -95,20 +95,20 @@ function YearSelect () {
           css={css`
             text-align: center;
             font-weight: 500;
-            background: #3A3F46 ;
+            color: #333333;
+            background: #e6e6e6 ;
+            border: 1px solid #3b3b3b;
             position: absolute;
             z-index: 9;
             font-size: 10px;
             font-family: "Poppins", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
               'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
               sans-serif;
-            color: #ccd3da;
-            border: 1px solid #3e434a;
             border-radius: 5px;
             max-height: 165px;
             overflow-y: auto;
             padding: 2.5px 5px;
-            box-shadow: 0px 0px 20px rgb(34,38,45);
+            box-shadow: \-10px 10px 20px #787878;
             box-sizing: border-box;
             grid-template-columns: 40% 25% 30%;
             width: 120px;
@@ -142,8 +142,8 @@ function YearSelect () {
                     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
                     sans-serif;
                   width: 100%;
-                  color: #ccd3da;
-                  background: #3A3F46 ;
+                  color: #333333;
+                  background: #e6e6e6 ;
                   font-weight: 500;
                   font-size: 10px;
                   padding: 5px 2.5px 1px;
