@@ -2016,6 +2016,7 @@ const [isShown, setIsShown] = useState('0')
                 <div className="manual-label">
                   <label className="total manual-label-width">Total Roof Area <span style={{ fontSize: '12px' }}>(SF)</span></label>
                   <input
+                  type="number"
                   className="man-entry"
                   value={roofTemplate.roofTotal}
                   onChange={ (e) => setRoofTemplate({ ...roofTemplate, roofTotal: e.target.value }) }
@@ -2025,6 +2026,7 @@ const [isShown, setIsShown] = useState('0')
 
                   <label className="ridge manual-label-width">Ridge <span style={{ fontSize: '12px' }}>(LF)</span></label>
                   <input
+                  type="number"
                   className="man-entry"
                   value={roofTemplate.ridge}
                   onChange={(e) => setRoofTemplate({ ...roofTemplate, ridge: e.target.value })}
@@ -2033,6 +2035,7 @@ const [isShown, setIsShown] = useState('0')
 
                   <label className="hip manual-label-width">Hip <span style={{ fontSize: '12px' }}>(LF)</span></label>
                   <input
+                  type="number"
                   className="man-entry"
                   value={roofTemplate.hip}
                   onChange={(e) => setRoofTemplate({ ...roofTemplate, hip: e.target.value })}
@@ -2046,6 +2049,7 @@ const [isShown, setIsShown] = useState('0')
                 <div className="manual-label">
                   <label className="valley manual-label-width">Valley <span style={{ fontSize: '12px' }}>(LF)</span></label>
                   <input
+                  type="number"
                   className="man-entry"
                   value={roofTemplate.valley}
                   onChange={(e) => setRoofTemplate({ ...roofTemplate, valley: e.target.value })}
@@ -2054,6 +2058,7 @@ const [isShown, setIsShown] = useState('0')
 
                   <label className="rake manual-label-width">Rake <span style={{ fontSize: '12px' }}>(LF)</span></label>
                   <input
+                  type="number"
                   className="man-entry"
                   value={roofTemplate.rake}
                   onChange={(e) => setRoofTemplate({ ...roofTemplate, rake: e.target.value })}
@@ -2062,6 +2067,7 @@ const [isShown, setIsShown] = useState('0')
 
                   <label className="eave manual-label-width">Eave <span style={{ fontSize: '12px' }}>(LF)</span></label>
                   <input
+                  type="number"
                   className="man-entry"
                   value={roofTemplate.eave}
                   onChange={(e) => setRoofTemplate({ ...roofTemplate, eave: e.target.value })}
@@ -2075,6 +2081,7 @@ const [isShown, setIsShown] = useState('0')
                 <div className="manual-label">
                    <label className="flashing manual-label-width">Counter Flashing <span style={{ fontSize: '12px' }}>(LF)</span></label>
                   <input
+                  type="number"
                   className="man-entry"
                   value={roofTemplate.counterFlashing}
                   onChange={(e) => setRoofTemplate({ ...roofTemplate, counterFlashing: e.target.value })}
@@ -2083,6 +2090,7 @@ const [isShown, setIsShown] = useState('0')
 
                   <label className="flashing manual-label-width">Step Flashing <span style={{ fontSize: '12px' }}>(LF)</span></label>
                   <input
+                  type="number"
                   className="man-entry"
                   value={roofTemplate.stepFlashing}
                   onChange={(e) => setRoofTemplate({ ...roofTemplate, stepFlashing: e.target.value })}
@@ -2091,6 +2099,7 @@ const [isShown, setIsShown] = useState('0')
 
                   <label className="parapets manual-label-width">Parapets <span style={{ fontSize: '12px' }}>(LF)</span></label>
                   <input
+                  type="number"
                   className="man-entry man-bot"
                   value={roofTemplate.parapets}
                   onChange={(e) => setRoofTemplate({ ...roofTemplate, parapets: e.target.value })}

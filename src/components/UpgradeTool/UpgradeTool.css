@@ -51,6 +51,19 @@ label {
   transform: skewY(-4deg);
   background: #333333;
 }
+
+/* Getting rid of default arrows for number input */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
 .man-entry {
   margin: auto;
   font-size: 11px;

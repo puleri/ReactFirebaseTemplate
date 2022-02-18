@@ -132,7 +132,7 @@ function Form () {
       <div className={toasterShow}><img alt="check" id="check" src={check} />Changes have been saved successfully</div>
       <div>
       <div className="settings-form-container">
-      <h2 className="settings-header">Settings</h2>
+      <h2 className="settings-header">Profile info</h2>
       <form className="form-wrapper">
         <label className="profile-label">first name*</label>
         <input
