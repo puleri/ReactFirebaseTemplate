@@ -92,11 +92,18 @@ tr:nth-child(even) {
   font-size: 12px;
 }
 .admin-table {
+  position: relative;
   text-align: left;
   margin-top: 60px;
-  width: 100%;
   border-top: 1px solid black;
   border-collapse: collapse;
+}
+tbody {
+  border-top: 1px solid black;
+
+  overflow-x: scroll;
+  position: absolute;
+  max-width: 80vw !important;
 }
 .admin-table-label {
   border-bottom: 1px  solid black;

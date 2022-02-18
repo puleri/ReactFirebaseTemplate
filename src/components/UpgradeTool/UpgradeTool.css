@@ -18,8 +18,8 @@ label {
 }
 .manual-label-width {
 }
+
 .hz-surv {
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,7 +37,6 @@ label {
 @media (max-width: 1200px) {
   .surv-header {
     font-size: 30px;
-    margin: 0 80px 0;
     width: 70%;
     background: linear-gradient(180deg, rgba(255,255,255,0) 85%, #02EF9Da1 65%);
   }
@@ -46,7 +45,7 @@ label {
   position: fixed;
   bottom: -150px;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: 180px;
   transform: skewY(-4deg);
   background: #333333;
@@ -74,15 +73,16 @@ input[type=number] {
   margin-bottom: 130px;
 }
 .form-group {
-  height: 400px;
   width: 55%;
   margin: auto;
-  margin-top: -80px;
+}
+#last-input-mobile-cushion {
+  position: relative;
+  margin-bottom: 200px;
 }
 .manual-form {
-  margin: auto;
-  min-width: 400px;
-  width: 100%;
+position: relative;
+left: 0;
 }
 .roof-type {
   display: flex;
@@ -103,7 +103,7 @@ input[type=number] {
 }
 .survey-btn {
   font-family: 'Poppins', sans-serif;
-  width: 65px;
+  width: 45px;
   height: 62px;
   border: none;
   color: white;
@@ -120,16 +120,16 @@ input[type=number] {
 }
 
 .prev {
-  position: absolute;
+  position: fixed;
   border-radius: 0 50% 50% 0;
   top: 248px;
-  left: -10px;
+  left: 0px;
 }
 .next {
-  position: absolute;
+  position: fixed;
   border-radius: 50% 0 0 50%;
   top: 248px;
-  right: -10px;
+  right: 0px;
 }
 .upgradeOptions-container {
   display: flex;
@@ -223,23 +223,27 @@ input[type=number] {
 }
 
 .homeowner-input, select, .next, .prev, .neoprene-placeholder {
-  transition: .2s outline ease;
+  transition: .2s border ease;
 }
 
 .homeowner-input:hover, select:hover, .next:hover, .prev:hover, .neoprene-placeholder:hover {
-  outline: 3px solid #4CA196;
+  outline: none;
+  border: 3px solid #4CA196;
 
 }
 .homeowner-input:focus, select:focus, .next:focus, .prev:focus, .neoprene-placeholder:focus {
-  outline: 5px solid #02EF9Da1;
+  outline: none;
+  border: 5px solid #02EF9Da1;
 
 }
 
  .man-entry:hover {
-  outline: 1px solid #4CA196;
+  outline: none;
+  border: 1px solid #4CA196;
 }
  .man-entry:focus {
-  outline: 3px solid #02EF9Da1;
+  outline: none;
+  border: 3px solid #02EF9Da1;
 }
 
 
@@ -254,4 +258,12 @@ input[type=number] {
 .selected-name-row {
   padding-right: 100px;
 }
-/* @media () */
+/* stops auto zoom on iphone and mobile by setting font to 16 */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  select,
+  textarea,
+  input {
+    height: 42px;
+    font-size: 16px !important;
+  }
+}

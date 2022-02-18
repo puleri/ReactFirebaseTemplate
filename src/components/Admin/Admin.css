@@ -10,7 +10,6 @@
   font-size: 14px;
   font-weight: bold;
   text-align: left;
-  min-width: 400px;
   width: 70%;
   margin: 5px 0 0;
 }
@@ -31,7 +30,6 @@
 .admin-input {
   font-size: 12px;
   height: 30px;
-  min-width: 400px;
   width: 70%;
   box-sizing: border-box;
 }
