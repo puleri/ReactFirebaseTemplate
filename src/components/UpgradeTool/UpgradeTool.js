@@ -114,7 +114,10 @@ export default function UpgradeTool() {
     chimneyCopper: false,
     chimneyLead: false,
     chimneyPainted: false,
-    materials: "select"
+    materials: "select",
+    bolStep: ' ',
+    bolCounter: ' ',
+    bolChimney: ' ',
    })
   const [upgradeOptions, setUpgradeOptions] = useState({
       twentyTab: false,
@@ -1120,7 +1123,7 @@ export default function UpgradeTool() {
   }
   const bolStepNext = () => {
     setPrevSlideMotion('bol-step')
-    if (roofTemplate.bolStep) {
+    if (roofTemplate.bolStep && (roofTemplate.bolStep !== ' ')) {
       setTimeout( () => {
         setIsShown("step-flashing");
       }, 0)
@@ -1175,7 +1178,7 @@ export default function UpgradeTool() {
     }, 700)
  }
   const bolCounterPrev = () => {
-    if (roofTemplate.bolStep) {
+    if (roofTemplate.bolStep && (roofTemplate.bolStep !== ' ')) {
       setTimeout( () => {
         setIsShown("step-flashing");
       }, 0)
@@ -1193,7 +1196,7 @@ export default function UpgradeTool() {
   }
   const bolCounterNext = () => {
     setPrevSlideMotion('bol-counter')
-    if (roofTemplate.bolCounter) {
+    if (roofTemplate.bolCounter && (roofTemplate.bolCounter !== ' ')) {
       setTimeout( () => {
         setIsShown("counter-flashing");
       }, 0)
@@ -1235,7 +1238,7 @@ export default function UpgradeTool() {
     }, 700)
   }
   const bolChimneyPrev = () => {
-    if (roofTemplate.bolCounter) {
+    if (roofTemplate.bolCounter && (roofTemplate.bolCounter !== ' ')) {
       setTimeout( () => {
         setIsShown("counter-flashing");
       }, 0)
@@ -1252,7 +1255,7 @@ export default function UpgradeTool() {
     }
   }
   const bolChimneyNext = () => {
-    if (roofTemplate.bolChimney) {
+    if (roofTemplate.bolChimney && (roofTemplate.bolChimney !== ' ')) {
       setTimeout( () => {
         setIsShown("chimney-flashing");
       }, 0)
@@ -1307,7 +1310,7 @@ export default function UpgradeTool() {
     }, 700)
   }
   const matsPrev = () => {
-    if (roofTemplate.bolChimney) {
+    if (roofTemplate.bolChimney && (roofTemplate.bolChimney !== ' ')) {
       setTimeout( () => {
         setIsShown("chimney-flashing");
       }, 0)
@@ -2964,15 +2967,26 @@ const [isShown, setIsShown] = useState('0')
             style={{ width:"20px", height: "20px" }}
             type="checkbox"
             checked={roofTemplate.bolStep === true }
-            onChange={(e) => setRoofTemplate({ ...roofTemplate, bolStep: !roofTemplate.bolStep })}
+            onChange={(e) => {
+              if(roofTemplate.bolStep === ' ') {
+                setRoofTemplate({ ...roofTemplate, bolStep: true })
+              } else {
+                setRoofTemplate({ ...roofTemplate, bolStep: !roofTemplate.bolStep })
+              }
+            }}
             />
             <label>No</label>
             <input
             style={{ width:"20px", height: "20px" }}
             type="checkbox"
             checked={roofTemplate.bolStep === false }
-            onChange={(e) => setRoofTemplate({ ...roofTemplate, bolStep: !roofTemplate.bolStep })}
-            />
+            onChange={(e) => {
+              if(roofTemplate.bolStep === ' ') {
+                setRoofTemplate({ ...roofTemplate, bolStep: false })
+              } else {
+                setRoofTemplate({ ...roofTemplate, bolStep: !roofTemplate.bolStep })
+              }
+            }}            />
             </div>
             </motion.div>
           )}
@@ -3022,13 +3036,6 @@ const [isShown, setIsShown] = useState('0')
             checked={roofTemplate.stepGalvanized === true }
             onChange={(e) => setRoofTemplate({ ...roofTemplate, stepGalvanized: !roofTemplate.stepGalvanized })}
             />
-            <label>None</label>
-            <input
-            style={{ width:"20px", height: "20px" }}
-            type="checkbox"
-            checked={roofTemplate.none === true }
-            onChange={(e) => setRoofTemplate({ ...roofTemplate, none: !roofTemplate.none })}
-            />
             </div>
             </motion.div>
           )}
@@ -3062,15 +3069,25 @@ const [isShown, setIsShown] = useState('0')
             style={{ width:"20px", height: "20px" }}
             type="checkbox"
             checked={roofTemplate.bolCounter === true }
-            onChange={(e) => setRoofTemplate({ ...roofTemplate, bolCounter: !roofTemplate.bolCounter })}
-            />
+            onChange={(e) => {
+              if(roofTemplate.bolCounter === ' ') {
+                setRoofTemplate({ ...roofTemplate, bolCounter: true })
+              } else {
+                setRoofTemplate({ ...roofTemplate, bolCounter: !roofTemplate.bolCounter })
+              }
+            }}             />
             <label>No</label>
             <input
             style={{ width:"20px", height: "20px" }}
             type="checkbox"
             checked={roofTemplate.bolCounter === false }
-            onChange={(e) => setRoofTemplate({ ...roofTemplate, bolCounter: !roofTemplate.bolCounter })}
-            />
+            onChange={(e) => {
+              if(roofTemplate.bolCounter === ' ') {
+                setRoofTemplate({ ...roofTemplate, bolCounter: false })
+              } else {
+                setRoofTemplate({ ...roofTemplate, bolCounter: !roofTemplate.bolCounter })
+              }
+            }}             />
             </div>
             </motion.div>
           )}
@@ -3153,15 +3170,25 @@ const [isShown, setIsShown] = useState('0')
             style={{ width:"20px", height: "20px" }}
             type="checkbox"
             checked={roofTemplate.bolChimney === true }
-            onChange={(e) => setRoofTemplate({ ...roofTemplate, bolChimney: !roofTemplate.bolChimney })}
-            />
+            onChange={(e) => {
+              if(roofTemplate.bolChimney === ' ') {
+                setRoofTemplate({ ...roofTemplate, bolChimney: true })
+              } else {
+                setRoofTemplate({ ...roofTemplate, bolChimney: !roofTemplate.bolChimney })
+              }
+            }}             />
             <label>No</label>
             <input
             style={{ width:"20px", height: "20px" }}
             type="checkbox"
             checked={roofTemplate.bolChimney === false }
-            onChange={(e) => setRoofTemplate({ ...roofTemplate, bolChimney: !roofTemplate.bolChimney })}
-            />
+            onChange={(e) => {
+              if(roofTemplate.bolChimney === ' ') {
+                setRoofTemplate({ ...roofTemplate, bolChimney: false })
+              } else {
+                setRoofTemplate({ ...roofTemplate, bolChimney: !roofTemplate.bolChimney })
+              }
+            }}             />
             </div>
             </motion.div>
           )}
