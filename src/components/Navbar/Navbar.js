@@ -56,12 +56,12 @@ function Navbar(props) {
     return (
       <div className="home-container">
         <nav className="navbar bg-primary-light justify-content-between">
-          <img style={{ filter:'brightness(1)', height: '50px' }} src={logoName} alt="Blueberry Pediactrics" />
+          <img style={{ filter:'brightness(1)', height: '50px' }} src={logoName} alt="Kaiser" />
           <button className="btn" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" >
             <img style={{ height: '30px' }} src={hamburger} alt="menu" />
           </button>
         </nav>
-        <div className="collapse" id="collapseExample">
+        <div className="collapse" id="collapseExample" style={{height: 0}}>
           <div className="nav-drop-custom">
             <a className="nav-item c1" href="/upgradetool">Start</a> <br />
             <a className="nav-item c2" href="/admin">Administrator</a> <br />
