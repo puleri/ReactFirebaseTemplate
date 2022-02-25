@@ -1371,6 +1371,16 @@ export default function UpgradeTool() {
       step: "upgrade-tool"
     })
     }, 700)}
+
+  const selectedUpgradesNext = () => {
+    setPrevSlideMotion('selected-upgrades')
+    setTimeout( () => {
+      setIsShown("all-info");
+    }, 0)
+    setTimeout( ()=> {
+    setRoofTemplate({...roofTemplate, step: 'all-info'})
+    }, 700)
+  }
 // upgrade conditionals
   const existingShingleUpgrade = () => {
     if (roofTemplate.existingShingle === "3-tab") {
@@ -1953,6 +1963,21 @@ export default function UpgradeTool() {
         </tr>
       )
     })
+  }
+
+  const allInfo = () => {
+    console.log(roofTemplate)
+    console.log()
+    let temp = [];
+  for (const [key, value] of Object.entries(roofTemplate)) {
+    console.log("key value: ", key, value)
+      temp.push (
+        <div style={{ margin: "20px 0 0 250px" }} key={key}>
+          {key}: {value || "false"}
+        </div>
+      )
+    }
+    return temp
   }
 
 const [isShown, setIsShown] = useState('0')
@@ -3389,7 +3414,15 @@ const [isShown, setIsShown] = useState('0')
         <div className="surv-accent1"></div>
 
           <button className="survey-btn prev" onClick={() => selectedUpgradesPrev()}><i class="fas fa-chevron-left"></i></button>
+          <button className="survey-btn next" onClick={() => selectedUpgradesNext()}><i class="fas fa-chevron-right"></i></button>
+
         </div>
+      )
+    case "all-info":
+      return (
+        <>
+          {allInfo()}
+        </>
       )
   }
 }

@@ -43,7 +43,7 @@ function Navbar(props) {
   adminRef.get().then((doc) => {
     if (doc.exists) {
       setIsAdmin(true)
-      console.log("Doc data ", doc.data())
+      // console.log("Doc data ", doc.data())
     }
     else {
       setIsAdmin(false)
