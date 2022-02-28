@@ -45,12 +45,15 @@ textarea {
   min-height: 100vh;
   background: #F5F5F5;
 }
+.settings-form-PW {
+  margin-top: 0;
+}
 .settings-form-container {
   display: flex;
+  margin: 30px;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  min-height: 100vh;
 }
 .image-wrapper {
   position: relative;
@@ -158,7 +161,7 @@ textarea {
   align-items: center;
   justify-content: flex-start;
 }
-.save-btn, .discard-btn {
+.pw-btn, .save-btn, .discard-btn {
   cursor: pointer;
   color: #eaf2f9;
   border: none;
@@ -180,9 +183,14 @@ textarea {
   background-color: #63686f;
   margin: 10px 15px;
 }
-.save-btn:hover, .discard-btn:hover {
-  filter: brightness(.9);
-  box-shadow: none;
+.pw-btn {
+  width: 200px;
+  box-shadow: 0 0 3px #FF574D;
+  background-image: linear-gradient(90deg, #FF574D, #981F1F);
+}
+.pw-btn:hover, .save-btn:hover, .discard-btn:hover {
+  filter: brightness(.8);
+  box-shadow: 0 0 10px;
 }
 .no-toast {
   visibility:hidden;
@@ -201,8 +209,10 @@ textarea {
   padding: 15px 0;
   height: 55px;
   width: 100vw;
+  z-index: 100;
   position: fixed;
   top: 0;
+  left: 0;
   color: #eaf2f9;
   background: #317f6d;
   visibility: visible;

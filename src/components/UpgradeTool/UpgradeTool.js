@@ -8,8 +8,6 @@ import Col from 'react-bootstrap/Container'
 import StepZero from './StepZero.js';
 import StepOne from './StepOne.js';
 
-
-// import { useLocation } from "react-router-dom";
 import './UpgradeTool.css';
 
 const variants = {
@@ -38,10 +36,7 @@ const swipePower = (offset: number, velocity: number) => {
   return Math.abs(offset) * velocity;
 };
 
-// const emptyPromise = new Promise((res, err) => {
-//   console.log('promise')
-//   console.log("error is ", err)
-// })
+
 
 
 export default function UpgradeTool() {
@@ -3434,13 +3429,3 @@ const [isShown, setIsShown] = useState('0')
   )
 
 }
-// checked
-// <div className="form-group">
-//   <label>Existing Roof?</label>
-//   <input
-//   style={{ width:"20px", height: "20px" }}
-//   type="checkbox"
-//   checked={roofTemplate.existingRoof === true }
-//   onChange={(e) => setRoofTemplate({ ...roofTemplate, existingRoof: !roofTemplate.existingRoof })}
-//   />
-// </div>

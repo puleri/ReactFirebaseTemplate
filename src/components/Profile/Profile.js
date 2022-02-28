@@ -5,6 +5,9 @@ import MonthSelect from './MonthSelect.js'
 import DaySelect from './DaySelect.js'
 import YearSelect from './YearSelect.js'
 import Navbar from '../Navbar/Navbar.js';
+import ChangePW from './ChangePW.js';
+
+import firebase from '../../firebase'
 
 
 // Organized most CSS relevant for form page into one file
@@ -244,7 +247,10 @@ function Form () {
           <button disabled={(toasterShow === 'toast')} onClick={ () => handleSubmit() } className="save-btn">Save Changes</button>
           <button className="discard-btn">Discard</button>
         </div>
+        <hr className="light-line"/>
       </div>
+
+      <ChangePW firebase={firebase}/>
       </div>
 
     </div>
