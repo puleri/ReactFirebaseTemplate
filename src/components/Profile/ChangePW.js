@@ -52,7 +52,7 @@ function ChangePW (props) {
     }
   }
   const cnfPassValidation = (e) => {
-    if (!e.target.value) {
+    if (!e.target.value || passForm.newPW !== e.target.value) {
       setCnfPassValid({ isValid: false, classes: 'settings-input not-valid' })
     } else {
       setCnfPassValid({ isValid: true, classes: 'settings-input' })
@@ -97,7 +97,7 @@ function ChangePW (props) {
         onBlur={(e) => oldPassValidation(e) }
         name='firstName'
         value={passForm.oldPW}
-        type="text" />
+        type="password" />
         <em
         css={css`text-align:left;
           font-family: "Poppins", sans serif;
@@ -115,7 +115,7 @@ function ChangePW (props) {
         onBlur={(e) => newPassValidationCheck(e) }
         name='lastname'
         value={passForm.newPW}
-        type="text" />
+        type="password" />
         <em
         css={css`text-align:left;
           font-family: "Poppins", sans serif;
@@ -123,7 +123,7 @@ function ChangePW (props) {
           height: 7px;
           color: red;
           font-size: 8px;`}>
-          { newPassValid.isValid ? '' : 'This field is required*'}
+          { newPassValid.isValid ? '' : 'Passwords must be 4-9 chaacters long and contain a number and a special character*'}
         </em>
 
         <label className="profile-label">confirm new password*</label>
@@ -133,7 +133,7 @@ function ChangePW (props) {
         onBlur={(e) => cnfPassValidation(e) }
         name='firstName'
         value={passForm.cnfNewPW}
-        type="text" />
+        type="password" />
         <em
         css={css`text-align:left;
           font-family: "Poppins", sans serif;
@@ -141,7 +141,7 @@ function ChangePW (props) {
           height: 7px;
           color: red;
           font-size: 8px;`}>
-          { cnfPassValid.isValid ? '' : 'This field is required*'}
+          { cnfPassValid.isValid ? '' : 'Needs to match new password*'}
         </em>
 
         <hr className="light-line"/>
