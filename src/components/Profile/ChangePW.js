@@ -3,6 +3,9 @@
 import React, { useState } from 'react'
 import Navbar from '../Navbar/Navbar.js';
 
+import { getAuth } from '../../firebase';
+
+
 import check from '../img/check.png'
 
 // Organized most CSS relevant for form page into one file
@@ -17,7 +20,7 @@ import { css, jsx } from '@emotion/react'
 function ChangePW (props) {
 
   // firebase passed as prop and used here to get the current user
-  // const user = props.firebase.auth().currentUser;
+  const user = props.firebase.auth().currentUser;
 
   // State management for password Change
   const [passForm, setPassForm] = useState({
@@ -33,12 +36,14 @@ function ChangePW (props) {
   // and updates the UI to let the prompt the user when
   // inputs are invalid
   const newPassValidationCheck = (e) => {
-    const validatePhone = (phone) => {
+    const validatePW = (pw) => {
       // eslint-disable-next-line
-      const re = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
-      return re.test(phone)
+      const spec = /(?=.*[!@#$%^&*])/;
+      const num = /(?=.*[0-9])/;
+      const leng = /(?=.{5,11})/;
+      return spec.test(pw) && num.test(pw) && leng.test(pw)
     }
-    if (!validatePhone(e.target.value)) {
+    if (!validatePW(e.target.value)) {
       setNewPassValid({ isValid: false, classes: 'settings-input not-valid' })
     } else {
       setNewPassValid({ isValid: true, classes: 'settings-input' })
@@ -66,6 +71,23 @@ function ChangePW (props) {
   // Function that handles the submission of the form and calls the toaster function
   // if form is completed and validated
   const handleSubmit = (form) => {
+    getAuth.signInWithEmailAndPassword(user.email, passForm.oldPW)
+      .then((creds) => {
+        user.reauthenticateWithCredential(creds)
+          .then(console.log("yay!"))
+          .catch(err=>console.err)
+      })
+      .catch(err=>console.err)
+
+    // console.log(user.email, passForm.oldPW)
+    console.log(user)
+    // const credential = props.firebase.auth.EmailAuthProvider.credential(user.email, passForm.oldPW);
+    // user.reauthenticateWithCredential(credential)
+    //   .then(() => {
+    //     console.log('Reauth successfull')
+    //   })
+    //   .catch(error => console.log(error))
+
     if (newPassValid.isValid) {
       setPassForm({
         oldPW: '',
@@ -95,7 +117,7 @@ function ChangePW (props) {
         className={oldPassValid.classes}
         onChange={ (e) => setPassForm({ ...passForm, oldPW: e.target.value })}
         onBlur={(e) => oldPassValidation(e) }
-        name='firstName'
+        name='old password'
         value={passForm.oldPW}
         type="password" />
         <em
@@ -113,7 +135,7 @@ function ChangePW (props) {
         className={newPassValid.classes}
         onChange={ (e) => setPassForm({ ...passForm, newPW: e.target.value })}
         onBlur={(e) => newPassValidationCheck(e) }
-        name='lastname'
+        name='new password'
         value={passForm.newPW}
         type="password" />
         <em
@@ -123,7 +145,7 @@ function ChangePW (props) {
           height: 7px;
           color: red;
           font-size: 8px;`}>
-          { newPassValid.isValid ? '' : 'Passwords must be 4-9 chaacters long and contain a number and a special character*'}
+          { newPassValid.isValid ? '' : 'Passwords must be 5-11 chacters, contain a number, a special character*'}
         </em>
 
         <label className="profile-label">confirm new password*</label>
@@ -131,7 +153,7 @@ function ChangePW (props) {
         className={cnfPassValid.classes}
         onChange={ (e) => setPassForm({ ...passForm, cnfNewPW: e.target.value })}
         onBlur={(e) => cnfPassValidation(e) }
-        name='firstName'
+        name='confirm new password'
         value={passForm.cnfNewPW}
         type="password" />
         <em
