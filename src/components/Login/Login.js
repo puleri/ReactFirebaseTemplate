@@ -86,6 +86,7 @@ function Login(props) {
 
 
     const handleSubmit = (e) => {
+      e.preventDefault()
       // if login succesful
       setError(null)
       if (login(email,password)) {

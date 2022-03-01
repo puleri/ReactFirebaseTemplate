@@ -71,35 +71,33 @@ function ChangePW (props) {
   // Function that handles the submission of the form and calls the toaster function
   // if form is completed and validated
   const handleSubmit = (form) => {
+
+    // reauthenticate user if they have been logged in a long time
     getAuth.signInWithEmailAndPassword(user.email, passForm.oldPW)
       .then((creds) => {
         user.reauthenticateWithCredential(creds)
-          .then(console.log("yay!"))
           .catch(err=>console.err)
       })
       .catch(err=>console.err)
 
-    // console.log(user.email, passForm.oldPW)
-    console.log(user)
-    // const credential = props.firebase.auth.EmailAuthProvider.credential(user.email, passForm.oldPW);
-    // user.reauthenticateWithCredential(credential)
-    //   .then(() => {
-    //     console.log('Reauth successfull')
-    //   })
-    //   .catch(error => console.log(error))
-
+    // if new password meets strength requirements update password
+    // then clear form, and notify user of success
     if (newPassValid.isValid) {
-      setPassForm({
-        oldPW: '',
-        newPW: '',
-        cnfNewPW: ''
-      })
-      // trantisions the toaster animation in
-      setToasterShow('toast')
-      // waits 3 seconts then transitions the toaster out
-      setTimeout(function () {
-        setToasterShow('no-toast')
-      }, 3000)
+      user.updatePassword(passForm.newPW)
+        .then(() => {
+          setPassForm({
+            oldPW: '',
+            newPW: '',
+            cnfNewPW: ''
+          })
+          // trantisions the toaster animation in
+          setToasterShow('toast')
+          // waits 3 seconts then transitions the toaster out
+          setTimeout(function () {
+            setToasterShow('no-toast')
+          }, 3000)
+        })
+        .catch(console.err)
     }
   }
 
