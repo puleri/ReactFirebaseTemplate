@@ -40,7 +40,7 @@ function ChangePW (props) {
       // eslint-disable-next-line
       const spec = /(?=.*[!@#$%^&*])/;
       const num = /(?=.*[0-9])/;
-      const leng = /(?=.{5,11})/;
+      const leng = /(?=.{6,11})/;
       return spec.test(pw) && num.test(pw) && leng.test(pw)
     }
     if (!validatePW(e.target.value)) {
@@ -68,6 +68,27 @@ function ChangePW (props) {
   const [oldPassValid, setOldPassValid] = useState({ isValid: true, classes: 'settings-input' })
   const [cnfPassValid, setCnfPassValid] = useState({ isValid: true, classes: 'settings-input' })
 
+  // if new password meets strength requirements update password
+  // then clear form, and notify user of success
+  const updatePassword = () => {
+    if (newPassValid.isValid && (passForm.newPW === passForm.cnfNewPW)) {
+    user.updatePassword(passForm.newPW)
+    .then(() => {
+      setPassForm({
+        oldPW: '',
+        newPW: '',
+        cnfNewPW: ''
+      })
+      // trantisions the toaster animation in
+      setToasterShow('toast')
+      // waits 3 seconts then transitions the toaster out
+      setTimeout(function () {
+        setToasterShow('no-toast')
+      }, 3000)
+    })
+    .catch(console.err)
+  }
+}
   // Function that handles the submission of the form and calls the toaster function
   // if form is completed and validated
   const handleSubmit = (form) => {
@@ -75,30 +96,11 @@ function ChangePW (props) {
     // reauthenticate user if they have been logged in a long time
     getAuth.signInWithEmailAndPassword(user.email, passForm.oldPW)
       .then((creds) => {
-        user.reauthenticateWithCredential(creds)
-          .catch(err=>console.err)
+        user.reauthenticateWithCredential(creds).then(updatePassword())
       })
+      // .then(updatePassword())
       .catch(err=>console.err)
 
-    // if new password meets strength requirements update password
-    // then clear form, and notify user of success
-    if (newPassValid.isValid) {
-      user.updatePassword(passForm.newPW)
-        .then(() => {
-          setPassForm({
-            oldPW: '',
-            newPW: '',
-            cnfNewPW: ''
-          })
-          // trantisions the toaster animation in
-          setToasterShow('toast')
-          // waits 3 seconts then transitions the toaster out
-          setTimeout(function () {
-            setToasterShow('no-toast')
-          }, 3000)
-        })
-        .catch(console.err)
-    }
   }
 
   // JSX which is used by the DOM and virtual DOM to create the GUI
@@ -117,7 +119,7 @@ function ChangePW (props) {
         onBlur={(e) => oldPassValidation(e) }
         name='old password'
         value={passForm.oldPW}
-        type="password" />
+        type="text" />
         <em
         css={css`text-align:left;
           font-family: "Poppins", sans serif;
@@ -135,7 +137,7 @@ function ChangePW (props) {
         onBlur={(e) => newPassValidationCheck(e) }
         name='new password'
         value={passForm.newPW}
-        type="password" />
+        type="text" />
         <em
         css={css`text-align:left;
           font-family: "Poppins", sans serif;
@@ -143,7 +145,7 @@ function ChangePW (props) {
           height: 7px;
           color: red;
           font-size: 8px;`}>
-          { newPassValid.isValid ? '' : 'Passwords must be 5-11 chacters, contain a number, a special character*'}
+          { newPassValid.isValid ? '' : 'Passwords must be 6-11 chacters, contain a number, a special character*'}
         </em>
 
         <label className="profile-label">confirm new password*</label>
@@ -153,7 +155,7 @@ function ChangePW (props) {
         onBlur={(e) => cnfPassValidation(e) }
         name='confirm new password'
         value={passForm.cnfNewPW}
-        type="password" />
+        type="text" />
         <em
         css={css`text-align:left;
           font-family: "Poppins", sans serif;

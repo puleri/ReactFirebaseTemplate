@@ -58,8 +58,8 @@ function DaySelect () {
         'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
         sans-serif;
         color: #333333;
-        background: #e6e6e6 ;
-        border: 1px solid #3b3b3b;
+        background: white ;
+        border: 1px solid lightgrey;
       border-radius: 5px;
       max-height: 25px;
       margin: 7px 0;
@@ -97,8 +97,8 @@ function DaySelect () {
           css={css`
             text-align: center;
             color: #333333;
-            background: #e6e6e6 ;
-            border: 1px solid #3b3b3b;
+            background: white ;
+            border: 1px solid lightgrey;
             position: absolute;
             z-index: 9;
             font-size: 10px;
@@ -126,7 +126,7 @@ function DaySelect () {
                   transition: .2s font-size ease;
                  &:hover {
                   cursor: pointer;
-                  font-size: 11px;
+                  font-size: 12px;
                 }`}className="dropdown-list-item" key={item.id}>
                 <p
                 css={css`
