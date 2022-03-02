@@ -70,8 +70,8 @@ function ChangePW (props) {
 
   // if new password meets strength requirements update password
   // then clear form, and notify user of success
-  const updatePassword = () => {
-    if (newPassValid.isValid && (passForm.newPW === passForm.cnfNewPW)) {
+  const updatePassword = (bol) => {
+    if (bol === true && newPassValid.isValid && (passForm.newPW === passForm.cnfNewPW)) {
     user.updatePassword(passForm.newPW)
     .then(() => {
       setPassForm({
@@ -87,20 +87,25 @@ function ChangePW (props) {
       }, 3000)
     })
     .catch(console.err)
+  } else {
+    console.log(bol, "old pw incorrect")
   }
 }
   // Function that handles the submission of the form and calls the toaster function
   // if form is completed and validated
   const handleSubmit = (form) => {
-
+    let reauth = false;
     // reauthenticate user if they have been logged in a long time
     getAuth.signInWithEmailAndPassword(user.email, passForm.oldPW)
       .then((creds) => {
-        user.reauthenticateWithCredential(creds).then(updatePassword())
+        // creds will be true or false after sign in, getting here means we can
+        // set reauth to true and call update pw
+        reauth = true
+        user.reauthenticateWithCredential(creds)
       })
-      // .then(updatePassword())
+      // wait to ensure reauthentication is completed because chaining .then onto it is not working
+      .then(setTimeout(() => updatePassword(reauth), 2500))
       .catch(err=>console.err)
-
   }
 
   // JSX which is used by the DOM and virtual DOM to create the GUI
