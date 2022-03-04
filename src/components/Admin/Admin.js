@@ -140,6 +140,7 @@ const deleteUser = (user) => {
 
 
   return (
+    <>
     <div className="admin-wrapper">
       <Navbar />
       <div className="admin-container">
@@ -183,7 +184,11 @@ const deleteUser = (user) => {
         </div>
         {rosterFull}
       </div>
-      <Footer />
+      <Footer className="footer-admin"/>
+{
+// <div style={{position: 'absolute', bottom: '-100px', background: '#333333', width: '100%', height: '100px'}}></div>
+ }
     </div>
+    </>
   )
 }

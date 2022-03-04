@@ -40,3 +40,7 @@
 .admin-input:hover {
   border: 1px solid #63686f;
 }
+.footer-admin {
+  position: absolute;
+  bottom: -200px;
+}

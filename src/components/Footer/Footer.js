@@ -28,6 +28,7 @@ const Footer = props => {
       </ListGroup.Item>
       <ListGroup.Item className="Footer_c">© Kaiser Siding and Roofing LLC 2022</ListGroup.Item>
     </Navbar>
+    <div className="bottom-footer"></div>
     </footer>
   )
 }

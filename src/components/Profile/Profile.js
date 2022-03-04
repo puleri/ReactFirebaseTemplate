@@ -21,9 +21,7 @@ import { css, jsx } from '@emotion/react'
 import Dropzone from 'react-dropzone'
 
 // images exported from figma
-import unicorn from '../img/unicorn.png'
 import check from '../img/check.png'
-import upload from '../img/upload.png'
 
 // Form component (functional)
 function Form () {

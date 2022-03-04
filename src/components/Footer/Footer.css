@@ -1,6 +1,6 @@
 footer {
   pointer-events: all;
-  margin-top: 200px;
+  margin-top: 170px;
   position: relative;
   font-weight: normal;
   letter-spacing: 1px;
@@ -11,19 +11,28 @@ footer::after {
   z-index: -1;
   position: absolute;
   width: 100%;
-  height: 140%;
-  top: -25px;
+  height: 80%;
+  top: 60px;
   left: 0;
-  background: #1f1f1f;
+  background: #333333;
   /* background: linear-gradient(125deg, rgba(36,85,79,1) 10%, rgb(76,209,150) 70%); */
   transform: skewY(2deg);
+}
+.bottom-footer {
+  z-index: -2;
+  position: absolute;
+  transform: skewY(0deg);
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: #333333;
 }
 .Footer_c {
   text-transform: uppercase;
   color: white !important;
   font-size: 15px;
   margin-right: 60px;
-  margin-top: 60px;
+  margin-top: 270px;
   right: 0;
   position: absolute;
   background-color: transparent;
@@ -59,7 +68,7 @@ footer::after {
   border: none;
   text-transform: uppercase;
   font-size: 10px;
-  margin: 10px;
+  margin-top: 170px;
   margin-right: 40px;
   margin-left: 10px;
   font-weight: normal;
@@ -72,27 +81,28 @@ footer::after {
   position: absolute;
   height: 32px;
   left: 28%;
-  top: 30px;
+  top: 130px;
   text-decoration: none;
-  border-radius: 5px;
-  box-shadow: 0 3px 15px 1px #24554F9f;
+  border-radius: 15px;
+  box-shadow: none;
   background: white;
   font-size: 15px;
   margin-right: 30px;
   font-weight: normal;
-  color: #2C7593;
+  color: #333333;
   width: 150px;
   border: none;
   -webkit-transition: background 0.2s ease-out, color .2s ease-out;
     -moz-transition: background 0.2s ease-out, color .2s ease-out;
     -o-transition: background 0.2s ease-out, color .2s ease-out;
-  transition: background 0.2s ease-out, color .2s ease-out;
+  transition: box-shadow .2s ease-out, background 0.2s ease-out, color .2s ease-out;
 
   }
 
 .Footer_button:hover{
-  background: #2C7593;
-  color: white;
+  background: #02EF9D;
+  color: black;
+  box-shadow: 0 0px 8px 1px grey;
   text-decoration: none;
 }
 .footercolor {
@@ -129,7 +139,16 @@ footer::after {
 
 @media only screen and (max-width: 764px) {
   .Footer_c {
-    position: static;
+    /* position: static; */
     margin-left: -10px;
+  }
+  .Footer_button {
+    left: 60%;
+    top: 95px;
+  }
+  .Footer_Nav {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 140px;
   }
 }
