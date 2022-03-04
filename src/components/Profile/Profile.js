@@ -6,6 +6,7 @@ import DaySelect from './DaySelect.js'
 import YearSelect from './YearSelect.js'
 import Navbar from '../Navbar/Navbar.js';
 import ChangePW from './ChangePW.js';
+import Footer from '../Footer/Footer.js';
 
 import firebase from '../../firebase'
 
@@ -252,6 +253,7 @@ function Form () {
       </div>
 
     </div>
+    <Footer />
     </>
   )
 }

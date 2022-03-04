@@ -14,7 +14,7 @@ tr:nth-child(even) {
 }
 #th-body {
   font-size: 12px;
-  padding: 10px;
+  padding: 10px 105px 10px 10px;
   transition: background .1s ease-out;
 }
 #t-body {
@@ -94,13 +94,13 @@ tr:nth-child(even) {
 .admin-table {
   position: relative;
   text-align: left;
+  overflow-x: scroll;
   margin-top: 60px;
   border-top: 1px solid black;
   border-collapse: collapse;
 }
 tbody {
   border-top: 1px solid black;
-
   overflow-x: scroll;
   position: absolute;
   max-width: 80vw !important;
