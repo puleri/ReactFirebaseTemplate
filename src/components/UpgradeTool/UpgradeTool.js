@@ -179,11 +179,15 @@ export default function UpgradeTool() {
     chFPainted: false,
   })
 
+  // Upgrade prices
+  // Do not delete
+  const supremeUpgrade = Math.ceil(roofTemplate.roofTotal/100*1.15)*25
+
   // upgrades with string names and number prices
   const upgradeObjects = {
     'twentyFiveTab': {
-      name: "25 Year 3-Tab",
-      price: 200
+      name: "Supreme (25 Year) 3-Tab",
+      price: supremeUpgrade
     },
     'oakridgeTab': {
       name: "Oakridge",
