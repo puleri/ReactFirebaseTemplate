@@ -1962,17 +1962,17 @@ export default function UpgradeTool() {
 
   const allInfo = () => {
     console.log(roofTemplate)
-    console.log()
-    let temp = [];
+    console.log(Math.ceil((roofTemplate.roofTotal/100) * 1.15))
+    let manualInfo = [];
   for (const [key, value] of Object.entries(roofTemplate)) {
     console.log("key value: ", key, value)
-      temp.push (
+      manualInfo.push (
         <div style={{ margin: "20px 0 0 250px" }} key={key}>
           {key}: {value || "false"}
         </div>
       )
     }
-    return temp
+    return manualInfo
   }
 
 const [isShown, setIsShown] = useState('0')
