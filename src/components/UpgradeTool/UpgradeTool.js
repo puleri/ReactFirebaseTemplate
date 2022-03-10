@@ -179,9 +179,15 @@ export default function UpgradeTool() {
     chFPainted: false,
   })
 
-  // Upgrade prices
+  // Upgrade prices and formulas
   // Do not delete
-  const supremeUpgrade = Math.ceil(roofTemplate.roofTotal/100*1.15)*25
+  const shingleRoll = Math.ceil((roofTemplate.roofTotal/100)*1.15)
+  const eavesPlusRakesBundle = Math.ceil(((parseInt(roofTemplate.eave) + parseInt(roofTemplate.rake))/100)/3)
+  const hipPlusRidgeBundle = Math.ceil(((parseInt(roofTemplate.hip) + parseInt(roofTemplate.ridge))/30)/3)
+
+  const supremeUpgrade = shingleRoll*25
+
+  const oakridgeUpgrade = Math.ceil(shingleRoll + eavesPlusRakesBundle + hipPlusRidgeBundle)*30
 
   // upgrades with string names and number prices
   const upgradeObjects = {
@@ -191,7 +197,7 @@ export default function UpgradeTool() {
     },
     'oakridgeTab': {
       name: "Oakridge",
-      price: 200
+      price: oakridgeUpgrade
     },
     'durationTab': {
       name: "Duration",
@@ -3420,6 +3426,8 @@ const [isShown, setIsShown] = useState('0')
     case "all-info":
       return (
         <>
+        <button className="survey-btn prev" onClick={() => upgradeToolNext()}><i class="fas fa-chevron-left"></i></button>
+
           {allInfo()}
         </>
       )
