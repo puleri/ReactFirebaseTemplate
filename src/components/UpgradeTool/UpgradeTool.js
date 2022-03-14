@@ -10,50 +10,8 @@ import StepOne from './StepOne.js';
 
 import './UpgradeTool.css';
 
-const variants = {
-  enter: (direction) => {
-    return {
-      x: direction > 0 ? 1000 : -1000,
-      opacity: 0
-    };
-  },
-  center: {
-    zIndex: 1,
-    x: 0,
-    opacity: 1
-  },
-  exit: (direction) => {
-    return {
-      zIndex: 0,
-      x: direction < 0 ? 1000 : -1000,
-      opacity: 0
-    };
-  }
-};
-
-const swipeConfidenceThreshold = 10000;
-const swipePower = (offset: number, velocity: number) => {
-  return Math.abs(offset) * velocity;
-};
-
-
-
 
 export default function UpgradeTool() {
-
-  // const [[page, direction], setPage] = useState([0, 1]);
-
-//   const paginate = (newDirection: number) => {
-//   setPage([page + newDirection, newDirection]);
-// };
-
-
-  // const location = useLocation();
-  // const paths = location.pathname.split("/");
-  // let session_uuid = paths[2];
-// console.log("location is," , location)
-
-// setting left animation for survey
 
   const [goingBackTo, setGoingBackTo] = useState('');
   const [prevSlideMotion, setPrevSlideMotion] = useState('');
@@ -185,31 +143,33 @@ export default function UpgradeTool() {
   const eavesPlusRakesBundle = Math.ceil(((parseInt(roofTemplate.eave) + parseInt(roofTemplate.rake))/100)/3)
   const hipPlusRidgeBundle = Math.ceil(((parseInt(roofTemplate.hip) + parseInt(roofTemplate.ridge))/30)/3)
 
-  const supremeUpgrade = shingleRoll*25
-
-  const oakridgeUpgrade = Math.ceil(shingleRoll + eavesPlusRakesBundle + hipPlusRidgeBundle)*30
+  // naming convention for upgrades is (existing) + "to" + (upgrade)
+  const twentyToSupreme = shingleRoll*25
+  const supremeToOakridge = Math.ceil(shingleRoll + eavesPlusRakesBundle + hipPlusRidgeBundle)*30
+  const supremeToDuration = Math.ceil(shingleRoll + eavesPlusRakesBundle + hipPlusRidgeBundle)*45
+  const supremeToDurationDesigner = Math.ceil(shingleRoll + eavesPlusRakesBundle + hipPlusRidgeBundle)*55
 
   // upgrades with string names and number prices
   const upgradeObjects = {
     'twentyFiveTab': {
       name: "Supreme (25 Year) 3-Tab",
-      price: supremeUpgrade
+      price: twentyToSupreme
     },
     'oakridgeTab': {
       name: "Oakridge",
-      price: oakridgeUpgrade
+      price: supremeToOakridge
     },
     'durationTab': {
       name: "Duration",
-      price: 200
+      price: supremeToDuration
     },
     'durationDesignerTab': {
       name: "Duration Designer",
-      price: 200
+      price: supremeToDurationDesigner
     },
     'berkshireTab': {
       name: "Berkshire",
-      price: 200
+      price: "Out of stock"
     },
 
     'builderLam': {
