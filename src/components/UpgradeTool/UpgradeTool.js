@@ -144,10 +144,18 @@ export default function UpgradeTool() {
   const hipPlusRidgeBundle = Math.ceil(((parseInt(roofTemplate.hip) + parseInt(roofTemplate.ridge))/30)/3)
 
   // naming convention for upgrades is (existing) + "to" + (upgrade)
+       // 3-tab
   const twentyToSupreme = shingleRoll*25
   const supremeToOakridge = Math.ceil(shingleRoll + eavesPlusRakesBundle + hipPlusRidgeBundle)*30
   const supremeToDuration = Math.ceil(shingleRoll + eavesPlusRakesBundle + hipPlusRidgeBundle)*45
   const supremeToDurationDesigner = Math.ceil(shingleRoll + eavesPlusRakesBundle + hipPlusRidgeBundle)*55
+
+       // oakridge
+  const oakridgeToDuration = Math.ceil(shingleRoll + eavesPlusRakesBundle + hipPlusRidgeBundle)*30
+  const oakridgeToDurationDesigner = Math.ceil(shingleRoll + eavesPlusRakesBundle + hipPlusRidgeBundle)*35
+  const oakridgeToBerkshire = Math.ceil(shingleRoll + eavesPlusRakesBundle + hipPlusRidgeBundle)*350
+  const oakridgeToCertainteed = Math.ceil(shingleRoll + eavesPlusRakesBundle + hipPlusRidgeBundle)*475
+  const oakridgeToCertainteedTL = Math.ceil(shingleRoll + eavesPlusRakesBundle + hipPlusRidgeBundle)*600
 
   // upgrades with string names and number prices
   const upgradeObjects = {
@@ -173,28 +181,28 @@ export default function UpgradeTool() {
     },
 
     'builderLam': {
-      name: "Builder grade laminate",
-      price: 200
+      name: "Builder Laminate",
+      price: "Out of stock"
     },
     'highLam': {
-      name: "High grade laminate",
-      price: 200
+      name: "Duration",
+      price: oakridgeToDuration
     },
     'designerLam': {
-      name: "Designer grade laminate",
-      price: 200
+      name: "Duration Designer",
+      price: oakridgeToDurationDesigner
     },
     'specialtyLam': {
-      name: "Specialty grade laminate",
-      price: 200
+      name: "Berkshire",
+      price: oakridgeToBerkshire
     },
     'doubleLam': {
-      name: "Double laminate",
-      price: 200
+      name: "Certainteed Presidential",
+      price: oakridgeToCertainteed
     },
     'tripleLam': {
-      name: "Triple laminate",
-      price: 200
+      name: "Certainteed Presidential TL",
+      price: oakridgeToCertainteedTL
     },
 
     'synth': {
@@ -1429,20 +1437,20 @@ export default function UpgradeTool() {
               <li className="upgrade-li" >Duration
               <input
               type="checkbox"
-              checked={chosenUpgrades.durationTab === true }
-              onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, durationTab: !chosenUpgrades.durationTab })}/>
+              checked={chosenUpgrades.highLam === true }
+              onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, highLam: !chosenUpgrades.highLam })}/>
               </li>
               <li className="upgrade-li" >Duration Designer
               <input
               type="checkbox"
-              checked={chosenUpgrades.durationDesignerTab === true }
-              onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, durationDesignerTab: !chosenUpgrades.durationDesignerTab })}/>
+              checked={chosenUpgrades.designerLam === true }
+              onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, designerLam: !chosenUpgrades.designerLam })}/>
               </li>
               <li className="upgrade-li" >Berkshire
               <input
               type="checkbox"
-              checked={chosenUpgrades.berkshireTab === true }
-              onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, berkshireTab: !chosenUpgrades.berkshireTab })}/>
+              checked={chosenUpgrades.specialtyLam === true }
+              onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, specialtyLam: !chosenUpgrades.specialtyLam })}/>
               </li>
 
               <li className="upgrade-li" >Double Laminate<input
@@ -1465,14 +1473,14 @@ export default function UpgradeTool() {
             <li className="upgrade-li" >Duration Designer
             <input
             type="checkbox"
-            checked={chosenUpgrades.durationDesignerTab === true }
-            onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, durationDesignerTab: !chosenUpgrades.durationDesignerTab })}/>
+            checked={chosenUpgrades.designerLam === true }
+            onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, designerLam: !chosenUpgrades.designerLam })}/>
             </li>
             <li className="upgrade-li" >Berkshire
             <input
             type="checkbox"
-            checked={chosenUpgrades.berkshireTab === true }
-            onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, berkshireTab: !chosenUpgrades.berkshireTab })}/>
+            checked={chosenUpgrades.specialtyLam === true }
+            onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, specialtyLam: !chosenUpgrades.specialtyLam })}/>
             </li>
 
             <li className="upgrade-li" >Double Laminate<input
@@ -1495,8 +1503,8 @@ export default function UpgradeTool() {
             <li className="upgrade-li" >Berkshire
             <input
             type="checkbox"
-            checked={chosenUpgrades.berkshireTab === true }
-            onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, berkshireTab: !chosenUpgrades.berkshireTab })}/>
+            checked={chosenUpgrades.specialtyLam === true }
+            onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, specialtyLam: !chosenUpgrades.specialtyLam })}/>
             </li>
 
             <li className="upgrade-li" >Double Laminate<input
