@@ -123,6 +123,8 @@ export default function UpgradeTool() {
     standardRidge: false,
     highRidge: false,
 
+    pipejacks: false,
+
     sFAlum: false,
     sFCopper: false,
     sFGalvan: false,
@@ -157,6 +159,15 @@ export default function UpgradeTool() {
   const oakridgeToCertainteed = Math.ceil(shingleRoll + eavesPlusRakesBundle + hipPlusRidgeBundle)*475
   const oakridgeToCertainteedTL = Math.ceil(shingleRoll + eavesPlusRakesBundle + hipPlusRidgeBundle)*600
 
+  const pipejacksToLead = () =>  {
+    const temp = parseInt(roofTemplate.pipeJacksNeo) + parseInt(roofTemplate.pipeJacksOther)
+    if(temp) {
+      return temp * 60
+    }
+    else {
+      return (parseInt(roofTemplate.pipeJacksNeo)*60 || parseInt(roofTemplate.pipeJacksOther)*60)
+    }
+  }
   // upgrades with string names and number prices
   const upgradeObjects = {
     'twentyFiveTab': {
@@ -203,6 +214,11 @@ export default function UpgradeTool() {
     'tripleLam': {
       name: "Certainteed Presidential TL",
       price: oakridgeToCertainteedTL
+    },
+
+    'pipejacks': {
+      name: "Lead Pipejacks",
+      price: pipejacksToLead()
     },
 
     'synth': {
@@ -1914,6 +1930,21 @@ export default function UpgradeTool() {
       )
     }
   }
+  const pipejackUpgrade = () => {
+    if ((parseInt(roofTemplate.pipeJacksNeo) > 0) || (parseInt(roofTemplate.pipeJacksOther) > 0)) {
+      return (
+        <ul>
+        <h4>Pipejacks</h4>
+        <li className="upgrade-li" >Lead Pipejacks
+        <input
+        type="checkbox"
+        checked={chosenUpgrades.pipejacks === true }
+        onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, pipejacks: !chosenUpgrades.pipejacks })}/>
+        </li>
+        </ul>
+      )
+    }
+  }
 
   const selectedUpgrades = () => {
     let keys = Object.keys(chosenUpgrades);
@@ -1940,7 +1971,7 @@ export default function UpgradeTool() {
 
   const allInfo = () => {
     console.log(roofTemplate)
-    console.log(Math.ceil((roofTemplate.roofTotal/100) * 1.15))
+    // console.log(Math.ceil((roofTemplate.roofTotal/100) * 1.15))
     let manualInfo = [];
   for (const [key, value] of Object.entries(roofTemplate)) {
     console.log("key value: ", key, value)
@@ -3325,6 +3356,9 @@ const [isShown, setIsShown] = useState('0')
             </div>
             <div className="upgrade-item">
             {syntheticUpgrade()}
+            </div>
+            <div className="upgrade-item">
+            {pipejackUpgrade()}
             </div>
             <div className="upgrade-item">
             {dripGutterUpgrade()}
