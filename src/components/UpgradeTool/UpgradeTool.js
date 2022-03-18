@@ -104,6 +104,11 @@ export default function UpgradeTool() {
     doubleLam: false,
     tripleLam: false,
 
+    iceEntire: false,
+    iceValleys: false,
+    iceRakes: false,
+    iceEaves: false,
+
     synth: false,
 
     builderSynth: false,
@@ -158,10 +163,17 @@ export default function UpgradeTool() {
   const oakridgeToBerkshire = Math.ceil(shingleRoll + eavesPlusRakesBundle + hipPlusRidgeBundle)*350
   const oakridgeToCertainteed = Math.ceil(shingleRoll + eavesPlusRakesBundle + hipPlusRidgeBundle)*475
   const oakridgeToCertainteedTL = Math.ceil(shingleRoll + eavesPlusRakesBundle + hipPlusRidgeBundle)*600
+
       //underlayment
   const rhinoRoof = Math.ceil(roofTemplate.roofTotal/95)*25
   const proArmor = Math.ceil(roofTemplate.roofTotal/95)*45
   const deckDefence = Math.ceil(roofTemplate.roofTotal/95)*70
+
+      // ice and water
+  const iceWaterEntire = Math.ceil(shingleRoll*150)
+  const iceWaterValleys = Math.ceil(roofTemplate.valley *3.75)
+  const iceWaterRakes = Math.ceil(roofTemplate.rake *3.75)
+  const iceWaterEaves = Math.ceil(roofTemplate.eave *3.75)
 
       // pipejacks
   const pipejacksToLead = () =>  {
@@ -225,6 +237,23 @@ export default function UpgradeTool() {
     'pipejacks': {
       name: "Lead Pipejacks",
       price: "$" + pipejacksToLead()
+    },
+
+    'iceEntire' : {
+      name: "Entire roof",
+      price: "$" +iceWaterEntire
+    },
+    'iceValleys' : {
+      name: "Valleys",
+      price: "$" + iceWaterValleys
+    },
+    'iceRakes' : {
+      name: "Rakes",
+      price: "$" + iceWaterRakes
+    },
+    'iceEaves' : {
+      name: "Eaves",
+      price: "$" + iceWaterEaves
     },
 
     'synth': {
@@ -1952,6 +1981,39 @@ export default function UpgradeTool() {
       )
     }
   }
+  const iceWaterUpgrade = () => {
+    if (!roofTemplate.iceBool) {
+      return (
+        <ul>
+        <h4>Ice and Water Barrier</h4>
+        <li className="upgrade-li" >Entire Roof
+        <input
+        type="checkbox"
+        checked={chosenUpgrades.iceEntire === true }
+        onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, iceEntire: !chosenUpgrades.iceEntire })}/>
+        </li>
+        <li className="upgrade-li" >Valleys
+        <input
+        type="checkbox"
+        checked={chosenUpgrades.iceValleys === true }
+        onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, iceValleys: !chosenUpgrades.iceValleys })}/>
+        </li>
+        <li className="upgrade-li" >Rakes
+        <input
+        type="checkbox"
+        checked={chosenUpgrades.iceRakes === true }
+        onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, iceRakes: !chosenUpgrades.iceRakes })}/>
+        </li>
+        <li className="upgrade-li" >Eaves
+        <input
+        type="checkbox"
+        checked={chosenUpgrades.iceEaves === true }
+        onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, iceEaves: !chosenUpgrades.iceEaves })}/>
+        </li>
+        </ul>
+      )
+    }
+  }
 
   const selectedUpgrades = () => {
     let keys = Object.keys(chosenUpgrades);
@@ -3366,6 +3428,9 @@ const [isShown, setIsShown] = useState('0')
             </div>
             <div className="upgrade-item">
             {pipejackUpgrade()}
+            </div>
+            <div className="upgrade-item">
+            {iceWaterUpgrade()}
             </div>
             <div className="upgrade-item">
             {dripGutterUpgrade()}
