@@ -1734,6 +1734,7 @@ export default function UpgradeTool() {
     }
   }
   const feltUpgrade = () => {
+    if (roofTemplate.underlayment === "felt"){
     return (
       <ul>
         <h4>Underlayment</h4>
@@ -1746,7 +1747,7 @@ export default function UpgradeTool() {
         </li>
 
       </ul>
-    )
+    )}
   }
   const syntheticUpgrade = () => {
     switch (roofTemplate.synthetic) {
