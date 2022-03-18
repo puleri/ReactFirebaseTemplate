@@ -158,7 +158,12 @@ export default function UpgradeTool() {
   const oakridgeToBerkshire = Math.ceil(shingleRoll + eavesPlusRakesBundle + hipPlusRidgeBundle)*350
   const oakridgeToCertainteed = Math.ceil(shingleRoll + eavesPlusRakesBundle + hipPlusRidgeBundle)*475
   const oakridgeToCertainteedTL = Math.ceil(shingleRoll + eavesPlusRakesBundle + hipPlusRidgeBundle)*600
+      //underlayment
+  const rhinoRoof = Math.ceil(roofTemplate.roofTotal/95)*25
+  const proArmor = Math.ceil(roofTemplate.roofTotal/95)*45
+  const deckDefence = Math.ceil(roofTemplate.roofTotal/95)*70
 
+      // pipejacks
   const pipejacksToLead = () =>  {
     const temp = parseInt(roofTemplate.pipeJacksNeo) + parseInt(roofTemplate.pipeJacksOther)
     if(temp) {
@@ -168,6 +173,7 @@ export default function UpgradeTool() {
       return (parseInt(roofTemplate.pipeJacksNeo)*60 || parseInt(roofTemplate.pipeJacksOther)*60)
     }
   }
+
   // upgrades with string names and number prices
   const upgradeObjects = {
     'twentyFiveTab': {
@@ -222,21 +228,21 @@ export default function UpgradeTool() {
     },
 
     'synth': {
-      name: "Synthetic Underlayment",
-      price: 200
+      name: "RhinoRoof",
+      price: "$" + rhinoRoof
     },
 
     'builderSynth': {
-      name: "Builder grade synthetic underlayment",
-      price: 200
+      name: "RhinoRoof",
+      price: "$" + rhinoRoof
     },
     'betterSynth': {
-      name: "Better grade synthetic underlayment",
-      price: 200
+      name: "ProArmor",
+      price: "$" + proArmor
     },
     'bestSynth': {
-      name: "Best grade synthetic underlayment",
-      price: 200
+      name: "Deck Defense",
+      price: "$" + deckDefence
     },
 
     'dripRakes': {
