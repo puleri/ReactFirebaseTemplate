@@ -38,6 +38,10 @@ export default function UpgradeTool() {
     roofType: "select",
     dripRakes: false,
     iceBool: false,
+    iceEntire: false,
+    iceValleys: false,
+    iceRakes: false,
+    iceEaves: false,
     dripEaves: false,
     apronEaves: false,
     valleyMetal: false,
@@ -2013,6 +2017,115 @@ export default function UpgradeTool() {
         </ul>
       )
     }
+    else if (roofTemplate.iceEntire) {
+      return
+    }
+    else if (!roofTemplate.iceValleys && !roofTemplate.iceRakes){
+      return (
+        <ul>
+        <h4>Ice and Water Barrier</h4>
+
+        <li className="upgrade-li" >Valleys
+        <input
+        type="checkbox"
+        checked={chosenUpgrades.iceValleys === true }
+        onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, iceValleys: !chosenUpgrades.iceValleys })}/>
+        </li>
+        <li className="upgrade-li" >Rakes
+        <input
+        type="checkbox"
+        checked={chosenUpgrades.iceRakes === true }
+        onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, iceRakes: !chosenUpgrades.iceRakes })}/>
+        </li>
+
+        </ul>
+      )
+    }
+    else if (!roofTemplate.iceValleys && !roofTemplate.iceEaves){
+      return (
+        <ul>
+        <h4>Ice and Water Barrier</h4>
+
+        <li className="upgrade-li" >Valleys
+        <input
+        type="checkbox"
+        checked={chosenUpgrades.iceValleys === true }
+        onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, iceValleys: !chosenUpgrades.iceValleys })}/>
+        </li>
+
+        <li className="upgrade-li" >Eaves
+        <input
+        type="checkbox"
+        checked={chosenUpgrades.iceEaves === true }
+        onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, iceEaves: !chosenUpgrades.iceEaves })}/>
+        </li>
+        </ul>
+      )
+    }
+    else if (!roofTemplate.iceEaves && !roofTemplate.iceRakes){
+      return (
+        <ul>
+        <h4>Ice and Water Barrier</h4>
+
+        <li className="upgrade-li" >Rakes
+        <input
+        type="checkbox"
+        checked={chosenUpgrades.iceRakes === true }
+        onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, iceRakes: !chosenUpgrades.iceRakes })}/>
+        </li>
+        <li className="upgrade-li" >Eaves
+        <input
+        type="checkbox"
+        checked={chosenUpgrades.iceEaves === true }
+        onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, iceEaves: !chosenUpgrades.iceEaves })}/>
+        </li>
+        </ul>
+      )
+    }
+    else if (!roofTemplate.iceValleys){
+      return (
+        <ul>
+        <h4>Ice and Water Barrier</h4>
+
+        <li className="upgrade-li" >Valleys
+        <input
+        type="checkbox"
+        checked={chosenUpgrades.iceValleys === true }
+        onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, iceValleys: !chosenUpgrades.iceValleys })}/>
+        </li>
+
+        </ul>
+      )
+    }
+    else if (!roofTemplate.iceRakes){
+      return (
+        <ul>
+        <h4>Ice and Water Barrier</h4>
+
+        <li className="upgrade-li" >Rakes
+        <input
+        type="checkbox"
+        checked={chosenUpgrades.iceRakes === true }
+        onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, iceRakes: !chosenUpgrades.iceRakes })}/>
+        </li>
+
+        </ul>
+      )
+    }
+    else if (!roofTemplate.iceEaves){
+      return (
+        <ul>
+        <h4>Ice and Water Barrier</h4>
+        
+        <li className="upgrade-li" >Eaves
+        <input
+        type="checkbox"
+        checked={chosenUpgrades.iceEaves === true }
+        onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, iceEaves: !chosenUpgrades.iceEaves })}/>
+        </li>
+        </ul>
+      )
+    }
   }
 
   const selectedUpgrades = () => {
@@ -2866,20 +2979,13 @@ const [isShown, setIsShown] = useState('0')
               >
             <h1 className="surv-header">Where is the ice and water barrier existing on the roof?</h1>
 
-            <div className="ice-water-inputs form-group">
-              <label>Eaves</label>
+              <div className="ice-water-inputs form-group">
+              <label>Entire Roof</label>
               <input
               style={{ width:"20px", height: "20px" }}
               type="checkbox"
-              checked={roofTemplate.iceEaves === true }
-              onChange={(e) => setRoofTemplate({ ...roofTemplate, iceEaves: !roofTemplate.iceEaves })}
-              />
-              <label>Rakes</label>
-              <input
-              style={{ width:"20px", height: "20px" }}
-              type="checkbox"
-              checked={roofTemplate.iceRakes === true }
-              onChange={(e) => setRoofTemplate({ ...roofTemplate, iceRakes: !roofTemplate.iceRakes })}
+              checked={roofTemplate.iceEntire === true }
+              onChange={(e) => setRoofTemplate({ ...roofTemplate, iceEntire: !roofTemplate.iceEntire })}
               />
               <label>Valleys</label>
               <input
@@ -2888,20 +2994,31 @@ const [isShown, setIsShown] = useState('0')
               checked={roofTemplate.iceValleys === true }
               onChange={(e) => setRoofTemplate({ ...roofTemplate, iceValleys: !roofTemplate.iceValleys })}
               />
-              <label>Low Scope</label>
+              <label>Rakes</label>
               <input
-              style={{ width:"20px", height: "20px" }}
-              type="checkbox"
-              checked={roofTemplate.iceLow === true }
-              onChange={(e) => setRoofTemplate({ ...roofTemplate, iceLow: !roofTemplate.iceLow })}
-              />
-              <label>Entire Roof</label>
+                style={{ width:"20px", height: "20px" }}
+                type="checkbox"
+                checked={roofTemplate.iceRakes === true }
+                onChange={(e) => setRoofTemplate({ ...roofTemplate, iceRakes: !roofTemplate.iceRakes })}
+                />
+              <label>Eaves</label>
               <input
-              style={{ width:"20px", height: "20px" }}
-              type="checkbox"
-              checked={roofTemplate.iceEntire === true }
-              onChange={(e) => setRoofTemplate({ ...roofTemplate, iceEntire: !roofTemplate.iceEntire })}
-              />
+                style={{ width:"20px", height: "20px" }}
+                type="checkbox"
+                checked={roofTemplate.iceEaves === true }
+                onChange={(e) => setRoofTemplate({ ...roofTemplate, iceEaves: !roofTemplate.iceEaves })}
+                />
+              {
+                // save
+              // <label>Low Scope</label>
+              // <input
+              // style={{ width:"20px", height: "20px" }}
+              // type="checkbox"
+              // checked={roofTemplate.iceLow === true }
+              // onChange={(e) => setRoofTemplate({ ...roofTemplate, iceLow: !roofTemplate.iceLow })}
+              // />
+              }
+
 
             </div>
             </motion.div>
