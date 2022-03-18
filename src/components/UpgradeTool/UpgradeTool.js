@@ -172,19 +172,19 @@ export default function UpgradeTool() {
   const upgradeObjects = {
     'twentyFiveTab': {
       name: "Supreme (25 Year) 3-Tab",
-      price: twentyToSupreme
+      price: "$" +twentyToSupreme
     },
     'oakridgeTab': {
       name: "Oakridge",
-      price: supremeToOakridge
+      price: "$" +supremeToOakridge
     },
     'durationTab': {
       name: "Duration",
-      price: supremeToDuration
+      price: "$" +supremeToDuration
     },
     'durationDesignerTab': {
       name: "Duration Designer",
-      price: supremeToDurationDesigner
+      price: "$" +supremeToDurationDesigner
     },
     'berkshireTab': {
       name: "Berkshire",
@@ -197,28 +197,28 @@ export default function UpgradeTool() {
     },
     'highLam': {
       name: "Duration",
-      price: oakridgeToDuration
+      price: "$" +oakridgeToDuration
     },
     'designerLam': {
       name: "Duration Designer",
-      price: oakridgeToDurationDesigner
+      price: "$" +oakridgeToDurationDesigner
     },
     'specialtyLam': {
       name: "Berkshire",
-      price: oakridgeToBerkshire
+      price: "$" +oakridgeToBerkshire
     },
     'doubleLam': {
       name: "Certainteed Presidential",
-      price: oakridgeToCertainteed
+      price: "$" +oakridgeToCertainteed
     },
     'tripleLam': {
       name: "Certainteed Presidential TL",
-      price: oakridgeToCertainteedTL
+      price: "$" +oakridgeToCertainteedTL
     },
 
     'pipejacks': {
       name: "Lead Pipejacks",
-      price: pipejacksToLead()
+      price: "$" + pipejacksToLead()
     },
 
     'synth': {
