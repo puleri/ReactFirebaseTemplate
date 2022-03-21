@@ -244,19 +244,19 @@ export default function UpgradeTool() {
     },
 
     'iceEntire' : {
-      name: "Entire roof",
+      name: "Ice & Wanter Entire roof",
       price: "$" +iceWaterEntire
     },
     'iceValleys' : {
-      name: "Valleys",
+      name: "Ice & Wanter Valleys",
       price: "$" + iceWaterValleys
     },
     'iceRakes' : {
-      name: "Rakes",
+      name: "Ice & Wanter Rakes",
       price: "$" + iceWaterRakes
     },
     'iceEaves' : {
-      name: "Eaves",
+      name: "Ice & Wanter Eaves",
       price: "$" + iceWaterEaves
     },
 
@@ -266,15 +266,15 @@ export default function UpgradeTool() {
     },
 
     'builderSynth': {
-      name: "RhinoRoof",
+      name: "RhinoRoof underlayment",
       price: "$" + rhinoRoof
     },
     'betterSynth': {
-      name: "ProArmor",
+      name: "ProArmor underlayment",
       price: "$" + proArmor
     },
     'bestSynth': {
-      name: "Deck Defense",
+      name: "Deck Defense underlayment",
       price: "$" + deckDefence
     },
 
@@ -2116,7 +2116,7 @@ export default function UpgradeTool() {
       return (
         <ul>
         <h4>Ice and Water Barrier</h4>
-        
+
         <li className="upgrade-li" >Eaves
         <input
         type="checkbox"
