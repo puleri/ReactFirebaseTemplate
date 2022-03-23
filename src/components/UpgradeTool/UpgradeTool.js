@@ -56,7 +56,7 @@ export default function UpgradeTool() {
     synthetic: "select",
     pipeJacksNeo: "",
     pipeJacksOther: "",
-    ridgeVent: false,
+    ridgeVent: undefined,
     underlayment: "",
     tab3: false,
     standard: false,
@@ -3047,19 +3047,14 @@ const [isShown, setIsShown] = useState('0')
             >
           <h1 className="surv-header">Is there a ridge vent currently on the roof?</h1>
           <div className="form-group">
-            <label>Yes</label>
+            <label>Ridge vent length</label>
             <input
-            style={{ width:"20px", height: "20px" }}
-            type="radio"
-            checked={roofTemplate.ridgeVent === true }
-            onChange={(e) => setRoofTemplate({ ...roofTemplate, ridgeVent: !roofTemplate.ridgeVent })}
-            />
-            <label>No</label>
-            <input
-            style={{ width:"20px", height: "20px" }}
-            type="radio"
-            checked={roofTemplate.ridgeVent === false }
-            onChange={(e) => setRoofTemplate({ ...roofTemplate, ridgeVent: !roofTemplate.ridgeVent })}
+            className="neoprene-placeholder"
+            style={{ width:"110px", height: "35px" }}
+            type="tel"
+            placeholder="enter a number"
+            value={roofTemplate.ridgeVent}
+            onChange={(e) => setRoofTemplate({ ...roofTemplate, ridgeVent: e.target.value })}
             />
           </div>
           </motion.div>
