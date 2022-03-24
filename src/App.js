@@ -10,7 +10,7 @@ import Unauthorized from './components/Unauthorized/Unauthorized.js';
 import Admin from './components/Admin/Admin.js';
 import Header from './components/Header/Header.js'
 import Profile from './components/Profile/Profile.js'
-
+import Support from './components/Support/Support.js'
 import UpgradeNav from './components/NavComplete/UpgradeNav.js'
 import { AuthContextProvider, useAuthState, getAuth }from './firebase'
 // import firebase
@@ -99,6 +99,10 @@ function App(props) {
             currentUser={currentUser}
             setCurrentUser={setCurrentUser}
             component={ Permissions  }/>
+
+            <PrivateRoute exact path='/Support'
+              currentUser={currentUser}
+              component={ Support } />
     {
     // end of private routes
     }

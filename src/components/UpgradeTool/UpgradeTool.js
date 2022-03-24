@@ -193,48 +193,48 @@ export default function UpgradeTool() {
   // upgrades with string names and number prices
   const upgradeObjects = {
     'twentyFiveTab': {
-      name: "Supreme (25 Year) 3-Tab",
+      name: "Supreme (25 Year) Shingle",
       price: "$" +twentyToSupreme
     },
     'oakridgeTab': {
-      name: "Oakridge",
+      name: "Oakridge Shingle",
       price: "$" +supremeToOakridge
     },
     'durationTab': {
-      name: "Duration",
+      name: "Duration Shingle",
       price: "$" +supremeToDuration
     },
     'durationDesignerTab': {
-      name: "Duration Designer",
+      name: "Duration Designer Shingle",
       price: "$" +supremeToDurationDesigner
     },
     'berkshireTab': {
-      name: "Berkshire",
+      name: "Berkshire Shingle",
       price: "Out of stock"
     },
 
     'builderLam': {
-      name: "Builder Laminate",
+      name: "Builder Laminate Shingle",
       price: "Out of stock"
     },
     'highLam': {
-      name: "Duration",
+      name: "Duration Shingle",
       price: "$" +oakridgeToDuration
     },
     'designerLam': {
-      name: "Duration Designer",
+      name: "Duration Designer Shingle",
       price: "$" +oakridgeToDurationDesigner
     },
     'specialtyLam': {
-      name: "Berkshire",
+      name: "Berkshire Shingle",
       price: "$" +oakridgeToBerkshire
     },
     'doubleLam': {
-      name: "Certainteed Presidential",
+      name: "Certainteed Presidential Shingle",
       price: "$" +oakridgeToCertainteed
     },
     'tripleLam': {
-      name: "Certainteed Presidential TL",
+      name: "Certainteed Presidential TL Shingle",
       price: "$" +oakridgeToCertainteedTL
     },
 
@@ -261,7 +261,7 @@ export default function UpgradeTool() {
     },
 
     'synth': {
-      name: "RhinoRoof",
+      name: "RhinoRoof underlayment",
       price: "$" + rhinoRoof
     },
 

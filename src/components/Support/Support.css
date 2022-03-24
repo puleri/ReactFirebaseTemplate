@@ -1,0 +1,55 @@
+.blob-container {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+}
+/* green */
+.blb1 {
+  position: absolute;
+  width: 500px;
+  top: 0px;
+}
+/* pink */
+.blb2 {
+  position: absolute;
+  width: 500px;
+  left: 400px;
+}
+/* blue */
+.blb3 {
+  position: absolute;
+  width: 500px;
+  transform: rotate(80deg);
+  top: 330px;
+  left: 220px;
+}
+
+.glass-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: -100px;
+  border-radius: 35px;
+  padding: 40px 100px;
+  background: rgba(255,255,255,0.4);
+  backdrop-filter: blur(20px);
+}
+
+.glass-container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  top: 200px;
+  left: auto;
+}
+.support-send {
+    color: white;
+    margin: 25px 5px 0;
+    font-size: 15px;
+    padding: 5px 20px;
+    box-shadow: 0 0 3px #27b08a;
+    background-image: linear-gradient(90deg, #27b08a, #317f6d);
+}
