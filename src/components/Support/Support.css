@@ -3,7 +3,7 @@
   height: 100vh;
   width: 100vw;
   overflow: hidden;
-  background: linear-gradient(337deg, rgba(3,82,48,1) 9%, rgba(5,231,153,1) 100%);
+  background: linear-gradient(137deg, #e3f08d 9%, rgba(5,231,153,1) 100%);
 }
 .bug-header {
   font-weight: bold;
@@ -41,13 +41,13 @@
 .absolute-height {
   height: 100vh;
   overflow-y: hidden;
-  background: pink;
   position: absolute;
   top:0;
   left:0;
   width: 100vw;
 }
 .glass-background {
+
   position: absolute;
   display: flex;
   justify-content: center;
@@ -60,6 +60,8 @@
   overflow: none;
 }
 .glass-form {
+  transform: scale(80%);
+
   display: flex;
   justify-content: center;
   align-items: center;

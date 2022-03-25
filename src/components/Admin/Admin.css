@@ -1,5 +1,10 @@
 .admin-container {
 }
+#admin-header {
+  font-weight: bold;
+  font-size: 28px;
+  color: #333333;
+}
 .admin-wrapper.admin-wrapper.admin-wrapper {
   height: 1100px;
   overflow: none !important;
@@ -31,6 +36,8 @@
   font-size: 12px;
   height: 30px;
   width: 70%;
+  border-radius: 50px;
+  padding: 18px 16px;
   box-sizing: border-box;
 }
 
@@ -45,5 +52,5 @@
   bottom: -200px;
 }
 .admin-table {
-  
+
 }
