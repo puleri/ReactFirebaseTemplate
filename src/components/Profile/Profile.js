@@ -250,6 +250,7 @@ function Form () {
           <button disabled={(toasterShow === 'toast')} onClick={ () => handleSubmit() } className="save-btn">Save Changes</button>
           <button className="discard-btn">Discard</button>
         </div>
+        <a id="change-pw"></a>
         <hr className="light-line"/>
       </div>
 

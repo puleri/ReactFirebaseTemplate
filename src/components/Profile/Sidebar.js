@@ -14,19 +14,19 @@ export default function Sidebar() {
   return (
     <>
       <div className={css.container}>
-        <div className={css.sidebarItem}>
+        <a  href="#top" className={css.sidebarItem}>
           <img className={css.icon} src={user} alt="User"/>
           <p className={css.iconText}>Profile</p>
-        </div>
-        <div className={css.sidebarItem}>
+        </a>
+        <a href="#change-pw" className={css.sidebarItem}>
           <img className={css.icon} src={password} alt="Password"/>
           <p className={css.iconText}>Change password</p>
-        </div>
+        </a>
         <hr className={css.lightLine}/>
-        <div className={css.sidebarItem}>
+        <a href="/Support" className={css.sidebarItem}>
           <img className={css.icon} src={help} alt="Help"/>
           <p className={css.iconText}>Send feedback</p>
-        </div>
+        </a>
         <div className={css.sidebarItem}>
           <img className={css.icon} src={feedback} alt="Feedback"/>
           <p className={css.iconText}>Help</p>

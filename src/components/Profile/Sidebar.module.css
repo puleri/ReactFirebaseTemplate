@@ -22,8 +22,10 @@
   transition: .4s background ease-out;
   cursor: pointer;
 }
-.sidebarItem:hover {
+.sidebarItem:hover, .sidebarItem:focus, .sidebarItem:active{
   background: #E3FFF3;
+  text-decoration: none;
+  color: #777777;
 }
 
 .lightLine {

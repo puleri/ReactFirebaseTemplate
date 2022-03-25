@@ -53,7 +53,7 @@ function DaySelect () {
       display:flex;
       align-items: center;
       justify-content: flex-start;
-      font-size: 10px;
+      font-size:15px;
       font-family: "Poppins", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
         'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
         sans-serif;
@@ -62,8 +62,9 @@ function DaySelect () {
         border: 1px solid lightgrey;
       border-radius: 5px;
       max-height: 25px;
-      margin: 7px 0;
-      padding: 15px 10px 0;
+      border-radius: 40px;
+      margin: 8px 0;
+      padding: 24px 0 10px 16px;
       box-sizing: border-box;
       grid-template-columns: 40% 25% 30%;
       width: 100px;
