@@ -6,6 +6,7 @@ import DaySelect from './DaySelect.js'
 import YearSelect from './YearSelect.js'
 import Navbar from '../Navbar/Navbar.js';
 import ChangePW from './ChangePW.js';
+import Sidebar from './Sidebar.js';
 import Footer from '../Footer/Footer.js';
 
 import firebase from '../../firebase'
@@ -128,8 +129,11 @@ function Form () {
 
   // JSX which is used by the DOM and virtual DOM to create the GUI
   return (
-    <>
+    <> {
+      // icons from https://icons8.com
+    }
     <Navbar />
+    <Sidebar />
     <div className="settings-form-with-img">
       <div className={toasterShow}><img alt="check" id="check" src={check} />Changes have been saved successfully</div>
       <div>
@@ -211,7 +215,7 @@ function Form () {
         {
           // Start of Custom Dropdown
         }
-
+        <br/><br/><br/>
         <label className="profile-label">select your date of birth</label>
         <div id="dropdown-date" style={{ display: 'flex' }}>
         <MonthSelect clearHandler={clearHandler}/>

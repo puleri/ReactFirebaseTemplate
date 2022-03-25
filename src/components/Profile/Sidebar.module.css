@@ -1,0 +1,40 @@
+.container {
+  position: fixed;
+  left: 20px;
+  top: 125px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.sidebarItem {
+  display: flex;
+  align-items: center;
+  width: 145px;
+  height: 30px;
+  font-size: 9px;
+  font-weight: bold;
+  color: #777777;
+  border-radius: 50px;
+  margin: 0 0 0 5px;
+  padding: 10px;
+  transition: .4s background ease-out;
+  cursor: pointer;
+}
+.sidebarItem:hover {
+  background: #E3FFF3;
+}
+
+.lightLine {
+  border: none;
+  border-top: 1px solid lightgrey;
+  width: 150px;
+}
+
+.icon {
+  height: 15px;
+}
+.iconText {
+  padding: 15px 0 0 10px;
+}
