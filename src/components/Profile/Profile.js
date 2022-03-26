@@ -7,6 +7,7 @@ import YearSelect from './YearSelect.js'
 import Navbar from '../Navbar/Navbar.js';
 import ChangePW from './ChangePW.js';
 import Sidebar from './Sidebar.js';
+import HelpModal from './HelpModal.js';
 import Footer from '../Footer/Footer.js';
 
 import firebase from '../../firebase'
@@ -253,6 +254,8 @@ function Form () {
         <a id="change-pw"></a>
         <hr className="light-line"/>
       </div>
+
+      <HelpModal />
 
       <ChangePW firebase={firebase}/>
       </div>

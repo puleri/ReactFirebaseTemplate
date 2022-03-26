@@ -148,7 +148,7 @@ const deleteUser = (user) => {
         <h3 id="admin-header">Administrator</h3>
         <br/>
         <div className="admin-tip"><p>If this message is visable to you, that means you are a Kaiser Administrator and as such have the ability to create, view, update, and delete access points for Kaiser Tools</p></div>
-        <div className="admin-tip"><p>Each user will have the ability to use the Kaiser Tools after they update their password from the new user default password</p></div>
+        <div className="admin-tip"><p>Each user will have the ability to use the Kaiser Tools immediately after invitaion, but are reccommended to change their password from the default: "password"</p></div>
           {error}
 
         <div className="admin-form">
@@ -156,7 +156,7 @@ const deleteUser = (user) => {
             <label className="admin-label" >first name</label>
             <input type="text"
             className="admin-input"
-            placeholder="Joe"
+            placeholder="Winston"
             value={first}
             onChange={(e) => setFirst(e.target.value)} />
           </div>
@@ -164,7 +164,7 @@ const deleteUser = (user) => {
             <label className="admin-label" >last name</label>
             <input type="text"
             className="admin-input"
-            placeholder="Schmoe"
+            placeholder="Schmidt"
             value={last}
             onChange={(e) => setLast(e.target.value)} />
           </div>
@@ -172,7 +172,7 @@ const deleteUser = (user) => {
             <label className="admin-label" >email</label>
             <input type="email"
             className="admin-input"
-            placeholder="jschmoe@gmail.com"
+            placeholder="wschmidt@gmail.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)} />
           </div>
@@ -183,7 +183,9 @@ const deleteUser = (user) => {
           </button>
 
         </div>
+        <div className="user-table">
         {rosterFull}
+        </div>
       </div>
       <Footer className="footer-admin"/>
 {

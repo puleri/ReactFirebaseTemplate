@@ -51,6 +51,9 @@
   position: absolute;
   bottom: -200px;
 }
-.admin-table {
-
+.user-table {
+  margin-left: -60%;
+  padding-left: 65%;
+  width: 100vw;
+  height: auto;
 }

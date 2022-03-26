@@ -1,0 +1,54 @@
+.row {
+  z-index: 2;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top:150px;
+  left: 20%;
+  width: 60vw;
+  height: 60vh;
+  color: white;
+  border-radius: 10px;
+  background: rgba(1,1,1,0.7);
+  border: 1px solid rgba(100,100,100,0.6);
+  backdrop-filter: blur(10px);
+  padding: 5px 60px 0;
+}
+.glassContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.close {
+  position: absolute;
+  top: 20px;
+  left:18px;
+  background: #ff5c5c;
+  font-size: 9pt;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.close:active {
+  background: #c14645;
+  border: 1px solid #b03537;
+}
+
+.close:active .closebutton {
+  color: #4e0002;
+}
+
+.icon {
+  margin: 100px;
+  width: 80px;
+}
+
+.closebutton {
+  color: #820005;
+  visibility: hidden;
+  cursor: default;
+}
