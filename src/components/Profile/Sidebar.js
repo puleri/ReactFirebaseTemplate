@@ -9,7 +9,7 @@ import css from './Sidebar.module.css';
 
 
 
-export default function Sidebar() {
+export default function Sidebar(props) {
 
   return (
     <>
@@ -24,11 +24,11 @@ export default function Sidebar() {
         </a>
         <hr className={css.lightLine}/>
         <a href="/Support" className={css.sidebarItem}>
-          <img className={css.icon} src={help} alt="Help"/>
+          <img className={css.icon} src={help} alt="Feedback"/>
           <p className={css.iconText}>Send feedback</p>
         </a>
-        <div className={css.sidebarItem}>
-          <img className={css.icon} src={feedback} alt="Feedback"/>
+        <div onClick={()=> props.setHelpShow('help')} className={css.sidebarItem}>
+          <img className={css.icon} src={feedback} alt="Help"/>
           <p className={css.iconText}>Help</p>
         </div>
       </div>

@@ -54,13 +54,13 @@
   align-items: center;
   width: 100vw;
   height: 100%;
-  background: rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.7);
   backdrop-filter: blur(20px);
   left: auto;
   overflow: none;
 }
 .glass-form {
-  transform: scale(80%);
+  transform: scale(95%);
 
   display: flex;
   justify-content: center;
@@ -69,7 +69,7 @@
   margin-top: -150px;
   border-radius: 35px;
   padding: 40px 100px;
-  background: rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.7);
   border: 1px solid rgba(255,255,255,0.1);
   backdrop-filter: blur(10px);
 }

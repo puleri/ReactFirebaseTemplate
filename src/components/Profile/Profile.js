@@ -42,6 +42,8 @@ function Form () {
     }
   )
   const [profilePic, setProfilePic] = useState([{ preview: '' }])
+
+  const [helpShow, setHelpShow] = useState('no-help')
   // state hook used for show/hide toaster notification
   const [toasterShow, setToasterShow] = useState('no-toast')
   // Functionw that validates unique inputs
@@ -130,11 +132,11 @@ function Form () {
 
   // JSX which is used by the DOM and virtual DOM to create the GUI
   return (
-    <> {
+    <div> {
       // icons from https://icons8.com
     }
     <Navbar />
-    <Sidebar />
+    <Sidebar setHelpShow={setHelpShow}/>
     <div className="settings-form-with-img">
       <div className={toasterShow}><img alt="check" id="check" src={check} />Changes have been saved successfully</div>
       <div>
@@ -255,14 +257,14 @@ function Form () {
         <hr className="light-line"/>
       </div>
 
-      <HelpModal />
+      <HelpModal setHelpShow={setHelpShow} show={helpShow} />
 
       <ChangePW firebase={firebase}/>
       </div>
 
     </div>
     <Footer />
-    </>
+    </div>
   )
 }
 

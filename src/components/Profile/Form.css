@@ -7,6 +7,12 @@
   color: #333333;
 }
 
+.background-grad {
+  position: fixed;
+  width: 100vw;
+  z-index: -2;
+}
+
 .upload-label {
   margin-top: 10px;
   color: #a3aab1;
@@ -43,8 +49,8 @@ textarea {
   justify-content: center;
   align-items: center;
   width: 100%;
+  border-radius: 20px;
   min-height: 100vh;
-  background: #F5F5F5;
 }
 .settings-form-PW {
   margin-top: 0;
@@ -298,4 +304,10 @@ input:-webkit-autofill{
 .red:hover,{
   outline: none;
   border: 1px solid #63686f;
+}
+.no-help {
+  display: none;
+}
+.help {
+  display: contents;
 }
