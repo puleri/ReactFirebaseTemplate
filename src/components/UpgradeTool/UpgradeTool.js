@@ -128,6 +128,8 @@ export default function UpgradeTool() {
     valleyMetalGalvanized: false,
     valleyMetalCopper: false,
 
+    ridgeVent: false,
+
     threeRidge: false,
     standardRidge: false,
     highRidge: false,
@@ -189,6 +191,9 @@ export default function UpgradeTool() {
       return (parseInt(roofTemplate.pipeJacksNeo)*60 || parseInt(roofTemplate.pipeJacksOther)*60)
     }
   }
+
+      // ridge vent
+  const ventSureRidgeVent = Math.ceil(roofTemplate.ridge * 20)
 
   // upgrades with string names and number prices
   const upgradeObjects = {
@@ -276,6 +281,12 @@ export default function UpgradeTool() {
     'bestSynth': {
       name: "Deck Defense underlayment",
       price: "$" + deckDefence
+    },
+
+    'ridgeVent' : {
+      name: "VentSure Ridge Vent",
+      price: "$" + ventSureRidgeVent
+
     },
 
     'dripRakes': {
@@ -1815,6 +1826,22 @@ export default function UpgradeTool() {
     )
       default:
       <></>
+    }
+  }
+  const ridgeVentUpgrade = () => {
+    if (!roofTemplate.ridgeVent) {
+      return (  
+        <ul>
+        <h4>Ridge Vent</h4>
+
+        <li className="upgrade-li" >Standard Ridge Vent<input
+        type="checkbox"
+        checked={chosenUpgrades.ridgeVent === true }
+        onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, ridgeVent: !chosenUpgrades.ridgeVent })}/>
+        </li>
+
+        </ul>
+      )
     }
   }
   const ridgeCapUpgrade = () => {
@@ -3553,6 +3580,9 @@ const [isShown, setIsShown] = useState('0')
             </div>
             <div className="upgrade-item">
             {valleyMetalUpgrade()}
+            </div>
+            <div className="upgrade-item">
+            {ridgeVentUpgrade()}
             </div>
             <div className="upgrade-item">
             {ridgeCapUpgrade()}
