@@ -153,6 +153,7 @@ function Login(props) {
         <p className="error-message">{error}</p>
           <input onChange = {(e) => setEmail(e.target.value)} type="email" className="login-email" placeholder="Email:"/>
           <input onChange = {(e) => setPassword(e.target.value)} type="password" className="login-password" placeholder="Password:"/>
+          <a href="/forgot-password" className="forgot-pw-link">Forgot password?</a>
           <button className="pulse" onClick={handleSubmit}>Sign in</button>
           <h5 className="login-h5">Powered by</h5>
           <img className="login-google" src={google} alt="Google sign in button" />

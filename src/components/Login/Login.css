@@ -55,7 +55,7 @@ background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,255,168,1) 100%);
   width: 210px;
 }
 .login-form {
-  height: 460px;
+  height: 470px;
   position: absolute;
   top: 50px;
   right: 140px;
@@ -149,14 +149,33 @@ background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,255,168,1) 100%);
   font-family: 'Poppins', sans-serif;
   font-weight: normal;
   color: white;
-  margin-top: -40px;
+  margin-top: -20px;
   font-size: .67em;
   letter-spacing: .1rem;
 }
 .login-google {
-  height: 15px;
-  width: 15px;
-  margin-top: -60px;
+  height: 13px;
+  width: 13px;
+  margin-top: -50px;
+}
+
+.forgot-pw-link {
+  letter-spacing: .1rem;
+  font-size: 8px;
+  font-weight: bolder;
+  padding: 10px 20px;
+  margin: -40px 0 0;
+  color: white;
+}
+
+.forgot-pw-link:hover {
+  text-decoration: none;
+  color: #3C79E6;
+}
+.forgot-pw-link:focus {
+  outline: 1px solid rgba(0,255,168,1);
+  border-radius: 7px;
+  outline-offset: 7px;
 }
 
 @media (max-width: 1270px) {
