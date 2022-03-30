@@ -12,6 +12,8 @@ import Header from './components/Header/Header.js'
 import Profile from './components/Profile/Profile.js'
 import Support from './components/Support/Support.js'
 import UpgradeNav from './components/NavComplete/UpgradeNav.js'
+import ForgotPassword from './components/ForgotPassword/ForgotPassword.js'
+
 import { AuthContextProvider, useAuthState, getAuth }from './firebase'
 // import firebase
 import PrivateRoute from './components/PrivateRoute';
@@ -80,6 +82,10 @@ function App(props) {
           currentUser={currentUser}
           setCurrentUser={setCurrentUser}
           component={ Login } />
+
+          <PublicRoute
+          path="/forgot-password"
+          component={ ForgotPassword } />
 
     {
     // start of private routes

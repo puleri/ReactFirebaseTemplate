@@ -8,7 +8,7 @@ import firebase, { getAuth } from '../../firebase';
 import logo from "../../logo.svg";
 import google from "./google.png";
 import "./Login.css";
-import "./Button.css"
+import "./Button.css";
 
 // import { useAuth } from '../../contexts/AuthContexts';
 

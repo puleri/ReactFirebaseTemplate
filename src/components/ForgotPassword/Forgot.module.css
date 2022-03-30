@@ -1,0 +1,243 @@
+.loginPage {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+.circle1 {
+  position: absolute;
+  right: -720px;
+  top: -650px;
+  /* margin: -670px -1390px 0 0; */
+  height: 1300px;
+  width: 1300px;
+background: -webkit-linear-gradient(180deg, rgba(0,0,0,1) 0%, #43D2FF 100%);
+background: -o-linear-gradient(180deg, rgba(0,0,0,1) 0%, #43D2FF 100%);
+background: linear-gradient(180deg, rgba(0,0,0,1) 0%, #43D2FF 100%);
+  border-radius: 50%;
+}
+.circle2 {
+  position: absolute;
+  z-index: -1;
+  /* margin: -590px -1440px 0 0; */
+  right: -750px;
+  top: -610px;
+  height: 1300px;
+  width: 1300px;
+  background: rgb(255,255,255);
+  background: radial-gradient(circle, rgba(255,255,255,1) 0%, #46879B);
+  border-radius: 50%;
+}
+.loginH1 {
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  font-weight: normal;
+  font-size: 3.5em;
+  color: #333333;
+  letter-spacing: .14rem;
+  font-family: 'Poppins', sans-serif;
+}
+.loginH2 {
+  position: absolute;
+  font-weight: normal;
+  top: 280px;
+  left: 105px;
+  width: 550px;
+  font-size: .9em;
+  color: #333333;
+  letter-spacing: .14rem;
+  font-family: 'Poppins', sans-serif;
+}
+.loginH22 {
+  position: absolute;
+  font-weight: normal;
+  top: 350px;
+  left: 105px;
+  width: 500px;
+  font-size: .9em;
+  color: #333333;
+  letter-spacing: .14rem;
+  font-family: 'Poppins', sans-serif;
+}
+.logo {
+  height: 100px;
+  width: 210px;
+}
+.loginForm {
+  height: 400px;
+  position: absolute;
+  top: 50px;
+  right: 140px;
+  display: flex;
+  align-items: center;
+  align-content: space-around;
+  justify-content: space-around;
+  flex-direction: column;
+
+}
+.errorMessage{
+  font-size: 10px;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  margin: -40px 0;
+}
+.loginEmail:focus, .loginPassword:focus {
+  outline: 1px solid rgba(0,255,168,1);
+  border-radius: 7px;
+  outline-offset: 10px;
+}
+.loginEmail:hover, .loginPassword:hover {
+  outline: 1px solid #7FDCBB;
+  border-radius: 7px;
+  outline-offset: 10px;
+}
+.loginEmail {
+  background: none;
+  border: none;
+  border-bottom: 1px solid white;
+  border-radius: 7px;
+  padding: 10px 9px;
+  color: white;
+  font-size: .8rem;
+  font-weight: normal;
+  width: 240px;
+  transition: border-radius .3s ease, outline .3s ease;
+}
+.loginEmail::placeholder {
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-size: .7rem;
+}
+.loginPassword {
+  background: none;
+  border: none;
+  border-bottom: 1px solid white;
+  font-weight: normal;
+  border-radius: 7px;
+  padding: 10px 9px;
+  margin-top: -30px;
+  font-size: .8rem;
+  color: white;
+  width: 240px;
+  transition: border-radius .3s ease, outline .3s ease;
+
+}
+.loginPassword::placeholder {
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-size: .7rem;
+}
+.pulse {
+  position: relative;
+  overflow: hidden;
+  margin-top: -30px;
+  transition: background 400ms;
+  width: 200px;
+  height: 35px;
+  padding: 0;
+  border-radius: 15px;
+  border: none;
+  font-family: 'Poppins', sans-serif;
+  font-weight: normal;
+  font-size: .79em;
+  cursor: pointer;
+  background: white;
+  outline: 1px solid white;
+  transition: border .3s ease;
+
+}
+.pulse:focus {
+  outline: 1px solid rgba(0,255,168,1);
+  border: 1px solid rgba(0,255,168,1);
+}
+.pulse:hover {
+  outline: 1px solid #7FDCBB;
+  border: 1px solid #7FDCBB;
+}
+.loginH5 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: normal;
+  color: white;
+  margin-top: -20px;
+  font-size: .67em;
+  letter-spacing: .1rem;
+}
+.loginGoogle {
+  height: 13px;
+  width: 13px;
+  margin-top: -50px;
+}
+
+.forgotPwLink {
+  letter-spacing: .1rem;
+  font-size: 8px;
+  font-weight: bolder;
+  padding: 10px 20px;
+  margin: -40px 0 0;
+  color: white;
+}
+
+.forgotPwLink:hover {
+  text-decoration: none;
+  color: #3C79E6;
+}
+.forgotPwLink:focus {
+  outline: 1px solid rgba(0,255,168,1);
+  border-radius: 7px;
+  outline-offset: 7px;
+}
+
+@media (max-width: 1270px) {
+  .loginH2, .loginH22 {
+    width: 300px;
+  }
+  .loginH22 {
+  top: 380px;
+  }
+}
+@media (max-width: 1112px) {
+  .logo {
+    position: relative;
+    margin: -50px 0 270px;
+    top: 0;
+
+  }
+  .loginForm {
+    left: 150px;
+  }
+  .loginH1 {
+    display: none;
+  }
+  .loginH2 {
+    font-size: 12px;
+    top: 180px;
+    width: 40%;
+    color: white;
+    left: 32%;
+    z-index: 3;
+  }
+  .loginH22 {
+    font-size: 12px;
+    top: 260px;
+    width: 40%;
+    color: white;
+    left: 32%;
+    z-index: 3;
+  }
+  .circle1 {
+  right: ;
+  left: -30px;
+  }
+  .circle2   {
+  right: ;
+  left: 0px;
+  }
+  .pulse  {
+    position: absolute;
+    top: 460px;
+  }
+}
