@@ -27,11 +27,17 @@ export default function ForgotPassword() {
         // waits 3 seconts then transitions the toaster out
         setTimeout(function () {
           setToasterShow('no-toast')
-        }, 3000)
+        }, 5000)
       })
       .catch((error) => {
         var errorCode = error.code;
         var errorMessage = error.message;
+        setError(errorMessage)
+        // waits 3 seconts then transitions the toaster out
+        setTimeout(function () {
+          setError('')
+        }, 3000)
+
         console.log(errorCode, errorMessage)
       })
   }
