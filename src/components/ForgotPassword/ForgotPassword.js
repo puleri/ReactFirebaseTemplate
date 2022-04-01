@@ -5,6 +5,8 @@ import firebase, { getAuth } from '../../firebase';
 import css from './Forgot.module.css'
 
 import logo from "../../logo.svg";
+import check from '../img/check.png'
+
 
 
 export default function ForgotPassword() {
@@ -13,12 +15,31 @@ export default function ForgotPassword() {
   const [emailCnf, setEmailCnf] = useState('')
   const [error, setError] = useState('')
 
-  const handleSubmit = () => {
+  const [toasterShow, setToasterShow] = useState('no-toast')
 
+
+  const handleSubmit = () => {
+    firebase.auth().sendPasswordResetEmail(email)
+      .then(() => {
+        console.log("email sent!")
+        // trantisions the toaster animation in
+        setToasterShow('toast')
+        // waits 3 seconts then transitions the toaster out
+        setTimeout(function () {
+          setToasterShow('no-toast')
+        }, 3000)
+      })
+      .catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode, errorMessage)
+      })
   }
 
   return (
     <>
+    <div className={toasterShow}><img alt="check" id="check" src={check} />Reset instructions have been sent successfully</div>
+
     <div className={css.loginPage}>
       <div className={css.loginWelcome}>
         <h1 className={css.loginH1}>Forgot <br/> Password?</h1>
