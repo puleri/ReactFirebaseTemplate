@@ -28,7 +28,7 @@ export default function Support() {
         <path fill="#59f0bb" d="M49.8,-67.9C63.8,-58.3,74,-42.8,75.4,-27.1C76.9,-11.4,69.7,4.4,61.7,17.2C53.7,30,44.8,39.8,34.4,43.7C24,47.6,12,45.7,2.7,42C-6.6,38.3,-13.2,32.8,-23.1,28.7C-33,24.6,-46.2,21.9,-49.9,15.1C-53.5,8.3,-47.6,-2.6,-47.3,-19C-47,-35.4,-52.2,-57.2,-45.2,-69C-38.3,-80.9,-19.1,-82.8,-0.6,-82C17.9,-81.1,35.7,-77.5,49.8,-67.9Z" transform="translate(100 100)" />
       </svg>
       <svg className="blb3" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-        <path fill="#74cc72" d="M56.2,-49C64.7,-34,58.1,-11.1,51.6,9.6C45.1,30.3,38.8,48.9,23.8,60.3C8.7,71.8,-15,76.1,-27.3,66.4C-39.5,56.8,-40.3,33.1,-39.3,15.3C-38.3,-2.5,-35.6,-14.3,-28.7,-28.9C-21.9,-43.5,-10.9,-60.8,6.4,-66C23.8,-71.1,47.6,-64,56.2,-49Z" transform="translate(100 100)" />
+        <path fill="#fff" d="M56.2,-49C64.7,-34,58.1,-11.1,51.6,9.6C45.1,30.3,38.8,48.9,23.8,60.3C8.7,71.8,-15,76.1,-27.3,66.4C-39.5,56.8,-40.3,33.1,-39.3,15.3C-38.3,-2.5,-35.6,-14.3,-28.7,-28.9C-21.9,-43.5,-10.9,-60.8,6.4,-66C23.8,-71.1,47.6,-64,56.2,-49Z" transform="translate(100 100)" />
       </svg>
       <svg className="blb4" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
         <path fill="#45c942" d="M49.8,-67.9C63.8,-58.3,74,-42.8,75.4,-27.1C76.9,-11.4,69.7,4.4,61.7,17.2C53.7,30,44.8,39.8,34.4,43.7C24,47.6,12,45.7,2.7,42C-6.6,38.3,-13.2,32.8,-23.1,28.7C-33,24.6,-46.2,21.9,-49.9,15.1C-53.5,8.3,-47.6,-2.6,-47.3,-19C-47,-35.4,-52.2,-57.2,-45.2,-69C-38.3,-80.9,-19.1,-82.8,-0.6,-82C17.9,-81.1,35.7,-77.5,49.8,-67.9Z" transform="translate(100 100)" />
@@ -39,13 +39,13 @@ export default function Support() {
     <div className="glass-container" >
       <form className="glass-form" ref={form}>
       <h4 className="bug-header">Find a bug or have a feature request?</h4>
-      <h6>Shoot our development team a message!</h6>
+      <h6 className="bug-header6">Shoot our development team a message!</h6>
 
-        <label className="profile-label">name*</label>
+        <label className="profile-label glass">name*</label>
         <input className="settings-input" type="text" name="user_name" />
-        <label className="profile-label">email*</label>
+        <label className="profile-label glass">email*</label>
         <input className="settings-input"type="email" name="user_email" />
-        <label className="profile-label" >message*</label>
+        <label className="profile-label glass" >message*</label>
         <textarea  className="settings-input bio" name="message" />
         <button className="support-send" onClick={sendEmail}>Send Support Message</button>
       </form>

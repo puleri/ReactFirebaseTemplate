@@ -58,7 +58,7 @@ export default function ForgotPassword() {
       <div className={css.circle2}>
       </div>
       <div className={css.loginForm}>
-      <img alt="Kaiser White Logo -- The word 'Kaiser' with a roof on top" className={css.logo} src={logo} />
+      <a href="/login"><img alt="Kaiser White Logo -- The word 'Kaiser' with a roof on top" className={css.logo} src={logo} /></a>
       <p className={css.errorMessage}>{error}</p>
         <input onChange = {(e) => setEmail(e.target.value)} type="email" className={css.loginEmail} placeholder="Email:"/>
         <button className={css.pulse} onClick={handleSubmit}>Send reset instructions</button>
