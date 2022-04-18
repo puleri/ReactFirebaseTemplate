@@ -20,3 +20,5 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 Builds the app for production to the `build` folder.\
 
+### Firebase backend
+Make sure firestore rules are set up correctly and deploy after running build with `firebase deploy`.\
