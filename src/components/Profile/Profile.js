@@ -105,6 +105,7 @@ function Form () {
   const handlePic = (e) => profilePic && setProfilePic([{ preview: '' }])
   // Function that handles the submission of the form and calls the toaster function
   // if form is completed and validated
+  // test comment
   const handleSubmit = (form) => {
     if (firstValid.isValid && lastValid.isValid && emailValid.isValid && phoneValid.isValid && bioValid.isValid) {
       setFormValues({
