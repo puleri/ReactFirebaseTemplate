@@ -114,7 +114,6 @@ export default function UpgradeTool() {
     iceEaves: false,
 
     synth: false,
-
     builderSynth: false,
     betterSynth: false,
     bestSynth: false,
@@ -269,17 +268,16 @@ export default function UpgradeTool() {
       name: "RhinoRoof underlayment",
       price: "$" + rhinoRoof
     },
-
     'builderSynth': {
-      name: "RhinoRoof underlayment",
+      name: "RhinoRoof",
       price: "$" + rhinoRoof
     },
     'betterSynth': {
-      name: "ProArmor underlayment",
+      name: "ProArmor ",
       price: "$" + proArmor
     },
     'bestSynth': {
-      name: "Deck Defense underlayment",
+      name: "Deck Defense",
       price: "$" + deckDefence
     },
 
@@ -1788,11 +1786,25 @@ export default function UpgradeTool() {
       <ul>
         <h4>Underlayment</h4>
         <li className="upgrade-li" >
-          Synthetic
+          RhinoRoof
           <input
           type="checkbox"
-          checked={chosenUpgrades.synth === true }
-          onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, synth: !chosenUpgrades.synth })}/>
+          checked={chosenUpgrades.builderSynth === true }
+          onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, builderSynth: !chosenUpgrades.builderSynth })}/>
+        </li>
+        <li className="upgrade-li" >
+          ProArmor
+          <input
+          type="checkbox"
+          checked={chosenUpgrades.betterSynth === true }
+          onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, betterSynth: !chosenUpgrades.betterSynth })}/>
+        </li>
+        <li className="upgrade-li" >
+          DeckDefence
+          <input
+          type="checkbox"
+          checked={chosenUpgrades.bestSynth === true }
+          onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, bestSynth: !chosenUpgrades.bestSynth })}/>
         </li>
 
       </ul>
