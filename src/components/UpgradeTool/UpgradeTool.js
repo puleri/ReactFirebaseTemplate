@@ -215,12 +215,12 @@ export default function UpgradeTool() {
     },
     'berkshireTab': {
       name: "Berkshire Shingle",
-      price: "Out of stock"
+      price: "Unavailable"
     },
 
     'builderLam': {
       name: "Builder Laminate Shingle",
-      price: "Out of stock"
+      price: "Unavailable"
     },
     'highLam': {
       name: "Duration Shingle",
@@ -1451,9 +1451,10 @@ export default function UpgradeTool() {
             checked={chosenUpgrades.durationDesignerTab === true }
             onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, durationDesignerTab: !chosenUpgrades.durationDesignerTab })}/>
             </li>
-            <li className="upgrade-li" >Berkshire
+            <li className="upgrade-li" >Berkshire (Unavailable)
             <input
             type="checkbox"
+            disabled
             checked={chosenUpgrades.berkshireTab === true }
             onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, berkshireTab: !chosenUpgrades.berkshireTab })}/>
             </li>
@@ -1483,9 +1484,10 @@ export default function UpgradeTool() {
           checked={chosenUpgrades.durationDesignerTab === true }
           onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, durationDesignerTab: !chosenUpgrades.durationDesignerTab })}/>
           </li>
-          <li className="upgrade-li" >Berkshire
+          <li className="upgrade-li" >Berkshire (Unavailable)
           <input
           type="checkbox"
+          disabled
           checked={chosenUpgrades.berkshireTab === true }
           onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, berkshireTab: !chosenUpgrades.berkshireTab })}/>
           </li>
@@ -1512,8 +1514,9 @@ export default function UpgradeTool() {
               checked={chosenUpgrades.designerLam === true }
               onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, designerLam: !chosenUpgrades.designerLam })}/>
               </li>
-              <li className="upgrade-li" >Berkshire
+              <li className="upgrade-li" >Berkshire (Unavailable)
               <input
+              disabled
               type="checkbox"
               checked={chosenUpgrades.specialtyLam === true }
               onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, specialtyLam: !chosenUpgrades.specialtyLam })}/>
@@ -1542,8 +1545,9 @@ export default function UpgradeTool() {
             checked={chosenUpgrades.designerLam === true }
             onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, designerLam: !chosenUpgrades.designerLam })}/>
             </li>
-            <li className="upgrade-li" >Berkshire
+            <li className="upgrade-li" >Berkshire (Unavailable)
             <input
+            disabled
             type="checkbox"
             checked={chosenUpgrades.specialtyLam === true }
             onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, specialtyLam: !chosenUpgrades.specialtyLam })}/>
@@ -1566,8 +1570,9 @@ export default function UpgradeTool() {
           return (
             <ul>
             <h4>Laminate</h4>
-            <li className="upgrade-li" >Berkshire
+            <li className="upgrade-li" >Berkshire (Unavailable)
             <input
+            disabled
             type="checkbox"
             checked={chosenUpgrades.specialtyLam === true }
             onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, specialtyLam: !chosenUpgrades.specialtyLam })}/>
@@ -1830,7 +1835,7 @@ export default function UpgradeTool() {
   }
   const ridgeVentUpgrade = () => {
     if (!roofTemplate.ridgeVent) {
-      return (  
+      return (
         <ul>
         <h4>Ridge Vent</h4>
 
