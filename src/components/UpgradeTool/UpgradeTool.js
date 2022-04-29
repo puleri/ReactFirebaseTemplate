@@ -265,11 +265,11 @@ export default function UpgradeTool() {
     },
 
     'synth': {
-      name: "RhinoRoof underlayment",
+      name: "RhinoRoof U2 underlayment",
       price: "$" + rhinoRoof
     },
     'builderSynth': {
-      name: "RhinoRoof",
+      name: "RhinoRoof U2 underlayment",
       price: "$" + rhinoRoof
     },
     'betterSynth': {
@@ -1449,13 +1449,15 @@ export default function UpgradeTool() {
             checked={chosenUpgrades.durationDesignerTab === true }
             onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, durationDesignerTab: !chosenUpgrades.durationDesignerTab })}/>
             </li>
-            <li className="upgrade-li" >Berkshire (Unavailable)
-            <input
-            type="checkbox"
-            disabled
-            checked={chosenUpgrades.berkshireTab === true }
-            onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, berkshireTab: !chosenUpgrades.berkshireTab })}/>
-            </li>
+            {
+            // <li className="upgrade-li" >Berkshire (Unavailable)
+            // <input
+            // disabled
+            // type="checkbox"
+            // checked={chosenUpgrades.specialtyLam === true }
+            // onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, specialtyLam: !chosenUpgrades.specialtyLam })}/>
+            // </li>
+            }
           </ul>
         )
       }
@@ -1482,13 +1484,15 @@ export default function UpgradeTool() {
           checked={chosenUpgrades.durationDesignerTab === true }
           onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, durationDesignerTab: !chosenUpgrades.durationDesignerTab })}/>
           </li>
-          <li className="upgrade-li" >Berkshire (Unavailable)
-          <input
-          type="checkbox"
-          disabled
-          checked={chosenUpgrades.berkshireTab === true }
-          onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, berkshireTab: !chosenUpgrades.berkshireTab })}/>
-          </li>
+          {
+          // <li className="upgrade-li" >Berkshire (Unavailable)
+          // <input
+          // disabled
+          // type="checkbox"
+          // checked={chosenUpgrades.specialtyLam === true }
+          // onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, specialtyLam: !chosenUpgrades.specialtyLam })}/>
+          // </li>
+          }
           </ul>
           </>
         )
@@ -1512,14 +1516,15 @@ export default function UpgradeTool() {
               checked={chosenUpgrades.designerLam === true }
               onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, designerLam: !chosenUpgrades.designerLam })}/>
               </li>
-              <li className="upgrade-li" >Berkshire (Unavailable)
-              <input
-              disabled
-              type="checkbox"
-              checked={chosenUpgrades.specialtyLam === true }
-              onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, specialtyLam: !chosenUpgrades.specialtyLam })}/>
-              </li>
-
+              {
+              // <li className="upgrade-li" >Berkshire (Unavailable)
+              // <input
+              // disabled
+              // type="checkbox"
+              // checked={chosenUpgrades.specialtyLam === true }
+              // onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, specialtyLam: !chosenUpgrades.specialtyLam })}/>
+              // </li>
+              }
               <li className="upgrade-li" >Double Laminate<input
               type="checkbox"
               checked={chosenUpgrades.doubleLam === true }
@@ -1543,13 +1548,15 @@ export default function UpgradeTool() {
             checked={chosenUpgrades.designerLam === true }
             onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, designerLam: !chosenUpgrades.designerLam })}/>
             </li>
-            <li className="upgrade-li" >Berkshire (Unavailable)
-            <input
-            disabled
-            type="checkbox"
-            checked={chosenUpgrades.specialtyLam === true }
-            onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, specialtyLam: !chosenUpgrades.specialtyLam })}/>
-            </li>
+            {
+            // <li className="upgrade-li" >Berkshire (Unavailable)
+            // <input
+            // disabled
+            // type="checkbox"
+            // checked={chosenUpgrades.specialtyLam === true }
+            // onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, specialtyLam: !chosenUpgrades.specialtyLam })}/>
+            // </li>
+            }
 
             <li className="upgrade-li" >Double Laminate<input
             type="checkbox"
@@ -1568,13 +1575,15 @@ export default function UpgradeTool() {
           return (
             <ul>
             <h4>Laminate</h4>
-            <li className="upgrade-li" >Berkshire (Unavailable)
-            <input
-            disabled
-            type="checkbox"
-            checked={chosenUpgrades.specialtyLam === true }
-            onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, specialtyLam: !chosenUpgrades.specialtyLam })}/>
-            </li>
+            {
+            // <li className="upgrade-li" >Berkshire (Unavailable)
+            // <input
+            // disabled
+            // type="checkbox"
+            // checked={chosenUpgrades.specialtyLam === true }
+            // onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, specialtyLam: !chosenUpgrades.specialtyLam })}/>
+            // </li>
+            }
 
             <li className="upgrade-li" >Double Laminate<input
             type="checkbox"
@@ -1786,7 +1795,7 @@ export default function UpgradeTool() {
       <ul>
         <h4>Underlayment</h4>
         <li className="upgrade-li" >
-          RhinoRoof
+          RhinoRoof U2
           <input
           type="checkbox"
           checked={chosenUpgrades.builderSynth === true }
@@ -1800,7 +1809,7 @@ export default function UpgradeTool() {
           onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, betterSynth: !chosenUpgrades.betterSynth })}/>
         </li>
         <li className="upgrade-li" >
-          DeckDefence
+          Deck Defence
           <input
           type="checkbox"
           checked={chosenUpgrades.bestSynth === true }

@@ -40,3 +40,19 @@
 .iconText {
   padding: 15px 0 0 10px;
 }
+
+@media (max-width:760px) {
+  .container {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    height: 200px;
+    top: 1450px;
+  }
+  .sidebarItem {
+    width: 55%;
+  }
+  .lightLine {
+    width: 57%;
+  }
+}
