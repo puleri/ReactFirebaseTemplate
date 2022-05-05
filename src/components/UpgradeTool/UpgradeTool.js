@@ -133,7 +133,10 @@ export default function UpgradeTool() {
     standardRidge: false,
     highRidge: false,
 
-    pipejacks: false,
+    pipeBullet: false,
+    pipePerma: false,
+    pipeUltimate: false,
+    pipeLead: false,
 
     sFAlum: false,
     sFCopper: false,
@@ -242,7 +245,19 @@ export default function UpgradeTool() {
       price: "$" +oakridgeToCertainteedTL
     },
 
-    'pipejacks': {
+    'pipeBullet': {
+      name: "Bullet Boot Pipejacks",
+      price: "$" + pipejacksToLead()
+    },
+    'pipePerma': {
+      name: "Perma-Boot Pipejacks",
+      price: "$" + pipejacksToLead()
+    },
+    'pipeUltimate': {
+      name: "Lifetime Ultimate Pipejacks",
+      price: "$" + pipejacksToLead()
+    },
+    'pipeLead': {
       name: "Lead Pipejacks",
       price: "$" + pipejacksToLead()
     },
@@ -2028,11 +2043,29 @@ export default function UpgradeTool() {
       return (
         <ul>
         <h4>Pipejacks</h4>
-        <li className="upgrade-li" >Lead Pipejacks
+        <li className="upgrade-li" >Bullet Boot
         <input
         type="checkbox"
-        checked={chosenUpgrades.pipejacks === true }
-        onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, pipejacks: !chosenUpgrades.pipejacks })}/>
+        checked={chosenUpgrades.pipeBullet === true }
+        onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, pipeBullet: !chosenUpgrades.pipeBullet })}/>
+        </li>
+        <li className="upgrade-li" >Perma-Boot
+        <input
+        type="checkbox"
+        checked={chosenUpgrades.pipePerma === true }
+        onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, pipePerma: !chosenUpgrades.pipePerma })}/>
+        </li>
+        <li className="upgrade-li" >Lifetime Ultimate Boot
+        <input
+        type="checkbox"
+        checked={chosenUpgrades.pipeUltimate === true }
+        onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, pipeUltimate: !chosenUpgrades.pipeUltimate })}/>
+        </li>
+        <li className="upgrade-li" >Lead
+        <input
+        type="checkbox"
+        checked={chosenUpgrades.pipeLead === true }
+        onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, pipeLead: !chosenUpgrades.pipeLead })}/>
         </li>
         </ul>
       )
