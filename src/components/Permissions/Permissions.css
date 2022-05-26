@@ -79,11 +79,45 @@ tr:nth-child(even) {
   letter-spacing: 0;
 }
 .admin-tip {
-  border-radius: 5px;
-  background: #4CD1961F;
-  padding: 15px 40px 5px;
-  margin: 0 0 40px;
+  margin: -20px -20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+.admin-tri-panel {
+  background: white;
+  width: 290px;
+  height: 140px;
+  border-radius: 30px;
+  padding: 20px 30px;
+  box-shadow: 0px 4px 10px rgba(112, 112, 112, 0.4);
+}
+.tri-panel-header {
+  font-size: 20px;
+  font-weight: bold;
+}
+.tri-panel-light {
+  font-weight: lighter;
+  font-size: 12px;
+}
+.tri-panel-ul {
+  margin: -5px 0 0 10px;
+  list-style-type: disc;
+  list-style-position: inside;
+  font-size: 8px;
+  font-weight: 500;
+}
+.super-admin-tag {
+  display: inline;
+  font-weight: 500;
+  margin: 0 0 0 22px;
+  padding: 5px 10px;
+  color: #5E5E5E;
+  background: #FEEED6;
+  border-radius: 5px;
+  font-size: 8px;
+}
+
 .admin-tip2 {
   font-size: 12px;
 }
@@ -139,6 +173,7 @@ tbody {
   top: 86px;
   margin-left: -13px;
 }
+
 /* Template Tab */
 .Template-container {
   font-family: 'Poppins', sans-serif;

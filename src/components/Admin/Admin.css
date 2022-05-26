@@ -2,10 +2,11 @@
 }
 #admin-header {
   font-weight: bold;
-  font-size: 28px;
+  font-size: 32px;
   color: #333333;
 }
 .admin-wrapper.admin-wrapper.admin-wrapper {
+  background: #E9F3EF;
   height: 1100px;
   overflow: none !important;
 }

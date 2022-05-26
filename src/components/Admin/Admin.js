@@ -11,7 +11,7 @@ import 'firebase/firestore';
 
 import './Admin.css';
 
-export default function Admin(){
+export default function Admin() {
 
   // Initial State
 
@@ -24,7 +24,7 @@ export default function Admin(){
 
   const [error, setError] = useState(
     <div className="admin-tip2">
-    <h5>Please fill out all fields before inviting user</h5>
+      <h5>Please fill out all fields before inviting user</h5>
     </div>
   )
 
@@ -33,18 +33,18 @@ export default function Admin(){
   }, [])
 
   // CRD for Users
-// CREATE user
+  // CREATE user
   const signUpUser = (first, last, email) => {
     // check if any fields are empty: if so return with Error, if not, reset error state
     setError(
       <div className="admin-tip2">
-      <h5>Please fill out all fields before inviting user</h5>
+        <h5>Please fill out all fields before inviting user</h5>
       </div>
     )
-    if(first === '' || last === '' || email === '') {
+    if (first === '' || last === '' || email === '') {
       return setError(
         <div className="admin-tip2-active">
-        <h5><em>Please fill out all fields before inviting user</em></h5>
+          <h5><em>Please fill out all fields before inviting user</em></h5>
         </div>
 
       )
@@ -69,21 +69,21 @@ export default function Admin(){
           last: last
         })
       })
-    .then(() => {
-      // reset form
-      setFirst('')
-      setLast('')
-      setEmail('')
-    })
-    .catch(err => console.log("There was a problem signing up", err))
+      .then(() => {
+        // reset form
+        setFirst('')
+        setLast('')
+        setEmail('')
+      })
+      .catch(err => console.log("There was a problem signing up", err))
   }
 
-// READ index of users
+  // READ index of users
   const userDbMatch = () => {
     setIsLoading(true)
     const q = firebase.firestore().collection('users')
     q.get().then(querySnapshot => {
-      const d = querySnapshot.docs.map(d =>d.data())
+      const d = querySnapshot.docs.map(d => d.data())
       // console.log('users BIG ', d)
       setRoster(d)
     })
@@ -91,15 +91,15 @@ export default function Admin(){
   }
 
   const rosterIndex =
-  roster.map((user) =>
-    <tr id="t-body"key={user.email}>
-      <th id="th-body">{user.email}</th>
-      <th id="th-body">{user.first}</th>
-      <th id="th-body">{user.last}</th>
-      <th id="th-body">{user.status === 'active' ? 'Active' : user.status === 'pending' ? 'Pending' : 'Inactive'}</th>
-      <th id="th-body"><i onClick={() => deleteUser(user)} className="delete far fa-minus-square"></i></th>
-    </tr>
-  )
+    roster.map((user) =>
+      <tr id="t-body" key={user.email}>
+        <th id="th-body">{user.email}</th>
+        <th id="th-body">{user.first}</th>
+        <th id="th-body">{user.last}</th>
+        <th id="th-body">{user.status === 'active' ? 'Active' : user.status === 'pending' ? 'Pending' : 'Inactive'}</th>
+        <th id="th-body"><i onClick={() => deleteUser(user)} className="delete far fa-minus-square"></i></th>
+      </tr>
+    )
   const rosterFull = (
     <table className="admin-table">
       <tbody>
@@ -117,8 +117,8 @@ export default function Admin(){
     </table>
   )
 
-// DELETE user
-const deleteUser = (user) => {
+  // DELETE user
+  const deleteUser = (user) => {
     // console.log(user)
     // delete from user collection
     firebase.firestore().collection('users').doc(user.id).delete()
@@ -141,57 +141,72 @@ const deleteUser = (user) => {
 
   return (
     <>
-    <div className="admin-wrapper">
-      <Navbar />
-      <div className="admin-container">
+      <div className="admin-wrapper">
+        <Navbar />
+        <div className="admin-container">
 
-        <h3 id="admin-header">Administrator</h3>
-        <br/>
-        <div className="admin-tip"><p>If this message is visable to you, that means you are a Kaiser Administrator and as such have the ability to create, view, update, and delete access points for Kaiser Tools</p></div>
-        <div className="admin-tip"><p>Each user will have the ability to use the Kaiser Tools immediately after invitaion, but are reccommended to change their password from the default: "password"</p></div>
+          <h3 id="admin-header">Admin Dashboard</h3>
+          <br />
+          <div className="admin-tip">
+            <div className="admin-tri-panel">
+              <h4 className="tri-panel-header">
+                🏘 &nbsp; Hello Dan,
+                <div className="super-admin-tag">Super Admin</div>
+              </h4>
+              <p className='tri-panel-light'>Today is May 27, 2022</p>
+              <ul className='tri-panel-ul'>
+                <li>Atlanta</li>
+                <li>Charlotte</li>
+                <li>Cincinnatti</li>
+              </ul>
+            </div>
+            <div className="admin-tri-panel">2</div>
+            <div className="admin-tri-panel">3</div>
+          </div>
+          <br/><br/>
           {error}
 
-        <div className="admin-form">
-          <div className="admin-input-group">
-            <label className="admin-label" >first name</label>
-            <input type="text"
-            className="admin-input"
-            placeholder="Winston"
-            value={first}
-            onChange={(e) => setFirst(e.target.value)} />
-          </div>
-          <div className="admin-input-group">
-            <label className="admin-label" >last name</label>
-            <input type="text"
-            className="admin-input"
-            placeholder="Schmidt"
-            value={last}
-            onChange={(e) => setLast(e.target.value)} />
-          </div>
-          <div className="admin-input-group">
-            <label className="admin-label" >email</label>
-            <input type="email"
-            className="admin-input"
-            placeholder="wschmidt@gmail.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)} />
-          </div>
-          <button
-          className="admin-submit"
-          onClick={()=> signUpUser(first, last, email)}>
-          Invite
-          </button>
+          <div className="admin-form">
+            <div className="admin-input-group">
+              <label className="admin-label" >first name</label>
+              <input type="text"
+                className="admin-input"
+                placeholder="Winston"
+                value={first}
+                onChange={(e) => setFirst(e.target.value)} />
+            </div>
+            <div className="admin-input-group">
+              <label className="admin-label" >last name</label>
+              <input type="text"
+                className="admin-input"
+                placeholder="Schmidt"
+                value={last}
+                onChange={(e) => setLast(e.target.value)} />
+            </div>
+            <div className="admin-input-group">
+              <label className="admin-label" >email</label>
+              <input type="email"
+                className="admin-input"
+                placeholder="wschmidt@gmail.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)} />
+            </div>
+            <button
+              className="admin-submit"
+              onClick={() => signUpUser(first, last, email)}>
+              Invite
+            </button>
 
+          </div>
+          <div className="user-table">
+            {rosterFull}
+          </div>
         </div>
-        <div className="user-table">
-        {rosterFull}
-        </div>
+        <Footer className="footer-admin" />
+        {
+          // <div style={{position: 'absolute', bottom: '-100px', background: '#333333', width: '100%', height: '100px'}}></div>
+        }
       </div>
-      <Footer className="footer-admin"/>
-{
-// <div style={{position: 'absolute', bottom: '-100px', background: '#333333', width: '100%', height: '100px'}}></div>
- }
-    </div>
     </>
   )
 }
