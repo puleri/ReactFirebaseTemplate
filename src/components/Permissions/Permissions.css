@@ -205,10 +205,9 @@ th {
   font-family: 'Poppins', sans-serif;
 }
 .admin-submit {
-  position: absolute;
-  right: 0px;
-  top: 205px;
+  position: relative;
   background: #4CD196;
+  margin: 20px 0 -60px;
   border: none;
   border-radius: 15px;
   font-family: 'Poppins', sans-serif;
