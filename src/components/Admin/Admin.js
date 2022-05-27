@@ -150,7 +150,7 @@ export default function Admin() {
           <div className="admin-tip">
             <div className="admin-tri-panel">
               <h4 className="tri-panel-header">
-                🏘 &nbsp; Hello Dan,
+                🏘 &nbsp; Hello Matthewsd,
                 <div className="super-admin-tag">Super Admin</div>
               </h4>
               <p className='tri-panel-light'>Today is May 27, 2022</p>
