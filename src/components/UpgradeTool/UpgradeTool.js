@@ -267,11 +267,11 @@ export default function UpgradeTool() {
       price: "$" +iceWaterEntire
     },
     'iceValleys' : {
-      name: "Ice & Wanter Valleys",
+      name: "Ice & Water Valleys",
       price: "$" + iceWaterValleys
     },
     'iceRakes' : {
-      name: "Ice & Wanter Rakes",
+      name: "Ice & Water Rakes",
       price: "$" + iceWaterRakes
     },
     'iceEaves' : {
@@ -280,11 +280,11 @@ export default function UpgradeTool() {
     },
 
     'synth': {
-      name: "RhinoRoof U2 underlayment",
+      name: "RhinoRoof U20",
       price: "$" + rhinoRoof
     },
     'builderSynth': {
-      name: "RhinoRoof U2 underlayment",
+      name: "RhinoRoof U20",
       price: "$" + rhinoRoof
     },
     'betterSynth': {
@@ -303,11 +303,11 @@ export default function UpgradeTool() {
     },
 
     'dripRakes': {
-      name: "Drip rakes",
+      name: "Rakes",
       price: 200
     },
     'dripEaves': {
-      name: "Drip eaves",
+      name: "Eaves",
       price: 200
     },
     'gutterEaves': {
@@ -1810,7 +1810,7 @@ export default function UpgradeTool() {
       <ul>
         <h4>Underlayment</h4>
         <li className="upgrade-li" >
-          RhinoRoof U2
+          RhinoRoof U20
           <input
           type="checkbox"
           checked={chosenUpgrades.builderSynth === true }
@@ -2573,7 +2573,7 @@ const [isShown, setIsShown] = useState('0')
               exit={{x: prevSlideMotion==="roofType" ? "0" : "0", opacity:0}}
               transition={{ duration: .7 }}
               >
-            <h1 className="surv-header">Is a drip edge or gutter apron existing on the roof?</h1>
+            <h1 className="surv-header">Is drip edge or gutter apron existing on the roof?</h1>
             <div className="form-group">
               <label>Yes</label>
               <input
@@ -2846,7 +2846,7 @@ const [isShown, setIsShown] = useState('0')
               exit={{x: prevSlideMotion==="roofType" ? "0" : "0", opacity:0}}
               transition={{ duration: .7 }}
               >
-            <h1 className="surv-header">Is there an ice and water barrier existing on the roof?</h1>
+            <h1 className="surv-header">Is there ice and water barrier existing on the roof?</h1>
             <div className="form-group">
               <label>Yes</label>
               <input
@@ -3063,7 +3063,7 @@ const [isShown, setIsShown] = useState('0')
               exit={{x: prevSlideMotion==="roofType" ? "0" : "0", opacity:0}}
               transition={{ duration: .7 }}
               >
-            <h1 className="surv-header">Where is the ice and water barrier existing on the roof?</h1>
+            <h1 className="surv-header">Where is ice and water barrier existing on the roof?</h1>
 
               <div className="ice-water-inputs form-group">
               <label>Entire Roof</label>
@@ -3131,7 +3131,7 @@ const [isShown, setIsShown] = useState('0')
             exit={{x: prevSlideMotion==="roofType" ? "0" : "0", opacity:0}}
             transition={{ duration: .7 }}
             >
-          <h1 className="surv-header">Is there a ridge vent currently on the roof?</h1>
+          <h1 className="surv-header">Is there ridge vent currently on the roof?</h1>
           <div className="form-group">
           <label>Yes</label>
             <input
@@ -3171,7 +3171,7 @@ const [isShown, setIsShown] = useState('0')
               exit={{x: prevSlideMotion==="roofType" ? "0" : "0", opacity:0}}
               transition={{ duration: .7 }}
               >
-            <h1 className="surv-header">Where is the drip edge/gutter apron located on the roof?</h1>
+            <h1 className="surv-header">Where is drip edge/gutter apron located on the roof?</h1>
             <div className="form-group">
             <h2 className="drip-h2">Drip</h2>
               <label>Rakes</label>
