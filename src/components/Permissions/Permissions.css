@@ -141,6 +141,16 @@ tr:nth-child(even) {
   border-radius: 5px;
   font-size: 8px;
 }
+.add-new-user {
+  background-color: #56AD93;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 10px;
+  font-weight: 500;
+  height: 29px;
+  padding: 0 18px;
+}
 .admin-table-header {
   display: flex;
   margin: 0 55px;

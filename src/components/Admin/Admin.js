@@ -180,7 +180,7 @@ That password is <span className="code">password</span></p>
 
           <div className='admin-table-header'>
             <h3 className='users-table-heder'>All Users <span className='total-users'>34</span></h3>
-            <button>+ Add new user</button>
+            <button className='add-new-user'>+ Add New User</button>
           </div>
           {error}
 
