@@ -85,6 +85,8 @@ tr:nth-child(even) {
   align-items: center;
 }
 .admin-tri-panel {
+  color: #333333;
+  position: relative;
   background: white;
   width: 290px;
   height: 140px;
@@ -92,13 +94,33 @@ tr:nth-child(even) {
   padding: 20px 30px;
   box-shadow: 0px 4px 10px rgba(112, 112, 112, 0.4);
 }
+.admin-subheader-1 {
+  color: #333333;
+  position:absolute;
+  top: 53px;
+}
 .tri-panel-header {
+  color: #333333;
   font-size: 20px;
   font-weight: bold;
 }
 .tri-panel-light {
   font-weight: lighter;
   font-size: 12px;
+}
+.code {
+  background-color: rgba(217, 217, 217, 0.4);
+  color: #F47D58;
+  font-family:monospace;
+  font-weight: 400;
+  padding: 4px 8px;
+  margin: 0 0 0 5px;
+  border-radius: 5px;
+}
+.tri-panel-sub {
+  font-size: 12px;
+  line-height: 32px;
+  font-weight: 600;
 }
 .tri-panel-ul {
   margin: -5px 0 0 10px;
@@ -109,15 +131,33 @@ tr:nth-child(even) {
 }
 .super-admin-tag {
   display: inline;
+  position: absolute;
   font-weight: 500;
-  margin: 0 0 0 22px;
+  top: 55px;
+  right: 30px;
   padding: 5px 10px;
   color: #5E5E5E;
   background: #FEEED6;
   border-radius: 5px;
   font-size: 8px;
 }
-
+.admin-table-header {
+  display: flex;
+  margin: 0 55px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.users-table-heder {
+  color: #333333;
+  letter-spacing: .5px;
+  font-size: 23px;
+  font-weight: 800;
+}
+.total-users {
+  color: #939393;
+  margin: 0 0 0 10px;
+  font-size: 16px;
+}
 .admin-tip2 {
   font-size: 12px;
 }

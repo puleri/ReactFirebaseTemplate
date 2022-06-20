@@ -5,6 +5,7 @@
   },
   "hosting": {
     "public": "build",
+    "site": "kaisertools-dev",
     "ignore": [
       "firebase.json",
       "**/.*",

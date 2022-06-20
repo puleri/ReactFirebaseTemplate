@@ -150,20 +150,38 @@ export default function Admin() {
           <div className="admin-tip">
             <div className="admin-tri-panel">
               <h4 className="tri-panel-header">
-                🏘 &nbsp; Hello Matthewsd,
+                🏘 &nbsp; Hello Matt,
                 <div className="super-admin-tag">Super Admin</div>
               </h4>
+              <div className='admin-subheader-1'>
               <p className='tri-panel-light'>Today is May 27, 2022</p>
               <ul className='tri-panel-ul'>
                 <li>Atlanta</li>
                 <li>Charlotte</li>
                 <li>Cincinnatti</li>
               </ul>
+              </div>
             </div>
-            <div className="admin-tri-panel">2</div>
-            <div className="admin-tri-panel">3</div>
+            <div className="admin-tri-panel">
+              <h4 className="tri-panel-header">
+                🗺 &nbsp; Markets:
+              </h4>
+              <p className="tri-panel-sub">Create, edit, and update market-specific upgrade programs</p>
+            </div>
+            <div className="admin-tri-panel">
+              <h4 className="tri-panel-header">
+                💡 &nbsp; Tip:
+              </h4>
+              <p className="tri-panel-sub">New users have a default password.
+That password is <span className="code">password</span></p>
+            </div>
           </div>
           <br/><br/>
+
+          <div className='admin-table-header'>
+            <h3 className='users-table-heder'>All Users <span className='total-users'>34</span></h3>
+            <button>+ Add new user</button>
+          </div>
           {error}
 
           <div className="admin-form">
