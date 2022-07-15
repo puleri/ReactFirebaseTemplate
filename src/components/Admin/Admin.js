@@ -23,13 +23,30 @@ export default function Admin() {
   const [email, setEmail] = useState('')
 
   const [error, setError] = useState(
-    <div className="admin-tip2">
-      <h5>Please fill out all fields before inviting user</h5>
-    </div>
+    // <div className="admin-tip2">
+    //   <h5>Please fill out all fields before inviting user</h5>
+    // </div>
   )
+  const [currentUser, setCurrentUser] = useState('')
+
+  const getCurrentUser = () => {
+    const temp = getAuth.currentUser.uid;
+    const userRef = firebase.firestore().collection('admin').doc(temp);
+    var docRef = firebase.firestore().collection("admin").doc(temp);
+    docRef.get().then((doc) => {
+      if (doc.exists) {
+          // console.log("Document data:", doc.data());
+          setCurrentUser(doc.data())
+      } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+      }
+    })
+  }
 
   useEffect(() => {
     userDbMatch()
+    getCurrentUser()
   }, [])
 
   // CRD for Users
@@ -90,25 +107,35 @@ export default function Admin() {
     setIsLoading(false)
   }
 
+  const markets = (arr) => arr.forEach(el => {
+    return el
+  });
+
+  const roleStyles = (role) => {
+    if (role == "Super Admin") {
+      return "super-admin"
+    }
+  }
+
   const rosterIndex =
     roster.map((user) =>
       <tr id="t-body" key={user.email}>
-        <th id="th-body">{user.email}</th>
-        <th id="th-body">{user.first}</th>
-        <th id="th-body">{user.last}</th>
-        <th id="th-body">{user.status === 'active' ? 'Active' : user.status === 'pending' ? 'Pending' : 'Inactive'}</th>
-        <th id="th-body"><i onClick={() => deleteUser(user)} className="delete far fa-minus-square"></i></th>
+        <th id="th-body">{user.first} {user.last}<br/><span id="user-email">{user.email}</span></th>
+        <th id="th-body-role"><span id={roleStyles(user.role)}>{user.role}</span></th>
+        <th id="th-body-markets">{user.markets.join(', ')}</th>
+        <th id="th-body-status">{user.status === 'active' ? <em id="active">Active</em> : user.status === 'pending' ? <em id="pending">Pending</em> : 'Inactive'}</th>
+        <th id="th-body-actions"><span id="reset-pw"><i class="table-icon fa-solid fa-arrow-rotate-right"></i> Reset Password</span> <i onClick={() => deleteUser(user)} className="table-icon fa-solid fa-trash"></i> Delete</th>
       </tr>
     )
   const rosterFull = (
     <table className="admin-table">
       <tbody>
         <tr className="admin-table-label">
-          <th>Email</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Status</th>
-          <th>Remove</th>
+          <th id="table-label">name</th>
+          <th id="table-label">role</th>
+          <th id="table-label">markets</th>
+          <th id="table-label">status</th>
+          <th id="table-label">actions</th>
         </tr>
         {isLoading ? (
           <tr><th>Loading...</th></tr>
@@ -138,23 +165,28 @@ export default function Admin() {
     // .catch()
   }
 
+  const currentDate = new Date();
+  const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
+  const todayDate = currentDate.toLocaleDateString('en-us', options);
+  
+ 
 
   return (
     <>
       <div className="admin-wrapper">
         <Navbar />
         <div className="admin-container">
-
+          <div className='admin-center'>
           <h3 id="admin-header">Admin Dashboard</h3>
           <br />
           <div className="admin-tip">
             <div className="admin-tri-panel">
               <h4 className="tri-panel-header">
-                🏘 &nbsp; Hello Matt,
+                🏘 &nbsp; Hello {currentUser.first},
                 <div className="super-admin-tag">Super Admin</div>
               </h4>
               <div className='admin-subheader-1'>
-              <p className='tri-panel-light'>Today is May 27, 2022</p>
+              <p className='tri-panel-light'>Today is {todayDate}</p>
               <ul className='tri-panel-ul'>
                 <li>Atlanta</li>
                 <li>Charlotte</li>
@@ -184,6 +216,7 @@ That password is <span className="code">password</span></p>
           </div>
           {error}
 
+          {/* Create NEW user form
           <div className="admin-form">
             <div className="admin-input-group">
               <label className="admin-label" >first name</label>
@@ -215,12 +248,13 @@ That password is <span className="code">password</span></p>
               Invite
             </button>
 
-          </div>
+          </div> */}
           <div className="user-table">
             {rosterFull}
           </div>
         </div>
-        <Footer className="footer-admin" />
+        </div>
+        {/* <Footer className="footer-admin" /> */}
         {
           // <div style={{position: 'absolute', bottom: '-100px', background: '#333333', width: '100%', height: '100px'}}></div>
         }

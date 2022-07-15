@@ -121,6 +121,7 @@ export default function Permissions(props) {
     <th id="th-body">{user.email}</th>
     <th id="th-body">{user.first}</th>
     <th id="th-body">{user.last}</th>
+    <th id="th-body">{user.role}</th>
     <th id="th-body">{user.status === 'active' ? 'Active' : user.status === 'pending' ? 'Pending' : 'Inactive'}</th>
     <th id="th-body"><i onClick={() => deleteUser(user)} className="delete far fa-minus-square"></i></th>
   </tr>
@@ -132,6 +133,7 @@ export default function Permissions(props) {
         <th>Email</th>
         <th>First Name</th>
         <th>Last Name</th>
+        <th>Role</th>
         <th>Status</th>
         <th>Remove</th>
       </tr>

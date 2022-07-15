@@ -104,40 +104,10 @@ function Login(props) {
           console.log("temp user is", tempUser.first);
         })
       }
-      // else
-      // {
-      //     return setError('Username or password incorrect.')
-      // }
 
-
-
-        // console.log("form credentials", email, password)
-
-        // set user in localStorage
-        // localStorage.setItem('user', email)
-
-      // login(email, password)
-      //   .then((user = currentUser) => {
-      //     // Line for Kaiser Admins
-      //     if (user.user.email === "1@1.com") {
-      //       // return props.history.push('/permissions')
-      //     }
-      //     else {
-      //
-      //     }
-      //     // console.log(user)
-      //   })
-      //   .catch((error) => {
-      //     setError('Username or password incorrect.')
-      //   })
     }
 
-  // if (localStorage.getItem('user')) {
-  //   props.history.push('/permissions')
-  //   return (
-  //     <h1>You are already logged in. Redirecting to home.</h1>
-  //   )
-  // }
+
   return (
       <div className="login-page">
         <div className="login-welcome">

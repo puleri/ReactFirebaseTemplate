@@ -1,4 +1,9 @@
 .admin-container {
+  display: flex;
+  justify-content: center;
+}
+.admin-center {
+  max-width: 1050px;
 }
 #admin-header {
   font-weight: bold;
@@ -53,8 +58,22 @@
   bottom: -200px;
 }
 .user-table {
-  margin-left: -60%;
-  padding-left: 65%;
-  width: 100vw;
+  margin-top: -40px;
+  width: 1050px;
   height: auto;
+}
+#user-email {
+  color: #7A7A7A 
+}
+#table-label {
+  font-weight: bold;
+  color: rgba(84, 84, 84, 1);
+  padding: 12px 40px;
+}
+
+.admin-table-label {
+  display: flex;
+  justify-content: space-around;
+  background: rgba(246, 246, 246, 1);
+  border: none;
 }
