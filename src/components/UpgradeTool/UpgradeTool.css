@@ -215,7 +215,12 @@ left: 0;
   flex-direction: column;
 }
 #selected-table {
+  border-radius: 0;
+  background-color: none;
+  box-shadow: none;
   overflow-y: auto;
+  width: 50%;
+  margin-left: -10%;
   margin-bottom: 50px;
 }
 

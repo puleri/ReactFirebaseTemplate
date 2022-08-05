@@ -3682,8 +3682,8 @@ const [isShown, setIsShown] = useState('0')
           transition={{ duration: .7 }}
           >
         <h1 className="surv-header">Selected Upgrades</h1>
-          <table id="selected-table">
-            <tbody>
+          <table>
+            <tbody id="selected-table">
             <tr>
               <th>Name</th>
               <th>Price</th>

@@ -16,7 +16,7 @@ th {
   transition: background .1s ease-out;
 }
 #t-body:hover {
-  background:pink;
+  background: rgba(180, 178, 178, .3);
 }
 #th-body {
   color: #333333;
@@ -61,6 +61,10 @@ th {
 }
 #pending {
   color: rgba(255, 188, 125, 1);
+  font-weight: 500;
+}
+#inactive {
+  color: #F35C52;
   font-weight: 500;
 }
 #th-body-actions {
@@ -238,6 +242,8 @@ th {
 }
 tbody {
   overflow-x: scroll;
+  overflow-y: auto;
+  max-height: 500px;
   background: white;
   border-radius: 30px;
   position: absolute;

@@ -3,6 +3,10 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../Navbar/Navbar.js';
 
 import Footer from '../../components/Footer/Footer.js'
+import cin from '../../img/cin.jpg';
+import char from '../../img/char.jpg';
+import atl from '../../img/atl.jpg';
+
 
 import firebase, { getAuth } from '../../firebase';
 
@@ -10,17 +14,21 @@ import 'firebase/firestore';
 
 
 import './Admin.css';
+import CreateModal from './CreateModal.js';
 
 export default function Admin() {
+
+  const [first, setFirst] = useState('')
+  const [last, setLast] = useState('')
+  const [email, setEmail] = useState('')
+
 
   // Initial State
 
   const [roster, setRoster] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
-  const [first, setFirst] = useState('')
-  const [last, setLast] = useState('')
-  const [email, setEmail] = useState('')
+  const [createShow, setCreateShow] = useState(false)
 
   const [error, setError] = useState(
     // <div className="admin-tip2">
@@ -123,7 +131,7 @@ export default function Admin() {
         <th id="th-body">{user.first} {user.last}<br/><span id="user-email">{user.email}</span></th>
         <th id="th-body-role"><span id={roleStyles(user.role)}>{user.role}</span></th>
         <th id="th-body-markets">{user.markets.join(', ')}</th>
-        <th id="th-body-status">{user.status === 'active' ? <em id="active">Active</em> : user.status === 'pending' ? <em id="pending">Pending</em> : 'Inactive'}</th>
+        <th id="th-body-status">{user.status === 'active' ? <em id="active">Active</em> : user.status === 'pending' ? <em id="pending">Pending</em> : <em id="inactive">Inactive</em>}</th>
         <th id="th-body-actions"><span id="reset-pw"><i class="table-icon fa-solid fa-arrow-rotate-right"></i> Reset Password</span> <i onClick={() => deleteUser(user)} className="table-icon fa-solid fa-trash"></i> Delete</th>
       </tr>
     )
@@ -212,45 +220,42 @@ That password is <span className="code">password</span></p>
 
           <div className='admin-table-header'>
             <h3 className='users-table-heder'>All Users <span className='total-users'>34</span></h3>
-            <button className='add-new-user'>+ Add New User</button>
+            <button onClick={() => setCreateShow(!createShow)} className='add-new-user'>+ Add New User</button>
           </div>
           {error}
 
-          {/* Create NEW user form
-          <div className="admin-form">
-            <div className="admin-input-group">
-              <label className="admin-label" >first name</label>
-              <input type="text"
-                className="admin-input"
-                placeholder="Winston"
-                value={first}
-                onChange={(e) => setFirst(e.target.value)} />
-            </div>
-            <div className="admin-input-group">
-              <label className="admin-label" >last name</label>
-              <input type="text"
-                className="admin-input"
-                placeholder="Schmidt"
-                value={last}
-                onChange={(e) => setLast(e.target.value)} />
-            </div>
-            <div className="admin-input-group">
-              <label className="admin-label" >email</label>
-              <input type="email"
-                className="admin-input"
-                placeholder="wschmidt@gmail.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)} />
-            </div>
-            <button
-              className="admin-submit"
-              onClick={() => signUpUser(first, last, email)}>
-              Invite
-            </button>
-
-          </div> */}
+         
           <div className="user-table">
             {rosterFull}
+          </div>
+
+          <div className='markets-container'>
+
+            <h3 className='markets-container-heder'>Markets <span className='total-markets'>3</span></h3>
+            
+            <div className='markets-wrapper'>
+              <a href="/admin/charlotte-market" className='cin'>
+                <div id='overlay'>
+                  <h1 id="market-label">Charlotte</h1>
+                </div>
+                <img id='cin-pic' src={char} alt='char' />
+
+              </a>
+              <a href="/admin/cincinnati-market" className='cin'>
+                <div id='overlay'>
+                  <h1 id="market-label">Cincinnati</h1>
+                </div>
+                <img id='cin-pic' src={cin} alt='cinci' />
+
+              </a>
+              <a href="/admin/atlanta-market" className='cin'>
+              <div id='overlay'>
+                  <h1 id="market-label">Atlanta</h1>
+                </div>
+                <img id='cin-pic' src={atl} alt='atl' />
+              </a>
+            </div>
+        
           </div>
         </div>
         </div>
@@ -258,6 +263,8 @@ That password is <span className="code">password</span></p>
         {
           // <div style={{position: 'absolute', bottom: '-100px', background: '#333333', width: '100%', height: '100px'}}></div>
         }
+              { createShow ? <CreateModal setCreateShow={setCreateShow} show={createShow} /> :  <></>}
+
       </div>
     </>
   )
