@@ -18,27 +18,27 @@ export default function NavMarket(props) {
         <div className={css.wrapper}>
             <div className={css.container}>
                 <h3 className={css.header}>kaiser</h3>
-                <div className={css.iconWrapper}>
+                <div onClick={() => props.setCategory('Shingles')} className={css.iconWrapper}>
                     <img className={css.icon} src={shingleIcon} alt="shingle icon"/>
                     <p className={css.label}>shingle</p>
                 </div>
-                <div className={css.iconWrapper}>
+                <div onClick={() => props.setCategory('Starter Strip')} className={css.iconWrapper}>
                     <img className={css.icon3} src={starterIcon} alt="starter strip icon"/>
                     <p className={css.label}>starter</p>
                 </div>
-                <div className={css.iconWrapper}>
+                <div onClick={() => props.setCategory('Ridge Cap')} className={css.iconWrapper}>
                     <img className={css.icon3} src={ridgeCapIcon} alt="ridge cap icon"/>
                     <p className={css.label}>ridge cap</p>
                 </div>
-                <div className={css.iconWrapper}>
+                <div onClick={() => props.setCategory('Ice & Water Barrier')} className={css.iconWrapper}>
                     <img className={css.icon2} src={iceWaterIcon} alt="ice water icon"/>
                     <p className={css.label}>ice & water</p>
                 </div>
-                <div className={css.iconWrapper}>
+                <div onClick={() => props.setCategory('Metal Edge')} className={css.iconWrapper}>
                     <img className={css.icon} src={metalEdgeIcon} alt="metal edge icon"/>
                     <p className={css.label}>metal edge</p>
                 </div>
-                <div className={css.iconWrapper}>
+                <div onClick={() => props.setCategory('Ridge Vent')} className={css.iconWrapper}>
                     <img className={css.icon4} src={ridgeVentIcon} alt="ridge vent icon"/>
                     <p className={css.label}>ridge vent</p>
                 </div>
