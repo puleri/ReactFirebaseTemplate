@@ -50,6 +50,15 @@
     color: #333333;
     font-weight: 700;
 }
+#multiInp {
+    width: 60px;
+    margin-left: -48px;
+}
+#wasteInp {
+    width: 60px;
+    margin-left: -35px;
+
+}
 .wasteLabel {
     color: #939393;
     margin: 0 0 0 10px;

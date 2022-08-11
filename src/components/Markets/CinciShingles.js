@@ -65,12 +65,20 @@ export default function CinciShingles(props) {
             <th></th>
             <th></th>
             <th></th>
-          
-            <th className={css.waste}>{shingle.multiplier}&ensp;<i id={css.cash} class="fa-solid fa-calculator"></i></th>
-            <th className={css.waste}> {(shingle.waste * 10 * 10 - 100)}%<span className={css.wasteLabel}>WF</span></th>
-            { (edit == i) ? <th className={css.edit} onClick={() => setEdit(null)}><i class="fa-solid fa-circle-check"></i></th>
- : <th className={css.edit} onClick={() => setEdit(i)}><i class="fa-solid fa-pen"></i></th>
-}        </tr>
+            { (edit == i)
+            ? <th className={css.waste}><input id={css.multiInp} type='text' />&ensp;<i id={css.cash} class="fa-solid fa-calculator"></i></th>
+            : <th className={css.waste}>{shingle.multiplier}&ensp;<i id={css.cash} class="fa-solid fa-calculator"></i></th>
+            }
+
+            { (edit == i)
+            ? <th className={css.waste}> <input id={css.wasteInp} type='text' /> %<span className={css.wasteLabel}>WF</span></th>
+            : <th className={css.waste}> {(shingle.waste * 10 * 10 - 100)} %<span className={css.wasteLabel}>WF</span></th>
+            }
+            { (edit == i) 
+            ? <th className={css.edit} onClick={() => setEdit(null)}><i class="fa-solid fa-circle-check"></i></th>
+            : <th className={css.edit} onClick={() => setEdit(i)}><i class="fa-solid fa-pen"></i></th>
+            } 
+       </tr>
     )
     return (
         <>
