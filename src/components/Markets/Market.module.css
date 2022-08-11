@@ -50,13 +50,18 @@
     color: #333333;
     font-weight: 700;
 }
+#x {
+    font-weight: 800;
+    font-size: 14px;
+    padding: 0 6px 0 2px;
+}
 #multiInp {
     width: 60px;
-    margin-left: -48px;
+    margin-left: -28px;
 }
 #wasteInp {
     width: 60px;
-    margin-left: -35px;
+    margin-left: -50px;
 
 }
 .wasteLabel {
@@ -83,6 +88,16 @@
 .edit:hover {
     color: #53D098;
 }
+.cancel {
+    font-size: 20px;
+    color: #333333;
+    font-weight: 700;
+    cursor: pointer;
+    margin: 0 -60px 0 -55px;
+}
+.cancel:hover {
+    color: #e63b3b;
+}
 .footer {
     position:absolute;
     bottom: -40px;
@@ -93,7 +108,6 @@
     --width: 50px;
     --height: calc(var(--width) / 2);
     --border-radius: calc(var(--height) / 2);
-  
     display: inline-block;
     cursor: pointer;
   }
