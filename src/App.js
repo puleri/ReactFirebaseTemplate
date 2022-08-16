@@ -24,6 +24,7 @@ import React, { useState, useEffect } from 'react';
 import CinciMarket from './components/Markets/CinciMarket';
 import CharMarket from './components/Markets/CharMarket';
 import AtlMarket from './components/Markets/AtlMarket';
+import Manufactor from './components/Manufactor/Manufactor';
 
 // **** DO NOT DELETE OR COMMENT OUT-- ignore linter
 // import firebase, { auth } from 'firebase';
@@ -124,6 +125,10 @@ function App(props) {
             <PrivateRoute path='/admin/atlanta-market'
               currentUser={currentUser}
               component={ AtlMarket } />
+            
+            <PrivateRoute path='/admin/manufactor'
+              currentUser={currentUser}
+              component={ Manufactor } />
 
     {
     // end of private routes

@@ -8,6 +8,8 @@ import ridgeCapIcon from "./icons/ridgeCapIcon.png"
 import ridgeVentIcon from "./icons/ridgeVentIcon.png"
 import shingleIcon from "./icons/shingleIcon.png"
 import starterIcon from "./icons/starterIcon.png"
+import underlaymentIcon from "./icons/underlaymentIcon.png"
+
 
 
 export default function NavMarket(props) {
@@ -23,7 +25,7 @@ export default function NavMarket(props) {
                     <p className={css.label}>shingle</p>
                 </div>
                 <div onClick={() => props.setCategory('Starter Strip')} className={css.iconWrapper}>
-                    <img className={css.icon3} src={starterIcon} alt="starter strip icon"/>
+                    <img className={css.icon4} src={starterIcon} alt="starter strip icon"/>
                     <p className={css.label}>starter</p>
                 </div>
                 <div onClick={() => props.setCategory('Ridge Cap')} className={css.iconWrapper}>
@@ -38,9 +40,13 @@ export default function NavMarket(props) {
                     <img className={css.icon} src={metalEdgeIcon} alt="metal edge icon"/>
                     <p className={css.label}>metal edge</p>
                 </div>
-                <div onClick={() => props.setCategory('Ridge Vent')} className={css.iconWrapper}>
+                <div onClick={() => props.setCategory('Underlayment')} className={css.iconWrapper}>
+                    <img className={css.icon5} src={underlaymentIcon} alt="underlayment icon"/>
+                    <p className={css.label}>underlayment</p>
+                </div>
+                <div onClick={() => props.setCategory('Venting')} className={css.iconWrapper}>
                     <img className={css.icon4} src={ridgeVentIcon} alt="ridge vent icon"/>
-                    <p className={css.label}>ridge vent</p>
+                    <p className={css.label}>venting</p>
                 </div>
              
             </div>
