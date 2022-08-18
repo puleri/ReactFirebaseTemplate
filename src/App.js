@@ -25,6 +25,7 @@ import CinciMarket from './components/Markets/CinciMarket';
 import CharMarket from './components/Markets/CharMarket';
 import AtlMarket from './components/Markets/AtlMarket';
 import Manufactor from './components/Manufactor/Manufactor';
+import OwensCorning from './components/Manufactor/OwensCorning';
 
 // **** DO NOT DELETE OR COMMENT OUT-- ignore linter
 // import firebase, { auth } from 'firebase';
@@ -126,9 +127,9 @@ function App(props) {
               currentUser={currentUser}
               component={ AtlMarket } />
             
-            <PrivateRoute path='/admin/manufactor'
+            <PrivateRoute path='/admin/owens-corning'
               currentUser={currentUser}
-              component={ Manufactor } />
+              component={ OwensCorning } />
 
     {
     // end of private routes

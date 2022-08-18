@@ -89,7 +89,7 @@ function MarketDropdown (props) {
         role="button"
         onKeyPress={() => toggle(!isActive)}
         onClick={(e) => toggle(!isActive)}>
-        <div classeName="dropdown-header">
+        <div className="dropdown-header">
           <p css={css`display: flex;`}><span css={css`text-align:left;`}>{ (!selected[0]) ? <span css={css` color:#757575;`}>Market</span> : selected[0].value } </span><span css={css`position: absolute; right: 10px;`}>{isActive
             ? <span className="fas fa-caret-down up"></span>
             : <span className="fas fa-caret-down"></span>

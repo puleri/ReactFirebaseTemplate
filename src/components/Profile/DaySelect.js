@@ -82,7 +82,7 @@ function DaySelect () {
 
         onKeyPress={() => toggle(!isActive)}
         onClick={(e) => toggle(!isActive)}>
-        <div classeName="dropdown-header">
+        <div className="dropdown-header">
           <p className="dropdown-header-title-bold"><span css={css`text-align:left;`}>{ (!selected[0]) ? 'Day' : selected[0].value } </span><span css={css`position: absolute; right: 10px;`}>{isActive
             ? <span className="fas fa-caret-down up"></span>
             : <span className="fas fa-caret-down"></span>

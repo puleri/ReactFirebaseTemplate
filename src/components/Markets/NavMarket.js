@@ -20,7 +20,7 @@ export default function NavMarket(props) {
         <div className={css.wrapper}>
             <div className={css.container}>
                 <h3 className={css.header}>kaiser</h3>
-                <div onClick={() => props.setCategory('Shingles')} className={css.iconWrapper}>
+                <div onClick={() => props.setCategory('Shingle')} className={css.iconWrapper}>
                     <img className={css.icon} src={shingleIcon} alt="shingle icon"/>
                     <p className={css.label}>shingle</p>
                 </div>

@@ -1,35 +1,47 @@
-import { useState } from 'react'
+/* eslint-disable react/prop-types */
+// eslint-disable-next-line
+import React, { useState } from 'react'
 import onClickOutside from 'react-onclickoutside'
 
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react'
 
-function YearSelect () {
-  const select = []
-  for (let i = 100; i > 0; i--) {
-    select.push({ id: i, value: 1917 + i })
-  }
-  const yearValidation = (e) => {
-    if (!selected[0]) {
-      setYearValid(false)
-    } else {
-      setYearValid(true)
-    }
-  }
-  const [yearValid, setYearValid] = useState(true)
-
+function UnitDropdown (props) {
+  const [monthValid, setMonthValid] = useState(true)
   const [isActive, setIsActive] = useState(false)
   const [selected, setSelected] = useState([])
   const toggle = () => setIsActive(!isActive)
 
+  UnitDropdown.handleClickOutside = () => setIsActive(false)
+
   const handleOnClick = item => {
-    setYearValid(true)
+    setMonthValid(true)
     setSelected([item])
+    if (!props.setNewMargin) {
+      props.setNewData({ ...props.newData, unit: item.value })
+    } else {
+      props.setNewMargin({ ...props.newMargin, unit: item.value })
+    }
+
   }
 
-  YearSelect.handleClickOutside = () => setIsActive(false)
+  const monthValidation = (e) => {
+    if (!selected[0]) {
+      setMonthValid(false)
+    } else {
+      setMonthValid(true)
+    }
+  }
 
+  const select = [
+    { id: '1', value: 'Roll' },
+    { id: '2', value: 'Per Piece' },
+    { id: '3', value: 'Each' },
+    { id: '4', value: 'Lineal Feet' },
+    { id: '5', value: 'Bundle' },
+
+  ]
   const isItemInSelection = (item) => {
     if (selected.find(current => current.id === item.id)) {
       return true
@@ -38,15 +50,19 @@ function YearSelect () {
   }
 
   return (
-    <div css={ css`position:relative`}>
+    <div css={ css`
+    position:relative;
+    height: 10px;
+    margin-top: -20px;
+    width: 100%;
+    `}>
     <div
     tabIndex={0}
     role="button"
     onKeyPress={() => toggle(!isActive)}
     onClick={(e) => toggle(!isActive)}
-    // onBlur={(e) => yearValidation(e)}
-
-    css={css`
+// {    onBlur={(e) => monthValidation(e)}    exit focus validation }
+      css={css`
       text-align: center;
       background: #2a2e35 ;
       position: relative;
@@ -58,66 +74,71 @@ function YearSelect () {
         'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
         sans-serif;
         color: #333333;
+        letter-spacing: .5px;
         background: white ;
         border: 1px solid lightgrey;
-      max-height: 25px;
-      border-radius: 40px;
-      margin: 8px 0;
-      padding: 24px 0 10px 16px;
+      border-radius: 5px;
+      max-height: 15px;
+      border-radius: 5px;
+      margin: 0px 18px;
+      padding: 26px 0 10px 16px;
       box-sizing: border-box;
       grid-template-columns: 40% 25% 30%;
-      width: 120px;
-      min-height: 25px;
+      width: 100%;
+      overflow:visible;
+
+      min-height: 15px;
       &:focus {
-        outline: none;
-        border: 1px solid #317f6d;
-      }
+        outline: 1px solid #02EF9D;
+    }
       &:hover {
         border: 1px solid #63686f;
       }
     `}>
       <div
-      className={ yearValid ? 'year-dropdown-wrapper' : 'year-red red'}
-        >
-        <div className="dropdown-header">
-          <p className="dropdown-header-title-bold"><span css={css`text-align:left;`}>{ (!selected[0]) ? 'Year' : selected[0].value } </span><span css={css`position: absolute; right: 10px;`}>{isActive
+        className={ monthValid ? 'month-dropdown-wrapper' : 'month-red red'}
+        role="button"
+        onKeyPress={() => toggle(!isActive)}
+        onClick={(e) => toggle(!isActive)}>
+        <div>
+          <p css={css`display: flex;`}><span css={css`text-align:left;`}>{ (!selected[0]) ? <span css={css` color:#757575;`}>Unit</span> : selected[0].value } </span><span css={css`position: absolute; right: 10px;`}>{isActive
             ? <span className="fas fa-caret-down up"></span>
             : <span className="fas fa-caret-down"></span>
-      }</span></p>
-      </div>
-      </div>
+        }</span></p>
         </div>
-        <div className="dropdown-header_action">
+        </div>
+        </div>
+        <div >
           <p></p>
         </div>
         { isActive && (
           <div
           css={css`
             text-align: center;
-            font-weight: 500;
-            color: #333333;
-            background: white ;
-            border: 1px solid lightgrey;
             position: absolute;
-            z-index: 9;
-            font-size: 10px;
+            z-index: 19;
+            font-size: 12px;
+            font-weight: 500;
             font-family: "Poppins", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
               'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
               sans-serif;
+            color: #333333;
+            background: white ;
+            border: 1px solid lightgrey;
             border-radius: 5px;
-            max-height: 165px;
+            max-height: 122px;
             overflow-y: auto;
-            padding: 2.5px 5px;
-            box-shadow: \-10px 10px 20px #787878;
+            outline: 10px solid transparent;
+            margin-top: -25px;
+            padding: 15px 15px 0;
             box-sizing: border-box;
+            box-shadow: 3px 10px 20px #787878;
             grid-template-columns: 40% 25% 30%;
-            width: 120px;
+            width: 200px;
             &:focus {
-              outline:none;
-
+                outline: 1px solid #02EF9D;
             }
-          `}
-          className="dropdown-list">
+          `}>
             {select.map(item => (
               <div
               onKeyPress={() => toggle(!isActive)}
@@ -128,34 +149,12 @@ function YearSelect () {
                   transition: .2s font-size ease;
                  &:hover {
                   cursor: pointer;
-                  font-size: 11px;
-                  &:focus {
-                    outline:none;
-                  }
+                  font-size: 14px;
                 }`}
                key={item.id}>
-                <button
+                <p
                 css={css`
-                  background:none;
-                  border:none;
-                  font-family: "Poppins", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-                    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-                    sans-serif;
-                  width: 100%;
-                  color: #333333;
-                  background: white ;
-                  font-weight: 500;
-                  font-size: 10px;
-                  padding: 5px 2.5px 1px;
                   text-align:left;
-                  transition: .2s font-size ease;
-                  &:hover {
-                   cursor: pointer;
-                   font-size: 12px;
-                  &:focus {
-                    outline:none;
-                    border: none;
-                  }
                   `}
                 type="button" onClick={(e) => {
                   e.preventDefault()
@@ -163,7 +162,7 @@ function YearSelect () {
                 }}>
                   {item.value}
                   <p>{isItemInSelection(item)}</p>
-                </button>
+                </p>
               </div>
             ))}
           </div>
@@ -178,12 +177,14 @@ function YearSelect () {
           bottom: 5px;
           color: red;
           font-size: 8px;`}>
-          { yearValid ? '' : 'This field is required*'}
+          { monthValid ? '' : 'This field is required*'}
         </em>
         </div>
   )
 }
+
 const clickOutsideConfig = {
-  handleClickOutside: () => YearSelect.handleClickOutside
+  handleClickOutside: () => UnitDropdown.handleClickOutside
 }
-export default onClickOutside(YearSelect, clickOutsideConfig)
+
+export default onClickOutside(UnitDropdown, clickOutsideConfig)
