@@ -8,7 +8,7 @@ import UnitDropdown from './UnitDropdown';
 
 
 
-export default function OwenRidgeCap(props) {
+export default function OwenMetalEdge(props) {
     const [starter, setStarter] = useState([]);
     const [edit, setEdit] = useState(null);
     const [newMargin, setNewMargin] = useState({
@@ -36,7 +36,7 @@ export default function OwenRidgeCap(props) {
       // READ index of starter
     const starterDbMatch = () => {
         // setIsLoading(true)
-        const q = firebase.firestore().collection('owens-ridgecap')
+        const q = firebase.firestore().collection('owens-metaledge')
         q.get().then(querySnapshot => {
         const d = querySnapshot.docs.map(d => d.data())
         //   console.log('data BIG ', d)
@@ -56,7 +56,7 @@ export default function OwenRidgeCap(props) {
         const name = starter[edit].name;
         console.log(newMargin)
 
-        var docRef = db.collection("owens-ridgecap").doc(name);
+        var docRef = db.collection("owens-metaledge").doc(name);
         let wastePercent;
         let newState = [...starter];
 
@@ -119,7 +119,7 @@ export default function OwenRidgeCap(props) {
         }
         const db = firebase.firestore();
         // Add a new document in collection "cities"
-        db.collection("owens-ridgecap").doc(newData.name).set({
+        db.collection("owens-metaledge").doc(newData.name).set({
             name: newData.name,
             actual: Number(newData.actual),
             unit: newData.unit

@@ -6,6 +6,12 @@ import NavMarket from '../Markets/NavMarket.js'
 import OwenShingles from './OwenShingles.js';
 import OwenRidgeCap from './OwenRidgeCap.js';
 import OwenStarter from './OwenStarter.js';
+import OwenVenting from './OwenVenting.js';
+import OwenIceWater from './OwenIceWater.js';
+import OwenUnderlayment from './OwenUnderlayment.js';
+import OwenMetalEdge from './OwenMetalEdge.js';
+
+
 
 
 export default function OwensCorning(props) {
@@ -23,6 +29,17 @@ export default function OwensCorning(props) {
             case "Ridge Cap":
                 return <OwenRidgeCap setFormOpen={setFormOpen} formOpen={formOpen}/>
 
+            case "Venting":
+                return <OwenVenting setFormOpen={setFormOpen} formOpen={formOpen}/>
+
+            case "Ice & Water Barrier":
+                return <OwenIceWater setFormOpen={setFormOpen} formOpen={formOpen}/>
+            
+            case "Underlayment":
+                return <OwenUnderlayment setFormOpen={setFormOpen} formOpen={formOpen}/>
+            
+            case "Metal Edge":
+                return <OwenMetalEdge setFormOpen={setFormOpen} formOpen={formOpen}/>
         }
 
     }

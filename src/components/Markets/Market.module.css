@@ -106,15 +106,20 @@
     padding: 0 6px 0 2px;
 }
 #multiInp {
+    background-color: white;
     width: 60px;
     margin-left: -28px;
 }
 #wasteInp {
+    background-color: white;
+
     width: 60px;
     margin-left: -50px;
 
 }
 #nameInp {
+    background-color: white;
+
     width: 200px;
     margin-right: -105px;
 }

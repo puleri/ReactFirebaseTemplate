@@ -215,7 +215,7 @@ export default function OwenStarter(props) {
             ? <div className={notification.error ? css.error : css.success}>{notification.message}</div>
             : <></>
             }
-            <div className={css.key}><i id={css.cash} className="fa-solid fa-calculator"></i>&ensp; Cash multiplier &ensp; &ensp; | &ensp; &ensp; <span className={css.wasteKey}>WF &ensp;</span> Waste factor</div>
+            <div className={css.key}>&ensp; Actual Coverage &ensp; &ensp; | &ensp; &ensp; Unit</div>
             <div className={css.tableWrapper}>
                     {starterIndex}
                     {props.formOpen ? newStarterForm() : <></>}
