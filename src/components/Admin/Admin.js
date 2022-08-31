@@ -6,6 +6,8 @@ import Footer from '../../components/Footer/Footer.js'
 import cin from '../../img/cin.jpg';
 import char from '../../img/char.jpg';
 import atl from '../../img/atl.jpg';
+import owen from './owensCorningIcon.png'
+import more from './Ellipsis.png';
 
 
 import firebase, { getAuth } from '../../firebase';
@@ -15,6 +17,7 @@ import 'firebase/firestore';
 
 import './Admin.css';
 import CreateModal from './CreateModal.js';
+import MarketSettingsModal from './MarketSettingsModal.js';
 
 export default function Admin() {
 
@@ -29,6 +32,8 @@ export default function Admin() {
   const [isLoading, setIsLoading] = useState(true)
 
   const [createShow, setCreateShow] = useState(false)
+  const [moreShow, setMoreShow] = useState(false)
+
 
   const [error, setError] = useState(
     // <div className="admin-tip2">
@@ -202,11 +207,21 @@ export default function Admin() {
               </ul>
               </div>
             </div>
-            <div className="admin-tri-panel">
+            <div className="admin-tri-panel-hoverable">
               <h4 className="tri-panel-header">
-                🗺 &nbsp; Markets:
+              🔨 &nbsp; Owens Corning
               </h4>
-              <p className="tri-panel-sub">Create, edit, and update market-specific upgrade programs</p>
+              <p className='tri-panel-light'>Available Markets</p>
+              <ul className='tri-panel-ul'>
+                <li>Atlanta</li>
+                <li>Charlotte</li>
+                <li>Cincinnatti</li>
+              </ul>
+              <img onClick={()=>setMoreShow(!moreShow)} id='more-icon' src={more} alt='more' />
+              {
+                moreShow == true ? <MarketSettingsModal /> : <></>
+              }
+              <img id='owens-corning-icon' src={owen} alt='owens-corning' />
             </div>
             <div className="admin-tri-panel">
               <h4 className="tri-panel-header">

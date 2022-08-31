@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Footer from '../Footer/Footer.js';
 import Navbar from '../Navbar/Navbar.js';
 import css from './Manufactor.module.css'
-import NavMarket from '../Markets/NavMarket.js'
+import NavManufactor from './NavManufactor.js'
 import OwenShingles from './OwenShingles.js';
 import OwenRidgeCap from './OwenRidgeCap.js';
 import OwenStarter from './OwenStarter.js';
@@ -61,7 +61,7 @@ export default function OwensCorning(props) {
                 </div>
                 
             </div>
-            <NavMarket setCategory={setCategory}/>
+            <NavManufactor setCategory={setCategory}/>
 
         </>
     )
