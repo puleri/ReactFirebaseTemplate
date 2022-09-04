@@ -9,8 +9,8 @@ export default function MarketSettingsModal(props) {
   return (
     <>
         <div className={css.container}>
-            <a href='/admin/owens-corning'>Go to template</a>
-            <a href='/admin/owens-corning'>Manage active markets</a>
+            <a className={css.moreLink} href='/admin/owens-corning'>Go to template</a>
+            <a className={css.moreLink} href='/admin/certainteed'>CertainTeed</a>
         </div>
     </>
   )

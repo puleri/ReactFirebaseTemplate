@@ -16,3 +16,11 @@
     border-radius: 8px;
     filter: drop-shadow(0px 1px 10px rgba(0, 0, 0, 0.25));
 }
+
+.moreLink {
+    color: #333333;
+}
+.moreLink:hover {
+    color: #AAAAAA;
+    text-decoration: none;
+}
