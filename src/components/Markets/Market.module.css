@@ -14,6 +14,7 @@
     border: 1px solid #fbabab;
     background-color: #e63b3b92;
 }
+
 .success {
     position:absolute;
     font-weight: 800;
@@ -86,6 +87,7 @@
     align-items: center;
 }
 .name {
+    width: 30%;
     font-size: 20px;
     color: #333333;
     font-weight: 700;
