@@ -10,12 +10,13 @@ import OwenVenting from './OwenVenting.js';
 import OwenIceWater from './OwenIceWater.js';
 import OwenUnderlayment from './OwenUnderlayment.js';
 import OwenMetalEdge from './OwenMetalEdge.js';
+import OwenActive from './OwenActive.js';
 
 
 
 
 export default function OwensCorning(props) {
-    const [category, setCategory] = useState('Shingle')
+    const [category, setCategory] = useState('Active Markets')
     const [formOpen, setFormOpen] = useState(false)
 
     const shownContent = () => {
@@ -40,6 +41,9 @@ export default function OwensCorning(props) {
             
             case "Metal Edge":
                 return <OwenMetalEdge setFormOpen={setFormOpen} formOpen={formOpen}/>
+            
+            case "Active Markets":
+                return <OwenActive setFormOpen={setFormOpen} formOpen={formOpen}/>
         }
 
     }
@@ -48,7 +52,7 @@ export default function OwensCorning(props) {
         <>
             <Navbar/>
             <div className={css.container}>
-                <h2 className={css.header}>Owens Corning 
+                <h2 className={css.header}>Template 
                     <span className='total-users'>{category}</span>
                 </h2>
                 <button className={css.addNew} onClick={() => setFormOpen(true)}>+ Add New {category}</button>
