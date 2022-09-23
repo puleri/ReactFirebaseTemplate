@@ -209,7 +209,7 @@ export default function Admin() {
             </div>
             <div className="admin-tri-panel-hoverable">
               <h4 className="tri-panel-header">
-              🔨 &nbsp; Owens Corning
+              🔨 &nbsp; Templates
               </h4>
               <p className='tri-panel-light'>Available Markets</p>
               <ul className='tri-panel-ul'>

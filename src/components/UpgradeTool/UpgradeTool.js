@@ -21,7 +21,7 @@ export default function UpgradeTool() {
   // true means forwards, false means backwards
   const [direction, setDirection] = useState(true);
   const [roofTemplate, setRoofTemplate] = useState({
-    step: "selected-upgrades",
+    step: "0",
     job: "",
     name: "",
     roofMeasurement: "",
