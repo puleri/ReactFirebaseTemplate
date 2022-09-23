@@ -43,35 +43,6 @@ function App(props) {
     setCurrentUser(firebase.auth().currentUser)
   }, [])
 
-  // const AuthenticatedRoute = ({ conponent: C, ...props }) => {
-  //   // const { isAuthenticated } = useAuthState()
-  //   // console.log('App scope', JSON.stringify(getAuth))
-  //   return (
-  //     <Route
-  //     {...props}
-  //     render={routeProps =>
-  //       currentUser ? <C /> : <Redirect to="/login" />}
-  //       />
-  //     )
-  //   }
-  //   const UnauthenticatedRoute = ({ conponent: C, ...props }) => {
-  //     // const { isAuthenticated } = useAuthState()
-  //     // console.log(isAuthenticated)
-  //     // console.log('App scope', JSON.stringify(getAuth))
-  //     return (
-  //       <Route
-  //       {...props}
-  //       render={routeProps =>
-  //         !currentUser ? <C /> : <Redirect to="/upgradetool" />}
-  //         />
-  //       )
-  //     }
-
-  // clearing local storage for when working on the same dev port as other projects
-  // useEffect(() => {
-  //   localStorage.clear()
-  // }, [])
-
   return (
     // <AuthProvider>
     <div className="App-wrapper">

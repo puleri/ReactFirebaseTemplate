@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+import kaiser from './kaiser.png';
+import PDF from './PDF.png'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Container'
@@ -19,7 +21,7 @@ export default function UpgradeTool() {
   // true means forwards, false means backwards
   const [direction, setDirection] = useState(true);
   const [roofTemplate, setRoofTemplate] = useState({
-    step: "0",
+    step: "selected-upgrades",
     job: "",
     name: "",
     roofMeasurement: "",
@@ -263,19 +265,19 @@ export default function UpgradeTool() {
     },
 
     'iceEntire' : {
-      name: "Ice & Wanter Entire roof",
+      name: "Ice & Water Entire roof",
       price: "$" +iceWaterEntire
     },
     'iceValleys' : {
-      name: "Ice & Wanter Valleys",
+      name: "Ice & Water Valleys",
       price: "$" + iceWaterValleys
     },
     'iceRakes' : {
-      name: "Ice & Wanter Rakes",
+      name: "Ice & Water Rakes",
       price: "$" + iceWaterRakes
     },
     'iceEaves' : {
-      name: "Ice & Wanter Eaves",
+      name: "Ice & Water Eaves",
       price: "$" + iceWaterEaves
     },
 
@@ -2230,8 +2232,8 @@ export default function UpgradeTool() {
     return namesAndPrices.map((item, index) => {
       return (
         <tr key={index}>
-          <td className="selected-name-row">{item.name}</td>
-          <td>{item.price}</td>
+          <td id="name-upgrade" className="selected-name-row">{item.name}</td>
+          <td id="price-upgrade">{item.price}</td>
         </tr>
       )
     })
@@ -3682,11 +3684,17 @@ const [isShown, setIsShown] = useState('0')
           transition={{ duration: .7 }}
           >
         <h1 className="surv-header">Selected Upgrades</h1>
-          <table>
+        <div className='print-pdf-wrapper'>
+          <button className='print-pdf-btn'><img id="PDF" src={PDF} alt='pdf' /></button>
+          <label className='print-pdf-label'>Print PDF</label>
+
+        </div>
+          <table id="selected-body">
             <tbody id="selected-table">
+              <img id='kaiser' src={kaiser} alt="kaiser icon"/>
             <tr>
-              <th>Name</th>
-              <th>Price</th>
+              <th id="name-label-upgrade">Material</th>
+              <th id="price-label-upgrade">Price</th>
             </tr>
               {selectedUpgrades()}
             </tbody>
@@ -3698,7 +3706,6 @@ const [isShown, setIsShown] = useState('0')
         <div className="surv-accent1"></div>
 
           <button className="survey-btn prev" onClick={() => selectedUpgradesPrev()}><i class="fas fa-chevron-left"></i></button>
-          <button className="survey-btn next" onClick={() => selectedUpgradesNext()}><i class="fas fa-chevron-right"></i></button>
 
         </div>
       )
