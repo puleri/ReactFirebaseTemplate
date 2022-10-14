@@ -26,6 +26,8 @@ import CharMarket from './components/Markets/CharMarket';
 import AtlMarket from './components/Markets/AtlMarket';
 import Manufactor from './components/Manufactor/Manufactor';
 import OwensCorning from './components/Manufactor/OwensCorning';
+import Create from './components/Manufactor/create/Create';
+import TemplateManager from './components/Manufactor/manager/TemplateManager';
 
 // **** DO NOT DELETE OR COMMENT OUT-- ignore linter
 // import firebase, { auth } from 'firebase';
@@ -101,6 +103,14 @@ function App(props) {
             <PrivateRoute path='/admin/owens-corning'
               currentUser={currentUser}
               component={ OwensCorning } />
+            
+            <PrivateRoute path='/admin/create-template'
+              currentUser={currentUser}
+              component={ Create } />
+
+            <PrivateRoute path='/admin/template-manager'
+              currentUser={currentUser}
+              component={ TemplateManager } />
 
     {
     // end of private routes
