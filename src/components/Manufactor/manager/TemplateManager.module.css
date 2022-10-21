@@ -1,3 +1,5 @@
+
+
 .header {
     position: absolute;
     font-size: 36px;
@@ -28,6 +30,14 @@
     width: 300px;
     font-weight: 800;
     font-size: 20px;
+    color: #333333;
+    transition: color .1s ease-out ;
+    cursor: pointer;
+}
+
+.name:hover {
+    color: #2CD288;
+    text-decoration: none;
 }
 
 #row {

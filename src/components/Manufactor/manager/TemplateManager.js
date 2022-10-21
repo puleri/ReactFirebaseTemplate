@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Redirect, withRouter } from 'react-router-dom'
 import Footer from '../../Footer/Footer.js';
+import Template from '../edit/Template'
 import Navbar from '../../Navbar/Navbar.js';
 import firebase from '../../../firebase';
 
@@ -23,7 +24,15 @@ const TemplateManager = (props)  => {
             .then(console.log(templates))
             .catch(e => console.log(e))
         // setIsLoading(false)
+    }
+
+    const handleUrlChange = (name) => {
+        // returns a string where template name is made lowercase
+        // AND replaces spaces with dashes ("-")
+        let str = name.toString()
+        str = str.replace(/\s+/g, '-').toLowerCase();
         
+        props.history.push(`/admin/template-manager/id=?${str}`)
     }
 
     const templateHTML =
@@ -31,7 +40,7 @@ const TemplateManager = (props)  => {
         <div className={css.posAbs}>
         <div className={css.flexCol}>
         <tr id={css.row} key={i}>
-            <th className={css.name}>{template.name}</th>
+            <th onClick={() => handleUrlChange(template.name)} className={css.name}>{template.name}</th>
             <th></th>
             <th></th>
             <th>
@@ -46,7 +55,8 @@ const TemplateManager = (props)  => {
        <br />
        </div>
 
-    )
+    );
+
 
     useEffect(() => {
         templateIndex()

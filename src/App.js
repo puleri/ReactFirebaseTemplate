@@ -28,6 +28,8 @@ import Manufactor from './components/Manufactor/Manufactor';
 import OwensCorning from './components/Manufactor/OwensCorning';
 import Create from './components/Manufactor/create/Create';
 import TemplateManager from './components/Manufactor/manager/TemplateManager';
+import Template from './components/Manufactor/edit/Template';
+
 
 // **** DO NOT DELETE OR COMMENT OUT-- ignore linter
 // import firebase, { auth } from 'firebase';
@@ -108,9 +110,15 @@ function App(props) {
               currentUser={currentUser}
               component={ Create } />
 
-            <PrivateRoute path='/admin/template-manager'
+            <PrivateRoute exact path='/admin/template-manager'
               currentUser={currentUser}
               component={ TemplateManager } />
+
+            <PrivateRoute path='/admin/template-manager/'
+              currentUser={currentUser}
+              component={ Template } />
+
+            
 
     {
     // end of private routes
