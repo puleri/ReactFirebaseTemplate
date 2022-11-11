@@ -38,7 +38,10 @@ const Create = (props)  => {
         }
         const db = firebase.firestore();
         // Add a new document in collection "cities"
-        db.collection("templates").doc(newData.name).set({
+        let urlSafeName = newData.name
+        urlSafeName = urlSafeName.toString().replace(/\s+/g, '-').toLowerCase();
+
+        db.collection("templates").doc(urlSafeName).set({
             name: newData.name,
             atlanta: false,
             charlotte: false,

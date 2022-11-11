@@ -246,7 +246,7 @@ That password is <span className="code">password</span></p>
 
           <div className='markets-container'>
 
-            <h3 className='markets-container-heder'>Markets <span className='total-markets'>3</span></h3>
+            <h3 className='markets-container-heder'>Markets Coming Soon <span className='total-markets'>3</span></h3>
             
             <div className='markets-wrapper'>
               <a href="/admin/charlotte-market" className='cin'>

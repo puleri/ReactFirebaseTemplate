@@ -4,7 +4,7 @@ import Navbar from '../../Navbar/Navbar.js';
 import css from './Template.module.css'
 import NavManufactor from '../NavManufactor.js'
 
-import OwenShingles from '../OwenShingles.js';
+import Shingles from '../materials/Shingles.js';
 import OwenRidgeCap from '../OwenRidgeCap.js';
 import OwenStarter from '../OwenStarter.js';
 import OwenVenting from '../OwenVenting.js';
@@ -47,7 +47,7 @@ export default function Template(props) {
     const shownContent = () => {
         switch (category){
             case "Shingle": 
-                return <OwenShingles setFormOpen={setFormOpen} formOpen={formOpen}/>
+                return <Shingles name={templateTitle} setFormOpen={setFormOpen} formOpen={formOpen}/>
             
             case "Starter Strip":
                 return <OwenStarter setFormOpen={setFormOpen} formOpen={formOpen}/>
