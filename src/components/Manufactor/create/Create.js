@@ -37,36 +37,72 @@ const Create = (props)  => {
               return
         }
         const db = firebase.firestore();
-        // Add a new document in collection "cities"
+
         let urlSafeName = newData.name
         urlSafeName = urlSafeName.toString().replace(/\s+/g, '-').toLowerCase();
+        activeMarketsBatch(urlSafeName, newData.name)
 
-        db.collection("templates").doc(urlSafeName).set({
-            name: newData.name,
-            atlanta: false,
-            charlotte: false,
-            cincinnati: false
-        })
-        .then(() => {
-            props.setFormOpen(false)
-            setNotification({
-                active: true,
-                error: false,
-                message: 'Market added!'
-            })
-            setNewData({
-                name: ''
-            })
-            setTimeout(() => {
-                setNotification({
-                    active: false,
-                    message: ''
-                })
-              }, "4000")
-            console.log("Document successfully written!");
-        })
-        .catch((error) => {
-            console.error("Error writing document: ", error);
+        // db.collection("templates").doc(urlSafeName).set({
+        //     name: newData.name,
+        //     materials: {
+        //         shingles: {},
+        //         starter: {},
+        //         ridgeCap: {},
+        //         iceWater: {},
+        //         metalEdge: {},
+        //         underlayment: {},
+        //         venting: {}
+        //     }
+        // })
+        // .then(() => {
+        //     props.setFormOpen(false)
+        //     setNotification({
+        //         active: true,
+        //         error: false,
+        //         message: 'Market added!'
+        //     })
+        //     setNewData({
+        //         name: ''
+        //     })
+        //     setTimeout(() => {
+        //         setNotification({
+        //             active: false,
+        //             message: ''
+        //         })
+        //       }, "4000")
+        //     console.log("Document successfully written!");
+        // })
+        // .catch((error) => {
+        //     console.error("Error writing document: ", error);
+        // });
+    }
+
+    const initialMarketsArr = []
+    const activeMarketsBatch = (urlName, title) => {
+        const db = firebase.firestore();
+
+        // Get a new write batch
+        var batch = db.batch();
+
+        // Set name property
+        var nameRef = db.collection("templates").doc(urlName)
+        batch.set(nameRef, {name: title});
+
+
+        // Set the value of 'NYC'
+        var atlRef = db.collection("templates").doc(urlName).collection("activeMarkets").doc("atlanta");
+        batch.set(atlRef, {name: "Atlanta", active: true});
+        
+        var cinnRef = db.collection("templates").doc(urlName).collection("activeMarkets").doc("cincinnati");
+        batch.set(cinnRef, {name: "Cincinnati", active: true});
+
+        var charRef = db.collection("templates").doc(urlName).collection("activeMarkets").doc("charlotte");
+        batch.set(charRef, {name: "Charlotte", active: true});
+
+        // Commit the batch
+        batch.commit().then(() => {
+            // ...
+            console.log("Successfully committed Batch")
         });
     }
 

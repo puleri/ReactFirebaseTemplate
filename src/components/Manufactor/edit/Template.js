@@ -5,13 +5,13 @@ import css from './Template.module.css'
 import NavManufactor from '../NavManufactor.js'
 
 import Shingles from '../materials/Shingles.js';
-import OwenRidgeCap from '../OwenRidgeCap.js';
-import OwenStarter from '../OwenStarter.js';
-import OwenVenting from '../OwenVenting.js';
-import OwenIceWater from '../OwenIceWater.js';
-import OwenUnderlayment from '../OwenUnderlayment.js';
-import OwenMetalEdge from '../OwenMetalEdge.js';
-import OwenActive from '../OwenActive.js';
+import RidgeCap from '../materials/RidgeCap.js';
+import Starter from '../materials/Starter.js';
+import Venting from '../materials/Venting.js';
+import IceWater from '../materials/IceWater.js';
+import Underlayment from '../materials/Underlayment.js';
+import MetalEdge from '../materials/MetalEdge.js';
+import ActiveMarkets from '../materials/ActiveMarkets.js';
 
 import firebase from '../../../firebase';
 
@@ -23,16 +23,21 @@ export default function Template(props) {
     const [category, setCategory] = useState('Active Markets')
     const [formOpen, setFormOpen] = useState(false)
     const [templateTitle, setTemplateTitle] = useState('')
+    const [urlSafeName, setURLSafeName] = useState('')
 
     const tepmlateNameFromURL = () => {
         const db = firebase.firestore();
 
         const url = window.location.href;
+        // console.log(url)
         const lastPart = url.split('id=?')[1];
-        var nameRef = db.collection(lastPart).doc('template-name');
+        console.log(lastPart)
+        var nameRef = db.collection('templates').doc(lastPart);
         nameRef.get().then((doc) => {
             if (doc.exists) {
+                // console.log(doc.data().name)
                 setTemplateTitle(doc.data().name)
+                setURLSafeName(lastPart)
                 
             } else {
                 // doc.data() will be undefined in this case
@@ -47,28 +52,28 @@ export default function Template(props) {
     const shownContent = () => {
         switch (category){
             case "Shingle": 
-                return <Shingles name={templateTitle} setFormOpen={setFormOpen} formOpen={formOpen}/>
+                return <Shingles name={urlSafeName} setFormOpen={setFormOpen} formOpen={formOpen}/>
             
             case "Starter Strip":
-                return <OwenStarter setFormOpen={setFormOpen} formOpen={formOpen}/>
+                return <Starter name={urlSafeName} setFormOpen={setFormOpen} formOpen={formOpen}/>
             
             case "Ridge Cap":
-                return <OwenRidgeCap setFormOpen={setFormOpen} formOpen={formOpen}/>
+                return <RidgeCap name={urlSafeName} setFormOpen={setFormOpen} formOpen={formOpen}/>
 
             case "Venting":
-                return <OwenVenting setFormOpen={setFormOpen} formOpen={formOpen}/>
+                return <Venting name={urlSafeName} setFormOpen={setFormOpen} formOpen={formOpen}/>
 
             case "Ice & Water Barrier":
-                return <OwenIceWater setFormOpen={setFormOpen} formOpen={formOpen}/>
+                return <IceWater name={urlSafeName} setFormOpen={setFormOpen} formOpen={formOpen}/>
             
             case "Underlayment":
-                return <OwenUnderlayment setFormOpen={setFormOpen} formOpen={formOpen}/>
+                return <Underlayment name={urlSafeName} setFormOpen={setFormOpen} formOpen={formOpen}/>
             
             case "Metal Edge":
-                return <OwenMetalEdge setFormOpen={setFormOpen} formOpen={formOpen}/>
+                return <MetalEdge name={urlSafeName} setFormOpen={setFormOpen} formOpen={formOpen}/>
             
             case "Active Markets":
-                return <OwenActive setFormOpen={setFormOpen} formOpen={formOpen}/>
+                return <ActiveMarkets name={urlSafeName} setFormOpen={setFormOpen} formOpen={formOpen}/>
         }
 
     }

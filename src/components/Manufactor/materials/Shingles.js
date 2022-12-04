@@ -8,8 +8,10 @@ import 'firebase/firestore';
 
 
 export default function Shingles(props) {
-
-
+    // collection name created with props.name
+    const collectionName = `${props.name}-shingles`;
+    console.log(collectionName)
+    const [isCollectionEmpty, setCollectionEmpty] = useState(false)
     const [shingles, setShingles] = useState([]);
     const [edit, setEdit] = useState(null);
     const [newMargin, setNewMargin] = useState({
@@ -32,7 +34,9 @@ export default function Shingles(props) {
     const handleAvail = (name, index) => {
         const db = firebase.firestore();
         let status;
-        var docRef = db.collection("owens-shingles").doc(name);
+        // structure can be taken from "owens-shingles collection"
+        var docRef = db.collection("templates").doc(name);
+        
 
         docRef.get().then((doc) => {
             if (doc.exists) {
@@ -59,18 +63,31 @@ export default function Shingles(props) {
     }   
     
     useEffect(() => {
+        console.log("name props are ", props.name)
         shingleDbMatch()
       }, [])
 
       // READ index of shingles
     const shingleDbMatch = () => {
         // setIsLoading(true)
-        const q = firebase.firestore().collection('owens-shingles')
-        q.get().then(querySnapshot => {
-        const d = querySnapshot.docs.map(d => d.data())
-        //   console.log('data BIG ', d)
-        setShingles(d)
-        })
+        // const q = firebase.firestore().collection('owens-shingles')
+        // q.get().then(querySnapshot => {
+        // const d = querySnapshot.docs.map(d => d.data())
+        // //   console.log('data BIG ', d)
+        // setShingles(d)
+        // })
+
+        const d = firebase.firestore().collectionGroup(collectionName)
+        d.get().then(querySnapshot => {
+            const d = querySnapshot.docs.map(d => d.data())
+                if(d.length === 0) {
+                    setCollectionEmpty(true)
+                    console.log("empty query! nothing to see here")
+                } else {
+                    setShingles(d)
+                }
+                
+            })
         // setIsLoading(false)
     }
     const handleSelect = (i) => {
@@ -86,7 +103,7 @@ export default function Shingles(props) {
 
         console.log(!newMargin.mult + " " + !newMargin.waste)
 
-        var docRef = db.collection("owens-shingles").doc(name);
+        var docRef = db.collection("templates").doc(props.name).collection(collectionName).doc(name);
         let wastePercent;
         let newState = [...shingles];
 
@@ -158,7 +175,7 @@ export default function Shingles(props) {
         }
         const db = firebase.firestore();
         // Add a new document in collection "cities"
-        db.collection("owens-shingles").doc(newData.name).set({
+        db.collection("templates").doc(props.name).collection(collectionName).doc(newData.name).set({
             name: newData.name,
             waste: newWastePercent,
             multiplier: Number(newData.multiplier)
