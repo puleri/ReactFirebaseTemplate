@@ -7,8 +7,10 @@ import 'firebase/firestore';
 
 
 export default function ActiveMarkets(props) {
+    const collectionName = `${props.name}-activemarkets`;
+
     const [templateName, setTemplateName] = useState('')
-    const [shingles, setShingles] = useState([]);
+    const [markets, setMarkets] = useState([]);
     const [edit, setEdit] = useState(null);
     const [newMargin, setNewMargin] = useState({
         waste: '',
@@ -34,7 +36,7 @@ export default function ActiveMarkets(props) {
     const handleAvail = (name, index) => {
         const db = firebase.firestore();
         let status;
-        var docRef = db.collection("templates").doc(lastPart).collection('activeMarkets').doc(name);
+        var docRef = db.collection("templates").doc(lastPart).collection(collectionName).doc(name);
 
         docRef.get().then((doc) => {
             if (doc.exists) {
@@ -44,11 +46,11 @@ export default function ActiveMarkets(props) {
                     active: !status
                 }, { merge: true }); 
                 
-                let newState = [...shingles];
+                let newState = [...markets];
 
                 let stateStatus = newState[index].active;
                 newState[index].active = !stateStatus;
-                setShingles(newState);
+                setMarkets(newState);
 
                 // console.log("Document data:", doc.data().active);
             } else {
@@ -66,26 +68,19 @@ export default function ActiveMarkets(props) {
 
       // READ index of markets
     const activeMarketsIndex = () => {
+        
+        console.log('markets is, ', props.markets)
 
         // setIsLoading(true)
-        const q = firebase.firestore().collectionGroup('activeMarkets')
-
-        q.get().then(querySnapshot => {
-        const d = querySnapshot.docs.map(d => d.data())
-          console.log('data BIG ', d)
-
-          const uniqueIds = new Set();
-          const unique = d.filter(element => {
-            const isDuplicate = uniqueIds.has(element.name);
-            if (!isDuplicate) {
-              uniqueIds.add(element.name);
-              return true;
-            }
-            return false;
-          });
-          console.log(unique)
-        setShingles(unique)
-        })
+        const d = firebase.firestore().collectionGroup(collectionName)
+        d.get().then(querySnapshot => {
+            const d = querySnapshot.docs.map(d => d.data())
+                if(d.length === 0) {
+                    console.log("empty query! nothing to see here")
+                } else {
+                    setMarkets(d)
+                }
+            })        
         // setIsLoading(false)
     }
     const handleSelect = (i) => {
@@ -117,7 +112,7 @@ export default function ActiveMarkets(props) {
         }
         const db = firebase.firestore();
         // Add a new document in collection "cities"
-        db.collection("templates").doc(lastPart).collection('activeMarkets').doc(newData.name).set({
+        db.collection("templates").doc(lastPart).collection(collectionName).doc(newData.name).set({
             name: newData.name,
             active: newData.active,
         })
@@ -165,10 +160,10 @@ export default function ActiveMarkets(props) {
         )  
     }
 
-    const shinglesIndex =
-    shingles.map((shingle, i) =>
+    const marketsIndex =
+    markets.map((shingle, i) =>
         <tr id={css.row} key={i}>
-            <th><label onClick={() => handleAvail(shingle.name, i)} className={css.toggle} for="myToggle"> <input onChange={() => handleAvail(shingle.name, i)} className={css.toggle__input} name="" type="checkbox" id={css.myToggle} checked={shingles[i].active === true}/><div className={css.toggle__fill}></div></label>
+            <th><label onClick={() => handleAvail(shingle.name, i)} className={css.toggle} for="myToggle"> <input onChange={() => handleAvail(shingle.name, i)} className={css.toggle__input} name="" type="checkbox" id={css.myToggle} checked={markets[i].active === true}/><div className={css.toggle__fill}></div></label>
             </th>
             <th className={css.name}>{shingle.name}</th>
             <th></th>
@@ -183,7 +178,7 @@ export default function ActiveMarkets(props) {
             }
             <div className={css.key}><i id={css.cash} className="fa-solid fa-calculator"></i>&ensp; Cash multiplier &ensp; &ensp; | &ensp; &ensp; <span className={css.wasteKey}>WF &ensp;</span> Waste factor</div>
             <div className={css.tableWrapper}>
-                    {shinglesIndex}
+                    {marketsIndex}
                     {props.formOpen ? newShingleForm() : <></>}
             </div>
         </>

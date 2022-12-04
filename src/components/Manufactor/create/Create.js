@@ -90,14 +90,14 @@ const Create = (props)  => {
 
 
         // Set the value of 'NYC'
-        var atlRef = db.collection("templates").doc(urlName).collection("activeMarkets").doc("atlanta");
-        batch.set(atlRef, {name: "Atlanta", active: true});
+        // var atlRef = db.collection("templates").doc(urlName).collection("activeMarkets").doc("atlanta");
+        // batch.set(atlRef, {name: "Atlanta", active: true});
         
-        var cinnRef = db.collection("templates").doc(urlName).collection("activeMarkets").doc("cincinnati");
-        batch.set(cinnRef, {name: "Cincinnati", active: true});
+        // var cinnRef = db.collection("templates").doc(urlName).collection("activeMarkets").doc("cincinnati");
+        // batch.set(cinnRef, {name: "Cincinnati", active: true});
 
-        var charRef = db.collection("templates").doc(urlName).collection("activeMarkets").doc("charlotte");
-        batch.set(charRef, {name: "Charlotte", active: true});
+        // var charRef = db.collection("templates").doc(urlName).collection("activeMarkets").doc("charlotte");
+        // batch.set(charRef, {name: "Charlotte", active: true});
 
         // Commit the batch
         batch.commit().then(() => {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Footer from '../../Footer/Footer.js';
 import Navbar from '../../Navbar/Navbar.js';
 import css from './Template.module.css'
@@ -20,24 +20,53 @@ import firebase from '../../../firebase';
 
 
 export default function Template(props) {
-    const [category, setCategory] = useState('Active Markets')
+
+
+    const [markets, setMarkets] = useState([]);
+    const [category, setCategory] = useState('Loading')
     const [formOpen, setFormOpen] = useState(false)
     const [templateTitle, setTemplateTitle] = useState('')
     const [urlSafeName, setURLSafeName] = useState('')
+    const url = window.location.href;
+    const lastPart = url.split('id=?')[1];
+    const collectionName = `${lastPart}-activemarkets`;
+
+
+
+
+    useEffect(() => {
+        tepmlateNameFromURL()
+        activeMarketsIndex()
+      }, [])
+
+    const activeMarketsIndex = () => {
+    
+        console.log('name is, ', collectionName)
+        setCategory("Loading")
+        setTimeout(setCategory("Active Markets"), 0)
+        
+        const d = firebase.firestore().collectionGroup(collectionName)
+        d.get().then(querySnapshot => {
+            const d = querySnapshot.docs.map(d => d.data())
+                if(d.length === 0) {
+                    console.log("empty query! nothing to see here")
+                } else {
+                    setMarkets(d)
+                }
+            })        
+        // setIsLoading(false)
+    }
 
     const tepmlateNameFromURL = () => {
         const db = firebase.firestore();
 
-        const url = window.location.href;
-        // console.log(url)
-        const lastPart = url.split('id=?')[1];
+        setURLSafeName(lastPart)
         console.log(lastPart)
         var nameRef = db.collection('templates').doc(lastPart);
         nameRef.get().then((doc) => {
             if (doc.exists) {
                 // console.log(doc.data().name)
                 setTemplateTitle(doc.data().name)
-                setURLSafeName(lastPart)
                 
             } else {
                 // doc.data() will be undefined in this case
@@ -73,7 +102,7 @@ export default function Template(props) {
                 return <MetalEdge name={urlSafeName} setFormOpen={setFormOpen} formOpen={formOpen}/>
             
             case "Active Markets":
-                return <ActiveMarkets name={urlSafeName} setFormOpen={setFormOpen} formOpen={formOpen}/>
+                return <ActiveMarkets name={urlSafeName} markets={markets} setFormOpen={setFormOpen} formOpen={formOpen}/>
         }
 
     }
@@ -81,7 +110,6 @@ export default function Template(props) {
     return (
         <>
             <Navbar/>
-            {  tepmlateNameFromURL() }
             <div className={css.container}>
                 <h2 className={css.header}>{templateTitle} 
                     <span className='total-users'>{category}</span>
