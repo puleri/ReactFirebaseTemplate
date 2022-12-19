@@ -37,7 +37,7 @@ import Template from './components/Manufactor/edit/Template';
 
 
 
-function App(props) {
+function App() {
   const [currentUser, setCurrentUser] = useState('');
 
   // let email = firebase.auth().currentUser ? firebase.auth().currentUser.email : false

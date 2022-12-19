@@ -163,6 +163,7 @@ export default function UpgradeTool() {
 
   // manufacturers hook
   const [manufs, setManufs] = useState([]);
+  const [chosenManuf, setChosenManuf]= useState('');
 
   // Upgrade prices and formulas
   // Do not delete
@@ -1467,6 +1468,11 @@ export default function UpgradeTool() {
   }
   // upgrade conditionals
   const existingShingleUpgrade = () => {
+    let manufDBName = chosenManuf
+    manufDBName = manufDBName.replace(/\s+/g, '-').toLowerCase()
+
+    console.log(manufDBName+"-shingles")
+
     if (roofTemplate.existingShingle === "3-tab") {
       if (roofTemplate.tab === "20") {
         return (
@@ -2249,7 +2255,7 @@ export default function UpgradeTool() {
 
   const selectedUpgrades = () => {
     let keys = Object.keys(chosenUpgrades);
-    console.log(chosenUpgrades)
+    // console.log(chosenUpgrades)
     // returns keys of chosen upgrades in array
     let data = keys.filter((i) => chosenUpgrades[i] === true)
 
@@ -2259,6 +2265,28 @@ export default function UpgradeTool() {
       namesAndPrices.push({ name: upgradeObjects[upgrade].name, price: upgradeObjects[upgrade].price })
       return (upgradeObjects[upgrade].name + ' ' + upgradeObjects[upgrade].price)
     };
+
+    // query for formula values
+    // console.log("manuf ", chosenManuf)
+    let manufDBName = chosenManuf
+    manufDBName = manufDBName.replace(/\s+/g, '-').toLowerCase()
+    // console.log(manufDBName)
+
+    // db query
+    const db = firebase.firestore();
+    var docRef = db.collection("templates").doc(manufDBName)
+    docRef.get().then((doc) => {
+        if (doc.exists) {
+            console.log("Document data:", doc.data());
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+        }
+      }).catch((error) => {
+          console.log("Error getting document:", error);
+      });
+
+
     data.forEach(getNameAndPrice);
     return namesAndPrices.map((item, index) => {
       return (
@@ -3623,7 +3651,11 @@ export default function UpgradeTool() {
                         id="roof_type"
                         size="1"
                         value={roofTemplate.materials}
-                        onChange={(e) => setRoofTemplate({ ...roofTemplate, materials: e.target.value })}>
+                        onChange={(e) => {
+                          setChosenManuf(e.target.value)
+                          setRoofTemplate({ ...roofTemplate, materials: e.target.value })}
+                        }
+                        >
                         <option value="select">Select manufacturer</option>
                         {manufOptionsJSX}
                       </select>

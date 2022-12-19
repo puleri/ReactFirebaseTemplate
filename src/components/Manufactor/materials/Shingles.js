@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import css from './Material.module.css';
+import GradeDropdown from './GradeDropdown';
 
 import firebase, { getAuth } from '../../../firebase';
 
@@ -15,11 +16,13 @@ export default function Shingles(props) {
     const [shingles, setShingles] = useState([]);
     const [edit, setEdit] = useState(null);
     const [newMargin, setNewMargin] = useState({
+        grade: '',
         waste: '',
         mult: ''
     });
 
     const [newData, setNewData] = useState({
+        grade: '',
         name: '',
         multiplier: '',
         waste: ''
@@ -107,13 +110,33 @@ export default function Shingles(props) {
         let wastePercent;
         let newState = [...shingles];
 
-        if (!newMargin.mult && !newMargin.waste) {
+        if (!newMargin.mult && !newMargin.waste && !newMargin.grade) {
             // end of function will reset form
             // no need to here
         } 
+        else if (!newMargin.mult && !newMargin.waste) {
+            docRef.set({
+                grade: newMargin.grade
+            }, { merge: true }); 
+            newState[edit].grade = newMargin.grade
+        } 
+        else if (!newMargin.grade && !newMargin.waste) {
+            docRef.set({
+                multiplier: Number(newMargin.mult),
+            }, { merge: true }); 
+            newState[edit].multiplier = newMargin.mult
+        } 
+        else if (!newMargin.grade && !newMargin.mult) {
+            wastePercent = (newMargin.waste * .01) + 1
+            docRef.set({
+                waste: wastePercent,
+            }, { merge: true }); 
+            newState[edit].waste = wastePercent
+        } 
         else if (!newMargin.waste) {
             docRef.set({
-                multiplier: Number(newMargin.mult)
+                multiplier: Number(newMargin.mult),
+                grade: newMargin.grade
             }, { merge: true }); 
             newState[edit].multiplier = newMargin.mult
         } 
@@ -121,10 +144,12 @@ export default function Shingles(props) {
             wastePercent = (newMargin.waste * .01) + 1
             docRef.set({
                 waste: wastePercent,
+                grade: newMargin.grade
             }, { merge: true }); 
             newState[edit].waste = wastePercent
+            newState[edit].grade = newMargin.grade
         } 
-        else {
+        else if (!newMargin.grade) {
             wastePercent = (newMargin.waste * .01) + 1
             docRef.set({
                 waste: wastePercent,
@@ -132,7 +157,7 @@ export default function Shingles(props) {
             }, { merge: true }); 
             newState[edit].multiplier = newMargin.mult
             newState[edit].waste = wastePercent
-        }
+        } 
         
         
         // set local state to match DB
@@ -156,7 +181,7 @@ export default function Shingles(props) {
     const handleCreateNew = () => {
         let newWastePercent = (newData.waste* .01) + 1;
         // on error
-        if (!newData.waste || !newData.name || !newData.multiplier) {
+        if (!newData.grade || !newData.waste || !newData.name || !newData.multiplier) {
 
             setNotification({
                 active: true,
@@ -176,6 +201,7 @@ export default function Shingles(props) {
         const db = firebase.firestore();
         // Add a new document in collection "cities"
         db.collection("templates").doc(props.name).collection(collectionName).doc(newData.name).set({
+            grade: newData.grade,
             name: newData.name,
             waste: newWastePercent,
             multiplier: Number(newData.multiplier)
@@ -206,6 +232,7 @@ export default function Shingles(props) {
     }
     const handleCancelForm = () => {
         setNewData({
+            grade: '',
             name: '',
             multiplier: '',
             waste: ''
@@ -217,7 +244,7 @@ export default function Shingles(props) {
         return (
             <tr id={css.row}>
                 <th className={css.name}><input onChange={(e)=>setNewData({...newData, name: e.target.value})} value={newData.name} id={css.nameInp} type='text' /></th>
-                <th></th>
+                <th><GradeDropdown newData={newData} setNewData={setNewData}/></th>
                 <th></th>
                 <th className={css.waste}><input onChange={(e)=>setNewData({...newData, multiplier: e.target.value})} value={newData.multiplier} id={css.multiInp} type='text' />&ensp;<i id={css.cash} className="fa-solid fa-calculator"></i></th>
                 <th className={css.waste}> <input onChange={(e)=>setNewData({...newData, waste: e.target.value})} value={newData.waste} id={css.wasteInp} type='text' /> %<span className={css.wasteLabel}>WF</span></th>
@@ -231,7 +258,12 @@ export default function Shingles(props) {
         <tr id={css.row} key={i}>
             <th className={css.name}>{shingle.name}</th>
             <th></th>
-            <th></th>
+            
+            { (edit == i)
+            ? <th className={css.waste}><GradeDropdown newData={newMargin} setNewData={setNewMargin}/></th>
+            : <th className={css.waste}>{shingle.grade}</th>
+            }
+
             { (edit == i)
             ? <th className={css.waste}><input id={css.multiInp} value={newMargin.mult} onChange={(e) => setNewMargin({ ...newMargin, mult: e.target.value })} type='text' />&ensp;<i id={css.cash} className="fa-solid fa-calculator"></i></th>
             : <th className={css.waste}>{shingle.multiplier}<span id={css.x}>x</span><i id={css.cash} className="fa-solid fa-calculator"></i></th>
