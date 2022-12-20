@@ -57,6 +57,32 @@ export default function RidgeCap(props) {
             unit: ''
         })
     }
+
+    const handleDelete = (i) => {
+        const name = ridge[i].name;
+        const db = firebase.firestore();
+        var docRef = db.collection("templates").doc(props.name).collection(collectionName).doc(name);
+        docRef.delete().then(() => {
+            console.log("Document successfully deleted!");
+        })
+        .then(() => {
+            setNotification({
+                active: true,
+                error: false,
+                message: 'Material successfully deleted!'
+            })
+            setTimeout(() => {
+                setNotification({
+                    active: false,
+                    message: ''
+                })
+              }, "4000")
+        })
+        .catch((error) => {
+            console.error("Error removing document: ", error);
+        });
+    }
+
     const handleSubmit = () => {
         const db = firebase.firestore();
         const name = ridge[edit].name;
@@ -209,6 +235,10 @@ export default function RidgeCap(props) {
             { (edit == i) 
             ? <><th className={css.cancel} onClick={() => handleCancel()}><i className="fa-solid fa-rectangle-xmark"></i></th><th className={css.edit} onClick={() => handleSubmit()}><i className="fa-solid fa-circle-check"></i></th></>
             : <th className={css.edit} onClick={() => handleSelect(i)}><i className="fa-solid fa-pen"></i></th>
+            }
+            { (edit == i) 
+            ? <><th className={css.cancel}></th></>
+            : <th className={css.edit} onClick={() => handleDelete(i)}><i className="fa-solid fa-trash"></i></th>
             }
        </tr>
     )
