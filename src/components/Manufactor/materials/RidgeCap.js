@@ -233,7 +233,7 @@ export default function RidgeCap(props) {
             : <th className={css.waste}>{ridge.unit}<span className={css.wasteLabel}>unit</span></th>
             }
             { (edit == i) 
-            ? <><th className={css.cancel} onClick={() => handleCancel()}><i className="fa-solid fa-rectangle-xmark"></i></th><th className={css.edit} onClick={() => handleSubmit()}><i className="fa-solid fa-circle-check"></i></th></>
+            ? <><th className={css.cancel} onClick={() => handleCancel()}><i className="fa-solid fa-rectangle-xmark"></i></th><th className={css.submit} onClick={() => handleSubmit()}><i className="fa-solid fa-circle-check"></i></th></>
             : <th className={css.edit} onClick={() => handleSelect(i)}><i className="fa-solid fa-pen"></i></th>
             }
             { (edit == i) 

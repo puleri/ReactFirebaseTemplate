@@ -286,7 +286,7 @@ export default function Shingles(props) {
             <th></th>
             
             { (edit == i)
-            ? <th className={css.waste}><GradeDropdown newData={newMargin} setNewData={setNewMargin}/></th>
+            ? <th className={css.gradeDropdown}><GradeDropdown newData={newMargin} setNewData={setNewMargin}/></th>
             : <th className={css.waste}>{shingle.grade}</th>
             }
 
@@ -300,7 +300,7 @@ export default function Shingles(props) {
             : <th className={css.waste}> {Math.round(shingle.waste * 10 * 10 - 100)} %<span className={css.wasteLabel}>WF</span></th>
             }
             { (edit == i) 
-            ? <><th className={css.cancel} onClick={() => handleCancel()}><i className="fa-solid fa-rectangle-xmark"></i></th><th className={css.edit} onClick={() => handleSubmit()}><i className="fa-solid fa-circle-check"></i></th></>
+            ? <><th className={css.cancel} onClick={() => handleCancel()}><i className="fa-solid fa-rectangle-xmark"></i></th><th className={css.submit} onClick={() => handleSubmit()}><i className="fa-solid fa-circle-check"></i></th></>
             : <th className={css.edit} onClick={() => handleSelect(i)}><i className="fa-solid fa-pen"></i></th>
             }
             { (edit == i) 
