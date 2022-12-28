@@ -217,15 +217,15 @@ export default function UpgradeTool() {
       price: "$" + twentyToSupreme
     },
     'oakridgeTab': {
-      name: "Oakridge Shingle",
+      name: "Oakridge AR",
       price: "$" + supremeToOakridge
     },
     'durationTab': {
-      name: "Duration Shingle",
+      name: "TruDefinition Duration AR",
       price: "$" + supremeToDuration
     },
     'durationDesignerTab': {
-      name: "Duration Designer Shingle",
+      name: "TruDefinition Duration Designer AR",
       price: "$" + supremeToDurationDesigner
     },
     'berkshireTab': {
@@ -238,11 +238,11 @@ export default function UpgradeTool() {
       price: "Unavailable"
     },
     'highLam': {
-      name: "Duration Shingle",
+      name: "TruDefinition Duration AR",
       price: "$" + oakridgeToDuration
     },
     'designerLam': {
-      name: "Duration Designer Shingle",
+      name: "TruDefinition Duration Designer AR",
       price: "$" + oakridgeToDurationDesigner
     },
     'specialtyLam': {
@@ -259,15 +259,15 @@ export default function UpgradeTool() {
     },
 
     'pipeBullet': {
-      name: "Bullet Boot Pipejacks",
+      name: "Bullet Boot",
       price: "$" + pipejacksToLead()
     },
     'pipePerma': {
-      name: "Perma-Boot Pipejacks",
+      name: "Perma-Boot",
       price: "$" + pipejacksToLead()
     },
     'pipeUltimate': {
-      name: "Lifetime Ultimate Pipejacks",
+      name: "Lifetime Ultimate Boot",
       price: "$" + pipejacksToLead()
     },
     'pipeLead': {
@@ -276,41 +276,41 @@ export default function UpgradeTool() {
     },
 
     'iceEntire': {
-      name: "Ice & Water Entire roof",
+      name: "RhinoRoof Granulated - Entire roof",
       price: "$" + iceWaterEntire
     },
     'iceValleys': {
-      name: "Ice & Water Valleys",
+      name: "RhinoRoof Granulated - Valleys",
       price: "$" + iceWaterValleys
     },
     'iceRakes': {
-      name: "Ice & Water Rakes",
+      name: "RhinoRoof Granulated - Rakes",
       price: "$" + iceWaterRakes
     },
     'iceEaves': {
-      name: "Ice & Water Eaves",
+      name: "RhinoRoof Granulated - Eaves",
       price: "$" + iceWaterEaves
     },
 
     'synth': {
-      name: "RhinoRoof U2 underlayment",
+      name: "RhinoRoof U20 Synthetic",
       price: "$" + rhinoRoof
     },
     'builderSynth': {
-      name: "RhinoRoof U2 underlayment",
+      name: "RhinoRoof U20 Synthetic",
       price: "$" + rhinoRoof
     },
     'betterSynth': {
-      name: "ProArmor ",
+      name: "ProArmor Synthetic",
       price: "$" + proArmor
     },
     'bestSynth': {
-      name: "Deck Defense",
+      name: "Deck Defense Synthetic",
       price: "$" + deckDefence
     },
 
     'ridgeVent': {
-      name: "VentSure Ridge Vent",
+      name: "VentSure Ridgid 4'",
       price: "$" + ventSureRidgeVent
 
     },
@@ -350,7 +350,7 @@ export default function UpgradeTool() {
       price: 200
     },
     'standardRidge': {
-      name: "Standard profile ridge cap",
+      name: "DuraRidge",
       price: 200
     },
     'highRidge': {
@@ -1848,14 +1848,14 @@ export default function UpgradeTool() {
         <ul>
           <h4>Underlayment</h4>
           <li className="upgrade-li" >
-            RhinoRoof U2
+            RhinoRoof U20 Synthetic
             <input
               type="checkbox"
               checked={chosenUpgrades.builderSynth === true}
               onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, builderSynth: !chosenUpgrades.builderSynth })} />
           </li>
           <li className="upgrade-li" >
-            ProArmor
+            ProArmor Synthetic
             <input
               type="checkbox"
               checked={chosenUpgrades.betterSynth === true}
@@ -2099,12 +2099,6 @@ export default function UpgradeTool() {
               type="checkbox"
               checked={chosenUpgrades.pipeUltimate === true}
               onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, pipeUltimate: !chosenUpgrades.pipeUltimate })} />
-          </li>
-          <li className="upgrade-li" >Lead
-            <input
-              type="checkbox"
-              checked={chosenUpgrades.pipeLead === true}
-              onChange={(e) => setChosenUpgrades({ ...chosenUpgrades, pipeLead: !chosenUpgrades.pipeLead })} />
           </li>
         </ul>
       )
@@ -2685,7 +2679,6 @@ export default function UpgradeTool() {
                         value={roofTemplate.tab}
                         onChange={(e) => setRoofTemplate({ ...roofTemplate, tab: e.target.value })}>
                         <option value="select">Select shingle</option>
-                        <option value="20">20 Year</option>
                         <option value="25">25 Year</option>
                       </select>
                     </div>
