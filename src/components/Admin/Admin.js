@@ -24,6 +24,8 @@ export default function Admin() {
   const [first, setFirst] = useState('')
   const [last, setLast] = useState('')
   const [email, setEmail] = useState('')
+  const [market, setMarket] = useState('')
+  const [role, setRole] = useState('')
 
 
   // Initial State
@@ -64,16 +66,18 @@ export default function Admin() {
 
   // CRD for Users
   // CREATE user
-  const signUpUser = (first, last, email) => {
+  const signUpUser = (first, last, email, market, role) => {
+    // console.log("First: ", first, " Last: ", last, " Email: ", email, " Market: ", market, " Role: ", role)
+    // return
     // check if any fields are empty: if so return with Error, if not, reset error state
     setError(
-      <div className="admin-tip2">
+      <div className="error-admin">
         <h5>Please fill out all fields before inviting user</h5>
       </div>
     )
-    if (first === '' || last === '' || email === '') {
+    if (first === '' || last === '' || email === '' || role === '') {
       return setError(
-        <div className="admin-tip2-active">
+        <div className="error-admin">
           <h5><em>Please fill out all fields before inviting user</em></h5>
         </div>
 
@@ -96,7 +100,9 @@ export default function Admin() {
           status: 'pending',
           email: email,
           first: first,
-          last: last
+          last: last,
+          role: role,
+          markets: ["Local"]
         })
       })
       .then(() => {
@@ -104,6 +110,7 @@ export default function Admin() {
         setFirst('')
         setLast('')
         setEmail('')
+        setCreateShow(false)
       })
       .catch(err => console.log("There was a problem signing up", err))
   }
@@ -127,6 +134,15 @@ export default function Admin() {
   const roleStyles = (role) => {
     if (role == "Super Admin") {
       return "super-admin"
+    }
+    if (role == "Admin") {
+      return "admin"
+    }
+    if (role == "Sales Rep") {
+      return "sales"
+    }
+    if (role == "Manager") {
+      return "manager"
     }
   }
 
@@ -237,7 +253,6 @@ That password is <span className="code">password</span></p>
             <h3 className='users-table-heder'>All Users <span className='total-users'>34</span></h3>
             <button onClick={() => setCreateShow(!createShow)} className='add-new-user'>+ Add New User</button>
           </div>
-          {error}
 
          
           <div className="user-table">
@@ -278,7 +293,13 @@ That password is <span className="code">password</span></p>
         {
           // <div style={{position: 'absolute', bottom: '-100px', background: '#333333', width: '100%', height: '100px'}}></div>
         }
-              { createShow ? <CreateModal setCreateShow={setCreateShow} show={createShow} /> :  <></>}
+              { createShow ? <CreateModal 
+              signUpUser={signUpUser} 
+              setMarket={setMarket}
+              setRole={setRole}
+              error={error} 
+              setCreateShow={setCreateShow} 
+              show={createShow} /> :  <></>}
 
       </div>
     </>

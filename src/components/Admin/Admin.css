@@ -12,7 +12,7 @@
 }
 .admin-wrapper.admin-wrapper.admin-wrapper {
   background: #E9F3EF;
-  height: 1500px;
+  height: 1000px;
   overflow: none !important;
 }
 .admin-label {
@@ -89,8 +89,16 @@ input:-webkit-autofill {
   border: none;
 }
 
+.error-admin.error-admin {
+  position: absolute;
+  top: 400px;
+  left: 100px;
+  color: #313131;
+  font-size: 10px !important;
+}
+
 .markets-container {
-  display: flex;
+  display: none;
   flex-direction: column;
   margin: 550px 60px;
   width: 1050px;
@@ -198,4 +206,28 @@ input:-webkit-autofill {
 }
 #more-icon:hover {
   background-color: #e5e5e5;
+}
+
+#admin {
+  background-color: #ffe75f7d;
+  padding: 6px 20px;
+  border-radius: 6px;
+}
+
+#sales {
+  background-color: #baf9e0dd;
+  padding: 6px 20px;
+  border-radius: 6px;
+}
+
+#manager {
+  background-color: rgba(176, 224, 230, 0.528);
+  padding: 6px 20px;
+  border-radius: 6px;
+}
+
+#super-admin {
+  border-radius: 6px;
+  background-color:rgba(253, 213, 153, 0.543);
+  padding: 6px 20px;
 }

@@ -31,19 +31,17 @@ th {
 }
 #th-body-role {
   width: 180px;
-  padding: 0 0 0 70px;
+  padding: 0 0 0 40px;
   font-size: 10px;
   color: rgba(94, 94, 94, 1);
+  text-align: center;
   font-weight: 500;
   border-top: 1px solid rgba(180, 178, 178, 1);
 }
-#super-admin {
-  border-radius: 6px;
-  background-color:rgba(253, 213, 153, 0.4);
-  padding: 6px 15px;
-}
+
 #th-body-markets {
-  padding: 0 0 0 105px;
+  padding: 0 0 0 65px;
+  text-align: center;
   width: 220px;
   font-weight: 500;
   color: rgba(94, 94, 94, 1);
@@ -51,6 +49,7 @@ th {
   border-top: 1px solid rgba(180, 178, 178, 1);
 }
 #th-body-status {
+  text-align: center;
   padding: 0 0 0 116px;
   font-size: 12px;
   border-top: 1px solid rgba(180, 178, 178, 1);
@@ -238,12 +237,15 @@ th {
   font-size: 16px;
 }
 .admin-tip2 {
-  font-size: 12px;
+  position: absolute;
+  top: 0;
 }
 .admin-tip2-active {
-  color: #c44602;
-  font-size: 12px;
+  position: absolute;
+  top: 383px;
+  color: #9c6040;
 }
+
 .admin-table {
   position: relative;
   text-align: left;

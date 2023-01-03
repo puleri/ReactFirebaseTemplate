@@ -7,16 +7,17 @@ import onClickOutside from 'react-onclickoutside'
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react'
 
-function MarketDropdown (props) {
+function RoleDropdown (props) {
   const [monthValid, setMonthValid] = useState(true)
   const [isActive, setIsActive] = useState(false)
   const [selected, setSelected] = useState([])
   const toggle = () => setIsActive(!isActive)
 
-  MarketDropdown.handleClickOutside = () => setIsActive(false)
+  RoleDropdown.handleClickOutside = () => setIsActive(false)
 
   const handleOnClick = item => {
     setMonthValid(true)
+    props.setRole(select[item.id-1].value)
     setSelected([item])
   }
 
@@ -29,9 +30,10 @@ function MarketDropdown (props) {
   }
 
   const select = [
-    { id: '1', value: 'Atlanta' },
-    { id: '2', value: 'Charlotte' },
-    { id: '3', value: 'Cincinnati' }
+    { id: '1', value: 'Sales Rep' },
+    { id: '2', value: 'Manager' },
+    { id: '3', value: 'Admin' },
+    { id: '4', value: 'Super Admin' }
   ]
   const isItemInSelection = (item) => {
     if (selected.find(current => current.id === item.id)) {
@@ -41,9 +43,7 @@ function MarketDropdown (props) {
   }
 
   return (
-    // pointer events none while disabled
     <div css={ css`
-    pointer-events:none;
     position:relative;
     height: 40px;
     width: 100%;
@@ -68,7 +68,6 @@ function MarketDropdown (props) {
       color: #333333;
       letter-spacing: .5px;
       background: white ;
-      background: grey;
       border: 1px solid lightgrey;
       border-radius: 5px;
       max-height: 25px;
@@ -93,7 +92,7 @@ function MarketDropdown (props) {
         onKeyPress={() => toggle(!isActive)}
         onClick={(e) => toggle(!isActive)}>
         <div className="dropdown-header">
-          <p css={css`display: flex;`}><span css={css`text-align:left;`}>{ (!selected[0]) ? <span css={css` color:#757575; color:white;`}>Disabled Currently</span> : selected[0].value } </span><span css={css`position: absolute; right: 10px;`}>{isActive
+          <p css={css`display: flex;`}><span css={css`text-align:left;`}>{ (!selected[0]) ? <span css={css` color:#757575;`}>Role</span> : selected[0].value } </span><span css={css`position: absolute; right: 10px;`}>{isActive
             ? <span className="fas fa-caret-down up"></span>
             : <span className="fas fa-caret-down"></span>
         }</span></p>
@@ -176,7 +175,7 @@ function MarketDropdown (props) {
 }
 
 const clickOutsideConfig = {
-  handleClickOutside: () => MarketDropdown.handleClickOutside
+  handleClickOutside: () => RoleDropdown.handleClickOutside
 }
 
-export default onClickOutside(MarketDropdown, clickOutsideConfig)
+export default onClickOutside(RoleDropdown, clickOutsideConfig)
